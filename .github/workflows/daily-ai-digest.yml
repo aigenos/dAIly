@@ -85,7 +85,7 @@ jobs:
           # Unsubscribe link or merge tag for the email footer — required
           # before sending to anyone but yourself.
           UNSUBSCRIBE_URL: ${{ vars.UNSUBSCRIBE_URL }}
-          SHOW_MODEL_ATTRIBUTION: ${{ vars.SHOW_MODEL_ATTRIBUTION || 'true' }}
+          SHOW_MODEL_ATTRIBUTION: ${{ vars.SHOW_MODEL_ATTRIBUTION || 'false' }}
           # Audio digest (free gTTS).
           ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || 'false' }}
           # Subscriber delivery: sends the public issue to your Buttondown

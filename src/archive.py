@@ -233,10 +233,8 @@ li.issue .headline {{ color:var(--muted); font-size:13.5px; line-height:1.5; mar
     </div>
   </div>
   <div class="foot">
-    <strong>dAIly</strong> by <a href="https://github.com/aigenos">aigenos</a> · open source on
-    <a href="{repo_url}">GitHub</a> · <a href="feed.xml">RSS</a> ·
-    <a href="{repo_url}/blob/main/docs/receipts.md">receipts</a> · curated from frontier labs,
-    newsletters, infra, community &amp; arXiv
+    <strong>dAIly</strong> by <a href="https://github.com/aigenos">aigenos</a> ·
+    <a href="{repo_url}">GitHub</a> · <a href="feed.xml">RSS</a>
   </div>
 </div>
 </body>

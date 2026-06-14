@@ -273,7 +273,7 @@ All knobs are environment variables; see [`.env.example`](.env.example). Notable
 - `CROSS_DAY_DEDUP=false` — disable the seen-items filter (docs/.state/).
 - `ENABLE_LINK_CHECK=false` — skip the pre-send dead-link check.
 - `SUBSCRIBE_URL` / `SUBSCRIBE_EMBED_HTML` / `UNSUBSCRIBE_URL` — footer + CTA links.
-- `SHOW_MODEL_ATTRIBUTION=false` — hide the "powered by …" footer line.
+- `SHOW_MODEL_ATTRIBUTION=true` — add a "powered by …" footer line (off by default).
 
 ## Customizing sources
 

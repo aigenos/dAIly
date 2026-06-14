@@ -118,7 +118,7 @@ _TEMPLATE = """\
 
   <!-- Footer -->
   <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
-    Curated by <strong style="color:#6366f1;font-weight:700;">aigenos</strong> from frontier labs, AI-engineer newsletters, infra vendors, community feeds &amp; arXiv{engine}{footer_links}
+    <strong style="color:#6366f1;font-weight:700;">dAIly</strong> by aigenos{footer_links}{engine}
   </div>
 
 </div>

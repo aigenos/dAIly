@@ -167,7 +167,7 @@ class Config:
             subscribe_form_action=os.environ.get("SUBSCRIBE_FORM_ACTION", "").strip(),
             subscribe_embed_html=os.environ.get("SUBSCRIBE_EMBED_HTML", "").strip(),
             unsubscribe_url=os.environ.get("UNSUBSCRIBE_URL", "").strip(),
-            show_model_attribution=_get_bool("SHOW_MODEL_ATTRIBUTION", True),
+            show_model_attribution=_get_bool("SHOW_MODEL_ATTRIBUTION", False),
             buttondown_api_key=os.environ.get("BUTTONDOWN_API_KEY", "").strip(),
             buttondown_mode=(
                 os.environ.get("BUTTONDOWN_MODE", "").strip().lower() or "teaser"

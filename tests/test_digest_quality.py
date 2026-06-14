@@ -195,10 +195,18 @@ class TestFooter(unittest.TestCase):
         self.assertIn("powered by gemini (flash)", with_engine)
         self.assertNotIn("powered by", without)
 
+    def test_footer_is_clean(self):
+        # No model name, no source/newsletter blurb in the default footer.
+        html = render_html("<p>x</p>", self.now, engine="")
+        self.assertNotIn("powered by", html)
+        self.assertNotIn("frontier labs", html)
+        self.assertNotIn("newsletter", html.lower())
+        self.assertIn("dAIly", html)
+
     def test_show_model_attribution_env(self):
-        cfg = _make_cfg(SHOW_MODEL_ATTRIBUTION="false")
-        self.assertFalse(cfg.show_model_attribution)
-        self.assertTrue(_make_cfg().show_model_attribution)
+        # Off by default (clean footer); opt in explicitly.
+        self.assertFalse(_make_cfg().show_model_attribution)
+        self.assertTrue(_make_cfg(SHOW_MODEL_ATTRIBUTION="true").show_model_attribution)
 
 
 class TestDarkModeCss(unittest.TestCase):
