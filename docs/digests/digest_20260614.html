@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>dAIly — Daily AI Digest</title>
+<style>
+:root {
+  color-scheme: light dark;
+  supported-color-schemes: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  /* Literal colors only — Gmail/Outlook strip CSS custom properties but keep
+     the media query, which used to leave dark-mode readers unstyled. */
+  body, .aigenos-bg { background: #0a0a14 !important; }
+  .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
+  .aigenos-text { color: #ececf5 !important; }
+  .aigenos-muted { color: #8e8ea8 !important; }
+  h2.aigenos-h2 { color: #8b8cff !important; border-color: #2a2a3d !important; }
+  h3.aigenos-h3 { color: #ececf5 !important; }
+  p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
+  a.aigenos-a { color: #8b8cff !important; }
+  strong.aigenos-strong { color: #ececf5 !important; }
+  blockquote.aigenos-bq {
+    background: #1a1a26 !important;
+    color: #c8c8d8 !important;
+    border-color: #8b8cff !important;
+  }
+  .aigenos-chip {
+    background: rgba(139, 140, 255, 0.14) !important;
+    color: #8b8cff !important;
+  }
+  .aigenos-footer { color: #8e8ea8 !important; }
+  .aigenos-footer a { color: #8b8cff !important; }
+  .aigenos-hero-sub { color: rgba(255,255,255,0.85) !important; }
+  .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
+  a.aigenos-src-title { color: #ececf5 !important; }
+  .aigenos-src-meta { color: #8e8ea8 !important; }
+}
+@media (max-width: 600px) {
+  .aigenos-shell { padding: 16px 10px !important; }
+  .aigenos-card { padding: 18px !important; }
+  .aigenos-hero { padding: 22px 22px 18px !important; }
+}
+</style>
+</head>
+<body class="aigenos-bg" style="margin:0;padding:0;background:#f3f4f8;color-scheme:light dark;">
+<div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
+
+  <!-- Hero / masthead -->
+  <div class="aigenos-hero" style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#c026d3 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(79,70,229,0.25);">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td style="width:54px;vertical-align:middle;">
+        <div style="width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,0.16);text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>
+      </td>
+      <td style="vertical-align:middle;padding-left:14px;">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.8;font-weight:600;">by aigenos · daily ai intelligence</div>
+        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;">d<span style="color:#fcd34d;">AI</span>ly</div>
+      </td>
+      <td style="vertical-align:middle;text-align:right;white-space:nowrap;">
+        <span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">Jun 14</span>
+      </td>
+    </tr></table>
+    <div class="aigenos-hero-sub" style="font-size:13.5px;opacity:.92;font-weight:500;line-height:1.5;margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.18);">
+      📅 Sunday, June 14, 2026 &nbsp;·&nbsp; Cutting-edge AI in ~90 seconds — the news, the must-read research, and what to build next.
+    </div>
+  </div>
+
+  <!-- Body card -->
+  <div class="aigenos-card" style="background:#ffffff;border-radius:20px;padding:8px 30px 26px;margin-top:18px;box-shadow:0 1px 2px rgba(20,20,42,0.04),0 8px 24px rgba(20,20,42,0.06);">
+    <!--SECTION:pulse-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">⚡ The Pulse — If You Only Read One Thing<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">90 sec read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">🎯 Today's Game-Changer</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">Xiaomi has released <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=mimo.xiaomi.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://mimo.xiaomi.com/blog/mimo-tilert-1000tps">MiMo V2.5</a></strong>, achieving sustained inference speeds of 1,000–3,000 tokens per second (tps) using their proprietary DFlash kernel. By optimizing the persistent kernel for specific hardware architectures, this release effectively eliminates latency as a bottleneck for real-time agentic workflows, forcing a re-evaluation of how we architect multi-agent systems that previously relied on cloud-based streaming.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📍 In a Nutshell</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Meta pivots strategy</strong> — Mark Zuckerberg confirmed a shift in Meta’s AI workforce, moving away from in-house LLM training toward broader application integration. <img src="https://www.google.com/s2/favicons?domain=finance.yahoo.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://finance.yahoo.com/sectors/technology/articles/zuckerberg-says-meta-made-mistakes-in-ai-workforce-shift-212324481.html">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">DGX Sparks benchmarks</strong> — Community testing of dual-DGX Sparks setups shows 350 tps aggregate throughput for DeepSeek V4 Flash, validating high-density local inference. <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u5g9pr/dual_dgx_sparks_40tks_single_1m_350_tks_agg/">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Heretic Grimoire launches</strong> — A new local-first, takedown-resilient backup system for uncensored model weights and datasets. <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u5lmge/introducing_the_heretic_grimoire_the/">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">AI evidence investigation</strong> — UK police are investigating an officer for using generative AI to fabricate evidence in active cases, highlighting critical gaps in forensic verification. <img src="https://www.google.com/s2/favicons?domain=news.sky.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://news.sky.com/story/derbyshire-police-officer-investigated-for-using-ai-to-create-evidence-in-multiple-cases-13553661">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">PwC medical billing report</strong> — New data suggests AI-driven billing systems are contributing to higher medical costs, signaling a need for audit-focused AI tools. <img src="https://www.google.com/s2/favicons?domain=fortune.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://fortune.com/2026/06/12/ai-making-medical-bills-higher/">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Home-lab economics</strong> — A detailed breakdown of running high-performance AI coding environments at home without enterprise-grade capital expenditure. <img src="https://www.google.com/s2/favicons?domain=stephen.bochinski.dev&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://stephen.bochinski.dev/blog/2026/06/13/ai-coding-at-home-without-going-broke/">source</a></li>
+</ul>
+
+<!--SECTION:opp_teaser-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🚀 Opportunity of the Day<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">2 min read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Sovereign Inference Orchestrator</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">The gap:</strong> Current inference stacks are either cloud-locked or fragmented across heterogeneous local hardware (e.g., DGX Sparks vs. consumer GPUs), making it impossible to scale uncensored, high-throughput models reliably.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Why now:</strong> The combination of Xiaomi’s 1,000+ tps DFlash kernel and the emergence of specialized local hardware like DGX Sparks creates a "local-first" performance tier that rivals cloud APIs.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Build as:</strong> An OSS orchestration library that abstracts hardware-specific kernels (DFlash, vLLM, SGLang) into a unified API for distributed local inference clusters.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Wedge &amp; moat:</strong> Target research labs and privacy-conscious enterprises; the moat is the "hardware-agnostic" scheduler that optimizes token throughput across mixed-GPU clusters.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Already heating up:</strong> High engagement on r/LocalLLaMA regarding <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u5g9pr/dual_dgx_sparks_40tks_single_1m_350_tks_agg/">DGX Sparks benchmarks</a> and the <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u5lmge/introducing_the_heretic_grimoire_the/">Heretic Grimoire</a> project indicates a growing movement toward sovereign, uncensored infrastructure.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Closest existing solution:</strong> <a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://github.com/vllm-project/vllm">vLLM</a> is the standard, but it lacks native support for the specialized persistent kernels (like DFlash) required to hit the 1,000+ tps threshold on non-standard hardware.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">First step this week:</strong> Prototype a "Kernel-Switcher" wrapper that benchmarks latency differences between standard vLLM and DFlash on a dual-GPU setup.</li>
+</ul>
+
+<!--SECTION:stack-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📊 Stack Signals — Pick Your Tools<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">3 min read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Benchmarks &amp; Evals</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">MiMo V2.5</strong> — Sets a new benchmark for local inference throughput at 1,000–3,000 tps, significantly outperforming standard quantized model serving. <img src="https://www.google.com/s2/favicons?domain=mimo.xiaomi.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://mimo.xiaomi.com/blog/mimo-tilert-1000tps">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">DeepSeek V4 Flash</strong> — Demonstrated 350 tps aggregate throughput on dual-DGX Sparks, establishing a new performance floor for MoE models in local environments. <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u5g9pr/dual_dgx_sparks_40tks_single_1m_350_tks_agg/">source</a></li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Repo &amp; Model Velocity</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=heretic-project.org&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://heretic-project.org">Heretic Grimoire</a></strong> — A decentralized, local-first backup system for LLM weights; gaining traction as a "dead-man's switch" for uncensored models.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://github.com/xiaomi/mimo-dflash">DFlash Kernel</a><sup class="aigenos-deadlink" title="link did not respond at send time" style="color:#b45309;font-size:11px;font-weight:700;">⚠</sup></strong> — Xiaomi’s persistent kernel for high-speed inference; currently the most watched repo for developers chasing 1k+ tps.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Funding &amp; Launches — with Thesis</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">No major funding rounds reported in the last 48 hours.</strong> — The market is currently focused on hardware-software integration and local-first infrastructure rather than new capital deployment.</li>
+</ul>
+
+<!--SECTION:deep-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🔬 Deep Reads — For When You Have Time (skip if rushed)</h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📖 The One Deep Read</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=mimo.xiaomi.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://mimo.xiaomi.com/blog/mimo-tilert-1000tps">MiMo V2.5 Technical Whitepaper</a></strong> — This document details the implementation of the DFlash kernel and how it achieves 1,000+ tps by minimizing kernel launch overhead and maximizing persistent memory utilization. It is essential reading for anyone building high-throughput inference engines.</p>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Read it for:</strong> The architectural shift from standard CUDA kernels to persistent, hardware-specific execution paths.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📑 Supporting Research</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://arxiv.org/abs/2606.07454">Efficient Distributed Inference for MoE Models</a></strong> — Explores load balancing strategies for Mixture-of-Experts models across heterogeneous GPU clusters.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://arxiv.org/abs/2606.08821">Forensic Analysis of AI-Generated Content</a></strong> — A study on detecting synthetic evidence in legal contexts, highly relevant to the recent UK police investigation.</li>
+</ul>
+
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><em class="aigenos-em" style="font-style:italic;color:inherit;">Stay sovereign, stay fast.</em></p>
+    
+  </div>
+
+  <!-- Footer -->
+  <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
+    <strong style="color:#6366f1;font-weight:700;">dAIly</strong> by aigenos
+  </div>
+
+</div>
+</body>
+</html>
