@@ -157,7 +157,9 @@ in full. An <h3> with a punchy product/project name (not a description), then a
 <li><strong>The gap:</strong> what's missing or broken in the current AI stack
 (cite the specific news/paper above that exposes it).</li>
 <li><strong>Why now:</strong> what changed in the last few days that makes this
-newly tractable (a new model, API, benchmark, price drop, or capability shift).</li>
+newly tractable (a new model, API, benchmark, price drop, or capability shift) —
+and sanity-check it against the last few MONTHS, not just days, so a recurring
+topic isn't mistaken for a fresh opening.</li>
 <li><strong>Build as:</strong> pick one — arXiv paper / OSS library / dev tool /
 SaaS product / vertical app / startup — and say why that shape fits.</li>
 <li><strong>Wedge &amp; moat:</strong> the first user, the first dollar, and what
@@ -248,21 +250,42 @@ def _public_only() -> bool:
     return os.environ.get("DAILY_PUBLIC_ONLY", "").strip().lower() in {"1", "true", "yes", "on"}
 
 
-def _load_private_sections() -> list[tuple[str, int, str]]:
-    """Load optional private section blocks from the gitignored src/private/.
+def _enable_builders_edge() -> bool:
+    import os
+    return os.environ.get("ENABLE_BUILDERS_EDGE", "").strip().lower() in {"1", "true", "yes", "on"}
 
-    The Opportunity Map lives there. A public clone has no such module, so this
-    returns [] and the briefing is produced without it — the secret never ships.
+
+def _private_modules() -> list:
+    """The active private section module(s), in priority order:
+
+    1. A truly-private, gitignored src/private/opportunity.py (your secret sauce
+       — or restored in CI from the OPPORTUNITY_B64 secret). Always wins.
+    2. Else, when ENABLE_BUILDERS_EDGE is set, the bundled paid template
+       src/private/builders_edge.py.
+
+    Either way the section is stripped from the public archive; this only governs
+    what goes into your email + newsletter.
     """
+    try:
+        from .private import opportunity as m  # type: ignore
+        return [m]
+    except Exception as exc:  # noqa: BLE001 — absence is the normal public case
+        log.debug("no private opportunity module (%s)", exc)
+    if _enable_builders_edge():
+        try:
+            from .private import builders_edge as m  # type: ignore
+            return [m]
+        except Exception as exc:  # noqa: BLE001
+            log.warning("ENABLE_BUILDERS_EDGE set but builders_edge failed to load: %s", exc)
+    return []
+
+
+def _load_private_sections() -> list[tuple[str, int, str]]:
+    """Section blocks from the active private module(s). A public clone with none
+    returns [] and the briefing is produced without them — nothing private ships."""
     if _public_only():
         return []
-    out: list[tuple[str, int, str]] = []
-    try:
-        from .private import opportunity  # type: ignore
-        out.append((opportunity.SECTION_ID, opportunity.ORDER, opportunity.INSTRUCTIONS))
-    except Exception as exc:  # noqa: BLE001 — absence is the normal public case
-        log.debug("no private sections loaded (%s)", exc)
-    return out
+    return [(m.SECTION_ID, m.ORDER, m.INSTRUCTIONS) for m in _private_modules()]
 
 
 def private_section_ids() -> list[str]:
@@ -276,11 +299,8 @@ def private_sentinels() -> list[str]:
     private content survives. Always loads the declared sentinels (independent of
     DAILY_PUBLIC_ONLY) so the leak-check is defense-in-depth."""
     out: list[str] = []
-    try:
-        from .private import opportunity  # type: ignore
-        out += list(getattr(opportunity, "PUBLIC_SENTINELS", []))
-    except Exception:  # noqa: BLE001
-        pass
+    for m in _private_modules():
+        out += list(getattr(m, "PUBLIC_SENTINELS", []))
     return out
 
 
@@ -440,6 +460,13 @@ def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
         "selected %d/%d items for prompt (per-source + global cap)",
         len(selected), len(items),
     )
+    # Pick the featured Top Stories first, so we can tell the model which items
+    # are already shown (with images) at the top — and it won't repeat them.
+    featured: list[Item] = []
+    if cfg.enable_top_stories:
+        from . import enrich
+        featured = enrich.select_top_stories(selected, now, cfg.top_stories_count)
+
     targets = "\n".join(f"- {t}" for t in WEB_SEARCH_TARGETS)
     user_content = (
         f"Date: {now.strftime('%A, %B %d, %Y')} (UTC).\n"
@@ -449,6 +476,7 @@ def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
         f"{_format_items(selected)}\n\n"
         f"SOURCES TO VERIFY / BACKFILL VIA WEB SEARCH (pull anything important "
         f"these published recently that's missing above):\n{targets}\n\n"
+        f"{_featured_block(featured)}"
         f"{_opportunity_memory_block(cfg, now)}"
         f"{build_instructions()}"
     )
@@ -476,17 +504,32 @@ def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
 
     html = postprocess(html)
 
-    # Optional deterministic Top Stories strip (off by default — it duplicated
-    # The Pulse). When enabled it renders BELOW The Pulse so the pyramid still
-    # opens with the 90-second summary.
-    if cfg.enable_top_stories:
+    # Image-rich Top Stories hero at the very top. Built deterministically from
+    # the featured items (guaranteed real links + article thumbnails), it leads
+    # the issue like a curated newsletter; the prompt already told the model not
+    # to repeat these in The Pulse.
+    if featured:
         from . import enrich
-        top = enrich.build_top_stories(
-            selected, now, cfg.top_stories_count, cfg.enable_images
-        )
+        top = enrich.render_top_stories(featured, now, cfg.enable_images)
         if top:
-            html = _insert_after_section(html, "pulse", top)
+            html = top + "\n" + html
     return html
+
+
+def _featured_block(featured: list[Item]) -> str:
+    """Tell the model which items are featured (with images) at the very top, so
+    The Pulse covers OTHER developments instead of repeating them."""
+    if not featured:
+        return ""
+    titles = "\n".join(f"- {it.title}" for it in featured)
+    return (
+        f"FEATURED AT THE TOP — these {len(featured)} stories are already shown "
+        f"with images and a short summary in a 'Top Stories' hero ABOVE your "
+        f"output. In 'In a Nutshell', do NOT repeat them — cover everything else "
+        f"that matters. The Game-Changer may be one of them ONLY if it is "
+        f"genuinely the single biggest story, and then add new analysis (why it "
+        f"matters most), not a restatement:\n{titles}\n\n"
+    )
 
 
 def _opportunity_section_ids() -> list[str]:

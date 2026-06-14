@@ -260,25 +260,87 @@ class TestPrivateSectionDelivery(unittest.TestCase):
 
 
 class TestTopStoriesPlacement(unittest.TestCase):
-    def test_disabled_by_default(self):
-        self.assertFalse(_make_cfg().enable_top_stories)
+    NOW = datetime(2026, 6, 10, tzinfo=timezone.utc)
+    BODY = (
+        "<!--SECTION:pulse-->\n<h2>⚡ The Pulse (90 sec read)</h2><p>News.</p>\n"
+        "<!--SECTION:stack-->\n<h2>📊 Stack Signals (3 min read)</h2><p>x</p>"
+    )
+    TOP = "<!--SECTION:topstories-->\n<h2>📌 Top Stories</h2><p>cards</p>"
 
-    def test_when_enabled_renders_below_the_pulse(self):
-        cfg = _make_cfg(ENABLE_TOP_STORIES="true")
-        body = (
-            "<!--SECTION:pulse-->\n<h2>⚡ The Pulse (90 sec read)</h2><p>News.</p>\n"
-            "<!--SECTION:stack-->\n<h2>📊 Stack Signals (3 min read)</h2><p>x</p>"
-        )
-        top = "<!--SECTION:topstories-->\n<h2>📌 Top Stories</h2><p>rows</p>"
-        with mock.patch.object(analyzer.providers, "generate", return_value=body), \
-             mock.patch("src.enrich.build_top_stories", return_value=top):
-            out = analyzer.build_digest(cfg, [], datetime(2026, 6, 10, tzinfo=timezone.utc))
+    def _items(self):
+        from src.fetchers import Item
+        return [Item("OpenAI", "lab", "BigStory", "https://x.com/a", self.NOW)]
+
+    def test_enabled_by_default(self):
+        self.assertTrue(_make_cfg().enable_top_stories)
+
+    def test_renders_at_the_very_top(self):
+        cfg = _make_cfg()
+        items = self._items()
+        with mock.patch.object(analyzer.providers, "generate", return_value=self.BODY), \
+             mock.patch("src.enrich.select_top_stories", return_value=items), \
+             mock.patch("src.enrich.render_top_stories", return_value=self.TOP):
+            out = analyzer.build_digest(cfg, items, self.NOW)
         self.assertLess(
-            out.index("<!--SECTION:pulse-->"), out.index("<!--SECTION:topstories-->")
+            out.index("<!--SECTION:topstories-->"), out.index("<!--SECTION:pulse-->")
         )
         self.assertLess(
-            out.index("<!--SECTION:topstories-->"), out.index("<!--SECTION:stack-->")
+            out.index("<!--SECTION:pulse-->"), out.index("<!--SECTION:stack-->")
         )
+
+    def test_disabled_when_off(self):
+        cfg = _make_cfg(ENABLE_TOP_STORIES="false")
+        with mock.patch.object(analyzer.providers, "generate", return_value=self.BODY):
+            out = analyzer.build_digest(cfg, self._items(), self.NOW)
+        self.assertNotIn("topstories", out)
+
+    def test_featured_titles_injected_into_prompt(self):
+        cfg = _make_cfg()
+        items = self._items()
+        captured = {}
+
+        def fake_generate(c, system, user):
+            captured["user"] = user
+            return self.BODY
+
+        with mock.patch.object(analyzer.providers, "generate", side_effect=fake_generate), \
+             mock.patch("src.enrich.select_top_stories", return_value=items), \
+             mock.patch("src.enrich.render_top_stories", return_value=self.TOP):
+            analyzer.build_digest(cfg, items, self.NOW)
+        self.assertIn("FEATURED AT THE TOP", captured["user"])
+        self.assertIn("BigStory", captured["user"])
+
+
+class TestTopStoriesRender(unittest.TestCase):
+    NOW = datetime(2026, 6, 10, tzinfo=timezone.utc)
+
+    def _item(self, **kw):
+        from src.fetchers import Item
+        base = dict(source="OpenAI", category="lab", title="Big Title",
+                    url="https://x.com/a", published=self.NOW, summary="A summary sentence.")
+        base.update(kw)
+        return Item(**base)
+
+    def test_clean_summary_strips_hf_prefix_and_caps(self):
+        from src import enrich
+        it = self._item(summary="[1234▲ upvotes on HF] First sentence. Second one. Third one.")
+        s = enrich._clean_summary(it)
+        self.assertNotIn("▲", s)
+        self.assertIn("First sentence.", s)
+        self.assertNotIn("Third one.", s)  # capped at 2 sentences
+
+    def test_select_caps_count(self):
+        from src import enrich
+        items = [self._item(url="https://x/1"), self._item(url="https://x/2", source="blog", category="community")]
+        self.assertEqual(len(enrich.select_top_stories(items, self.NOW, 1)), 1)
+
+    def test_render_without_images_is_offline(self):
+        from src import enrich
+        html = enrich.render_top_stories([self._item()], self.NOW, with_images=False)
+        self.assertIn("<!--SECTION:topstories-->", html)
+        self.assertIn("Top Stories", html)
+        self.assertIn("Big Title", html)
+        self.assertIn("A summary sentence", html)
 
 
 if __name__ == "__main__":

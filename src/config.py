@@ -98,6 +98,10 @@ class Config:
     # HEAD-check every link in the digest before sending/publishing and flag
     # dead ones. Fail-open: network trouble never aborts the run.
     enable_link_check: bool
+    # Load the bundled paid "Builder's Edge" section (src/private/builders_edge.py)
+    # when no truly-private src/private/opportunity.py exists. Goes to your email +
+    # subscribers; always stripped from the public archive.
+    enable_builders_edge: bool
 
     @classmethod
     def from_env(cls) -> "Config":
@@ -178,11 +182,13 @@ class Config:
             telegram_chat_id=os.environ.get("TELEGRAM_CHAT_ID", "").strip(),
             enable_audio=_get_bool("ENABLE_AUDIO", False),
             audio_dir=os.environ.get("AUDIO_DIR", "out").strip() or "out",
-            # Off by default: it duplicated The Pulse and broke the pyramid
-            # order. When re-enabled it now renders BELOW The Pulse.
-            enable_top_stories=_get_bool("ENABLE_TOP_STORIES", False),
+            # Image-rich "Top Stories" hero (top 3–4 with article thumbnails +
+            # a short summary), rendered at the very top. The synthesis prompt is
+            # told which items are featured so The Pulse doesn't repeat them.
+            enable_top_stories=_get_bool("ENABLE_TOP_STORIES", True),
             enable_images=_get_bool("ENABLE_IMAGES", True),
-            top_stories_count=_get_int("TOP_STORIES_COUNT", 6),
+            top_stories_count=_get_int("TOP_STORIES_COUNT", 4),
             cross_day_dedup=_get_bool("CROSS_DAY_DEDUP", True),
             enable_link_check=_get_bool("ENABLE_LINK_CHECK", True),
+            enable_builders_edge=_get_bool("ENABLE_BUILDERS_EDGE", False),
         )

@@ -123,63 +123,91 @@ def _domain(url: str) -> str:
         return ""
 
 
-def build_top_stories(
-    items: list[Item], now: datetime, count: int, with_images: bool
+def select_top_stories(items: list[Item], now: datetime, count: int) -> list[Item]:
+    """The top `count` items by builder-relevance — the featured set. Returned
+    separately from rendering so the synthesis prompt can be told which items are
+    featured (and avoid repeating them in The Pulse)."""
+    return rank_by_priority(items, now)[:count]
+
+
+_SENT_SPLIT = re.compile(r"(?<=[.!?])\s+")
+
+
+def _clean_summary(it: Item, max_sentences: int = 2, max_chars: int = 230) -> str:
+    """A short, clean 1–2 sentence blurb for a top-story card. Strips the HF
+    upvote prefix and trims to a sentence boundary."""
+    text = re.sub(r"^\[\d+▲[^\]]*\]\s*", "", it.summary or "").strip()
+    if not text:
+        return ""
+    sentences = _SENT_SPLIT.split(text)
+    out = " ".join(sentences[:max_sentences]).strip()
+    if len(out) > max_chars:
+        out = out[:max_chars].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+    return out
+
+
+def render_top_stories(
+    items: list[Item], now: datetime, with_images: bool
 ) -> str:
-    """Render the deterministic Top Stories section: ranked rows with a thumbnail
-    (og:image, falling back to the source favicon), linked title, and source·date.
+    """Render the image-rich Top Stories hero: the day's biggest stories as cards
+    with a full-width article image (og:image, falling back to a favicon tile),
+    a linked headline, source·date, and a 1–2 sentence summary.
     Marked <!--SECTION:topstories--> and public (kept in the archive)."""
-    ranked = rank_by_priority(items, now)[:count]
-    if not ranked:
+    if not items:
         return ""
 
-    rows: list[str] = []
+    cards: list[str] = []
     img_hits = 0
-    for it in ranked:
+    for it in items:
         dom = _domain(it.url) or "news"
         thumb = fetch_og_image(it.url) if with_images else None
         if thumb:
             img_hits += 1
-        thumb = thumb or _favicon(dom)
-        is_fav = "favicons" in thumb
         date = it.published.strftime("%b %d") if it.published else ""
-        # Thumbnail cell: big article image, or small centered favicon fallback.
-        if is_fav:
-            thumb_cell = (
-                '<td width="76" style="width:76px;vertical-align:middle;padding:0 14px 0 0;">'
-                '<div style="width:64px;height:64px;border-radius:12px;background:#f1f0fb;'
-                'text-align:center;line-height:64px;">'
-                f'<img src="{thumb}" width="28" height="28" alt="" style="vertical-align:middle;border:0;border-radius:6px;"></div></td>'
+        blurb = _clean_summary(it)
+        # Full-width article image when we have one; otherwise skip the image band
+        # (a thin favicon tile would look broken at full width).
+        image_band = ""
+        if thumb:
+            image_band = (
+                f'<a href="{it.url}"><img src="{thumb}" alt="" width="100%" '
+                'style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;'
+                'border:0;display:block;"></a>'
             )
-        else:
-            thumb_cell = (
-                '<td width="76" style="width:76px;vertical-align:middle;padding:0 14px 0 0;">'
-                f'<img src="{thumb}" width="64" height="64" alt="" '
-                'style="width:64px;height:64px;object-fit:cover;border-radius:12px;border:0;display:block;"></td>'
-            )
-        rows.append(
+        pad = "16px 18px" if thumb else "16px 18px"
+        blurb_html = (
+            f'<div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;'
+            f'color:#3a3a55;line-height:1.55;">{_esc(blurb)}</div>' if blurb else ""
+        )
+        cards.append(
             '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" '
-            'class="aigenos-src-row" style="margin:10px 0;border:1px solid #ece9fb;border-radius:14px;'
-            'background:#ffffff;"><tr>'
-            '<td style="padding:12px 14px;">'
-            '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
-            f'{thumb_cell}'
-            '<td style="vertical-align:middle;">'
+            'class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;'
+            'background:#ffffff;overflow:hidden;"><tr><td style="padding:0;">'
+            f'{image_band}'
+            f'<div style="padding:{pad};">'
             f'<a href="{it.url}" class="aigenos-src-title" style="color:#14142a;text-decoration:none;'
-            f'font-weight:650;font-size:15px;line-height:1.35;">{_esc(it.title)}</a>'
-            f'<div class="aigenos-src-meta" style="margin-top:4px;font-size:12px;color:#8a8a9a;">'
+            f'font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">{_esc(it.title)}</a>'
+            f'<div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;">'
             f'<img src="{_favicon(dom)}" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">'
             f'{_esc(it.source)}{" · " + date if date else ""}</div>'
-            '</td></tr></table></td></tr></table>'
+            f'{blurb_html}'
+            '</div></td></tr></table>'
         )
 
-    log.info("top stories: %d item(s), %d og:image thumbnail(s)", len(ranked), img_hits)
+    log.info("top stories: %d item(s), %d og:image thumbnail(s)", len(items), img_hits)
     return (
         "<!--SECTION:topstories-->\n"
-        '<h2>📌 Top Stories — Ranked &amp; Sourced (skim)</h2>\n'
-        "<p>The day's highest-signal items, ranked by builder-relevance, each "
-        "linked to its primary source.</p>\n" + "\n".join(rows)
+        '<h2>📌 Top Stories — Today\'s Biggest Moves (skim)</h2>\n'
+        "<p>The day's highest-signal stories, ranked by builder-relevance — each "
+        "linked to its primary source.</p>\n" + "\n".join(cards)
     )
+
+
+def build_top_stories(
+    items: list[Item], now: datetime, count: int, with_images: bool
+) -> str:
+    """Backward-compatible one-shot: select + render."""
+    return render_top_stories(select_top_stories(items, now, count), now, with_images)
 
 
 def _esc(s: str) -> str:

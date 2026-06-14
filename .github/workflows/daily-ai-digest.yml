@@ -65,6 +65,13 @@ jobs:
           # Self-memory: don't re-pitch ideas from recent receipts.md.
           OPPORTUNITY_MEMORY: ${{ vars.OPPORTUNITY_MEMORY || 'true' }}
           OPPORTUNITY_MEMORY_DAYS: ${{ vars.OPPORTUNITY_MEMORY_DAYS || '60' }}
+          # Paid "The Builder's Edge" section (3–5 prior-art- and 3–6-month-
+          # validated bets). Goes to your email + subscribers; stripped from the
+          # public archive. Set true to activate the bundled section.
+          ENABLE_BUILDERS_EDGE: ${{ vars.ENABLE_BUILDERS_EDGE || 'false' }}
+          # Image-rich Top Stories hero (top 3–4 with article thumbnails).
+          ENABLE_TOP_STORIES: ${{ vars.ENABLE_TOP_STORIES || 'true' }}
+          TOP_STORIES_COUNT: ${{ vars.TOP_STORIES_COUNT || '4' }}
           # Field preset: ai (default) | security | biotech | fintech | yours.
           SOURCE_PRESET: ${{ vars.SOURCE_PRESET }}
           LOOKBACK_DAYS: ${{ vars.LOOKBACK_DAYS || '7' }}

@@ -82,15 +82,19 @@ launch. And **no repeats across days**: an article covered in a past issue is
 remembered (`docs/.state/seen_items.json`) and dropped from later runs, so a
 3-day lookback running daily never re-sends yesterday's news.
 
+0. **📌 Top Stories** — the day's biggest 3–4 moves as image-rich cards
+   (article thumbnail + a 2–3 sentence summary), curated TechPresso / The Neuron
+   style. Leads the issue; the rest never repeats these.
 1. **⚡ The Pulse (90 sec)** — *Today's Game-Changer* (the one thing) + *In a
    Nutshell* (8–12 one-line bullets covering everything else). Stands alone.
 2. **🚀 Opportunity of the Day (2 min)** — the single most compelling thing to
    build today, with a quick prior-art check. *(Public/free — the viral hook.)*
 3. **🧭 The Builder's Edge (5 min)** — 3–5 *more* buildable bets, each rigorously
-   **prior-art-validated** (the model web-searches for what already exists and
-   justifies why the opening is still open) and **memory-aware** (it won't
-   re-pitch an idea from the last 60 days of `receipts.md`). *(Private — your
-   secret sauce / paid tier; see freemium model below.)*
+   **prior-art-validated** (the model web-searches for what already exists),
+   **grounded in the last 3–6 months of research** (durable trend, not a blip),
+   and **memory-aware** (it won't re-pitch an idea from the last 60 days of
+   `receipts.md`). *(Private — your secret sauce / paid tier; see freemium model
+   below.)*
 4. **📊 Stack Signals (3 min)** — benchmark/eval moves, repo & model velocity,
    and funding/launches *with the thesis extracted*.
 5. **🔬 Deep Reads (optional)** — the one paper to read end-to-end + a scanning
@@ -103,9 +107,11 @@ the hook. **The Builder's Edge** — the deeper, prior-art-validated, memory-awa
 set of bets — is a private section (`src/private/`, gitignored): it's in *your*
 email and goes to your paying newsletter subscribers, but is automatically
 stripped from the public archive, which shows a subscribe CTA instead. Free tier
-drives distribution; the Edge is your paid/private tier. Activate it by copying
-[`src/private/opportunity.example.py`](src/private/opportunity.example.py) to
-`src/private/opportunity.py` (or base64 it into the `OPPORTUNITY_B64` CI secret).
+drives distribution; the Edge is your paid/private tier. **Activate it** by setting
+`ENABLE_BUILDERS_EDGE=true` (loads the bundled
+[`src/private/builders_edge.py`](src/private/builders_edge.py)) — or, for a
+truly-private customized version, copy that file to `src/private/opportunity.py`
+(gitignored) or base64 it into the `OPPORTUNITY_B64` CI secret.
 
 ## Run your own in 5 minutes
 
@@ -275,6 +281,9 @@ All knobs are environment variables; see [`.env.example`](.env.example). Notable
 - `CROSS_DAY_DEDUP=false` — disable the cross-day seen-items filter (docs/.state/).
 - `OPPORTUNITY_MEMORY=false` / `OPPORTUNITY_MEMORY_DAYS` — self-memory that stops
   the agent re-pitching a past Opportunity (default on, 60-day window).
+- `ENABLE_TOP_STORIES` / `TOP_STORIES_COUNT` — image-rich Top Stories hero
+  (on by default, 4 stories).
+- `ENABLE_BUILDERS_EDGE=true` — activate the paid Builder's Edge section.
 - `ENABLE_LINK_CHECK=false` — skip the pre-send dead-link check.
 - `SUBSCRIBE_URL` / `SUBSCRIBE_FORM_ACTION` / `SUBSCRIBE_EMBED_HTML` — subscribe
   CTA + on-page form.

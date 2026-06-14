@@ -119,34 +119,28 @@ class TestPriorArtRule(unittest.TestCase):
         self.assertIn("PRIOR ART", instructions)
 
 
-class TestBuildersEdgeTemplate(unittest.TestCase):
-    """The committed paid-section template must be a valid private section."""
+class TestBuildersEdgeModule(unittest.TestCase):
+    """The bundled paid section must be a valid, well-formed private section."""
 
     def _load(self):
-        path = os.path.join(
-            os.path.dirname(os.path.dirname(__file__)),
-            "src", "private", "opportunity.example.py",
-        )
-        spec = importlib.util.spec_from_file_location("be_template", path)
-        mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)
-        return mod
+        from src.private import builders_edge
+        return builders_edge
 
-    def test_template_is_well_formed(self):
+    def test_module_is_well_formed(self):
         mod = self._load()
         self.assertEqual(mod.SECTION_ID, "builders_edge")
         self.assertIsInstance(mod.ORDER, int)
-        # Marker matches the section id so stripping works.
         self.assertIn(f"<!--SECTION:{mod.SECTION_ID}-->", mod.INSTRUCTIONS)
-        # The premium value props are present.
         self.assertIn("Prior art", mod.INSTRUCTIONS)
         self.assertIn("ALREADY PROPOSED", mod.INSTRUCTIONS)
-        # Sentinels guard the heading text for the leak check.
+        # The 3–6 month research grounding the user asked for.
+        self.assertIn("RESEARCH HORIZON", mod.INSTRUCTIONS)
+        self.assertIn("3–6 month", mod.INSTRUCTIONS)
         self.assertTrue(mod.PUBLIC_SENTINELS)
         for s in mod.PUBLIC_SENTINELS:
             self.assertIn(s.split()[-1], mod.INSTRUCTIONS)
 
-    def test_template_strips_like_a_private_section(self):
+    def test_strips_like_a_private_section(self):
         from src.archive import strip_private_sections
 
         mod = self._load()
@@ -159,6 +153,26 @@ class TestBuildersEdgeTemplate(unittest.TestCase):
         self.assertIn("Pulse", public)
         self.assertIn("Stack", public)
         self.assertNotIn("Builder", public)
+
+
+class TestBuildersEdgeActivation(unittest.TestCase):
+    """ENABLE_BUILDERS_EDGE loads the bundled paid section (no private module)."""
+
+    def test_loads_when_enabled(self):
+        with mock.patch.dict(os.environ, {"ENABLE_BUILDERS_EDGE": "true"}, clear=False):
+            ids = analyzer.private_section_ids()
+            sentinels = analyzer.private_sentinels()
+            instructions = build_instructions()
+        self.assertIn("builders_edge", ids)
+        self.assertTrue(any("Builder" in s for s in sentinels))
+        self.assertIn("<!--SECTION:builders_edge-->", instructions)
+        self.assertIn("RESEARCH HORIZON", instructions)
+
+    def test_absent_when_disabled(self):
+        env = dict(os.environ)
+        env.pop("ENABLE_BUILDERS_EDGE", None)
+        with mock.patch.dict(os.environ, env, clear=True):
+            self.assertNotIn("builders_edge", analyzer.private_section_ids())
 
 
 if __name__ == "__main__":
