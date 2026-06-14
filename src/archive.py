@@ -284,7 +284,27 @@ def _render_subscribe(cfg) -> str:
         return card_open + form + "</div>"
     if url:
         return card_open + f'<a href="{url}" style="{btn}">Subscribe →</a></div>'
-    return ""
+    # No email provider configured yet — still give the Subscribe link a real
+    # destination (RSS + watch on GitHub). Upgrades to the email form the moment
+    # SUBSCRIBE_URL / SUBSCRIBE_FORM_ACTION / SUBSCRIBE_EMBED_HTML is set.
+    ghost = (
+        'padding:11px 22px;border:1px solid var(--border);border-radius:10px;'
+        'font-weight:700;font-size:15px;color:var(--accent);text-decoration:none;'
+        'display:inline-block;margin:0 4px;'
+    )
+    return (
+        '<div id="subscribe" style="background:var(--surface);border:1px solid var(--border);'
+        'border-radius:16px;padding:22px 24px;margin:18px 0 6px;box-shadow:var(--shadow);'
+        'text-align:center;">'
+        '<div style="font-size:19px;font-weight:750;color:var(--text);letter-spacing:-.01em;">'
+        '📬 Follow dAIly</div>'
+        '<div style="font-size:14px;color:var(--muted);margin:6px 0 15px;">'
+        'Follow the daily issue via RSS, or watch the repo — '
+        'email signup coming soon.</div>'
+        f'<a href="feed.xml" style="{ghost}">📡 RSS feed</a>'
+        f'<a href="{_REPO_URL}" style="{ghost}">⭐ Watch on GitHub</a>'
+        '</div>'
+    )
 
 
 def _date_label(d: datetime) -> str:
@@ -307,10 +327,10 @@ def _render_index(cfg, issues: list[tuple[str, datetime, str]]) -> str:
         or getattr(cfg, "subscribe_form_action", "")
     )
     sub_url = getattr(cfg, "subscribe_url", "")
-    if has_form:
-        buttons.append('<a class="btn ghost" href="#subscribe">✉️ Subscribe free</a>')
-    elif sub_url:
-        buttons.append(f'<a class="btn ghost" href="{_esc(sub_url)}">✉️ Subscribe free</a>')
+    # The subscribe card always renders now (email form when configured, an
+    # RSS/GitHub fallback otherwise), so the hero button always has a target.
+    sub_target = _esc(sub_url) if (sub_url and not has_form) else "#subscribe"
+    buttons.append(f'<a class="btn ghost" href="{sub_target}">✉️ Subscribe</a>')
     buttons.append(f'<a class="btn ghost" href="{_REPO_URL}">⭐ Star on GitHub</a>')
     buttons.append('<a class="btn ghost" href="feed.xml">📡 RSS</a>')
 
