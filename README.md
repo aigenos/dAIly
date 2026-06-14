@@ -78,7 +78,9 @@ opportunity hunting) works unchanged.
 Structured so 90 seconds gets you everything essential; 10 minutes gets you
 depth. Each section carries a read-time budget; every claim carries a source
 link. An item appears in **at most one section** — no triple-reporting the same
-launch.
+launch. And **no repeats across days**: an article covered in a past issue is
+remembered (`docs/.state/seen_items.json`) and dropped from later runs, so a
+3-day lookback running daily never re-sends yesterday's news.
 
 1. **⚡ The Pulse (90 sec)** — *Today's Game-Changer* (the one thing) + *In a
    Nutshell* (8–12 one-line bullets covering everything else). Stands alone.
@@ -270,9 +272,14 @@ All knobs are environment variables; see [`.env.example`](.env.example). Notable
 - `SOURCE_PRESET=ai|security|biotech|fintech` — retarget the whole briefing.
 - `ENABLE_WEB_SEARCH=false` — run purely from RSS + arXiv + HF (cheaper, narrower).
 - `LOOKBACK_DAYS` — how many days count as "latest" (7 recommended).
-- `CROSS_DAY_DEDUP=false` — disable the seen-items filter (docs/.state/).
+- `CROSS_DAY_DEDUP=false` — disable the cross-day seen-items filter (docs/.state/).
+- `OPPORTUNITY_MEMORY=false` / `OPPORTUNITY_MEMORY_DAYS` — self-memory that stops
+  the agent re-pitching a past Opportunity (default on, 60-day window).
 - `ENABLE_LINK_CHECK=false` — skip the pre-send dead-link check.
-- `SUBSCRIBE_URL` / `SUBSCRIBE_EMBED_HTML` / `UNSUBSCRIBE_URL` — footer + CTA links.
+- `SUBSCRIBE_URL` / `SUBSCRIBE_FORM_ACTION` / `SUBSCRIBE_EMBED_HTML` — subscribe
+  CTA + on-page form.
+- `BUTTONDOWN_API_KEY` / `BUTTONDOWN_MODE` — send each issue to your subscribers.
+- `UNSUBSCRIBE_URL` — footer unsubscribe link (URL or merge tag).
 - `SHOW_MODEL_ATTRIBUTION=true` — add a "powered by …" footer line (off by default).
 
 ## Customizing sources
@@ -299,6 +306,8 @@ emails and chat posts can link the full issue.
 Besides email, post a short teaser (The Pulse + a link to the full issue) to chat:
 set any of `SLACK_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL`, or
 `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`. Unconfigured channels are skipped.
+For email subscribers, see [Enable subscriptions](#enable-subscriptions-10-min-free)
+(Buttondown).
 
 ## Audio digest
 
