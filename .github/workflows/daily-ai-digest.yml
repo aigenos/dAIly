@@ -62,6 +62,9 @@ jobs:
           DIGEST_MODEL: ${{ vars.DIGEST_MODEL }}
           # Optional stronger model for the Opportunity sections (two-pass).
           OPPORTUNITY_MODEL: ${{ vars.OPPORTUNITY_MODEL }}
+          # Self-memory: don't re-pitch ideas from recent receipts.md.
+          OPPORTUNITY_MEMORY: ${{ vars.OPPORTUNITY_MEMORY || 'true' }}
+          OPPORTUNITY_MEMORY_DAYS: ${{ vars.OPPORTUNITY_MEMORY_DAYS || '60' }}
           # Field preset: ai (default) | security | biotech | fintech | yours.
           SOURCE_PRESET: ${{ vars.SOURCE_PRESET }}
           LOOKBACK_DAYS: ${{ vars.LOOKBACK_DAYS || '7' }}

@@ -50,6 +50,10 @@ class Config:
     # Optional stronger model for the Opportunity sections (two-pass synthesis).
     # Blank = single pass with `model`, exactly the pre-existing behavior.
     opportunity_model: str
+    # Self-memory: feed recent Opportunity titles (from receipts.md) into the
+    # prompt so the agent doesn't re-propose its own past picks. Fail-open.
+    opportunity_memory: bool
+    opportunity_memory_days: int
     lookback_days: int
     enable_web_search: bool
     arxiv_max_results: int
@@ -147,6 +151,8 @@ class Config:
             ).strip(),
             model=model,
             opportunity_model=opportunity_model,
+            opportunity_memory=_get_bool("OPPORTUNITY_MEMORY", True),
+            opportunity_memory_days=_get_int("OPPORTUNITY_MEMORY_DAYS", 60),
             lookback_days=_get_int("LOOKBACK_DAYS", 3),
             enable_web_search=_get_bool("ENABLE_WEB_SEARCH", True),
             arxiv_max_results=_get_int("ARXIV_MAX_RESULTS", 40),

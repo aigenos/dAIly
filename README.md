@@ -83,9 +83,12 @@ launch.
 1. **⚡ The Pulse (90 sec)** — *Today's Game-Changer* (the one thing) + *In a
    Nutshell* (8–12 one-line bullets covering everything else). Stands alone.
 2. **🚀 Opportunity of the Day (2 min)** — the single most compelling thing to
-   build today. *(Public/free — the viral hook.)*
-3. **🗺️ Full Opportunity Map (5 min)** — 4–6 *more* buildable bets in the same
-   format. *(Private — your secret sauce / paid tier; see freemium model below.)*
+   build today, with a quick prior-art check. *(Public/free — the viral hook.)*
+3. **🧭 The Builder's Edge (5 min)** — 3–5 *more* buildable bets, each rigorously
+   **prior-art-validated** (the model web-searches for what already exists and
+   justifies why the opening is still open) and **memory-aware** (it won't
+   re-pitch an idea from the last 60 days of `receipts.md`). *(Private — your
+   secret sauce / paid tier; see freemium model below.)*
 4. **📊 Stack Signals (3 min)** — benchmark/eval moves, repo & model velocity,
    and funding/launches *with the thesis extracted*.
 5. **🔬 Deep Reads (optional)** — the one paper to read end-to-end + a scanning
@@ -94,10 +97,13 @@ launch.
 ### Freemium model
 
 The **Opportunity of the Day** ships publicly (email, archive, chat teaser) as
-the hook. The **Full Opportunity Map** is a private section (`src/private/`,
-gitignored) — it's in *your* email but automatically stripped from the public
-archive, which shows a subscribe CTA instead. Free tier drives distribution;
-the full map is your paid/private tier.
+the hook. **The Builder's Edge** — the deeper, prior-art-validated, memory-aware
+set of bets — is a private section (`src/private/`, gitignored): it's in *your*
+email and goes to your paying newsletter subscribers, but is automatically
+stripped from the public archive, which shows a subscribe CTA instead. Free tier
+drives distribution; the Edge is your paid/private tier. Activate it by copying
+[`src/private/opportunity.example.py`](src/private/opportunity.example.py) to
+`src/private/opportunity.py` (or base64 it into the `OPPORTUNITY_B64` CI secret).
 
 ## Run your own in 5 minutes
 

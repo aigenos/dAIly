@@ -302,10 +302,11 @@ def subscribe_cta(url: str, embed_html: str = "") -> str:
     return (
         '<div style="margin:28px 0 8px;padding:22px 24px;border-radius:16px;'
         'background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#ffffff;text-align:center;">'
-        '<div style="font-size:18px;font-weight:800;letter-spacing:-0.01em;">Want the full Opportunity Map?</div>'
+        '<div style="font-size:18px;font-weight:800;letter-spacing:-0.01em;">Want every validated bet?</div>'
         '<div style="font-size:14px;opacity:.92;margin:8px 0 14px;line-height:1.5;">'
-        'Today’s Opportunity of the Day is just 1 of 5–7. Get the complete daily map — '
-        'the gap, why-now, wedge &amp; moat, and a validated first step for every bet.</div>'
+        'Today’s Opportunity of the Day is just the teaser. <strong>The Builder’s Edge</strong> '
+        'gives subscribers 3–5 fully-validated bets a day — prior-art checked, with the moat '
+        'and a two-week plan for each.</div>'
         f'{action}</div>'
     )
 
