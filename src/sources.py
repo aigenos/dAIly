@@ -103,6 +103,10 @@ WEB_SEARCH_TARGETS: list[str] = [
     "Y Combinator AI startup launches in the last week (ycombinator.com/launches)",
     "Product Hunt AI category top launches in the last few days",
     "AI funding rounds in the last 7 days (TechCrunch, The Information, Crunchbase)",
+    # Policy / regulation / government actions that change what builders can ship.
+    "Major AI policy, regulation, and government actions in the last week — model "
+    "bans or restrictions, export controls, executive orders, antitrust moves, and "
+    "landmark AI lawsuits (Reuters, Bloomberg, The Verge, official gov releases)",
 ]
 
 # arXiv: categories + agentic-AI focused search terms.

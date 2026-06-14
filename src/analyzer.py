@@ -125,9 +125,13 @@ full day's signal. Two sub-blocks:
 <h3>🎯 Today's Game-Changer</h3>
 The single most important development from the last 24–72 hours — pick ONE.
 "Important" means biggest impact on what an AI builder can DO or KNOW: new
-models, capabilities, tools, benchmarks, or research. DEPRIORITIZE corporate /
-financial news (funding rounds, IPOs, SEC filings, hires, partnerships) — do not
-lead with it unless it directly changes capabilities. A 2–3 sentence <p>: what
+models, capabilities, tools, benchmarks, or research. MAJOR policy / regulatory /
+legal news that changes what builders can access or ship — a government blocking,
+banning, or restricting a model, export controls, landmark AI regulation, or a
+major lawsuit or safety incident with real product impact — IS high-signal; treat
+it as Game-Changer-worthy. Only DEPRIORITIZE minor corporate / financial PR
+(routine funding rounds, IPOs, SEC filings, hires, partnerships) — do not lead
+with that unless it directly changes capabilities. A 2–3 sentence <p>: what
 happened (with the primary <a> link, named model / repo / number), then one tight
 clause on why it matters more than anything else today. If nothing is truly
 game-changing, say so honestly and elevate the most consequential item instead —
@@ -135,8 +139,9 @@ do not manufacture drama.
 
 <h3>📍 In a Nutshell</h3>
 A <ul> of 8–12 ultra-tight one-line bullets covering everything else important
-today: model releases, infra changes, funding, eval leaderboard moves, big
-papers, ecosystem shifts, notable launches. Pattern per bullet:
+today: model releases, infra changes, major AI policy / regulation / government
+actions, funding, eval leaderboard moves, big papers, ecosystem shifts, notable
+launches. Pattern per bullet:
 <strong>X shipped Y</strong> — one-clause why-it-matters. <a>source</a>
 Skim-readable in under a minute. Cluster related bullets next to each other.
 Zero filler. If it doesn't change a builder's decisions or signal a gap, cut it.""")
