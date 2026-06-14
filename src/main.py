@@ -111,7 +111,7 @@ def run() -> int:
         log.info("DRY_RUN enabled — skipping email + channel posts. Open %s to review.", out_path)
         return 0
     send_email(cfg, subject_line(now), html)
-    notifiers.notify_all(cfg, body, now)
+    notifiers.notify_all(cfg, body, now, private_section_ids(), private_sentinels())
 
     # 5. Persist cross-day dedup state — only after a successful real delivery,
     # and only for the items the model actually saw (the prompt selection).

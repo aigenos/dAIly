@@ -104,17 +104,21 @@ _INDEX_TEMPLATE = """\
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
+<meta name="description" content="dAIly — your personal AI analyst. A 90-second daily briefing that ends with what to build, every claim source-linked.">
 <title>{title}</title>
+<link rel="alternate" type="application/atom+xml" title="dAIly" href="feed.xml">
 <style>
 :root {{
   color-scheme: light dark;
-  --bg:#f3f4f8; --surface:#fff; --text:#14142a; --muted:#6b6b85;
-  --accent:#6366f1; --border:#e8e6f5; --shadow:0 1px 2px rgba(20,20,42,.04),0 8px 24px rgba(20,20,42,.06);
+  --bg:#f3f4f8; --surface:#fff; --text:#14142a; --text-soft:#3a3a55; --muted:#6b6b85;
+  --accent:#6366f1; --border:#e8e6f5; --gold:#fcd34d;
+  --shadow:0 1px 2px rgba(20,20,42,.04),0 8px 24px rgba(20,20,42,.06);
 }}
 @media (prefers-color-scheme: dark) {{
   :root {{
-    --bg:#0a0a14; --surface:#14141f; --text:#ececf5; --muted:#8e8ea8;
-    --accent:#8b8cff; --border:#2a2a3d; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    --bg:#0a0a14; --surface:#14141f; --text:#ececf5; --text-soft:#c8c8d8; --muted:#8e8ea8;
+    --accent:#8b8cff; --border:#2a2a3d;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   }}
 }}
 * {{ box-sizing:border-box; }}
@@ -123,48 +127,120 @@ body {{
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,Arial,sans-serif;
   -webkit-font-smoothing:antialiased; line-height:1.6;
 }}
-.wrap {{ max-width:720px; margin:0 auto; padding:32px 18px 64px; }}
+.wrap {{ max-width:760px; margin:0 auto; padding:32px 18px 64px; }}
+@keyframes heroShift {{ 0%{{background-position:0% 50%}} 50%{{background-position:100% 50%}} 100%{{background-position:0% 50%}} }}
+@keyframes rise {{ from{{opacity:0;transform:translateY(14px)}} to{{opacity:1;transform:none}} }}
+@keyframes blip {{ 0%,100%{{opacity:1}} 50%{{opacity:.35}} }}
 .hero {{
-  background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#c026d3 100%);
-  border-radius:20px; padding:34px 30px; color:#fff;
-  box-shadow:0 8px 32px rgba(79,70,229,.25);
+  position:relative; overflow:hidden;
+  background:linear-gradient(120deg,#4f46e5,#7c3aed,#c026d3,#7c3aed,#4f46e5);
+  background-size:300% 300%; animation:heroShift 14s ease infinite;
+  border-radius:24px; padding:42px 36px 36px; color:#fff;
+  box-shadow:0 12px 40px rgba(79,70,229,.35);
 }}
-.hero .kicker {{ font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:.8; font-weight:600; }}
-.hero h1 {{ margin:10px 0 6px; font-size:30px; font-weight:700; letter-spacing:-.02em; }}
-.hero p {{ margin:0; font-size:15px; opacity:.92; }}
-ul.issues {{ list-style:none; margin:24px 0 0; padding:0; }}
+.hero .kicker {{ font-size:11px; letter-spacing:3px; text-transform:uppercase; opacity:.85; font-weight:700; }}
+.hero h1 {{ margin:12px 0 8px; font-size:46px; font-weight:800; letter-spacing:-.03em; line-height:1; }}
+.hero h1 .ai {{ color:var(--gold); }}
+.hero .tag {{ margin:0 0 22px; font-size:17.5px; opacity:.95; font-weight:500; max-width:34em; }}
+.hero .live {{
+  position:absolute; top:26px; right:28px; font-size:11px; font-weight:800; letter-spacing:1px;
+  display:flex; align-items:center; gap:7px; opacity:.95;
+}}
+.hero .live i {{ width:9px; height:9px; border-radius:50%; background:#4ade80; animation:blip 1.6s ease infinite; }}
+.cta {{ display:flex; flex-wrap:wrap; gap:10px; }}
+.btn {{
+  display:inline-block; padding:12px 22px; border-radius:999px; font-weight:700; font-size:14.5px;
+  text-decoration:none; transition:transform .12s ease, box-shadow .12s ease;
+}}
+.btn:hover {{ transform:translateY(-2px); }}
+.btn.solid {{ background:#fff; color:#4f46e5; box-shadow:0 4px 14px rgba(0,0,0,.18); }}
+.btn.ghost {{ background:rgba(255,255,255,.16); color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }}
+.stats {{ display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0; animation:rise .7s ease both .15s; }}
+.stats span {{
+  background:var(--surface); border:1px solid var(--border); color:var(--text-soft);
+  border-radius:999px; padding:7px 14px; font-size:12.5px; font-weight:650; box-shadow:var(--shadow);
+}}
+.section-label {{
+  margin:34px 0 0; font-size:12px; font-weight:800; letter-spacing:2px;
+  text-transform:uppercase; color:var(--muted);
+}}
+.featured {{ display:block; text-decoration:none; color:var(--text); margin-top:12px;
+  background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--accent);
+  border-radius:16px; padding:22px 24px; box-shadow:var(--shadow);
+  transition:transform .12s ease, border-color .12s ease; animation:rise .7s ease both .25s;
+}}
+.featured:hover {{ transform:translateY(-2px); }}
+.featured .when {{ font-size:12.5px; font-weight:700; color:var(--accent); letter-spacing:.5px; text-transform:uppercase; }}
+.featured .what {{ font-size:19px; font-weight:750; letter-spacing:-.01em; line-height:1.4; margin:6px 0 4px; }}
+.featured .read {{ font-size:14px; font-weight:700; color:var(--accent); }}
+ul.issues {{ list-style:none; margin:12px 0 0; padding:0; }}
 li.issue a {{
   display:block;
   background:var(--surface); border:1px solid var(--border); border-radius:14px;
-  padding:16px 20px; margin:12px 0; text-decoration:none; color:var(--text);
+  padding:15px 20px; margin:10px 0; text-decoration:none; color:var(--text);
   box-shadow:var(--shadow); transition:transform .12s ease, border-color .12s ease;
 }}
 li.issue a:hover {{ transform:translateY(-2px); border-color:var(--accent); }}
 li.issue .row {{ display:flex; justify-content:space-between; align-items:center; }}
-li.issue .date {{ font-weight:650; font-size:16px; }}
+li.issue .date {{ font-weight:650; font-size:15.5px; }}
 li.issue .go {{ color:var(--accent); font-weight:700; font-size:14px; white-space:nowrap; }}
-li.issue .headline {{ color:var(--muted); font-size:14px; line-height:1.5; margin-top:6px; }}
+li.issue .headline {{ color:var(--muted); font-size:13.5px; line-height:1.5; margin-top:5px; }}
+.fork {{
+  margin-top:34px; background:var(--surface); border:1px solid var(--border); border-radius:16px;
+  padding:22px 24px; box-shadow:var(--shadow);
+}}
+.fork h2 {{ margin:0 0 6px; font-size:18px; letter-spacing:-.01em; }}
+.fork p {{ margin:0 0 14px; color:var(--text-soft); font-size:14.5px; }}
+.fork .chips {{ display:flex; flex-wrap:wrap; gap:8px; }}
+.fork .chips a {{
+  text-decoration:none; font-weight:700; font-size:13.5px; color:var(--accent);
+  background:transparent; border:1px solid var(--border); border-radius:999px; padding:8px 16px;
+  transition:transform .12s ease, border-color .12s ease;
+}}
+.fork .chips a:hover {{ transform:translateY(-2px); border-color:var(--accent); }}
 .empty {{ color:var(--muted); margin-top:24px; }}
-.foot {{ text-align:center; color:var(--muted); font-size:12px; margin-top:40px; }}
+.foot {{ text-align:center; color:var(--muted); font-size:12px; margin-top:44px; }}
 .foot a {{ color:var(--accent); text-decoration:none; }}
+@media (max-width:560px) {{
+  .hero {{ padding:32px 24px 28px; }}
+  .hero h1 {{ font-size:38px; }}
+  .hero .live {{ display:none; }}
+}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="hero">
+    <div class="live"><i></i>SHIPS DAILY</div>
     <div class="kicker">by aigenos · daily ai intelligence</div>
-    <h1>d<span style="color:#fcd34d;">AI</span>ly</h1>
-    <p>{tagline}</p>
+    <h1>d<span class="ai">AI</span>ly</h1>
+    <p class="tag">Your personal AI analyst — reads everything in AI every day and tells
+    you <strong>what to build</strong>. 90 seconds, every claim source-linked.</p>
+    <div class="cta">{cta_buttons}</div>
   </div>
+  <div class="stats">{stats}</div>
   {subscribe}
   {body}
+  <div class="fork">
+    <h2>🔁 Fork it for <em>your</em> field</h2>
+    <p>This whole agent retargets with one env var — same synthesis, different beat.
+    Run it free on GitHub Actions in ~5 minutes.</p>
+    <div class="chips">
+      <a href="{repo_url}">🔒 SOURCE_PRESET=security</a>
+      <a href="{repo_url}">🧬 SOURCE_PRESET=biotech</a>
+      <a href="{repo_url}">💸 SOURCE_PRESET=fintech</a>
+      <a href="{repo_url}#run-your-own-in-5-minutes">🚀 Run your own →</a>
+    </div>
+  </div>
   <div class="foot">
-    <strong>dAIly</strong> by <a href="https://github.com/aigenos">aigenos</a> · curated from frontier labs, newsletters, infra, community &amp; arXiv ·
-    <a href="feed.xml">RSS</a> · <a href="receipts.md">receipts</a>
+    <strong>dAIly</strong> by <a href="https://github.com/aigenos">aigenos</a> ·
+    <a href="{repo_url}">GitHub</a> · <a href="feed.xml">RSS</a>
   </div>
 </div>
 </body>
 </html>"""
+
+_REPO_URL = "https://github.com/aigenos/dAIly"
 
 
 def _render_subscribe(cfg) -> str:
@@ -181,7 +257,7 @@ def _render_subscribe(cfg) -> str:
     action = getattr(cfg, "subscribe_form_action", "")
     url = getattr(cfg, "subscribe_url", "")
     card_open = (
-        '<div style="background:var(--surface);border:1px solid var(--border);'
+        '<div id="subscribe" style="background:var(--surface);border:1px solid var(--border);'
         'border-radius:16px;padding:22px 24px;margin:18px 0 6px;box-shadow:var(--shadow);'
         'text-align:center;">'
         '<div style="font-size:19px;font-weight:750;color:var(--text);letter-spacing:-.01em;">'
@@ -208,34 +284,107 @@ def _render_subscribe(cfg) -> str:
         return card_open + form + "</div>"
     if url:
         return card_open + f'<a href="{url}" style="{btn}">Subscribe →</a></div>'
-    return ""
+    # No email provider configured yet — still give the Subscribe link a real
+    # destination (RSS + watch on GitHub). Upgrades to the email form the moment
+    # SUBSCRIBE_URL / SUBSCRIBE_FORM_ACTION / SUBSCRIBE_EMBED_HTML is set.
+    ghost = (
+        'padding:11px 22px;border:1px solid var(--border);border-radius:10px;'
+        'font-weight:700;font-size:15px;color:var(--accent);text-decoration:none;'
+        'display:inline-block;margin:0 4px;'
+    )
+    return (
+        '<div id="subscribe" style="background:var(--surface);border:1px solid var(--border);'
+        'border-radius:16px;padding:22px 24px;margin:18px 0 6px;box-shadow:var(--shadow);'
+        'text-align:center;">'
+        '<div style="font-size:19px;font-weight:750;color:var(--text);letter-spacing:-.01em;">'
+        '📬 Follow dAIly</div>'
+        '<div style="font-size:14px;color:var(--muted);margin:6px 0 15px;">'
+        'Follow the daily issue via RSS, or watch the repo — '
+        'email signup coming soon.</div>'
+        f'<a href="feed.xml" style="{ghost}">📡 RSS feed</a>'
+        f'<a href="{_REPO_URL}" style="{ghost}">⭐ Watch on GitHub</a>'
+        '</div>'
+    )
+
+
+def _date_label(d: datetime) -> str:
+    return (
+        d.strftime("%A, %B %-d, %Y") if os.name != "nt"
+        else d.strftime("%A, %B %d, %Y")
+    )
 
 
 def _render_index(cfg, issues: list[tuple[str, datetime, str]]) -> str:
+    # Hero CTA row. Subscribe goes to the on-page form when one renders,
+    # otherwise straight to SUBSCRIBE_URL; omitted when neither exists.
+    buttons: list[str] = []
     if issues:
-        rows: list[str] = []
-        for name, d, headline in issues:
-            date_label = (
-                d.strftime("%A, %B %-d, %Y")
-                if os.name != "nt"
-                else d.strftime("%A, %B %d, %Y")
+        buttons.append(
+            f'<a class="btn solid" href="digests/{issues[0][0]}">📬 Read today\'s issue</a>'
+        )
+    has_form = bool(
+        getattr(cfg, "subscribe_embed_html", "")
+        or getattr(cfg, "subscribe_form_action", "")
+    )
+    sub_url = getattr(cfg, "subscribe_url", "")
+    # The subscribe card always renders now (email form when configured, an
+    # RSS/GitHub fallback otherwise), so the hero button always has a target.
+    sub_target = _esc(sub_url) if (sub_url and not has_form) else "#subscribe"
+    buttons.append(f'<a class="btn ghost" href="{sub_target}">✉️ Subscribe</a>')
+    buttons.append(f'<a class="btn ghost" href="{_REPO_URL}">⭐ Star on GitHub</a>')
+    buttons.append('<a class="btn ghost" href="feed.xml">📡 RSS</a>')
+
+    # Proof-of-life stats under the hero.
+    try:
+        from .sources import RSS_FEEDS, WEB_SEARCH_TARGETS
+        n_sources = len(RSS_FEEDS) + len(WEB_SEARCH_TARGETS)
+    except Exception:  # noqa: BLE001 — stats are decoration, never fatal
+        n_sources = 0
+    stats = [
+        f"📰 {len(issues)} issue{'s' if len(issues) != 1 else ''} published",
+        *([f"🛰️ {n_sources}+ sources scanned daily"] if n_sources else []),
+        "⚡ essentials in 90 seconds",
+        "🔗 every claim source-linked",
+        "🤖 runs itself on GitHub Actions",
+    ]
+    stats_html = "".join(f"<span>{s}</span>" for s in stats)
+
+    if issues:
+        # Newest issue gets the spotlight; the rest are the archive list.
+        name, d, headline = issues[0]
+        what = f"🎯 {_esc(headline)}" if headline else "Today's briefing is live."
+        body = (
+            '<div class="section-label">Latest issue</div>\n'
+            f'  <a class="featured" href="digests/{name}">'
+            f'<div class="when">{_date_label(d)}</div>'
+            f'<div class="what">{what}</div>'
+            f'<div class="read">Read the full briefing →</div></a>'
+        )
+        if issues[1:]:
+            rows = []
+            for name, d, headline in issues[1:]:
+                preview = (
+                    f'<div class="headline">🎯 {_esc(headline)}</div>' if headline else ""
+                )
+                rows.append(
+                    f'    <li class="issue"><a href="digests/{name}">'
+                    f'<div class="row"><span class="date">{_date_label(d)}</span>'
+                    f'<span class="go">Read →</span></div>{preview}</a></li>'
+                )
+            body += (
+                '\n  <div class="section-label">Past issues</div>\n'
+                '  <ul class="issues">\n' + "\n".join(rows) + "\n  </ul>"
             )
-            preview = (
-                f'<div class="headline">🎯 {_esc(headline)}</div>' if headline else ""
-            )
-            rows.append(
-                f'    <li class="issue"><a href="digests/{name}">'
-                f'<div class="row"><span class="date">{date_label}</span>'
-                f'<span class="go">Read →</span></div>{preview}</a></li>'
-            )
-        body = '  <ul class="issues">\n' + "\n".join(rows) + "\n  </ul>"
     else:
-        body = '  <p class="empty">No issues published yet — check back tomorrow.</p>'
+        body = '  <p class="empty">No issues published yet — the first one ships with tomorrow\'s run.</p>'
+
     return _INDEX_TEMPLATE.format(
         title=cfg.site_title,
-        tagline="Stay at the cutting edge of AI — in 90 seconds a day.",
+        cta_buttons="".join(buttons),
+        stats=stats_html,
         subscribe=_render_subscribe(cfg),
         body=body,
+        repo_url=_REPO_URL,
     )
 
 

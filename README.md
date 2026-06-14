@@ -1,24 +1,30 @@
-# dAIly — your personal AI analyst
+<div align="center">
 
-> **Reads everything in AI daily and tells you what to build.** One email,
-> ~90 seconds, every claim source-linked.
+<img src="docs/assets/banner.svg" alt="dAIly — your personal AI analyst. Reads everything in AI daily, tells you what to build." width="880">
+
+**Reads everything in AI daily and tells you what to build.**
+One email · ~90 seconds · every claim source-linked.
 
 [![Daily AI Digest](https://github.com/aigenos/dAIly/actions/workflows/daily-ai-digest.yml/badge.svg)](https://github.com/aigenos/dAIly/actions/workflows/daily-ai-digest.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/)
+[![Runs on GitHub Actions](https://img.shields.io/badge/runs%20on-GitHub%20Actions-2088FF?logo=githubactions&logoColor=white)](.github/workflows/daily-ai-digest.yml)
+[![~$0/month](https://img.shields.io/badge/cost-~%240%2Fmonth-4ade80.svg)](#run-your-own-in-5-minutes)
 
-<p align="center">
-  <a href="https://aigenos.github.io/dAIly"><strong>📬 Read today's issue (live)</strong></a> ·
-  <a href="https://aigenos.github.io/dAIly"><strong>✉️ Subscribe</strong></a> ·
-  <a href="#run-your-own-in-5-minutes"><strong>🚀 Run your own in 5 min</strong></a>
-</p>
+<h3>
+  <a href="https://aigenos.github.io/dAIly">📬 Read today's issue (live)</a> &nbsp;·&nbsp;
+  <a href="https://aigenos.github.io/dAIly#subscribe">✉️ Subscribe</a> &nbsp;·&nbsp;
+  <a href="#run-your-own-in-5-minutes">🚀 Run your own in 5 min</a>
+</h3>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/hero-dark.png">
-  <img alt="dAIly — a daily AI intelligence briefing, light and dark themed" src="docs/assets/hero-light.png" width="720">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/hero-dark.svg">
+  <img alt="A dAIly issue: The Pulse 90-second summary, then the Opportunity of the Day" src="docs/assets/hero-light.svg" width="760">
 </picture>
 
-*(Screenshots regenerate weekly from the live archive — what you see is what ships.)*
+*What lands in your inbox, light and dark — [see today's real issue live](https://aigenos.github.io/dAIly).*
+
+</div>
 
 ## What makes this different
 
@@ -72,14 +78,19 @@ opportunity hunting) works unchanged.
 Structured so 90 seconds gets you everything essential; 10 minutes gets you
 depth. Each section carries a read-time budget; every claim carries a source
 link. An item appears in **at most one section** — no triple-reporting the same
-launch.
+launch. And **no repeats across days**: an article covered in a past issue is
+remembered (`docs/.state/seen_items.json`) and dropped from later runs, so a
+3-day lookback running daily never re-sends yesterday's news.
 
 1. **⚡ The Pulse (90 sec)** — *Today's Game-Changer* (the one thing) + *In a
    Nutshell* (8–12 one-line bullets covering everything else). Stands alone.
 2. **🚀 Opportunity of the Day (2 min)** — the single most compelling thing to
-   build today. *(Public/free — the viral hook.)*
-3. **🗺️ Full Opportunity Map (5 min)** — 4–6 *more* buildable bets in the same
-   format. *(Private — your secret sauce / paid tier; see freemium model below.)*
+   build today, with a quick prior-art check. *(Public/free — the viral hook.)*
+3. **🧭 The Builder's Edge (5 min)** — 3–5 *more* buildable bets, each rigorously
+   **prior-art-validated** (the model web-searches for what already exists and
+   justifies why the opening is still open) and **memory-aware** (it won't
+   re-pitch an idea from the last 60 days of `receipts.md`). *(Private — your
+   secret sauce / paid tier; see freemium model below.)*
 4. **📊 Stack Signals (3 min)** — benchmark/eval moves, repo & model velocity,
    and funding/launches *with the thesis extracted*.
 5. **🔬 Deep Reads (optional)** — the one paper to read end-to-end + a scanning
@@ -88,10 +99,13 @@ launch.
 ### Freemium model
 
 The **Opportunity of the Day** ships publicly (email, archive, chat teaser) as
-the hook. The **Full Opportunity Map** is a private section (`src/private/`,
-gitignored) — it's in *your* email but automatically stripped from the public
-archive, which shows a subscribe CTA instead. Free tier drives distribution;
-the full map is your paid/private tier.
+the hook. **The Builder's Edge** — the deeper, prior-art-validated, memory-aware
+set of bets — is a private section (`src/private/`, gitignored): it's in *your*
+email and goes to your paying newsletter subscribers, but is automatically
+stripped from the public archive, which shows a subscribe CTA instead. Free tier
+drives distribution; the Edge is your paid/private tier. Activate it by copying
+[`src/private/opportunity.example.py`](src/private/opportunity.example.py) to
+`src/private/opportunity.py` (or base64 it into the `OPPORTUNITY_B64` CI secret).
 
 ## Run your own in 5 minutes
 
@@ -116,6 +130,29 @@ the full map is your paid/private tier.
 - **Automatic:** daily at **12:00 UTC**. Change the `cron` in the workflow to taste.
 - **Polish (optional):** `bash scripts/repo_setup.sh` sets your fork's
   description + topics via the `gh` CLI.
+
+### Enable subscriptions (~10 min, free)
+
+The repo emails *you* via Resend; subscribers are handled by
+[Buttondown](https://buttondown.com) (free ≤ 100 subscribers) — capture **and**
+delivery, no backend:
+
+1. Create a Buttondown account, note your username, grab an API key
+   (Settings → API).
+2. Set Actions **variables**:
+   `SUBSCRIBE_URL=https://buttondown.com/YOURNAME` and
+   `SUBSCRIBE_FORM_ACTION=https://buttondown.email/api/emails/embed-subscribe/YOURNAME`
+   → the archive landing page renders a working email-capture form.
+3. Set the **secret** `BUTTONDOWN_API_KEY` → every run now also sends the
+   **public** version of the issue (private sections stripped, fail-closed) to
+   all subscribers. `BUTTONDOWN_MODE=teaser` (default) sends The Pulse +
+   Opportunity with a link to the full issue; `full` sends the whole public
+   issue.
+4. Set `UNSUBSCRIBE_URL={{ unsubscribe_url }}` (Buttondown's merge tag) so your
+   own Resend copy carries an unsubscribe line too.
+
+Prefer no newsletter service? `docs/feed.xml` is an Atom feed of the archive —
+readers can follow via RSS with zero setup.
 
 ## Run locally
 
@@ -235,10 +272,15 @@ All knobs are environment variables; see [`.env.example`](.env.example). Notable
 - `SOURCE_PRESET=ai|security|biotech|fintech` — retarget the whole briefing.
 - `ENABLE_WEB_SEARCH=false` — run purely from RSS + arXiv + HF (cheaper, narrower).
 - `LOOKBACK_DAYS` — how many days count as "latest" (7 recommended).
-- `CROSS_DAY_DEDUP=false` — disable the seen-items filter (docs/.state/).
+- `CROSS_DAY_DEDUP=false` — disable the cross-day seen-items filter (docs/.state/).
+- `OPPORTUNITY_MEMORY=false` / `OPPORTUNITY_MEMORY_DAYS` — self-memory that stops
+  the agent re-pitching a past Opportunity (default on, 60-day window).
 - `ENABLE_LINK_CHECK=false` — skip the pre-send dead-link check.
-- `SUBSCRIBE_URL` / `SUBSCRIBE_EMBED_HTML` / `UNSUBSCRIBE_URL` — footer + CTA links.
-- `SHOW_MODEL_ATTRIBUTION=false` — hide the "powered by …" footer line.
+- `SUBSCRIBE_URL` / `SUBSCRIBE_FORM_ACTION` / `SUBSCRIBE_EMBED_HTML` — subscribe
+  CTA + on-page form.
+- `BUTTONDOWN_API_KEY` / `BUTTONDOWN_MODE` — send each issue to your subscribers.
+- `UNSUBSCRIBE_URL` — footer unsubscribe link (URL or merge tag).
+- `SHOW_MODEL_ATTRIBUTION=true` — add a "powered by …" footer line (off by default).
 
 ## Customizing sources
 
@@ -264,6 +306,8 @@ emails and chat posts can link the full issue.
 Besides email, post a short teaser (The Pulse + a link to the full issue) to chat:
 set any of `SLACK_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL`, or
 `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`. Unconfigured channels are skipped.
+For email subscribers, see [Enable subscriptions](#enable-subscriptions-10-min-free)
+(Buttondown).
 
 ## Audio digest
 

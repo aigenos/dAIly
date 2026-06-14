@@ -62,6 +62,9 @@ jobs:
           DIGEST_MODEL: ${{ vars.DIGEST_MODEL }}
           # Optional stronger model for the Opportunity sections (two-pass).
           OPPORTUNITY_MODEL: ${{ vars.OPPORTUNITY_MODEL }}
+          # Self-memory: don't re-pitch ideas from recent receipts.md.
+          OPPORTUNITY_MEMORY: ${{ vars.OPPORTUNITY_MEMORY || 'true' }}
+          OPPORTUNITY_MEMORY_DAYS: ${{ vars.OPPORTUNITY_MEMORY_DAYS || '60' }}
           # Field preset: ai (default) | security | biotech | fintech | yours.
           SOURCE_PRESET: ${{ vars.SOURCE_PRESET }}
           LOOKBACK_DAYS: ${{ vars.LOOKBACK_DAYS || '7' }}
@@ -82,9 +85,13 @@ jobs:
           # Unsubscribe link or merge tag for the email footer — required
           # before sending to anyone but yourself.
           UNSUBSCRIBE_URL: ${{ vars.UNSUBSCRIBE_URL }}
-          SHOW_MODEL_ATTRIBUTION: ${{ vars.SHOW_MODEL_ATTRIBUTION || 'true' }}
+          SHOW_MODEL_ATTRIBUTION: ${{ vars.SHOW_MODEL_ATTRIBUTION || 'false' }}
           # Audio digest (free gTTS).
           ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || 'false' }}
+          # Subscriber delivery: sends the public issue to your Buttondown
+          # list (captured by the landing-page form). teaser | full.
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          BUTTONDOWN_MODE: ${{ vars.BUTTONDOWN_MODE || 'teaser' }}
           # Optional multi-channel delivery.
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}

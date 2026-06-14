@@ -99,7 +99,9 @@ qwen2.5:14b is solid, llama3.1 8B is hit-and-miss on the link discipline.
 
 - [ ] **Screenshots fresh** — run the *Refresh README screenshots* workflow;
       confirm `docs/assets/hero-light.png` / `hero-dark.png` show the latest
-      issue and render in the README's `<picture>` block.
+      issue. Then upload `hero-light.png` as the repo **social preview**
+      (Settings → General → Social preview) so the HN/Twitter link card shows
+      the product, not a blank tile.
 - [ ] **Live demo up** — GitHub Pages serving `docs/` (Settings → Pages →
       main → /docs); today's issue loads; index previews + feed.xml work.
 - [ ] **Subscribe link live** — `SUBSCRIBE_URL` (and embed form if used) set

@@ -50,6 +50,10 @@ class Config:
     # Optional stronger model for the Opportunity sections (two-pass synthesis).
     # Blank = single pass with `model`, exactly the pre-existing behavior.
     opportunity_model: str
+    # Self-memory: feed recent Opportunity titles (from receipts.md) into the
+    # prompt so the agent doesn't re-propose its own past picks. Fail-open.
+    opportunity_memory: bool
+    opportunity_memory_days: int
     lookback_days: int
     enable_web_search: bool
     arxiv_max_results: int
@@ -74,6 +78,12 @@ class Config:
     discord_webhook_url: str
     telegram_bot_token: str
     telegram_chat_id: str
+    # Buttondown: send each issue to your newsletter subscribers (the public
+    # version — private sections are stripped first). "teaser" sends The Pulse
+    # + Opportunity as clean markdown with a link to the full issue (renders
+    # reliably); "full" sends the whole public HTML fragment.
+    buttondown_api_key: str
+    buttondown_mode: str
     # Audio / TTS version of The Pulse.
     enable_audio: bool
     audio_dir: str
@@ -141,6 +151,8 @@ class Config:
             ).strip(),
             model=model,
             opportunity_model=opportunity_model,
+            opportunity_memory=_get_bool("OPPORTUNITY_MEMORY", True),
+            opportunity_memory_days=_get_int("OPPORTUNITY_MEMORY_DAYS", 60),
             lookback_days=_get_int("LOOKBACK_DAYS", 3),
             enable_web_search=_get_bool("ENABLE_WEB_SEARCH", True),
             arxiv_max_results=_get_int("ARXIV_MAX_RESULTS", 40),
@@ -155,7 +167,11 @@ class Config:
             subscribe_form_action=os.environ.get("SUBSCRIBE_FORM_ACTION", "").strip(),
             subscribe_embed_html=os.environ.get("SUBSCRIBE_EMBED_HTML", "").strip(),
             unsubscribe_url=os.environ.get("UNSUBSCRIBE_URL", "").strip(),
-            show_model_attribution=_get_bool("SHOW_MODEL_ATTRIBUTION", True),
+            show_model_attribution=_get_bool("SHOW_MODEL_ATTRIBUTION", False),
+            buttondown_api_key=os.environ.get("BUTTONDOWN_API_KEY", "").strip(),
+            buttondown_mode=(
+                os.environ.get("BUTTONDOWN_MODE", "").strip().lower() or "teaser"
+            ),
             slack_webhook_url=os.environ.get("SLACK_WEBHOOK_URL", "").strip(),
             discord_webhook_url=os.environ.get("DISCORD_WEBHOOK_URL", "").strip(),
             telegram_bot_token=os.environ.get("TELEGRAM_BOT_TOKEN", "").strip(),

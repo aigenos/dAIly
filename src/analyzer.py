@@ -160,6 +160,10 @@ compounds over time.</li>
 <li><strong>Already heating up:</strong> 2–3 concrete, linked proof points of real
 early demand (HN thread, repo with star velocity, recent funding, Show HN). If
 none, mark <em>(speculative — no validation signal yet)</em> honestly.</li>
+<li><strong>Closest existing solution:</strong> search for what already exists —
+name the nearest real product / repo / paper (with a link) and one clause on why
+there's still an opening (timing, a gap it misses, or a better wedge). If the
+space is already crowded with no clear opening, pick a different opportunity.</li>
 <li><strong>First step this week:</strong> one concrete action to validate or
 prototype it in the next 7 days.</li>
 </ul>
@@ -170,6 +174,10 @@ now" or "Already heating up" — if you only have one signal, pick a different
 opportunity. QUANTIFY community interest wherever possible ("1.2k upvotes on
 r/LocalLLaMA", "#1 on HF Daily Papers today", "4.3k stars in 48h") — vague
 claims like "high community interest" are a defect.
+PRIOR ART — do not propose something that already exists in mature form. Use web
+search to verify; the "Closest existing solution" line must name the nearest real
+alternative and justify why the opening is still open, or you must pick another
+idea. Do not re-propose an opportunity listed under ALREADY PROPOSED above.
 Make this the strongest, most shareable pick of the day — the single best thing
 to build right now.""")
 
@@ -366,6 +374,60 @@ def _format_items(items: list[Item]) -> str:
     return "\n\n".join(blocks) if blocks else "(no items fetched deterministically)"
 
 
+_RECEIPT_RX = re.compile(r"-\s+\*\*(\d{4}-\d{2}-\d{2})\*\*\s+—\s+\[([^\]]+)\]")
+
+
+def recent_opportunity_titles(archive_dir: str, days: int, now: datetime) -> list[str]:
+    """Opportunity-of-the-Day titles logged in <archive_dir>/receipts.md within
+    the last `days`, newest first and de-duplicated. This is the agent's memory
+    of what it has already proposed, so it stops re-pitching the same idea.
+    Fail-open: a missing/unreadable receipts file returns []."""
+    import os
+
+    path = os.path.join(archive_dir, "receipts.md")
+    try:
+        with open(path, encoding="utf-8") as fh:
+            content = fh.read()
+    except OSError:
+        return []
+    cutoff = now.date().toordinal() - max(0, days)
+    dated: list[tuple[str, str]] = []
+    for m in _RECEIPT_RX.finditer(content):
+        try:
+            d = datetime.strptime(m.group(1), "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if d.toordinal() >= cutoff:
+            dated.append((m.group(1), m.group(2).strip()))
+    dated.sort(key=lambda t: t[0], reverse=True)
+    seen: set[str] = set()
+    titles: list[str] = []
+    for _, t in dated:
+        key = t.lower()
+        if t and key not in seen:
+            seen.add(key)
+            titles.append(t)
+    return titles
+
+
+def _opportunity_memory_block(cfg: Config, now: datetime) -> str:
+    """A prompt block listing recently-proposed opportunities, so the model
+    doesn't repeat itself. Empty when memory is off or there's no history."""
+    if not getattr(cfg, "opportunity_memory", False):
+        return ""
+    titles = recent_opportunity_titles(cfg.archive_dir, cfg.opportunity_memory_days, now)
+    if not titles:
+        return ""
+    joined = "\n".join(f"- {t}" for t in titles[:40])
+    log.info("opportunity memory: %d prior pick(s) fed into the prompt", len(titles))
+    return (
+        f"ALREADY PROPOSED — opportunities this agent has published in the last "
+        f"{cfg.opportunity_memory_days} days. Do NOT re-propose these. Choose a "
+        f"genuinely different opportunity; if you revisit a theme, state explicitly "
+        f"what is newly different and why it is not a rerun:\n{joined}\n\n"
+    )
+
+
 def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
     """Build the prompt, run the configured provider, return the HTML fragment."""
     selected = _select_for_prompt(items)
@@ -382,6 +444,7 @@ def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
         f"{_format_items(selected)}\n\n"
         f"SOURCES TO VERIFY / BACKFILL VIA WEB SEARCH (pull anything important "
         f"these published recently that's missing above):\n{targets}\n\n"
+        f"{_opportunity_memory_block(cfg, now)}"
         f"{build_instructions()}"
     )
     log.info(
@@ -461,6 +524,7 @@ def _regenerate_opportunities(
         f"build on them.\n\n"
         f"TODAY'S BRIEFING (final, for context):\n{html}\n\n"
         f"CANDIDATE ITEMS:\n\n{_format_items(items)}\n\n"
+        f"{_opportunity_memory_block(cfg, now)}"
         f"{instructions}"
     )
     try:

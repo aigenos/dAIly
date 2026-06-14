@@ -20,3 +20,4 @@ out/
 !/src/private/__init__.py
 !/src/private/README.md
 !/src/private/EXAMPLE.py
+!/src/private/opportunity.example.py

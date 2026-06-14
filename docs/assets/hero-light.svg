@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="560" viewBox="0 0 760 560" role="img" aria-label="A dAIly issue (light): The Pulse, then the Opportunity of the Day" font-family="-apple-system,'Segoe UI',Roboto,Arial,sans-serif">
+  <defs>
+    <linearGradient id="mast" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/><stop offset="55%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#c026d3"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="760" height="560" fill="#f3f4f8"/>
+
+  <!-- masthead -->
+  <rect x="40" y="28" width="680" height="86" rx="18" fill="url(#mast)"/>
+  <rect x="62" y="48" width="46" height="46" rx="12" fill="#ffffff" fill-opacity=".16"/>
+  <text x="85" y="80" font-size="24" text-anchor="middle">🤖</text>
+  <text x="122" y="68" font-size="9" letter-spacing="2.5" font-weight="600" fill="#ffffff" fill-opacity=".8">BY AIGENOS · DAILY AI INTELLIGENCE</text>
+  <text x="120" y="96" font-size="26" font-weight="800" fill="#ffffff" letter-spacing="-0.5">d<tspan fill="#fcd34d">AI</tspan>ly</text>
+  <rect x="610" y="56" width="88" height="26" rx="13" fill="#ffffff" fill-opacity=".18"/>
+  <text x="654" y="74" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Today</text>
+
+  <!-- body card -->
+  <rect x="40" y="128" width="680" height="404" rx="18" fill="#ffffff"/>
+
+  <!-- The Pulse -->
+  <text x="68" y="172" font-size="19" font-weight="700" fill="#6366f1">⚡ The Pulse — If You Only Read One Thing</text>
+  <rect x="475" y="156" width="84" height="22" rx="11" fill="#6366f1" fill-opacity=".14"/>
+  <text x="517" y="171" font-size="10" font-weight="700" fill="#6366f1" text-anchor="middle" letter-spacing=".5">90 SEC READ</text>
+  <line x1="68" y1="186" x2="692" y2="186" stroke="#e8e6f5" stroke-width="1"/>
+
+  <text x="68" y="214" font-size="14" font-weight="700" fill="#14142a">🎯 Today's Game-Changer</text>
+  <rect x="68" y="226" width="600" height="9" rx="4.5" fill="#d9d7ee"/>
+  <rect x="68" y="243" width="560" height="9" rx="4.5" fill="#d9d7ee"/>
+  <rect x="68" y="260" width="320" height="9" rx="4.5" fill="#6366f1" fill-opacity=".55"/>
+
+  <text x="68" y="296" font-size="14" font-weight="700" fill="#14142a">📍 In a Nutshell</text>
+  <circle cx="76" cy="316" r="2.5" fill="#6366f1"/><rect x="88" y="311" width="430" height="8" rx="4" fill="#e4e2f3"/><rect x="528" y="311" width="60" height="8" rx="4" fill="#6366f1" fill-opacity=".55"/>
+  <circle cx="76" cy="336" r="2.5" fill="#6366f1"/><rect x="88" y="331" width="470" height="8" rx="4" fill="#e4e2f3"/><rect x="568" y="331" width="60" height="8" rx="4" fill="#6366f1" fill-opacity=".55"/>
+  <circle cx="76" cy="356" r="2.5" fill="#6366f1"/><rect x="88" y="351" width="400" height="8" rx="4" fill="#e4e2f3"/><rect x="498" y="351" width="60" height="8" rx="4" fill="#6366f1" fill-opacity=".55"/>
+
+  <!-- Opportunity of the Day -->
+  <text x="68" y="402" font-size="19" font-weight="700" fill="#6366f1">🚀 Opportunity of the Day</text>
+  <rect x="333" y="386" width="84" height="22" rx="11" fill="#6366f1" fill-opacity=".14"/>
+  <text x="375" y="401" font-size="10" font-weight="700" fill="#6366f1" text-anchor="middle" letter-spacing=".5">2 MIN READ</text>
+  <line x1="68" y1="416" x2="692" y2="416" stroke="#e8e6f5" stroke-width="1"/>
+
+  <text x="68" y="444" font-size="15" font-weight="800" fill="#14142a">The thing to build — before everyone else sees it</text>
+  <text x="68" y="470" font-size="12.5" font-weight="700" fill="#3a3a55">The gap:</text><rect x="140" y="461" width="380" height="8" rx="4" fill="#e4e2f3"/>
+  <text x="68" y="492" font-size="12.5" font-weight="700" fill="#3a3a55">Why now:</text><rect x="140" y="483" width="430" height="8" rx="4" fill="#e4e2f3"/>
+  <text x="68" y="514" font-size="12.5" font-weight="700" fill="#3a3a55">Heating up:</text><rect x="148" y="505" width="220" height="8" rx="4" fill="#e4e2f3"/>
+  <rect x="378" y="502" width="118" height="15" rx="7.5" fill="#16a34a" fill-opacity=".12"/>
+  <text x="437" y="513" font-size="9.5" font-weight="700" fill="#15803d" text-anchor="middle">1.2k ▲ · 4.3k ★ in 48h</text>
+</svg>
