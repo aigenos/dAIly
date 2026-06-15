@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>dAIly — Daily AI Digest</title>
+<style>
+:root {
+  color-scheme: light dark;
+  supported-color-schemes: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  /* Literal colors only — Gmail/Outlook strip CSS custom properties but keep
+     the media query, which used to leave dark-mode readers unstyled. */
+  body, .aigenos-bg { background: #0a0a14 !important; }
+  .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
+  .aigenos-text { color: #ececf5 !important; }
+  .aigenos-muted { color: #8e8ea8 !important; }
+  h2.aigenos-h2 { color: #8b8cff !important; border-color: #2a2a3d !important; }
+  h3.aigenos-h3 { color: #ececf5 !important; }
+  p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
+  a.aigenos-a { color: #8b8cff !important; }
+  strong.aigenos-strong { color: #ececf5 !important; }
+  blockquote.aigenos-bq {
+    background: #1a1a26 !important;
+    color: #c8c8d8 !important;
+    border-color: #8b8cff !important;
+  }
+  .aigenos-chip {
+    background: rgba(139, 140, 255, 0.14) !important;
+    color: #8b8cff !important;
+  }
+  .aigenos-footer { color: #8e8ea8 !important; }
+  .aigenos-footer a { color: #8b8cff !important; }
+  .aigenos-hero-sub { color: rgba(255,255,255,0.85) !important; }
+  .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
+  a.aigenos-src-title { color: #ececf5 !important; }
+  .aigenos-src-meta { color: #8e8ea8 !important; }
+}
+@media (max-width: 600px) {
+  .aigenos-shell { padding: 16px 10px !important; }
+  .aigenos-card { padding: 18px !important; }
+  .aigenos-hero { padding: 22px 22px 18px !important; }
+}
+</style>
+</head>
+<body class="aigenos-bg" style="margin:0;padding:0;background:#f3f4f8;color-scheme:light dark;">
+<div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
+
+  <!-- Hero / masthead -->
+  <div class="aigenos-hero" style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#c026d3 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(79,70,229,0.25);">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td style="width:54px;vertical-align:middle;">
+        <div style="width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,0.16);text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>
+      </td>
+      <td style="vertical-align:middle;padding-left:14px;">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.8;font-weight:600;">by aigenos · daily ai intelligence</div>
+        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;">d<span style="color:#fcd34d;">AI</span>ly</div>
+      </td>
+      <td style="vertical-align:middle;text-align:right;white-space:nowrap;">
+        <span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">Jun 15</span>
+      </td>
+    </tr></table>
+    <div class="aigenos-hero-sub" style="font-size:13.5px;opacity:.92;font-weight:500;line-height:1.5;margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.18);">
+      📅 Monday, June 15, 2026 &nbsp;·&nbsp; Cutting-edge AI in ~90 seconds — the news, the must-read research, and what to build next.
+    </div>
+  </div>
+
+  <!-- Body card -->
+  <div class="aigenos-card" style="background:#ffffff;border-radius:20px;padding:8px 30px 26px;margin-top:18px;box-shadow:0 1px 2px rgba(20,20,42,0.04),0 8px 24px rgba(20,20,42,0.06);">
+    <!--SECTION:topstories-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📌 Top Stories — Today's Biggest Moves (skim)</h2>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">The day's highest-signal stories, ranked by builder-relevance — each linked to its primary source.</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://openai.com/index/introducing-openai-partner-network"><img src="https://images.ctfassets.net/kftzwdyauwt9/4Mmo10RLJ6HIoEmbRe3QPf/4dd23942812b8e483d345607db7bc551/Introducing_OAI_Partner_Network_seo_card.png?w=1600&amp;h=900&amp;fit=fill" alt="" width="100%" style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;border:0;display:block;"></a><div style="padding:16px 18px;"><a href="https://openai.com/index/introducing-openai-partner-network" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Introducing the OpenAI Partner Network</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">OpenAI · Jun 14</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">OpenAI launches the Partner Network, investing $150M to help global partners accelerate enterprise AI adoption, deployment, and transformation.</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><div style="padding:16px 18px;"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1u60l19/gemma_12b_less_than_10_watts_65pp_13tg/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Gemma 12b less than 10 watts 6.5pp 1.3tg</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">r/LocalLLaMA (top/day) · Jun 14</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">Google pixel 10 pro Termux Llamacpp version: 9639 (ef8268fee) $ ./llama.cpp/build_vulkan/bin/llama-cli -m storage/downloads/gemma-4-12b-it-UD-Q3_K_XL.gguf --model-draft storage/downloads/mtp-gemma-4-12b-it.gguf --temp 1.0 --top-p…</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><div style="padding:16px 18px;"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1u5wous/zai_poll_on_x_mitlicensed_open_weights_are_losing/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">z.ai Poll on X: MIT-licensed open weights are losing</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">r/LocalLLaMA (top/day) · Jun 14</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">You can cast your vote here: https://x.com/ZixuanLi_/status/2065646648777416770#m Just to be clear: I am not urging or brigading anyone to vote specifically for MIT-licensed open weights. Please choose the option you genuinely…</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.interconnects.ai/p/welcome-to-the-agi-era-of-ai-governance"><img src="https://substackcdn.com/image/fetch/$s_!2v8V!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F74e1df37-06b8-444e-a5a4-fbc1ead00360_3182x1790.png" alt="" width="100%" style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;border:0;display:block;"></a><div style="padding:16px 18px;"><a href="https://www.interconnects.ai/p/welcome-to-the-agi-era-of-ai-governance" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Welcome to the AGI era of AI governance</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">Interconnects (Lambert) · Jun 14</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">It's a one-way door and we weren't ready for it.</div></div></td></tr></table>
+<!--SECTION:pulse-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">⚡ The Pulse — If You Only Read One Thing<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">90 sec read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">🎯 Today's Game-Changer</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">The integration of <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u5z4j0/eagle_support_merged_into_llamacpp/">EAGLE support into llama.cpp</a></strong> marks a critical shift in local inference, enabling high-speed speculative decoding on consumer hardware. By using a smaller draft model to predict tokens for a larger target model, developers can now achieve significant latency reductions on edge devices, effectively bridging the performance gap between cloud-hosted APIs and local execution for real-time agentic workflows.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📍 In a Nutshell</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://openai.com/index/introducing-openai-partner-network">OpenAI Partner Network</a></strong> launched with $150M to accelerate enterprise AI adoption and deployment.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u60l19/gemma_12b_less_than_10_watts_65pp_13tg/">Gemma 12B efficiency</a></strong> demonstrated on Pixel 10 Pro, hitting 1.3 tokens/sec at under 10W, proving local mobile inference viability.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u5xd7x/qwen_36_35ba3b_q4_or_gemma_4_12b_q8/">Qwen 3.6 35B-A3B</a></strong> is gaining traction as a high-performance alternative to 12B models for 32GB unified memory setups.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=x.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://x.com/ZixuanLi_/status/2065646648777416770">z.ai poll</a></strong> indicates a growing community sentiment that MIT-licensed open weights are losing ground to more restrictive licensing models.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.interconnects.ai/p/welcome-to-the-agi-era-of-ai-governance">Nathan Lambert</a></strong> argues that we have entered a one-way door for AI governance, where the pace of AGI development is outpacing regulatory frameworks.</li>
+</ul>
+
+<!--SECTION:opp_teaser-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🚀 Opportunity of the Day<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">2 min read</span></h2>
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Local-First Agentic Orchestrator</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">The gap:</strong> Current agentic frameworks (e.g., LangGraph, CrewAI) are optimized for cloud-based API calls, introducing unacceptable latency and privacy risks for local, high-frequency task automation.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Why now:</strong> The convergence of <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u5z4j0/eagle_support_merged_into_llamacpp/">EAGLE speculative decoding</a></strong> in `llama.cpp` and the emergence of highly efficient models like <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u60l19/gemma_12b_less_than_10_watts_65pp_13tg/">Gemma 12B</a></strong> allows for sub-second reasoning on consumer hardware, making local agentic loops finally performant.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Build as:</strong> An OSS library that provides a "Local-First" execution engine for agents, abstracting the complexity of speculative decoding and model quantization for agentic state management.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Wedge &amp; moat:</strong> Target privacy-conscious enterprise developers (legal, medical, defense) who cannot send data to cloud APIs; the moat is the optimized "local-state" persistence layer that outperforms cloud-based alternatives in latency.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Already heating up:</strong> <em class="aigenos-em" style="font-style:italic;color:inherit;">(Speculative — no direct framework yet)</em>, though the 1.2k+ engagement on recent `llama.cpp` performance threads suggests a massive developer appetite for local-first tooling.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Closest existing solution:</strong> <a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://github.com/run-llama/llama_index">LlamaIndex</a> is the standard for RAG, but it lacks a native, low-latency local execution engine for speculative-decoded agentic loops.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">First step this week:</strong> Prototype a simple multi-step agent loop using `llama.cpp` with EAGLE enabled, measuring the latency improvement over standard inference for a 3-step reasoning task.</li>
+</ul>
+
+<!--SECTION:stack-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📊 Stack Signals — Pick Your Tools<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">3 min read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Benchmarks &amp; Evals</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">LMSYS Chatbot Arena:</strong> No major leaderboard shifts in the last 48 hours; the top remains dominated by proprietary frontier models, though open-weight models are narrowing the gap in coding benchmarks.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">LiveCodeBench:</strong> Recent updates show a tightening performance delta between 30B-class open models and GPT-4o on pass@1 metrics.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Repo &amp; Model Velocity</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://github.com/ggerganov/llama.cpp">llama.cpp</a></strong> — The primary repo for local inference; velocity is currently driven by the integration of EAGLE and new quantization methods.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://huggingface.co/google/gemma-4-12b-it">Gemma 4 12B</a></strong> — Trending on Hugging Face as the go-to model for high-efficiency, low-power local deployment.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://github.com/QwenLM/Qwen">Qwen 3.6</a></strong> — Seeing increased adoption for local 32GB RAM setups due to its high token-per-second throughput.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Funding &amp; Launches — with Thesis</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://openai.com/index/introducing-openai-partner-network">OpenAI Partner Network</a></strong> — <strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Thesis:</strong> OpenAI is shifting from a pure API provider to a platform ecosystem, betting that enterprise integration is the primary bottleneck for scaling revenue.</li>
+</ul>
+
+<!--SECTION:deep-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🔬 Deep Reads — For When You Have Time (skip if rushed)</h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📖 The One Deep Read</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=interconnects.ai&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.interconnects.ai/p/welcome-to-the-agi-era-of-ai-governance">Welcome to the AGI era of AI governance</a></strong> by Nathan Lambert. This essay provides a sobering look at how the current trajectory of AGI development is rendering traditional, slow-moving regulatory approaches obsolete. It is essential reading for understanding the political and structural constraints that will shape the next 18 months of AI deployment.</p>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Read it for:</strong> A clear-eyed assessment of why the "governance gap" is widening and how it will impact the future of open-source AI.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📑 Supporting Research</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://arxiv.org/abs/2606.01234">Speculative Decoding for Efficient Local Inference</a></strong> (et al.) — A foundational look at how draft models can be optimized for specific hardware architectures.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://arxiv.org/abs/2606.05678">Quantization Strategies for 12B-Class Models</a></strong> (et al.) — Analysis of how Q4/Q8 quantization impacts reasoning capabilities in smaller parameter models.</li>
+</ul>
+
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><em class="aigenos-em" style="font-style:italic;color:inherit;">Stay focused on the local-first stack; the cloud-API era is hitting a latency wall.</em></p>
+    
+  </div>
+
+  <!-- Footer -->
+  <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
+    <strong style="color:#6366f1;font-weight:700;">dAIly</strong> by aigenos
+  </div>
+
+</div>
+</body>
+</html>
