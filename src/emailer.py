@@ -241,8 +241,13 @@ def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
     site_url = getattr(cfg, "site_url", "")
     if site_url:
         issue = f"{site_url}/digests/digest_{now.strftime('%Y%m%d')}.html"
-        links.append(f'<a {a} href="{issue}">Read this issue online</a>')
-    subscribe_url = getattr(cfg, "subscribe_url", "")
+        links.append(f'<a {a} href="{issue}">Read online</a>')
+    # Subscribe always shows when we have somewhere to send it: the configured
+    # SUBSCRIBE_URL, else the landing page's #subscribe box. Lets a forwarded
+    # copy convert.
+    subscribe_url = getattr(cfg, "subscribe_url", "") or (
+        f"{site_url}#subscribe" if site_url else ""
+    )
     if subscribe_url:
         links.append(f'<a {a} href="{subscribe_url}">Subscribe</a>')
     unsubscribe_url = getattr(cfg, "unsubscribe_url", "")

@@ -66,6 +66,21 @@ class TestBuildBody(unittest.TestCase):
         body = build_buttondown_body(cfg, BODY, NOW)
         self.assertIn("Stack Signals", body)
 
+    def test_footer_has_subscribe_and_unsubscribe(self):
+        cfg = _cfg(
+            SUBSCRIBE_URL="https://buttondown.com/me",
+            UNSUBSCRIBE_URL="{{ unsubscribe_url }}",
+        )
+        body = build_buttondown_body(cfg, BODY, NOW)
+        self.assertIn("[Subscribe](https://buttondown.com/me)", body)
+        self.assertIn("[Unsubscribe]({{ unsubscribe_url }})", body)
+
+    def test_footer_unsubscribe_absent_when_unset(self):
+        # Buttondown auto-appends its own unsubscribe; we only add the merge tag
+        # when explicitly configured.
+        body = build_buttondown_body(_cfg(), BODY, NOW)
+        self.assertNotIn("Unsubscribe", body)
+
 
 class TestSendButtondown(unittest.TestCase):
     def _send(self, cfg, **kwargs):

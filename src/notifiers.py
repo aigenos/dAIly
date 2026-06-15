@@ -161,7 +161,26 @@ def build_buttondown_body(cfg: Config, public_fragment: str, now: datetime) -> s
         body = "\n\n---\n\n".join(parts) or html_to_markdown(public_fragment)
     if issue_url:
         body += f"\n\n---\n\n**[Read the full issue →]({issue_url})**"
+    body += _buttondown_footer(cfg)
     return body
+
+
+def _buttondown_footer(cfg: Config) -> str:
+    """Subscribe (for forwarded copies) + unsubscribe footer for the subscriber
+    email. Buttondown auto-appends its own unsubscribe link, but we include the
+    merge tag too when UNSUBSCRIBE_URL is set so it works even if that footer is
+    disabled. `{{ unsubscribe_url }}` is expanded by Buttondown at send time."""
+    bits: list[str] = []
+    subscribe = cfg.subscribe_url or (f"{cfg.site_url}#subscribe" if cfg.site_url else "")
+    if subscribe:
+        bits.append(f"[Subscribe]({subscribe})")
+    if cfg.site_url:
+        bits.append(f"[Archive]({cfg.site_url})")
+    if cfg.unsubscribe_url:
+        bits.append(f"[Unsubscribe]({cfg.unsubscribe_url})")
+    if not bits:
+        return ""
+    return "\n\n---\n\n_You're receiving dAIly because you subscribed._  \n" + " · ".join(bits)
 
 
 def send_buttondown(

@@ -185,6 +185,14 @@ class TestFooter(unittest.TestCase):
         row = footer_links(cfg, self.now, include_unsubscribe=False)
         self.assertNotIn("Unsubscribe", row)
 
+    def test_subscribe_falls_back_to_site_anchor(self):
+        # No SUBSCRIBE_URL configured, but SITE_URL is — Subscribe still shows,
+        # pointing at the landing page's #subscribe box (good for forwards).
+        cfg = _make_cfg(SITE_URL="https://me.github.io/dAIly")
+        row = footer_links(cfg, self.now)
+        self.assertIn("Subscribe", row)
+        self.assertIn("https://me.github.io/dAIly#subscribe", row)
+
     def test_empty_when_nothing_configured(self):
         cfg = _make_cfg()
         self.assertEqual(footer_links(cfg, self.now), "")
