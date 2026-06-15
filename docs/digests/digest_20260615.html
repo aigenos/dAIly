@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>dAIly — Daily AI Digest</title>
+<style>
+:root {
+  color-scheme: light dark;
+  supported-color-schemes: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  /* Literal colors only — Gmail/Outlook strip CSS custom properties but keep
+     the media query, which used to leave dark-mode readers unstyled. */
+  body, .aigenos-bg { background: #0a0a14 !important; }
+  .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
+  .aigenos-text { color: #ececf5 !important; }
+  .aigenos-muted { color: #8e8ea8 !important; }
+  h2.aigenos-h2 { color: #8b8cff !important; border-color: #2a2a3d !important; }
+  h3.aigenos-h3 { color: #ececf5 !important; }
+  p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
+  a.aigenos-a { color: #8b8cff !important; }
+  strong.aigenos-strong { color: #ececf5 !important; }
+  blockquote.aigenos-bq {
+    background: #1a1a26 !important;
+    color: #c8c8d8 !important;
+    border-color: #8b8cff !important;
+  }
+  .aigenos-chip {
+    background: rgba(139, 140, 255, 0.14) !important;
+    color: #8b8cff !important;
+  }
+  .aigenos-footer { color: #8e8ea8 !important; }
+  .aigenos-footer a { color: #8b8cff !important; }
+  .aigenos-hero-sub { color: rgba(255,255,255,0.85) !important; }
+  .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
+  a.aigenos-src-title { color: #ececf5 !important; }
+  .aigenos-src-meta { color: #8e8ea8 !important; }
+}
+@media (max-width: 600px) {
+  .aigenos-shell { padding: 16px 10px !important; }
+  .aigenos-card { padding: 18px !important; }
+  .aigenos-hero { padding: 22px 22px 18px !important; }
+}
+</style>
+</head>
+<body class="aigenos-bg" style="margin:0;padding:0;background:#f3f4f8;color-scheme:light dark;">
+<div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
+
+  <!-- Hero / masthead -->
+  <div class="aigenos-hero" style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#c026d3 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(79,70,229,0.25);">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td style="width:54px;vertical-align:middle;">
+        <div style="width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,0.16);text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>
+      </td>
+      <td style="vertical-align:middle;padding-left:14px;">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.8;font-weight:600;">by aigenos · daily ai intelligence</div>
+        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;">d<span style="color:#fcd34d;">AI</span>ly</div>
+      </td>
+      <td style="vertical-align:middle;text-align:right;white-space:nowrap;">
+        <span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">Jun 15</span>
+      </td>
+    </tr></table>
+    <div class="aigenos-hero-sub" style="font-size:13.5px;opacity:.92;font-weight:500;line-height:1.5;margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.18);">
+      📅 Monday, June 15, 2026 &nbsp;·&nbsp; Cutting-edge AI in ~90 seconds — the news, the must-read research, and what to build next.
+    </div>
+  </div>
+
+  <!-- Body card -->
+  <div class="aigenos-card" style="background:#ffffff;border-radius:20px;padding:8px 30px 26px;margin-top:18px;box-shadow:0 1px 2px rgba(20,20,42,0.04),0 8px 24px rgba(20,20,42,0.06);">
+    <!--SECTION:topstories-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📌 Top Stories — Today's Biggest Moves (skim)</h2>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">The day's highest-signal stories, ranked by builder-relevance — each linked to its primary source.</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><img src="https://www.google.com/s2/favicons?domain=developer.nvidia.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://developer.nvidia.com/blog/boosting-moe-training-throughput-with-advanced-fusion-kernels/"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/06/image6-1.webp" alt="" width="100%" style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;border:0;display:block;"></a><div style="padding:16px 18px;"><a href="https://developer.nvidia.com/blog/boosting-moe-training-throughput-with-advanced-fusion-kernels/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Boosting MoE Training Throughput with Advanced Fusion Kernels</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=developer.nvidia.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">NVIDIA Developer · Jun 15</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">Mixture-of-experts (MoE) models have quickly become a foundational component of modern, large-scale AI systems. They are widely adopted because they enable...</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><img src="https://www.google.com/s2/favicons?domain=developer.nvidia.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://developer.nvidia.com/blog/pretrained-to-imagine-fine-tuned-to-act-the-rise-of-world-action-models/"><img src="https://developer-blogs.nvidia.com/wp-content/uploads/2026/05/WAM_Blog_Post_Header.webp" alt="" width="100%" style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;border:0;display:block;"></a><div style="padding:16px 18px;"><a href="https://developer.nvidia.com/blog/pretrained-to-imagine-fine-tuned-to-act-the-rise-of-world-action-models/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Pretrained to Imagine, Fine-Tuned to Act: The Rise of World-Action Models</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=developer.nvidia.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">NVIDIA Developer · Jun 15</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">Quick glossary for readers new to VLA/WAM terminology VLA Vision-Language-Action model: a robot policy that starts from a pretrained VLM backbone and adapts it...</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><img src="https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://aws.amazon.com/blogs/machine-learning/build-context-rich-research-agents-with-deep-agents-and-bedrock-agentcore/"><img src="https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/06/15/ML-20818-1.png" alt="" width="100%" style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;border:0;display:block;"></a><div style="padding:16px 18px;"><a href="https://aws.amazon.com/blogs/machine-learning/build-context-rich-research-agents-with-deep-agents-and-bedrock-agentcore/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Build context-rich research agents with Deep Agents and Bedrock AgentCore</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">AWS ML Blog · Jun 15</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">In this post, you'll build a competitive research agent that demonstrates this pattern end to end. This walkthrough targets developers building multi-step AI workflows who need isolated execution environments for their agents.</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><img src="https://www.google.com/s2/favicons?domain=blog.google&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/"><img src="https://blog.google/static/blogv2/images/google-200x200.png?version=pr20260609-1635" alt="" width="100%" style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;border:0;display:block;"></a><div style="padding:16px 18px;"><a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">We’re strengthening our presence in Alabama through new investments and community support.</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=blog.google&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">Google AI (The Keyword) · Jun 15</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…</div></div></td></tr></table>
+<!--SECTION:pulse-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">⚡ The Pulse — If You Only Read One Thing<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">90 sec read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">🎯 Today's Game-Changer</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">Anthropic has <img src="https://www.google.com/s2/favicons?domain=therundown.ai&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.therundown.ai/p/anthropic-pulls-mythos-fable-after-u-s-order">pulled its Mythos and Fable models</a> following a U.S. government order. This marks a critical escalation in regulatory intervention, signaling that frontier labs are now subject to immediate, non-negotiable model-level takedowns, forcing developers to prioritize model-agnostic architectures to mitigate sudden platform risk.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📍 In a Nutshell</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">NVIDIA released advanced fusion kernels</strong> to boost Mixture-of-Experts (MoE) training throughput by optimizing memory access patterns. <img src="https://www.google.com/s2/favicons?domain=developer.nvidia.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://developer.nvidia.com/blog/boosting-moe-training-throughput-with-advanced-fusion-kernels/">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">AWS launched Bedrock AgentCore</strong> to enable developers to build context-rich, multi-step research agents with isolated execution environments. <img src="https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://aws.amazon.com/blogs/machine-learning/build-context-rich-research-agents-with-deep-agents-and-bedrock-agentcore/">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Gemma 4 is now running on React Native</strong> via ExecuTorch, supporting full offline inference with Vulkan and MLX acceleration. <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u6fham/react_native_executorch_now_runs_gemma_4_vulkan/">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Tower-Plus-72B-Ultra-Uncensored-Heretic</strong> released, targeting multilingual translation workflows with a focus on removing refusal mechanisms. <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://www.reddit.com/r/LocalLLaMA/comments/1u6etje/towerplus72bultrauncensoredheretic_a_model_/">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Google announced a $1.5B investment</strong> to expand data center infrastructure in Alabama through 2027. <img src="https://www.google.com/s2/favicons?domain=blog.google&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">The "Rio" model controversy</strong> highlights a growing community pushback against "homegrown" models that are revealed to be uncredited merges of existing weights. <img src="https://www.google.com/s2/favicons?domain=news.ycombinator.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://news.ycombinator.com/item?id=48528371">source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">NVIDIA published a deep dive on World-Action Models (WAM)</strong>, detailing the transition from pretrained VLMs to fine-tuned action-oriented robot policies. <img src="https://www.google.com/s2/favicons?domain=developer.nvidia.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://developer.nvidia.com/blog/pretrained-to-imagine-fine-tuned-to-act-the-rise-of-world-action-models/">source</a></li>
+</ul>
+
+<!--SECTION:opp_teaser-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🚀 Opportunity of the Day<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">2 min read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Edge-Native Agentic Middleware</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">The gap:</strong> Current agentic frameworks (like Bedrock AgentCore) are cloud-centric, creating latency and privacy bottlenecks for real-time, on-device tasks.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Why now:</strong> The integration of Gemma 4 into React Native via ExecuTorch proves that high-performance, GPU-accelerated inference is now viable on mobile, removing the "compute wall" for local agents.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Build as:</strong> An OSS middleware library that abstracts hardware-specific acceleration (Vulkan/MLX) for agentic state management, allowing developers to swap between local and cloud models seamlessly.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Wedge &amp; moat:</strong> The wedge is a "Privacy-First" agent SDK for mobile apps; the moat is a proprietary state-sync protocol that minimizes battery drain during multi-step reasoning.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Already heating up:</strong> <em class="aigenos-em" style="font-style:italic;color:inherit;">(speculative — no direct validation signal yet)</em>, though the rapid adoption of react-native-executorch (trending on r/LocalLLaMA) suggests a massive developer appetite for mobile-local LLM integration.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Closest existing solution:</strong> <a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://github.com/pytorch/executorch">PyTorch ExecuTorch</a> provides the runtime, but lacks the high-level agentic orchestration (memory, tool-use, planning) required for production apps.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">First step this week:</strong> Prototype a "Local-First" tool-use loop in React Native that triggers a local Gemma 4 instance to perform a file-system search without hitting an API.</li>
+</ul>
+
+<!--SECTION:stack-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📊 Stack Signals — Pick Your Tools<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);color:#6366f1;vertical-align:middle;line-height:1;">3 min read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Benchmarks &amp; Evals</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;">No material shifts in the top 5 of the LMSYS Chatbot Arena in the last 48 hours; focus remains on the stability of frontier reasoning models.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Repo &amp; Model Velocity</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://github.com/pytorch/executorch">ExecuTorch</a></strong> — seeing massive interest for mobile deployment; developers are shifting here to avoid the overhead of server-side inference.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=huggingface.co&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://huggingface.co/llmfan46/Tower-Plus-72B-ultra-uncensored-heretic">Tower-Plus-72B-Ultra</a></strong> — trending in the local-LLM community for its specific focus on uncensored multilingual translation.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://github.com/themartiano/luz">Luz</a></strong> — a C++ ray tracer gaining traction on HN, signaling a developer trend toward "from-scratch" performance engineering outside the AI stack.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Funding &amp; Launches — with Thesis</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://aws.amazon.com/blogs/machine-learning/build-context-rich-research-agents-with-deep-agents-and-bedrock-agentcore/">AWS Bedrock AgentCore</a></strong> — <strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Thesis:</strong> AWS is betting that the next phase of enterprise AI is not just "chat," but isolated, context-aware research agents that can operate within secure VPCs.</li>
+</ul>
+
+<!--SECTION:deep-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🔬 Deep Reads — For When You Have Time (skip if rushed)</h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📖 The One Deep Read</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><img src="https://www.google.com/s2/favicons?domain=developer.nvidia.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://developer.nvidia.com/blog/pretrained-to-imagine-fine-tuned-to-act-the-rise-of-world-action-models/">Pretrained to Imagine, Fine-Tuned to Act: The Rise of World-Action Models</a> by Moritz Reuss. This piece is essential for understanding how Vision-Language-Action (VLA) models are evolving from static image-text pairs to dynamic, embodied agents. It provides the architectural roadmap for anyone looking to move beyond text-based LLMs into physical or simulated robotics.</p>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Read it for:</strong> The technical breakdown of how VLM backbones are adapted for real-time action prediction.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📑 Supporting Research</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><img src="https://www.google.com/s2/favicons?domain=developer.nvidia.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://developer.nvidia.com/blog/boosting-moe-training-throughput-with-advanced-fusion-kernels/">Boosting MoE Training Throughput with Advanced Fusion Kernels</a> (Garg, NVIDIA) — details on optimizing sparse model training via custom kernel fusion.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><img src="https://www.google.com/s2/favicons?domain=blog.johanneslink.net&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(99,102,241,0.25);" href="https://blog.johanneslink.net/2026/06/09/the-jqwik-anti-ai-affair/">The Jqwik Anti-AI Affair</a> — a critical look at the friction between open-source maintainers and AI-generated code contributions.</li>
+</ul>
+
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><em class="aigenos-em" style="font-style:italic;color:inherit;">Stay focused on the edge; the cloud-only era is hitting its first major regulatory speedbump.</em></p>
+    
+  </div>
+
+  <!-- Footer -->
+  <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
+    <strong style="color:#6366f1;font-weight:700;">dAIly</strong> by aigenos
+  </div>
+
+</div>
+</body>
+</html>
