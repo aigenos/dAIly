@@ -9,6 +9,7 @@ import { Agent } from "./agent/agent.js";
 import { INTERACTIVE_SYSTEM } from "./orchestrator/roles.js";
 import { startRepl } from "./cli/repl.js";
 import { runTeam } from "./cli/team.js";
+import { startServer } from "./web/server.js";
 import { makeAgentEvents } from "./cli/agentEvents.js";
 import { banner, info, ok, err, warn, c, Spinner } from "./cli/render.js";
 
@@ -21,6 +22,7 @@ Usage:
   forge chat                 same as above
   forge run "<task>"         run one task non-interactively and exit
   forge build "<goal>"       run the full agent team (PM → coders → tester → devops → review)
+  forge serve [--port N]     start the local web UI (browser dashboard) on localhost
   forge doctor               check connectivity to the configured LLM provider
   forge config               print the resolved configuration
   forge help                 show this help
@@ -73,6 +75,11 @@ async function main(): Promise<void> {
       const task = positionals.slice(1).join(" ").trim();
       if (!task) { err('Provide a task: forge run "<task>"'); process.exitCode = 1; return; }
       await runOnce({ ...cfg, permissionMode: overrides.permissionMode ?? "auto" as PermissionMode }, task);
+      break;
+    }
+    case "serve": {
+      const port = typeof flags.port === "string" ? Number.parseInt(flags.port, 10) : 7878;
+      startServer(cfg, Number.isFinite(port) ? port : 7878);
       break;
     }
     case "doctor":

@@ -91,6 +91,7 @@ forge --provider openai --base-url http://localhost:8000/v1 --model my-model doc
 forge                      interactive REPL (default)
 forge run "<task>"         run one task non-interactively and exit
 forge build "<goal>"       run the full agent team
+forge serve [--port N]     local web UI dashboard (default port 7878)
 forge doctor               check the configured LLM endpoint
 forge config               print the resolved configuration
 forge help                 usage
@@ -109,6 +110,28 @@ Flags (build/run): --provider --model --base-url --ollama-host --mode --workspac
 /clear           reset conversation
 /help  /exit
 ```
+
+## Web UI
+
+Prefer a browser to the terminal? `forge serve` starts a local dashboard:
+
+```bash
+forge serve                       # → http://localhost:7878
+forge serve --port 8080 --provider ollama --model qwen2.5-coder:7b
+```
+
+It's a single self-contained page (no bundler, no CDN, no runtime deps — served
+straight from the same Node process) with:
+
+- a chat box that runs either a **single task** or the **full agent team**,
+- a **live event stream** (assistant text, every tool call + result, plan,
+  per-task progress, and the reviewer verdict) pushed over Server-Sent Events,
+- a **workspace file tree** that refreshes as the agents write files, with a
+  click-to-view file viewer (also sandboxed to the workspace),
+- a permission-mode selector (auto / yolo / readonly).
+
+Same engine as the CLI — the browser is just another front-end over the agent
+loop and orchestrator.
 
 ## Safety model
 
@@ -178,7 +201,7 @@ npm run typecheck
 - Token streaming for live output (adapters currently complete-then-render).
 - Per-role model selection (e.g. a small fast model for the reviewer).
 - MCP tool integration and a memory store for cross-session context.
-- A thin local web UI on top of the same agent engine.
+- Web UI: in-browser diff view and human-in-the-loop approvals over the wire.
 
 ## License
 
