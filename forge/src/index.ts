@@ -107,6 +107,7 @@ async function runOnce(cfg: ForgeConfig, task: string): Promise<void> {
     const run = await agent.run([userText(task)]);
     spinner.stop();
     if (run.stopped === "max_steps") warn(`(stopped after ${run.steps} steps)`);
+    else if (run.stopped === "stuck") warn(`(stopped: model repeated failing tool calls)`);
   } catch (e) {
     spinner.stop();
     err(`error: ${(e as Error).message}`);

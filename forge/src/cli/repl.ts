@@ -109,6 +109,8 @@ export async function startRepl(cfg: ForgeConfig): Promise<void> {
       const run = await agent.run(history);
       history = run.messages;
       if (run.stopped === "max_steps") warn(`(stopped after ${run.steps} steps)`);
+      else if (run.stopped === "stuck")
+        warn(`(stopped: the model repeated failing tool calls — try /mode or a different model)`);
     } catch (e) {
       spinner.stop();
       err(`error: ${(e as Error).message}`);

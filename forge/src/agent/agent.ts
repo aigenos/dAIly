@@ -20,6 +20,8 @@ export interface AgentOptions {
   temperature?: number;
   maxTokens?: number;
   events?: AgentEvents;
+  /** Abort after this many consecutive steps where every tool call errored. */
+  maxDeadSteps?: number;
 }
 
 export interface AgentRun {
@@ -30,7 +32,7 @@ export interface AgentRun {
   /** Full message history including this run, for continuation. */
   messages: Message[];
   steps: number;
-  stopped: "done" | "completed" | "max_steps";
+  stopped: "done" | "completed" | "max_steps" | "stuck";
 }
 
 /**
@@ -50,6 +52,8 @@ export class Agent {
     const messages = [...history];
     const schemas = toSchemas(this.opts.tools);
     const { provider, ctx, maxSteps, events } = this.opts;
+    const maxDeadSteps = this.opts.maxDeadSteps ?? 6;
+    let deadSteps = 0;
 
     for (let step = 1; step <= maxSteps; step++) {
       events?.onStep?.(step, maxSteps);
@@ -75,16 +79,25 @@ export class Agent {
 
       const results: ToolResultBlock[] = [];
       let completion: string | undefined;
+      let anyOk = false;
       for (const tc of result.toolCalls) {
         const { content, isError } = await this.execTool(tc, ctx);
         results.push({ type: "tool_result", toolUseId: tc.id, content, isError });
         events?.onToolResult?.(tc.name, content, !!isError);
+        if (!isError) anyOk = true;
         if (tc.name === TASK_COMPLETE && !isError) completion = content;
       }
       messages.push(toolResultsMsg(results));
 
       if (completion !== undefined) {
         return { text: result.text, completion, messages, steps: step, stopped: "completed" };
+      }
+
+      // Bail out if the model is stuck repeating failing tool calls with no
+      // successful action — avoids burning every step on a confused model.
+      deadSteps = anyOk ? 0 : deadSteps + 1;
+      if (deadSteps >= maxDeadSteps) {
+        return { text: result.text, messages, steps: step, stopped: "stuck" };
       }
     }
 
