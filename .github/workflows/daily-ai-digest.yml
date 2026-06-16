@@ -85,6 +85,10 @@ jobs:
           PUBLISH_ARCHIVE: ${{ vars.PUBLISH_ARCHIVE || 'true' }}
           SITE_TITLE: ${{ vars.SITE_TITLE || 'dAIly — Daily AI Digest' }}
           SITE_URL: ${{ vars.SITE_URL }}
+          # ONE-VARIABLE SUBSCRIBE: set this to your Buttondown username and the
+          # subscribe URL + signup form + unsubscribe tag are all derived.
+          SUBSCRIBE_HANDLE: ${{ vars.SUBSCRIBE_HANDLE }}
+          # Explicit overrides (optional — only needed for non-Buttondown setups).
           SUBSCRIBE_URL: ${{ vars.SUBSCRIBE_URL }}
           SUBSCRIBE_FORM_ACTION: ${{ vars.SUBSCRIBE_FORM_ACTION }}
           # Provider-agnostic subscribe form snippet (Buttondown/Beehiiv/...).

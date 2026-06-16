@@ -142,6 +142,23 @@ class Config:
         model = os.environ.get("DIGEST_MODEL", "").strip() or DEFAULT_MODELS[provider]
         opportunity_model = os.environ.get("OPPORTUNITY_MODEL", "").strip()
 
+        # One-variable subscribe wiring. Set SUBSCRIBE_HANDLE to your Buttondown
+        # username and the subscribe URL, the on-page signup form, and the
+        # unsubscribe merge tag are all derived — so the landing page, README
+        # target, newsletter footer, and subscriber delivery work together from a
+        # single value. Any explicit SUBSCRIBE_URL / SUBSCRIBE_FORM_ACTION /
+        # UNSUBSCRIBE_URL still overrides the derived default.
+        handle = os.environ.get("SUBSCRIBE_HANDLE", "").strip().strip("/")
+        subscribe_url = os.environ.get("SUBSCRIBE_URL", "").strip()
+        subscribe_form_action = os.environ.get("SUBSCRIBE_FORM_ACTION", "").strip()
+        unsubscribe_url = os.environ.get("UNSUBSCRIBE_URL", "").strip()
+        if handle:
+            subscribe_url = subscribe_url or f"https://buttondown.com/{handle}"
+            subscribe_form_action = subscribe_form_action or (
+                f"https://buttondown.email/api/emails/embed-subscribe/{handle}"
+            )
+            unsubscribe_url = unsubscribe_url or "{{ unsubscribe_url }}"
+
         return cls(
             provider=provider,
             anthropic_api_key=anthropic_api_key,
@@ -165,12 +182,12 @@ class Config:
             archive_dir=os.environ.get("ARCHIVE_DIR", "docs").strip() or "docs",
             site_title=os.environ.get("SITE_TITLE", "aigenos — Daily AI Digest").strip(),
             site_url=os.environ.get("SITE_URL", "").strip().rstrip("/"),
-            subscribe_url=os.environ.get("SUBSCRIBE_URL", "").strip(),
+            subscribe_url=subscribe_url,
             # POST endpoint for the landing-page subscribe form (e.g. Buttondown's
             # embed-subscribe URL). When set, the index renders a one-field form.
-            subscribe_form_action=os.environ.get("SUBSCRIBE_FORM_ACTION", "").strip(),
+            subscribe_form_action=subscribe_form_action,
             subscribe_embed_html=os.environ.get("SUBSCRIBE_EMBED_HTML", "").strip(),
-            unsubscribe_url=os.environ.get("UNSUBSCRIBE_URL", "").strip(),
+            unsubscribe_url=unsubscribe_url,
             show_model_attribution=_get_bool("SHOW_MODEL_ATTRIBUTION", False),
             buttondown_api_key=os.environ.get("BUTTONDOWN_API_KEY", "").strip(),
             buttondown_mode=(

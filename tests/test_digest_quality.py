@@ -161,6 +161,36 @@ class TestTwoPassOpportunity(unittest.TestCase):
         self.assertIn("WeakIdea", out)
 
 
+class TestSubscribeHandle(unittest.TestCase):
+    """One variable wires every subscribe surface."""
+
+    def test_handle_derives_url_form_and_unsubscribe(self):
+        cfg = _make_cfg(SUBSCRIBE_HANDLE="daily-ai")
+        self.assertEqual(cfg.subscribe_url, "https://buttondown.com/daily-ai")
+        self.assertEqual(
+            cfg.subscribe_form_action,
+            "https://buttondown.email/api/emails/embed-subscribe/daily-ai",
+        )
+        self.assertEqual(cfg.unsubscribe_url, "{{ unsubscribe_url }}")
+
+    def test_explicit_values_override_handle(self):
+        cfg = _make_cfg(
+            SUBSCRIBE_HANDLE="daily-ai",
+            SUBSCRIBE_URL="https://custom.example/sub",
+            UNSUBSCRIBE_URL="https://custom.example/unsub",
+        )
+        self.assertEqual(cfg.subscribe_url, "https://custom.example/sub")
+        self.assertEqual(cfg.unsubscribe_url, "https://custom.example/unsub")
+        # The form is still derived since it wasn't overridden.
+        self.assertIn("embed-subscribe/daily-ai", cfg.subscribe_form_action)
+
+    def test_no_handle_no_derivation(self):
+        cfg = _make_cfg()
+        self.assertEqual(cfg.subscribe_url, "")
+        self.assertEqual(cfg.subscribe_form_action, "")
+        self.assertEqual(cfg.unsubscribe_url, "")
+
+
 class TestFooter(unittest.TestCase):
     def setUp(self):
         self.now = datetime(2026, 6, 10, tzinfo=timezone.utc)

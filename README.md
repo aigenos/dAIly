@@ -137,28 +137,32 @@ truly-private customized version, copy that file to `src/private/opportunity.py`
 - **Polish (optional):** `bash scripts/repo_setup.sh` sets your fork's
   description + topics via the `gh` CLI.
 
-### Enable subscriptions (~10 min, free)
+### Enable subscriptions — one variable + one secret (~5 min, free)
 
-The repo emails *you* via Resend; subscribers are handled by
-[Buttondown](https://buttondown.com) (free ≤ 100 subscribers) — capture **and**
-delivery, no backend:
+Email subscription needs a list host (a static site can't store addresses) —
+[Buttondown](https://buttondown.com) is free ≤ 100 subscribers and does both
+capture **and** delivery, no backend. Setup is two values:
 
-1. Create a Buttondown account, note your username, grab an API key
+1. Create a Buttondown account; note your **username** and grab an **API key**
    (Settings → API).
-2. Set Actions **variables**:
-   `SUBSCRIBE_URL=https://buttondown.com/YOURNAME` and
-   `SUBSCRIBE_FORM_ACTION=https://buttondown.email/api/emails/embed-subscribe/YOURNAME`
-   → the archive landing page renders a working email-capture form.
-3. Set the **secret** `BUTTONDOWN_API_KEY` → every run now also sends the
-   **public** version of the issue (private sections stripped, fail-closed) to
-   all subscribers. `BUTTONDOWN_MODE=teaser` (default) sends The Pulse +
-   Opportunity with a link to the full issue; `full` sends the whole public
-   issue.
-4. Set `UNSUBSCRIBE_URL={{ unsubscribe_url }}` (Buttondown's merge tag) so your
-   own Resend copy carries an unsubscribe line too.
+2. In **Settings → Secrets and variables → Actions**, add:
+   - **Variable** `SUBSCRIBE_HANDLE` = your Buttondown username. This one value
+     derives the subscribe URL, the on-page signup form, and the unsubscribe
+     tag — so the landing page form, the README/landing **Subscribe** button,
+     and the newsletter footer all start working.
+   - **Secret** `BUTTONDOWN_API_KEY` = your key. Every run now also **sends** the
+     public issue (private sections stripped, fail-closed) to all subscribers.
 
-Prefer no newsletter service? `docs/feed.xml` is an Atom feed of the archive —
-readers can follow via RSS with zero setup.
+That's it. `BUTTONDOWN_MODE=teaser` (default) sends The Pulse + Opportunity with
+a link to the full issue; `full` sends the whole public issue. Buttondown adds
+the compliant unsubscribe link automatically.
+
+> Using Beehiiv/Mailchimp/etc. instead? Set `SUBSCRIBE_URL`,
+> `SUBSCRIBE_FORM_ACTION` (your form's POST endpoint), and `UNSUBSCRIBE_URL`
+> explicitly — they override the Buttondown-derived defaults.
+
+Prefer no newsletter service at all? `docs/feed.xml` is an Atom feed of the
+archive — readers can follow via RSS with zero setup.
 
 ## Run locally
 
