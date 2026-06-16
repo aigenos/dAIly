@@ -137,7 +137,9 @@ truly-private customized version, copy that file to `src/private/opportunity.py`
 - **Polish (optional):** `bash scripts/repo_setup.sh` sets your fork's
   description + topics via the `gh` CLI.
 
-### Enable subscriptions — one variable + one secret (~5 min, free)
+### Enable subscriptions
+
+*One variable + one secret, ~5 min, free.*
 
 Email subscription needs a list host (a static site can't store addresses) —
 [Buttondown](https://buttondown.com) is free ≤ 100 subscribers and does both
@@ -319,7 +321,7 @@ emails and chat posts can link the full issue.
 Besides email, post a short teaser (The Pulse + a link to the full issue) to chat:
 set any of `SLACK_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL`, or
 `TELEGRAM_BOT_TOKEN` + `TELEGRAM_CHAT_ID`. Unconfigured channels are skipped.
-For email subscribers, see [Enable subscriptions](#enable-subscriptions-10-min-free)
+For email subscribers, see [Enable subscriptions](#enable-subscriptions)
 (Buttondown).
 
 ## Audio digest
