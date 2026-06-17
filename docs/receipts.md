@@ -7,3 +7,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-06-14** — [Vibe-Code Context Navigator](digests/digest_20260614.html)
 - **2026-06-15** — [Local-First Agentic Orchestrator](digests/digest_20260615.html)
 - **2026-06-16** — [Agentic Rubric-Supervisor](digests/digest_20260616.html)
+- **2026-06-17** — [Agentic Pre-Flight Simulator](digests/digest_20260617.html)
