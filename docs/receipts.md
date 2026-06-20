@@ -10,3 +10,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-06-17** — [Agentic Pre-Flight Simulator](digests/digest_20260617.html)
 - **2026-06-18** — [Autonomous Scientific Data-Orchestrator](digests/digest_20260618.html)
 - **2026-06-19** — [Spatial-State Agentic Middleware](digests/digest_20260619.html)
+- **2026-06-20** — [Agentic ROI-Auditor](digests/digest_20260620.html)
