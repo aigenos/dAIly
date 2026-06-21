@@ -140,10 +140,19 @@ BUTTONDOWN_API = "https://api.buttondown.com/v1/emails"
 def build_buttondown_body(cfg: Config, public_fragment: str, now: datetime) -> str:
     """The newsletter body sent to subscribers.
 
-    - teaser (default): The Pulse + Opportunity of the Day as Markdown plus a
-      link to the full issue — renders reliably in Buttondown's pipeline.
+    - html (default): the full styled email — hero, aigenos logo + title, Top
+      Stories cards — identical to the Resend copy, so subscribers get the same
+      rich layout.
+    - teaser: The Pulse + Opportunity of the Day as Markdown plus a link to the
+      full issue.
     - full: the entire public fragment converted to Markdown.
     """
+    if cfg.buttondown_mode == "html":
+        from .emailer import footer_links, render_embeddable_html
+        return render_embeddable_html(
+            public_fragment, now, footer=footer_links(cfg, now)
+        )
+
     issue_url = (
         f"{cfg.site_url}/digests/digest_{now.strftime('%Y%m%d')}.html"
         if cfg.site_url else ""

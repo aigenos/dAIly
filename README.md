@@ -155,9 +155,10 @@ capture **and** delivery, no backend. Setup is two values:
    - **Secret** `BUTTONDOWN_API_KEY` = your key. Every run now also **sends** the
      public issue (private sections stripped, fail-closed) to all subscribers.
 
-That's it. `BUTTONDOWN_MODE=teaser` (default) sends The Pulse + Opportunity with
-a link to the full issue; `full` sends the whole public issue. Buttondown adds
-the compliant unsubscribe link automatically.
+That's it. `BUTTONDOWN_MODE=html` (default) sends subscribers the **full styled
+email** — same hero, logo, and Top Stories as your own copy; `teaser` sends a
+short Markdown summary + link, and `full` sends the whole public issue as
+Markdown. Buttondown adds the compliant unsubscribe link automatically.
 
 > Using Beehiiv/Mailchimp/etc. instead? Set `SUBSCRIBE_URL`,
 > `SUBSCRIBE_FORM_ACTION` (your form's POST endpoint), and `UNSUBSCRIBE_URL`

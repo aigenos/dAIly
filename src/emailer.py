@@ -292,6 +292,23 @@ def subject_line(now: datetime) -> str:
     return f"dAIly — AI Digest, {now.strftime('%b %d, %Y')}"
 
 
+_BODY_RX = re.compile(r"<body[^>]*>(.*)</body>", re.IGNORECASE | re.DOTALL)
+
+
+def render_embeddable_html(
+    body_fragment: str, now: datetime, engine: str = "", cta: str = "", footer: str = ""
+) -> str:
+    """The full styled email (hero + logo + cards + footer) WITHOUT the outer
+    <html>/<head> wrapper, so another sender (e.g. Buttondown) can drop it into
+    its own email shell and subscribers get the same look as the Resend copy.
+    Keeps the <style> block (dark-mode for clients that honor it) on top of the
+    inline-styled markup that renders everywhere."""
+    full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer)
+    m = _BODY_RX.search(full)
+    inner = m.group(1).strip() if m else full
+    return f"<style>{_THEME_STYLES}</style>\n{inner}"
+
+
 def subscribe_cta(url: str, embed_html: str = "") -> str:
     """A self-styled subscribe call-to-action (white-on-gradient, reads fine in
     both light and dark). If `embed_html` is set (SUBSCRIBE_EMBED_HTML — e.g. a

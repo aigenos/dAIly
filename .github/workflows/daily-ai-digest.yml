@@ -102,7 +102,7 @@ jobs:
           # Subscriber delivery: sends the public issue to your Buttondown
           # list (captured by the landing-page form). teaser | full.
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
-          BUTTONDOWN_MODE: ${{ vars.BUTTONDOWN_MODE || 'teaser' }}
+          BUTTONDOWN_MODE: ${{ vars.BUTTONDOWN_MODE || 'html' }}
           # Optional multi-channel delivery.
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}

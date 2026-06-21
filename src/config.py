@@ -191,7 +191,7 @@ class Config:
             show_model_attribution=_get_bool("SHOW_MODEL_ATTRIBUTION", False),
             buttondown_api_key=os.environ.get("BUTTONDOWN_API_KEY", "").strip(),
             buttondown_mode=(
-                os.environ.get("BUTTONDOWN_MODE", "").strip().lower() or "teaser"
+                os.environ.get("BUTTONDOWN_MODE", "").strip().lower() or "html"
             ),
             slack_webhook_url=os.environ.get("SLACK_WEBHOOK_URL", "").strip(),
             discord_webhook_url=os.environ.get("DISCORD_WEBHOOK_URL", "").strip(),

@@ -50,8 +50,21 @@ class TestHtmlToMarkdown(unittest.TestCase):
 
 
 class TestBuildBody(unittest.TestCase):
+    def test_html_is_default_and_matches_resend_look(self):
+        cfg = _cfg()  # html is the default now
+        self.assertEqual(cfg.buttondown_mode, "html")
+        body = build_buttondown_body(cfg, BODY, NOW)
+        # Full styled email: hero masthead with logo + title, Top Stories style,
+        # not plain markdown.
+        self.assertIn("dAIly", body)
+        self.assertIn("by aigenos", body)
+        self.assertIn("🤖", body)  # the logo tile
+        self.assertIn("aigenos-hero", body)
+        # No outer document wrapper — it embeds in Buttondown's shell.
+        self.assertNotIn("<!DOCTYPE", body)
+
     def test_teaser_mode_pulse_opp_and_link(self):
-        cfg = _cfg()  # teaser is the default
+        cfg = _cfg(BUTTONDOWN_MODE="teaser")
         body = build_buttondown_body(cfg, BODY, NOW)
         self.assertIn("The Pulse", body)
         self.assertIn("AgentLint", body)
@@ -66,8 +79,9 @@ class TestBuildBody(unittest.TestCase):
         body = build_buttondown_body(cfg, BODY, NOW)
         self.assertIn("Stack Signals", body)
 
-    def test_footer_has_subscribe_and_unsubscribe(self):
+    def test_teaser_footer_has_subscribe_and_unsubscribe(self):
         cfg = _cfg(
+            BUTTONDOWN_MODE="teaser",
             SUBSCRIBE_URL="https://buttondown.com/me",
             UNSUBSCRIBE_URL="{{ unsubscribe_url }}",
         )
@@ -75,10 +89,10 @@ class TestBuildBody(unittest.TestCase):
         self.assertIn("[Subscribe](https://buttondown.com/me)", body)
         self.assertIn("[Unsubscribe]({{ unsubscribe_url }})", body)
 
-    def test_footer_unsubscribe_absent_when_unset(self):
+    def test_teaser_footer_unsubscribe_absent_when_unset(self):
         # Buttondown auto-appends its own unsubscribe; we only add the merge tag
         # when explicitly configured.
-        body = build_buttondown_body(_cfg(), BODY, NOW)
+        body = build_buttondown_body(_cfg(BUTTONDOWN_MODE="teaser"), BODY, NOW)
         self.assertNotIn("Unsubscribe", body)
 
 
