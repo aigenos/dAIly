@@ -63,6 +63,9 @@ class Config:
     archive_dir: str
     site_title: str
     site_url: str
+    # Hero masthead logo image. Blank = the 🤖 emoji fallback. Set LOGO_URL, or
+    # it's derived from SITE_URL (the committed docs/assets/aigenos-logo.jpg).
+    logo_url: str
     subscribe_url: str
     subscribe_form_action: str
     # Raw HTML form snippet (e.g. Buttondown/Beehiiv embed) injected wherever a
@@ -148,6 +151,11 @@ class Config:
         # target, newsletter footer, and subscriber delivery work together from a
         # single value. Any explicit SUBSCRIBE_URL / SUBSCRIBE_FORM_ACTION /
         # UNSUBSCRIBE_URL still overrides the derived default.
+        site_url = os.environ.get("SITE_URL", "").strip().rstrip("/")
+        logo_url = os.environ.get("LOGO_URL", "").strip()
+        if not logo_url and site_url:
+            logo_url = f"{site_url}/assets/aigenos-logo.jpg"
+
         handle = os.environ.get("SUBSCRIBE_HANDLE", "").strip().strip("/")
         subscribe_url = os.environ.get("SUBSCRIBE_URL", "").strip()
         subscribe_form_action = os.environ.get("SUBSCRIBE_FORM_ACTION", "").strip()
@@ -181,7 +189,8 @@ class Config:
             publish_archive=_get_bool("PUBLISH_ARCHIVE", False),
             archive_dir=os.environ.get("ARCHIVE_DIR", "docs").strip() or "docs",
             site_title=os.environ.get("SITE_TITLE", "aigenos — Daily AI Digest").strip(),
-            site_url=os.environ.get("SITE_URL", "").strip().rstrip("/"),
+            site_url=site_url,
+            logo_url=logo_url,
             subscribe_url=subscribe_url,
             # POST endpoint for the landing-page subscribe form (e.g. Buttondown's
             # embed-subscribe URL). When set, the index renders a one-field form.

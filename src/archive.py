@@ -516,6 +516,7 @@ def publish(
         engine=engine if getattr(cfg, "show_model_attribution", True) else "",
         cta=cta,
         footer=footer_links(cfg, now, include_unsubscribe=False),
+        logo_url=getattr(cfg, "logo_url", ""),
     )
 
     digests_dir = os.path.join(cfg.archive_dir, "digests")

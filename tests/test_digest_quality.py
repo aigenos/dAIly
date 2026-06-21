@@ -247,6 +247,33 @@ class TestFooter(unittest.TestCase):
         self.assertTrue(_make_cfg(SHOW_MODEL_ATTRIBUTION="true").show_model_attribution)
 
 
+class TestHeroBranding(unittest.TestCase):
+    NOW = datetime(2026, 6, 10, tzinfo=timezone.utc)
+
+    def test_ai_is_emerald_not_yellow(self):
+        html = render_html("<p>x</p>", self.NOW)
+        self.assertIn('<span style="color:#34d399;">AI</span>', html)
+        self.assertNotIn("#fcd34d", html)  # old yellow gone
+
+    def test_emoji_fallback_without_logo_url(self):
+        html = render_html("<p>x</p>", self.NOW)
+        self.assertIn("🤖", html)
+
+    def test_logo_url_replaces_emoji(self):
+        html = render_html("<p>x</p>", self.NOW, logo_url="https://x/logo.jpg")
+        self.assertIn('<img src="https://x/logo.jpg"', html)
+        self.assertIn('alt="aigenos"', html)
+        self.assertNotIn("🤖", html)
+
+    def test_logo_url_derived_from_site_url(self):
+        cfg = _make_cfg(SITE_URL="https://me.github.io/dAIly")
+        self.assertEqual(cfg.logo_url, "https://me.github.io/dAIly/assets/aigenos-logo.jpg")
+
+    def test_explicit_logo_url_overrides_derivation(self):
+        cfg = _make_cfg(SITE_URL="https://me.github.io/dAIly", LOGO_URL="https://cdn/x.png")
+        self.assertEqual(cfg.logo_url, "https://cdn/x.png")
+
+
 class TestDarkModeCss(unittest.TestCase):
     def test_no_var_in_dark_block(self):
         # Gmail/Outlook strip CSS custom properties: the dark-mode block must

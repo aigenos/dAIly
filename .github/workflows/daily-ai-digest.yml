@@ -85,6 +85,9 @@ jobs:
           PUBLISH_ARCHIVE: ${{ vars.PUBLISH_ARCHIVE || 'true' }}
           SITE_TITLE: ${{ vars.SITE_TITLE || 'dAIly — Daily AI Digest' }}
           SITE_URL: ${{ vars.SITE_URL }}
+          # Hero logo image. Defaults to docs/assets/aigenos-logo.jpg via SITE_URL;
+          # set LOGO_URL to override, or leave SITE_URL unset for the 🤖 fallback.
+          LOGO_URL: ${{ vars.LOGO_URL }}
           # ONE-VARIABLE SUBSCRIBE: set this to your Buttondown username and the
           # subscribe URL + signup form + unsubscribe tag are all derived.
           SUBSCRIBE_HANDLE: ${{ vars.SUBSCRIBE_HANDLE }}

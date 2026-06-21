@@ -48,26 +48,29 @@ _THEME_STYLES = """
   .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
   .aigenos-text { color: #ececf5 !important; }
   .aigenos-muted { color: #8e8ea8 !important; }
-  h2.aigenos-h2 { color: #8b8cff !important; border-color: #2a2a3d !important; }
+  h2.aigenos-h2 { color: #5eead4 !important; border-color: #2a2a3d !important; }
   h3.aigenos-h3 { color: #ececf5 !important; }
   p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
-  a.aigenos-a { color: #8b8cff !important; }
-  strong.aigenos-strong { color: #ececf5 !important; }
+  /* Links: bright teal text + a clearly-visible underline (was near-black on dark). */
+  a.aigenos-a { color: #5eead4 !important; border-bottom-color: rgba(94,234,212,0.55) !important; }
+  strong.aigenos-strong { color: #ffffff !important; }
   blockquote.aigenos-bq {
     background: #1a1a26 !important;
     color: #c8c8d8 !important;
-    border-color: #8b8cff !important;
+    border-color: #5eead4 !important;
   }
   .aigenos-chip {
-    background: rgba(139, 140, 255, 0.14) !important;
-    color: #8b8cff !important;
+    background: rgba(94, 234, 212, 0.16) !important;
+    color: #5eead4 !important;
   }
   .aigenos-footer { color: #8e8ea8 !important; }
-  .aigenos-footer a { color: #8b8cff !important; }
-  .aigenos-hero-sub { color: rgba(255,255,255,0.85) !important; }
+  .aigenos-footer a { color: #5eead4 !important; }
+  .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
   .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
   a.aigenos-src-title { color: #ececf5 !important; }
   .aigenos-src-meta { color: #8e8ea8 !important; }
+  /* The Top Stories summary was uncovered → dark-on-dark; make it readable. */
+  .aigenos-src-blurb { color: #c8c8d8 !important; }
 }
 @media (max-width: 600px) {
   .aigenos-shell { padding: 16px 10px !important; }
@@ -95,11 +98,11 @@ _TEMPLATE = """\
   <div class="aigenos-hero" style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#c026d3 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(79,70,229,0.25);">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
       <td style="width:54px;vertical-align:middle;">
-        <div style="width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,0.16);text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>
+        {logo}
       </td>
       <td style="vertical-align:middle;padding-left:14px;">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.8;font-weight:600;">by aigenos · daily ai intelligence</div>
-        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;">d<span style="color:#fcd34d;">AI</span>ly</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;font-weight:600;color:#ffffff;">by aigenos · daily ai intelligence</div>
+        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span style="color:#34d399;">AI</span>ly</div>
       </td>
       <td style="vertical-align:middle;text-align:right;white-space:nowrap;">
         <span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">{date_short}</span>
@@ -118,7 +121,7 @@ _TEMPLATE = """\
 
   <!-- Footer -->
   <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
-    <strong style="color:#6366f1;font-weight:700;">dAIly</strong> by aigenos{footer_links}{engine}
+    <strong style="color:#0d9488;font-weight:700;">dAIly</strong> by aigenos{footer_links}{engine}
   </div>
 
 </div>
@@ -131,7 +134,7 @@ _TEMPLATE = """\
 _TAG_STYLES = {
     "<h2>": (
         '<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;'
-        'border-bottom:1px solid #e8e6f5;color:#6366f1;font-weight:700;letter-spacing:-0.01em;'
+        'border-bottom:1px solid #e8e6f5;color:#0d9488;font-weight:700;letter-spacing:-0.01em;'
         'line-height:1.3;">'
     ),
     "<h3>": (
@@ -150,12 +153,12 @@ _TAG_STYLES = {
         'line-height:1.6;">'
     ),
     "<a ": (
-        '<a class="aigenos-a" style="color:#6366f1;text-decoration:none;font-weight:600;'
-        'border-bottom:1px solid rgba(99,102,241,0.25);" '
+        '<a class="aigenos-a" style="color:#0d9488;text-decoration:none;font-weight:600;'
+        'border-bottom:1px solid rgba(13,148,136,0.30);" '
     ),
     "<blockquote>": (
         '<blockquote class="aigenos-bq" style="margin:14px 0;padding:12px 18px;'
-        'border-left:3px solid #6366f1;background:#faf9ff;color:#3a3a55;border-radius:0 10px 10px 0;'
+        'border-left:3px solid #0d9488;background:#f0fdfa;color:#3a3a55;border-radius:0 10px 10px 0;'
         'font-size:15px;line-height:1.6;">'
     ),
     "<strong>": (
@@ -194,8 +197,8 @@ def _enhance_read_time(body: str) -> str:
         chip_html = (
             '<span class="aigenos-chip" style="display:inline-block;font-size:11px;'
             'font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;'
-            'margin-left:10px;border-radius:999px;background:rgba(99,102,241,0.10);'
-            'color:#6366f1;vertical-align:middle;line-height:1;">'
+            'margin-left:10px;border-radius:999px;background:rgba(13,148,136,0.12);'
+            'color:#0d9488;vertical-align:middle;line-height:1;">'
             f'{chip.strip()}</span>'
         )
         return f'{open_tag}{label.rstrip()}{chip_html}{close_tag}'
@@ -236,7 +239,7 @@ def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
     Each link renders only when its env var is configured. The unsubscribe slot
     accepts a URL or a sending-platform merge tag (e.g. Resend's
     ``{{{{RESEND_UNSUBSCRIBE_URL}}}}``) — required before emailing strangers."""
-    a = 'style="color:#6366f1;text-decoration:none;font-weight:600;"'
+    a = 'style="color:#0d9488;text-decoration:none;font-weight:600;"'
     links: list[str] = []
     site_url = getattr(cfg, "site_url", "")
     if site_url:
@@ -258,18 +261,34 @@ def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
     return "<br>" + " &nbsp;·&nbsp; ".join(links)
 
 
+def _logo_html(logo_url: str) -> str:
+    """The hero masthead mark: the aigenos logo image when LOGO_URL is set,
+    otherwise the 🤖 emoji tile (the zero-config fallback)."""
+    if logo_url:
+        return (
+            f'<img src="{logo_url}" width="52" height="52" alt="aigenos" '
+            'style="width:52px;height:52px;border-radius:15px;display:block;border:0;'
+            'object-fit:cover;background:#ffffff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.22);">'
+        )
+    return (
+        '<div style="width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,0.16);'
+        'text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>'
+    )
+
+
 def render_html(
     body_fragment: str,
     now: datetime,
     engine: str = "",
     cta: str = "",
     footer: str = "",
+    logo_url: str = "",
 ) -> str:
     """Render the full email. `cta` is an optional pre-built HTML block (e.g. a
     subscribe call-to-action) injected after the body — it is NOT run through the
     tag-styler, so it keeps its own styling intact. `footer` is an optional
-    pre-built link row (see ``footer_links``). Pass `engine=""` to omit the
-    model-attribution line (SHOW_MODEL_ATTRIBUTION=false)."""
+    pre-built link row (see ``footer_links``). `logo_url` swaps the hero emoji
+    for an image. Pass `engine=""` to omit the model-attribution line."""
     engine_label = (
         f'<br><span style="opacity:.78;">powered by {engine}.</span>' if engine else ""
     )
@@ -284,6 +303,7 @@ def render_html(
         cta=cta,
         engine=engine_label,
         footer_links=footer,
+        logo=_logo_html(logo_url),
         theme=_THEME_STYLES,
     )
 
@@ -296,14 +316,15 @@ _BODY_RX = re.compile(r"<body[^>]*>(.*)</body>", re.IGNORECASE | re.DOTALL)
 
 
 def render_embeddable_html(
-    body_fragment: str, now: datetime, engine: str = "", cta: str = "", footer: str = ""
+    body_fragment: str, now: datetime, engine: str = "", cta: str = "",
+    footer: str = "", logo_url: str = "",
 ) -> str:
     """The full styled email (hero + logo + cards + footer) WITHOUT the outer
     <html>/<head> wrapper, so another sender (e.g. Buttondown) can drop it into
     its own email shell and subscribers get the same look as the Resend copy.
     Keeps the <style> block (dark-mode for clients that honor it) on top of the
     inline-styled markup that renders everywhere."""
-    full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer)
+    full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer, logo_url=logo_url)
     m = _BODY_RX.search(full)
     inner = m.group(1).strip() if m else full
     return f"<style>{_THEME_STYLES}</style>\n{inner}"

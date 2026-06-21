@@ -150,7 +150,8 @@ def build_buttondown_body(cfg: Config, public_fragment: str, now: datetime) -> s
     if cfg.buttondown_mode == "html":
         from .emailer import footer_links, render_embeddable_html
         return render_embeddable_html(
-            public_fragment, now, footer=footer_links(cfg, now)
+            public_fragment, now, footer=footer_links(cfg, now),
+            logo_url=getattr(cfg, "logo_url", ""),
         )
 
     issue_url = (
