@@ -111,13 +111,13 @@ _INDEX_TEMPLATE = """\
 :root {{
   color-scheme: light dark;
   --bg:#f3f4f8; --surface:#fff; --text:#14142a; --text-soft:#3a3a55; --muted:#6b6b85;
-  --accent:#6366f1; --border:#e8e6f5; --gold:#fcd34d;
+  --accent:#047857; --border:#e8e6f5; --gold:#6ee7b7;
   --shadow:0 1px 2px rgba(20,20,42,.04),0 8px 24px rgba(20,20,42,.06);
 }}
 @media (prefers-color-scheme: dark) {{
   :root {{
     --bg:#0a0a14; --surface:#14141f; --text:#ececf5; --text-soft:#c8c8d8; --muted:#8e8ea8;
-    --accent:#8b8cff; --border:#2a2a3d;
+    --accent:#34d399; --border:#2a2a3d;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   }}
 }}
@@ -133,10 +133,10 @@ body {{
 @keyframes blip {{ 0%,100%{{opacity:1}} 50%{{opacity:.35}} }}
 .hero {{
   position:relative; overflow:hidden;
-  background:linear-gradient(120deg,#4f46e5,#7c3aed,#c026d3,#7c3aed,#4f46e5);
+  background:linear-gradient(120deg,#064e3b,#0f766e,#0d9488,#0f766e,#064e3b);
   background-size:300% 300%; animation:heroShift 14s ease infinite;
   border-radius:24px; padding:42px 36px 36px; color:#fff;
-  box-shadow:0 12px 40px rgba(79,70,229,.35);
+  box-shadow:0 12px 40px rgba(6,78,59,.35);
 }}
 .hero .kicker {{ font-size:11px; letter-spacing:3px; text-transform:uppercase; opacity:.85; font-weight:700; }}
 .hero h1 {{ margin:12px 0 8px; font-size:46px; font-weight:800; letter-spacing:-.03em; line-height:1; }}
@@ -153,7 +153,7 @@ body {{
   text-decoration:none; transition:transform .12s ease, box-shadow .12s ease;
 }}
 .btn:hover {{ transform:translateY(-2px); }}
-.btn.solid {{ background:#fff; color:#4f46e5; box-shadow:0 4px 14px rgba(0,0,0,.18); }}
+.btn.solid {{ background:#fff; color:#047857; box-shadow:0 4px 14px rgba(0,0,0,.18); }}
 .btn.ghost {{ background:rgba(255,255,255,.16); color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }}
 .stats {{ display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0; animation:rise .7s ease both .15s; }}
 .stats span {{
@@ -267,7 +267,7 @@ def _render_subscribe(cfg) -> str:
     )
     btn = (
         'padding:12px 24px;border:0;border-radius:10px;font-weight:700;font-size:15px;'
-        'background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;cursor:pointer;'
+        'background:linear-gradient(135deg,#065f46,#0d9488);color:#fff;cursor:pointer;'
         'text-decoration:none;display:inline-block;'
     )
     if embed:

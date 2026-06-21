@@ -48,23 +48,23 @@ _THEME_STYLES = """
   .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
   .aigenos-text { color: #ececf5 !important; }
   .aigenos-muted { color: #8e8ea8 !important; }
-  h2.aigenos-h2 { color: #5eead4 !important; border-color: #2a2a3d !important; }
+  h2.aigenos-h2 { color: #34d399 !important; border-color: #2a2a3d !important; }
   h3.aigenos-h3 { color: #ececf5 !important; }
   p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
   /* Links: bright teal text + a clearly-visible underline (was near-black on dark). */
-  a.aigenos-a { color: #5eead4 !important; border-bottom-color: rgba(94,234,212,0.55) !important; }
+  a.aigenos-a { color: #34d399 !important; border-bottom-color: rgba(52,211,153,0.55) !important; }
   strong.aigenos-strong { color: #ffffff !important; }
   blockquote.aigenos-bq {
     background: #1a1a26 !important;
     color: #c8c8d8 !important;
-    border-color: #5eead4 !important;
+    border-color: #34d399 !important;
   }
   .aigenos-chip {
     background: rgba(94, 234, 212, 0.16) !important;
-    color: #5eead4 !important;
+    color: #34d399 !important;
   }
   .aigenos-footer { color: #8e8ea8 !important; }
-  .aigenos-footer a { color: #5eead4 !important; }
+  .aigenos-footer a { color: #34d399 !important; }
   .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
   .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
   a.aigenos-src-title { color: #ececf5 !important; }
@@ -95,14 +95,14 @@ _TEMPLATE = """\
 <div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
 
   <!-- Hero / masthead -->
-  <div class="aigenos-hero" style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 55%,#c026d3 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(79,70,229,0.25);">
+  <div class="aigenos-hero" style="background:linear-gradient(135deg,#065f46 0%,#0f766e 55%,#047857 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(6,95,70,0.28);">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
       <td style="width:54px;vertical-align:middle;">
         {logo}
       </td>
       <td style="vertical-align:middle;padding-left:14px;">
         <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;font-weight:600;color:#ffffff;">by aigenos · daily ai intelligence</div>
-        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span style="color:#34d399;">AI</span>ly</div>
+        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span style="color:#6ee7b7;">AI</span>ly</div>
       </td>
       <td style="vertical-align:middle;text-align:right;white-space:nowrap;">
         <span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">{date_short}</span>
@@ -121,7 +121,7 @@ _TEMPLATE = """\
 
   <!-- Footer -->
   <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
-    <strong style="color:#0d9488;font-weight:700;">dAIly</strong> by aigenos{footer_links}{engine}
+    <strong style="color:#047857;font-weight:700;">dAIly</strong> by aigenos{footer_links}{engine}
   </div>
 
 </div>
@@ -134,7 +134,7 @@ _TEMPLATE = """\
 _TAG_STYLES = {
     "<h2>": (
         '<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;'
-        'border-bottom:1px solid #e8e6f5;color:#0d9488;font-weight:700;letter-spacing:-0.01em;'
+        'border-bottom:1px solid #e8e6f5;color:#047857;font-weight:700;letter-spacing:-0.01em;'
         'line-height:1.3;">'
     ),
     "<h3>": (
@@ -153,12 +153,12 @@ _TAG_STYLES = {
         'line-height:1.6;">'
     ),
     "<a ": (
-        '<a class="aigenos-a" style="color:#0d9488;text-decoration:none;font-weight:600;'
-        'border-bottom:1px solid rgba(13,148,136,0.30);" '
+        '<a class="aigenos-a" style="color:#047857;text-decoration:none;font-weight:600;'
+        'border-bottom:1px solid rgba(4,120,87,0.30);" '
     ),
     "<blockquote>": (
         '<blockquote class="aigenos-bq" style="margin:14px 0;padding:12px 18px;'
-        'border-left:3px solid #0d9488;background:#f0fdfa;color:#3a3a55;border-radius:0 10px 10px 0;'
+        'border-left:3px solid #047857;background:#ecfdf5;color:#3a3a55;border-radius:0 10px 10px 0;'
         'font-size:15px;line-height:1.6;">'
     ),
     "<strong>": (
@@ -197,8 +197,8 @@ def _enhance_read_time(body: str) -> str:
         chip_html = (
             '<span class="aigenos-chip" style="display:inline-block;font-size:11px;'
             'font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;'
-            'margin-left:10px;border-radius:999px;background:rgba(13,148,136,0.12);'
-            'color:#0d9488;vertical-align:middle;line-height:1;">'
+            'margin-left:10px;border-radius:999px;background:rgba(4,120,87,0.12);'
+            'color:#047857;vertical-align:middle;line-height:1;">'
             f'{chip.strip()}</span>'
         )
         return f'{open_tag}{label.rstrip()}{chip_html}{close_tag}'
@@ -239,7 +239,7 @@ def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
     Each link renders only when its env var is configured. The unsubscribe slot
     accepts a URL or a sending-platform merge tag (e.g. Resend's
     ``{{{{RESEND_UNSUBSCRIBE_URL}}}}``) — required before emailing strangers."""
-    a = 'style="color:#0d9488;text-decoration:none;font-weight:600;"'
+    a = 'style="color:#047857;text-decoration:none;font-weight:600;"'
     links: list[str] = []
     site_url = getattr(cfg, "site_url", "")
     if site_url:
@@ -267,11 +267,11 @@ def _logo_html(logo_url: str) -> str:
     if logo_url:
         return (
             f'<img src="{logo_url}" width="52" height="52" alt="aigenos" '
-            'style="width:52px;height:52px;border-radius:15px;display:block;border:0;'
-            'object-fit:cover;background:#ffffff;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.22);">'
+            'style="width:52px;height:52px;border-radius:50%;display:block;border:0;'
+            'object-fit:cover;background:#ffffff;box-shadow:0 0 0 2px rgba(255,255,255,0.55);">'
         )
     return (
-        '<div style="width:52px;height:52px;border-radius:15px;background:rgba(255,255,255,0.16);'
+        '<div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.16);'
         'text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>'
     )
 
@@ -338,13 +338,13 @@ def subscribe_cta(url: str, embed_html: str = "") -> str:
     if not url and not embed_html:
         return ""
     action = embed_html or (
-        f'<a href="{url}" style="display:inline-block;background:#ffffff;color:#4f46e5;'
+        f'<a href="{url}" style="display:inline-block;background:#ffffff;color:#047857;'
         'font-weight:700;text-decoration:none;padding:11px 26px;border-radius:999px;font-size:15px;">'
         'Subscribe →</a>'
     )
     return (
         '<div style="margin:28px 0 8px;padding:22px 24px;border-radius:16px;'
-        'background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#ffffff;text-align:center;">'
+        'background:linear-gradient(135deg,#065f46,#0d9488);color:#ffffff;text-align:center;">'
         '<div style="font-size:18px;font-weight:800;letter-spacing:-0.01em;">Want every validated bet?</div>'
         '<div style="font-size:14px;opacity:.92;margin:8px 0 14px;line-height:1.5;">'
         'Today’s Opportunity of the Day is just the teaser. <strong>The Builder’s Edge</strong> '
