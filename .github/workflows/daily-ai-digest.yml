@@ -130,7 +130,12 @@ jobs:
             echo "No archive changes to commit."
           else
             git commit -m "archive: daily digest $(date -u +%Y-%m-%d)"
-            git push
+            # Rebase on any commits pushed since checkout (e.g. manual pushes),
+            # then push with a few retries so the archive isn't lost to a race.
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push && break
+              echo "push attempt $i failed; retrying…"; sleep 3
+            done
           fi
 
       - name: Upload rendered digest + audio (artifact)
