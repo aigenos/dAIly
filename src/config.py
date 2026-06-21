@@ -155,7 +155,7 @@ class Config:
         if handle:
             subscribe_url = subscribe_url or f"https://buttondown.com/{handle}"
             subscribe_form_action = subscribe_form_action or (
-                f"https://buttondown.email/api/emails/embed-subscribe/{handle}"
+                f"https://buttondown.com/api/emails/embed-subscribe/{handle}"
             )
             unsubscribe_url = unsubscribe_url or "{{ unsubscribe_url }}"
 

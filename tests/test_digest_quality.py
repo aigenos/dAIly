@@ -169,7 +169,7 @@ class TestSubscribeHandle(unittest.TestCase):
         self.assertEqual(cfg.subscribe_url, "https://buttondown.com/daily-ai")
         self.assertEqual(
             cfg.subscribe_form_action,
-            "https://buttondown.email/api/emails/embed-subscribe/daily-ai",
+            "https://buttondown.com/api/emails/embed-subscribe/daily-ai",
         )
         self.assertEqual(cfg.unsubscribe_url, "{{ unsubscribe_url }}")
 

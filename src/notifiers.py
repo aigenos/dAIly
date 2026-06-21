@@ -213,7 +213,8 @@ def send_buttondown(
     payload = {
         "subject": subject_line(now),
         "body": build_buttondown_body(cfg, public, now),
-        # Create-and-send in one call (default would leave a draft).
+        # Create-and-send in one call. In Buttondown's 2026-04-01 API the default
+        # status became "draft", so we set this explicitly to actually send.
         "status": "about_to_send",
     }
     try:
@@ -224,9 +225,18 @@ def send_buttondown(
             timeout=30,
         )
         if r.status_code >= 300:
-            log.warning(
-                "Buttondown send failed (%s): %s", r.status_code, r.text[:300]
-            )
+            detail = r.text[:300]
+            # New accounts must approve API sending once; until then Buttondown
+            # rejects about_to_send. Make that actionable instead of cryptic.
+            if "confirmation" in detail.lower() or "requires_confirmation" in detail.lower():
+                log.error(
+                    "Buttondown needs a ONE-TIME sending confirmation before the "
+                    "API can send. In Buttondown: send one email manually from the "
+                    "dashboard (or confirm API sending in Settings), then re-run. "
+                    "(%s: %s)", r.status_code, detail,
+                )
+            else:
+                log.warning("Buttondown send failed (%s): %s", r.status_code, detail)
             return False
         log.info("issue sent to Buttondown subscribers")
         return True
