@@ -221,22 +221,17 @@ def send_buttondown(
         r = requests.post(
             BUTTONDOWN_API,
             json=payload,
-            headers={"Authorization": f"Token {cfg.buttondown_api_key}"},
+            headers={
+                "Authorization": f"Token {cfg.buttondown_api_key}",
+                # Buttondown's 2026 API refuses to actually send (status
+                # about_to_send) unless this header opts in — it's their guard
+                # against accidental blasts. Required to send programmatically.
+                "X-Buttondown-Live-Dangerously": "true",
+            },
             timeout=30,
         )
         if r.status_code >= 300:
-            detail = r.text[:300]
-            # New accounts must approve API sending once; until then Buttondown
-            # rejects about_to_send. Make that actionable instead of cryptic.
-            if "confirmation" in detail.lower() or "requires_confirmation" in detail.lower():
-                log.error(
-                    "Buttondown needs a ONE-TIME sending confirmation before the "
-                    "API can send. In Buttondown: send one email manually from the "
-                    "dashboard (or confirm API sending in Settings), then re-run. "
-                    "(%s: %s)", r.status_code, detail,
-                )
-            else:
-                log.warning("Buttondown send failed (%s): %s", r.status_code, detail)
+            log.warning("Buttondown send failed (%s): %s", r.status_code, r.text[:300])
             return False
         log.info("issue sent to Buttondown subscribers")
         return True

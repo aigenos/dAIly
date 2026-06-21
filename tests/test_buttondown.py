@@ -102,6 +102,8 @@ class TestSendButtondown(unittest.TestCase):
         self.assertNotIn("SECRET-MAP-CONTENT", payload["body"])
         headers = post.call_args.kwargs["headers"]
         self.assertEqual(headers["Authorization"], "Token bd-key")
+        # Required by Buttondown's 2026 API to actually send, not just draft.
+        self.assertEqual(headers["X-Buttondown-Live-Dangerously"], "true")
 
     def test_fail_closed_on_sentinel_leak(self):
         # A sentinel that survives stripping (not in a marker/heading section)
