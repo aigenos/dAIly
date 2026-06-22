@@ -260,14 +260,26 @@ class TestHeroBranding(unittest.TestCase):
         self.assertIn("🤖", html)
 
     def test_logo_url_replaces_emoji(self):
-        html = render_html("<p>x</p>", self.NOW, logo_url="https://x/logo.jpg")
-        self.assertIn('<img src="https://x/logo.jpg"', html)
+        html = render_html("<p>x</p>", self.NOW, logo_url="https://x/logo.png")
+        self.assertIn('<img src="https://x/logo.png"', html)
         self.assertIn('alt="aigenos"', html)
         self.assertNotIn("🤖", html)
 
-    def test_logo_url_derived_from_site_url(self):
+    def test_light_dark_logo_swap(self):
+        html = render_html(
+            "<p>x</p>", self.NOW,
+            logo_url="https://x/light.png", logo_url_dark="https://x/dark.png",
+        )
+        # Both variants present, toggled by the .aigenos-logo-l/-d classes.
+        self.assertIn("https://x/light.png", html)
+        self.assertIn("https://x/dark.png", html)
+        self.assertIn("aigenos-logo-l", html)
+        self.assertIn("aigenos-logo-d", html)
+
+    def test_logo_urls_derived_from_site_url(self):
         cfg = _make_cfg(SITE_URL="https://me.github.io/dAIly")
-        self.assertEqual(cfg.logo_url, "https://me.github.io/dAIly/assets/aigenos-logo.jpg")
+        self.assertEqual(cfg.logo_url, "https://me.github.io/dAIly/assets/aigenos-logo-light.png")
+        self.assertEqual(cfg.logo_url_dark, "https://me.github.io/dAIly/assets/aigenos-logo-dark.png")
 
     def test_explicit_logo_url_overrides_derivation(self):
         cfg = _make_cfg(SITE_URL="https://me.github.io/dAIly", LOGO_URL="https://cdn/x.png")

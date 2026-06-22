@@ -85,6 +85,7 @@ def run() -> int:
         engine=engine if cfg.show_model_attribution else "",
         footer=footer_links(cfg, now),
         logo_url=cfg.logo_url,
+        logo_url_dark=cfg.logo_url_dark,
     )
 
     # Always save to disk in DRY_RUN so you can eyeball the result locally.

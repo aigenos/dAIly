@@ -71,6 +71,9 @@ _THEME_STYLES = """
   .aigenos-hero { background-color: #0a1429 !important; }
   .aigenos-hero-kicker, .aigenos-hero-mark { color: #ffffff !important; }
   .aigenos-ai { color: #6ee7b7 !important; }
+  /* Logo swap: navy-on-white tile in light, teal mark on the dark hero in dark. */
+  .aigenos-logo-l { display: none !important; }
+  .aigenos-logo-d { display: inline-block !important; }
   .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
   .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
   a.aigenos-src-title { color: #ececf5 !important; }
@@ -267,15 +270,33 @@ def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
     return "<br>" + " &nbsp;·&nbsp; ".join(links)
 
 
-def _logo_html(logo_url: str) -> str:
-    """The hero masthead mark: the aigenos logo image when LOGO_URL is set,
-    otherwise the 🤖 emoji tile (the zero-config fallback)."""
-    if logo_url:
-        return (
-            f'<img src="{logo_url}" width="52" height="52" alt="aigenos" '
+def _logo_html(logo_url: str, logo_url_dark: str = "") -> str:
+    """The hero masthead mark, theme-aware:
+
+    - light mode  → the light (navy) logo on a white circular tile;
+    - dark mode   → the dark (teal) logo floating on the dark hero (no tile),
+      swapped in via the @media block (.aigenos-logo-l / .aigenos-logo-d);
+    - a single logo_url → that image on a white tile;
+    - neither     → the 🤖 emoji fallback.
+    """
+    light_tile = (
+        f'<img src="{logo_url}" width="52" height="52" alt="aigenos" '
+        'style="width:52px;height:52px;border-radius:50%;display:block;border:0;'
+        'object-fit:contain;background:#ffffff;padding:6px;box-sizing:border-box;'
+        'box-shadow:0 0 0 1px rgba(255,255,255,0.5);">'
+    )
+    if logo_url and logo_url_dark:
+        dark_plain = (
+            f'<img src="{logo_url_dark}" width="52" height="52" alt="aigenos" '
             'style="width:52px;height:52px;border-radius:50%;display:block;border:0;'
-            'object-fit:cover;background:#ffffff;box-shadow:0 0 0 2px rgba(255,255,255,0.55);">'
+            'object-fit:contain;">'
         )
+        return (
+            f'<span class="aigenos-logo-l" style="display:inline-block;line-height:0;">{light_tile}</span>'
+            f'<span class="aigenos-logo-d" style="display:none;line-height:0;">{dark_plain}</span>'
+        )
+    if logo_url:
+        return light_tile
     return (
         '<div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.16);'
         'text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>'
@@ -289,12 +310,14 @@ def render_html(
     cta: str = "",
     footer: str = "",
     logo_url: str = "",
+    logo_url_dark: str = "",
 ) -> str:
     """Render the full email. `cta` is an optional pre-built HTML block (e.g. a
     subscribe call-to-action) injected after the body — it is NOT run through the
     tag-styler, so it keeps its own styling intact. `footer` is an optional
-    pre-built link row (see ``footer_links``). `logo_url` swaps the hero emoji
-    for an image. Pass `engine=""` to omit the model-attribution line."""
+    pre-built link row (see ``footer_links``). `logo_url` (+ optional
+    `logo_url_dark`) swap the hero emoji for the light/dark logo. Pass
+    `engine=""` to omit the model-attribution line."""
     engine_label = (
         f'<br><span style="opacity:.78;">powered by {engine}.</span>' if engine else ""
     )
@@ -309,7 +332,7 @@ def render_html(
         cta=cta,
         engine=engine_label,
         footer_links=footer,
-        logo=_logo_html(logo_url),
+        logo=_logo_html(logo_url, logo_url_dark),
         theme=_THEME_STYLES,
     )
 
@@ -323,14 +346,15 @@ _BODY_RX = re.compile(r"<body[^>]*>(.*)</body>", re.IGNORECASE | re.DOTALL)
 
 def render_embeddable_html(
     body_fragment: str, now: datetime, engine: str = "", cta: str = "",
-    footer: str = "", logo_url: str = "",
+    footer: str = "", logo_url: str = "", logo_url_dark: str = "",
 ) -> str:
     """The full styled email (hero + logo + cards + footer) WITHOUT the outer
     <html>/<head> wrapper, so another sender (e.g. Buttondown) can drop it into
     its own email shell and subscribers get the same look as the Resend copy.
     Keeps the <style> block (dark-mode for clients that honor it) on top of the
     inline-styled markup that renders everywhere."""
-    full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer, logo_url=logo_url)
+    full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer,
+                       logo_url=logo_url, logo_url_dark=logo_url_dark)
     m = _BODY_RX.search(full)
     inner = m.group(1).strip() if m else full
     return f"<style>{_THEME_STYLES}</style>\n{inner}"

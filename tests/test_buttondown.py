@@ -59,7 +59,8 @@ class TestBuildBody(unittest.TestCase):
         self.assertIn("dAIly", body)
         self.assertIn("by aigenos", body)
         # _cfg sets SITE_URL, so the hero shows the derived aigenos logo image.
-        self.assertIn("aigenos-logo.jpg", body)
+        self.assertIn("aigenos-logo-light.png", body)
+        self.assertIn("aigenos-logo-dark.png", body)
         self.assertIn("aigenos-hero", body)
         # No outer document wrapper — it embeds in Buttondown's shell.
         self.assertNotIn("<!DOCTYPE", body)

@@ -88,6 +88,7 @@ jobs:
           # Hero logo image. Defaults to docs/assets/aigenos-logo.jpg via SITE_URL;
           # set LOGO_URL to override, or leave SITE_URL unset for the 🤖 fallback.
           LOGO_URL: ${{ vars.LOGO_URL }}
+          LOGO_URL_DARK: ${{ vars.LOGO_URL_DARK }}
           # ONE-VARIABLE SUBSCRIBE: set this to your Buttondown username and the
           # subscribe URL + signup form + unsubscribe tag are all derived.
           SUBSCRIBE_HANDLE: ${{ vars.SUBSCRIBE_HANDLE }}

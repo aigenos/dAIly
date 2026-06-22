@@ -63,9 +63,10 @@ class Config:
     archive_dir: str
     site_title: str
     site_url: str
-    # Hero masthead logo image. Blank = the 🤖 emoji fallback. Set LOGO_URL, or
-    # it's derived from SITE_URL (the committed docs/assets/aigenos-logo.jpg).
+    # Hero masthead logo images (light + dark variants). Blank = 🤖 emoji
+    # fallback. Derived from SITE_URL, or set LOGO_URL / LOGO_URL_DARK.
     logo_url: str
+    logo_url_dark: str
     subscribe_url: str
     subscribe_form_action: str
     # Raw HTML form snippet (e.g. Buttondown/Beehiiv embed) injected wherever a
@@ -152,9 +153,14 @@ class Config:
         # single value. Any explicit SUBSCRIBE_URL / SUBSCRIBE_FORM_ACTION /
         # UNSUBSCRIBE_URL still overrides the derived default.
         site_url = os.environ.get("SITE_URL", "").strip().rstrip("/")
+        # Two logo variants for the hero: light (navy mark, for the white tile in
+        # light mode) and dark (teal mark, floats on the dark hero in dark mode).
+        # Derived from SITE_URL; override with LOGO_URL / LOGO_URL_DARK.
         logo_url = os.environ.get("LOGO_URL", "").strip()
-        if not logo_url and site_url:
-            logo_url = f"{site_url}/assets/aigenos-logo.jpg"
+        logo_url_dark = os.environ.get("LOGO_URL_DARK", "").strip()
+        if site_url:
+            logo_url = logo_url or f"{site_url}/assets/aigenos-logo-light.png"
+            logo_url_dark = logo_url_dark or f"{site_url}/assets/aigenos-logo-dark.png"
 
         handle = os.environ.get("SUBSCRIBE_HANDLE", "").strip().strip("/")
         subscribe_url = os.environ.get("SUBSCRIBE_URL", "").strip()
@@ -191,6 +197,7 @@ class Config:
             site_title=os.environ.get("SITE_TITLE", "aigenos — Daily AI Digest").strip(),
             site_url=site_url,
             logo_url=logo_url,
+            logo_url_dark=logo_url_dark,
             subscribe_url=subscribe_url,
             # POST endpoint for the landing-page subscribe form (e.g. Buttondown's
             # embed-subscribe URL). When set, the index renders a one-field form.

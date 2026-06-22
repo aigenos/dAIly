@@ -517,6 +517,7 @@ def publish(
         cta=cta,
         footer=footer_links(cfg, now, include_unsubscribe=False),
         logo_url=getattr(cfg, "logo_url", ""),
+        logo_url_dark=getattr(cfg, "logo_url_dark", ""),
     )
 
     digests_dir = os.path.join(cfg.archive_dir, "digests")

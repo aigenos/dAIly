@@ -152,6 +152,7 @@ def build_buttondown_body(cfg: Config, public_fragment: str, now: datetime) -> s
         return render_embeddable_html(
             public_fragment, now, footer=footer_links(cfg, now),
             logo_url=getattr(cfg, "logo_url", ""),
+            logo_url_dark=getattr(cfg, "logo_url_dark", ""),
         )
 
     issue_url = (
