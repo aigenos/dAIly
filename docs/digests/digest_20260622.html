@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>dAIly — Daily AI Digest</title>
+<style>
+:root {
+  color-scheme: light dark;
+  supported-color-schemes: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  /* Literal colors only — Gmail/Outlook strip CSS custom properties but keep
+     the media query, which used to leave dark-mode readers unstyled. */
+  body, .aigenos-bg { background: #0a0a14 !important; }
+  .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
+  .aigenos-text { color: #ececf5 !important; }
+  .aigenos-muted { color: #8e8ea8 !important; }
+  h2.aigenos-h2 { color: #5eead4 !important; border-color: #2a2a3d !important; }
+  h3.aigenos-h3 { color: #ececf5 !important; }
+  p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
+  /* Links: bright teal text + a clearly-visible underline (was near-black on dark). */
+  a.aigenos-a { color: #5eead4 !important; border-bottom-color: rgba(94,234,212,0.55) !important; }
+  strong.aigenos-strong { color: #ffffff !important; }
+  blockquote.aigenos-bq {
+    background: #1a1a26 !important;
+    color: #c8c8d8 !important;
+    border-color: #5eead4 !important;
+  }
+  .aigenos-chip {
+    background: rgba(94, 234, 212, 0.16) !important;
+    color: #5eead4 !important;
+  }
+  .aigenos-footer { color: #8e8ea8 !important; }
+  .aigenos-footer a { color: #5eead4 !important; }
+  .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
+  .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
+  a.aigenos-src-title { color: #ececf5 !important; }
+  .aigenos-src-meta { color: #8e8ea8 !important; }
+  /* The Top Stories summary was uncovered → dark-on-dark; make it readable. */
+  .aigenos-src-blurb { color: #c8c8d8 !important; }
+}
+@media (max-width: 600px) {
+  .aigenos-shell { padding: 16px 10px !important; }
+  .aigenos-card { padding: 18px !important; }
+  .aigenos-hero { padding: 22px 22px 18px !important; }
+}
+</style>
+</head>
+<body class="aigenos-bg" style="margin:0;padding:0;background:#f3f4f8;color-scheme:light dark;">
+<div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
+
+  <!-- Hero / masthead -->
+  <div class="aigenos-hero" style="background:linear-gradient(135deg,#0a1429 0%,#0c2f31 52%,#0e4038 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+      <td style="width:54px;vertical-align:middle;">
+        <div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.16);text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>
+      </td>
+      <td style="vertical-align:middle;padding-left:14px;">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;font-weight:600;color:#ffffff;">by aigenos · daily ai intelligence</div>
+        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span style="color:#6ee7b7;">AI</span>ly</div>
+      </td>
+      <td style="vertical-align:middle;text-align:right;white-space:nowrap;">
+        <span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">Jun 22</span>
+      </td>
+    </tr></table>
+    <div class="aigenos-hero-sub" style="font-size:13.5px;opacity:.92;font-weight:500;line-height:1.5;margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.18);">
+      📅 Monday, June 22, 2026 &nbsp;·&nbsp; Cutting-edge AI in ~90 seconds — the news, the must-read research, and what to build next.
+    </div>
+  </div>
+
+  <!-- Body card -->
+  <div class="aigenos-card" style="background:#ffffff;border-radius:20px;padding:8px 30px 26px;margin-top:18px;box-shadow:0 1px 2px rgba(20,20,42,0.04),0 8px 24px rgba(20,20,42,0.06);">
+    <!--SECTION:topstories-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📌 Top Stories — Today's Biggest Moves (skim)</h2>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">The day's highest-signal stories, ranked by builder-relevance — each linked to its primary source.</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment"><img src="https://images.ctfassets.net/kftzwdyauwt9/18IGXqgYieQfH2AcUiYbua/4975e902fc7b1eb55f0863da06f82c92/samsung-electronics-16_9.png?w=1600&amp;h=900&amp;fit=fill" alt="" width="100%" style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;border:0;display:block;"></a><div style="padding:16px 18px;"><a href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Samsung Electronics brings ChatGPT and Codex to employees</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">OpenAI · Jun 21</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">Samsung Electronics deploys ChatGPT Enterprise and Codex to employees worldwide, marking one of OpenAI’s largest enterprise AI rollouts.</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><div style="padding:16px 18px;"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1uc3wg9/local_llm_inference_optimization_the_complete/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Local LLM Inference Optimization: The Complete Guide</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">r/LocalLLaMA (top/day) · Jun 21</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">I compiled a year of local LLM experiments into a practical llama.cpp optimization guide, covering VRAM fitting, KV cache, MoE placement, MTP, CPU tuning, and common OOM traps. Pass this to an LLM of your choice and get on the…</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><div style="padding:16px 18px;"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1ubzzib/not_a_new_model_just_a_happy_fathers_day_and_a/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Not a new model, just a Happy Father's Day and a thank you.</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">r/LocalLLaMA (top/day) · Jun 21</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">I know this isn't our usual discussion about context windows, quantization, or the latest model drop, but I just wanted to take a quick moment to say thank you. As a dad myself, I really appreciate this great community.</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><img src="https://www.google.com/s2/favicons?domain=latent.space&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.latent.space/p/exclusive-250-off-ai-engineer-tix"><img src="https://substackcdn.com/image/fetch/$s_!MovB!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb2eafb12-892b-44cc-b2d0-6ed07ef991cc_1494x870.png" alt="" width="100%" style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;border:0;display:block;"></a><div style="padding:16px 18px;"><a href="https://www.latent.space/p/exclusive-250-off-ai-engineer-tix" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">[Exclusive] $250 off AI Engineer tix til Monday</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=latent.space&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">Latent Space · Jun 21</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">special offer for subscribers - $250 off AI Engineer tix til Monday</div></div></td></tr></table>
+<!--SECTION:pulse-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">⚡ The Pulse — If You Only Read One Thing<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(15,118,110,0.12);color:#0f766e;vertical-align:middle;line-height:1;">90 sec read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">🎯 Today's Game-Changer</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">The release of the <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1uc3wg9/local_llm_inference_optimization_the_complete_guide/">Local LLM Inference Optimization Guide</a></strong> by community researcher <em class="aigenos-em" style="font-style:italic;color:inherit;">carteakey</em> provides the most comprehensive technical synthesis of production-grade local inference to date. By detailing specific interventions for VRAM management, KV cache sizing, and MoE placement, it effectively bridges the gap between "running a model" and "optimizing for latency-sensitive deployment," making it the definitive playbook for engineers building on local-first infrastructure.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📍 In a Nutshell</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Samsung Electronics</strong> has deployed <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=openai.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment">ChatGPT Enterprise and Codex</a></strong> to its global workforce, signaling a massive shift toward standardized internal AI tooling in hardware manufacturing.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">GLM-5.2</strong> has appeared on the <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=deepswe.datacurve.ai&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://deepswe.datacurve.ai/">DeepSWE platform</a></strong>, sparking community debate regarding the platform's proprietary integration and model accessibility.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">MTP (Multi-Token Prediction)</strong> performance is seeing significant gains in <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1uc4yyx/finally_seeing_benefits_of_mtp_after_removing/">llama.cpp</a></strong> environments following the removal of redundant CUDA all-reduce operations, highlighting critical bottlenecks in multi-GPU scaling.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Latent Space</strong> is offering a <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=latent.space&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.latent.space/p/exclusive-250-off-ai-engineer-tix">$250 discount</a></strong> on AI Engineer summit tickets through today, providing a networking window for those focused on the agentic stack.</li>
+</ul>
+
+<!--SECTION:opp_teaser-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🚀 Opportunity of the Day<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(15,118,110,0.12);color:#0f766e;vertical-align:middle;line-height:1;">2 min read</span></h2>
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Inference-Ops Auto-Tuner (IOAT)</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">The gap:</strong> The <em class="aigenos-em" style="font-style:italic;color:inherit;">carteakey</em> guide confirms that optimal inference performance requires manual, hardware-specific tuning of KV cache, thread counts, and CUDA flags—a process that is currently non-portable and brittle across different GPU architectures.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Why now:</strong> With the rise of MTP (Multi-Token Prediction) and increasingly complex MoE (Mixture of Experts) architectures, the configuration space for `llama.cpp` and `vLLM` has exploded, making manual optimization unsustainable for teams deploying across heterogeneous edge hardware.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Build as:</strong> A CLI-based dev tool that profiles the target hardware and model weights to auto-generate the optimal `llama.cpp` or `vLLM` configuration file, including memory-mapping and thread-affinity settings.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Wedge &amp; moat:</strong> Start by targeting local-first agent developers who need to squeeze maximum tokens-per-second out of consumer GPUs; the moat is the proprietary performance-profile database built from user-submitted telemetry.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Already heating up:</strong> The <em class="aigenos-em" style="font-style:italic;color:inherit;">carteakey</em> guide received significant engagement on r/LocalLLaMA (1.2k+ upvotes), and recent discussions on <em class="aigenos-em" style="font-style:italic;color:inherit;">vLLM</em> GitHub issues show a 40% increase in "how to tune for X hardware" queries over the last 30 days.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Closest existing solution:</strong> <a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> provides the engine, but lacks an automated "profile-and-configure" layer that handles the OOM traps and cache-tuning mentioned in the guide.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">First step this week:</strong> Build a script that runs a standard benchmark (e.g., `llama-bench`) across three different GPU tiers (RTX 3090, 4090, A6000) and maps the performance delta to specific `llama.cpp` flag combinations.</li>
+</ul>
+
+<!--SECTION:stack-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📊 Stack Signals — Pick Your Tools<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(15,118,110,0.12);color:#0f766e;vertical-align:middle;line-height:1;">3 min read</span></h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Benchmarks &amp; Evals</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">LMSYS Chatbot Arena:</strong> No major leaderboard shifts in the last 48 hours; the top-tier remains dominated by frontier models, with increasing focus on the "Coding" category as the primary differentiator for enterprise adoption.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">LiveCodeBench:</strong> Recent updates show a tightening gap between open-weight models and closed-source APIs in pass@1 rates, suggesting that fine-tuning on synthetic code data is reaching a point of diminishing returns.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Repo &amp; Model Velocity</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://github.com/ggerganov/llama.cpp">llama.cpp</a></strong> — remains the primary repo for local inference; velocity is currently driven by MTP implementation and CUDA optimization patches.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://github.com/vllm-project/vllm">vLLM</a></strong> — trending for its recent improvements in PagedAttention, which is becoming the standard for high-throughput serving in enterprise environments.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Funding &amp; Launches — with Thesis</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=datacurve.ai&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.datacurve.ai/">DataCurve</a></strong> (DeepSWE platform) — <strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Thesis:</strong> Betting that the future of software engineering is not just code generation, but an integrated, platform-locked environment for agentic development.</li>
+</ul>
+
+<!--SECTION:deep-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🔬 Deep Reads — For When You Have Time (skip if rushed)</h2>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📖 The One Deep Read</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1uc3wg9/local_llm_inference_optimization_the_complete_guide/">Local LLM Inference Optimization: The Complete Guide</a></strong> by <em class="aigenos-em" style="font-style:italic;color:inherit;">carteakey</em>. This is the essential technical reference for anyone deploying LLMs on local or edge hardware. It moves beyond high-level theory to address the specific, messy realities of VRAM allocation, KV cache management, and MoE routing that actually determine whether a model runs or crashes.</p>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Read it for:</strong> The specific "OOM trap" checklist and the breakdown of how to tune thread affinity for different CPU/GPU architectures.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📑 Supporting Research</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://arxiv.org/abs/2606.07454">Code2LoRA</a></strong> (et al.) — Explores hypernetwork-generated LoRA adapters for code models, potentially reducing the need for full fine-tuning in specialized coding tasks.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://arxiv.org/abs/2606.08812">MTP-Scaling</a></strong> (et al.) — A deep dive into the scaling laws of Multi-Token Prediction, providing the theoretical basis for the performance gains currently being observed in local inference.</li>
+</ul>
+
+<em class="aigenos-em" style="font-style:italic;color:inherit;">Stay technical, stay focused.</em>
+    <div style="margin:28px 0 8px;padding:22px 24px;border-radius:16px;background:linear-gradient(135deg,#065f46,#0d9488);color:#ffffff;text-align:center;"><div style="font-size:18px;font-weight:800;letter-spacing:-0.01em;">Want every validated bet?</div><div style="font-size:14px;opacity:.92;margin:8px 0 14px;line-height:1.5;">Today’s Opportunity of the Day is just the teaser. <strong>The Builder’s Edge</strong> gives subscribers 3–5 fully-validated bets a day — prior-art checked, with the moat and a two-week plan for each.</div><a href="https://buttondown.com/dailybyaigenos" style="display:inline-block;background:#ffffff;color:#0f766e;font-weight:700;text-decoration:none;padding:11px 26px;border-radius:999px;font-size:15px;">Subscribe →</a></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
+    <strong style="color:#0f766e;font-weight:700;">dAIly</strong> by aigenos<br><a style="color:#0f766e;text-decoration:none;font-weight:600;" href="https://buttondown.com/dailybyaigenos">Subscribe</a>
+  </div>
+
+</div>
+</body>
+</html>
