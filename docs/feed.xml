@@ -6,11 +6,11 @@
   <id>https://aigenos.github.io/dAIly/</id>
   <updated>2026-06-22T00:00:00+00:00</updated>
   <entry>
-    <title>dAIly — June 22, 2026: The integration of vLLM with ROCm/Vulkan backends has unlocked massive throughput gains for consumer-grade multi-GPU setups, specifically on hardware like the R9700.…</title>
+    <title>dAIly — June 22, 2026: GLM-5.2 has officially surpassed GPT-5.4 and the Gemini 1.5/2.0 series on the DeepSWE coding benchmark. While the model demonstrates superior reasoning in complex…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260622.html"/>
     <id>https://aigenos.github.io/dAIly/digests/digest_20260622.html</id>
     <updated>2026-06-22T00:00:00+00:00</updated>
-    <summary>The integration of vLLM with ROCm/Vulkan backends has unlocked massive throughput gains for consumer-grade multi-GPU setups, specifically on hardware like the R9700.…</summary>
+    <summary>GLM-5.2 has officially surpassed GPT-5.4 and the Gemini 1.5/2.0 series on the DeepSWE coding benchmark. While the model demonstrates superior reasoning in complex…</summary>
   </entry>
   <entry>
     <title>dAIly — June 21, 2026: Martin Fowler has published a comprehensive framework for Building reliable agentic AI systems, shifting the focus from prompt engineering to architectural patterns like…</title>
