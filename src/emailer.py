@@ -72,9 +72,6 @@ _THEME_STYLES = """
   .aigenos-hero { background-color: #0c2f31 !important; }
   .aigenos-hero-kicker, .aigenos-hero-mark { color: #ffffff !important; }
   .aigenos-ai { color: #6ee7b7 !important; }
-  /* Logo swap: navy-on-white tile in light, teal mark on the dark hero in dark. */
-  .aigenos-logo-l { display: none !important; }
-  .aigenos-logo-d { display: inline-block !important; }
   .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
   .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
   a.aigenos-src-title { color: #ececf5 !important; }
@@ -272,32 +269,17 @@ def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
 
 
 def _logo_html(logo_url: str, logo_url_dark: str = "") -> str:
-    """The hero masthead mark, theme-aware:
-
-    - light mode  → the light (navy) logo on a white circular tile;
-    - dark mode   → the dark (teal) logo floating on the dark hero (no tile),
-      swapped in via the @media block (.aigenos-logo-l / .aigenos-logo-d);
-    - a single logo_url → that image on a white tile;
-    - neither     → the 🤖 emoji fallback.
-    """
-    light_tile = (
-        f'<img src="{logo_url}" width="52" height="52" alt="aigenos" '
-        'style="width:52px;height:52px;border-radius:50%;display:block;border:0;'
-        'object-fit:contain;background:#ffffff;padding:6px;box-sizing:border-box;'
-        'box-shadow:0 0 0 1px rgba(255,255,255,0.5);">'
-    )
-    if logo_url and logo_url_dark:
-        dark_plain = (
-            f'<img src="{logo_url_dark}" width="52" height="52" alt="aigenos" '
-            'style="width:52px;height:52px;border-radius:50%;display:block;border:0;'
-            'object-fit:contain;">'
-        )
+    """The hero masthead mark. The hero is dark in every theme, so we always use
+    the dark (teal) logo directly on it — on a faint translucent circle for
+    definition, never a solid white tile. Falls back to the 🤖 emoji when no
+    logo is configured."""
+    url = logo_url_dark or logo_url
+    if url:
         return (
-            f'<span class="aigenos-logo-l" style="display:inline-block;line-height:0;">{light_tile}</span>'
-            f'<span class="aigenos-logo-d" style="display:none;line-height:0;">{dark_plain}</span>'
+            f'<img src="{url}" width="52" height="52" alt="aigenos" '
+            'style="width:52px;height:52px;border-radius:50%;display:block;border:0;'
+            'object-fit:contain;background:rgba(255,255,255,0.12);padding:5px;box-sizing:border-box;">'
         )
-    if logo_url:
-        return light_tile
     return (
         '<div style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.16);'
         'text-align:center;font-size:27px;line-height:52px;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.18);">🤖</div>'

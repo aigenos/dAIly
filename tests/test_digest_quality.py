@@ -265,16 +265,15 @@ class TestHeroBranding(unittest.TestCase):
         self.assertIn('alt="aigenos"', html)
         self.assertNotIn("🤖", html)
 
-    def test_light_dark_logo_swap(self):
+    def test_hero_uses_dark_logo_no_white_tile(self):
         html = render_html(
             "<p>x</p>", self.NOW,
             logo_url="https://x/light.png", logo_url_dark="https://x/dark.png",
         )
-        # Both variants present, toggled by the .aigenos-logo-l/-d classes.
-        self.assertIn("https://x/light.png", html)
+        # Hero is always dark → use the dark (teal) logo only; no navy/white-tile.
         self.assertIn("https://x/dark.png", html)
-        self.assertIn("aigenos-logo-l", html)
-        self.assertIn("aigenos-logo-d", html)
+        self.assertNotIn("https://x/light.png", html)
+        self.assertNotIn("aigenos-logo-l", html)  # swap removed
 
     def test_logo_urls_derived_from_site_url(self):
         cfg = _make_cfg(SITE_URL="https://me.github.io/dAIly")
