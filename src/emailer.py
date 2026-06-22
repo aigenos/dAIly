@@ -48,23 +48,23 @@ _THEME_STYLES = """
   .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
   .aigenos-text { color: #ececf5 !important; }
   .aigenos-muted { color: #8e8ea8 !important; }
-  h2.aigenos-h2 { color: #34d399 !important; border-color: #2a2a3d !important; }
+  h2.aigenos-h2 { color: #5eead4 !important; border-color: #2a2a3d !important; }
   h3.aigenos-h3 { color: #ececf5 !important; }
   p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
   /* Links: bright teal text + a clearly-visible underline (was near-black on dark). */
-  a.aigenos-a { color: #34d399 !important; border-bottom-color: rgba(52,211,153,0.55) !important; }
+  a.aigenos-a { color: #5eead4 !important; border-bottom-color: rgba(94,234,212,0.55) !important; }
   strong.aigenos-strong { color: #ffffff !important; }
   blockquote.aigenos-bq {
     background: #1a1a26 !important;
     color: #c8c8d8 !important;
-    border-color: #34d399 !important;
+    border-color: #5eead4 !important;
   }
   .aigenos-chip {
     background: rgba(94, 234, 212, 0.16) !important;
-    color: #34d399 !important;
+    color: #5eead4 !important;
   }
   .aigenos-footer { color: #8e8ea8 !important; }
-  .aigenos-footer a { color: #34d399 !important; }
+  .aigenos-footer a { color: #5eead4 !important; }
   .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
   .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
   a.aigenos-src-title { color: #ececf5 !important; }
@@ -121,7 +121,7 @@ _TEMPLATE = """\
 
   <!-- Footer -->
   <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
-    <strong style="color:#047857;font-weight:700;">dAIly</strong> by aigenos{footer_links}{engine}
+    <strong style="color:#0f766e;font-weight:700;">dAIly</strong> by aigenos{footer_links}{engine}
   </div>
 
 </div>
@@ -134,7 +134,7 @@ _TEMPLATE = """\
 _TAG_STYLES = {
     "<h2>": (
         '<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;'
-        'border-bottom:1px solid #e8e6f5;color:#047857;font-weight:700;letter-spacing:-0.01em;'
+        'border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;'
         'line-height:1.3;">'
     ),
     "<h3>": (
@@ -153,12 +153,12 @@ _TAG_STYLES = {
         'line-height:1.6;">'
     ),
     "<a ": (
-        '<a class="aigenos-a" style="color:#047857;text-decoration:none;font-weight:600;'
-        'border-bottom:1px solid rgba(4,120,87,0.30);" '
+        '<a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;'
+        'border-bottom:1px solid rgba(15,118,110,0.30);" '
     ),
     "<blockquote>": (
         '<blockquote class="aigenos-bq" style="margin:14px 0;padding:12px 18px;'
-        'border-left:3px solid #047857;background:#ecfdf5;color:#3a3a55;border-radius:0 10px 10px 0;'
+        'border-left:3px solid #0f766e;background:#ecfdf5;color:#3a3a55;border-radius:0 10px 10px 0;'
         'font-size:15px;line-height:1.6;">'
     ),
     "<strong>": (
@@ -197,8 +197,8 @@ def _enhance_read_time(body: str) -> str:
         chip_html = (
             '<span class="aigenos-chip" style="display:inline-block;font-size:11px;'
             'font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;'
-            'margin-left:10px;border-radius:999px;background:rgba(4,120,87,0.12);'
-            'color:#047857;vertical-align:middle;line-height:1;">'
+            'margin-left:10px;border-radius:999px;background:rgba(15,118,110,0.12);'
+            'color:#0f766e;vertical-align:middle;line-height:1;">'
             f'{chip.strip()}</span>'
         )
         return f'{open_tag}{label.rstrip()}{chip_html}{close_tag}'
@@ -239,7 +239,7 @@ def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
     Each link renders only when its env var is configured. The unsubscribe slot
     accepts a URL or a sending-platform merge tag (e.g. Resend's
     ``{{{{RESEND_UNSUBSCRIBE_URL}}}}``) — required before emailing strangers."""
-    a = 'style="color:#047857;text-decoration:none;font-weight:600;"'
+    a = 'style="color:#0f766e;text-decoration:none;font-weight:600;"'
     links: list[str] = []
     site_url = getattr(cfg, "site_url", "")
     if site_url:
@@ -338,7 +338,7 @@ def subscribe_cta(url: str, embed_html: str = "") -> str:
     if not url and not embed_html:
         return ""
     action = embed_html or (
-        f'<a href="{url}" style="display:inline-block;background:#ffffff;color:#047857;'
+        f'<a href="{url}" style="display:inline-block;background:#ffffff;color:#0f766e;'
         'font-weight:700;text-decoration:none;padding:11px 26px;border-radius:999px;font-size:15px;">'
         'Subscribe →</a>'
     )

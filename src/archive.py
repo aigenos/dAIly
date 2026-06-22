@@ -111,13 +111,13 @@ _INDEX_TEMPLATE = """\
 :root {{
   color-scheme: light dark;
   --bg:#f3f4f8; --surface:#fff; --text:#14142a; --text-soft:#3a3a55; --muted:#6b6b85;
-  --accent:#047857; --border:#e8e6f5; --gold:#6ee7b7;
+  --accent:#0f766e; --border:#e8e6f5; --gold:#6ee7b7;
   --shadow:0 1px 2px rgba(20,20,42,.04),0 8px 24px rgba(20,20,42,.06);
 }}
 @media (prefers-color-scheme: dark) {{
   :root {{
     --bg:#0a0a14; --surface:#14141f; --text:#ececf5; --text-soft:#c8c8d8; --muted:#8e8ea8;
-    --accent:#34d399; --border:#2a2a3d;
+    --accent:#5eead4; --border:#2a2a3d;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
   }}
 }}
@@ -153,7 +153,7 @@ body {{
   text-decoration:none; transition:transform .12s ease, box-shadow .12s ease;
 }}
 .btn:hover {{ transform:translateY(-2px); }}
-.btn.solid {{ background:#fff; color:#047857; box-shadow:0 4px 14px rgba(0,0,0,.18); }}
+.btn.solid {{ background:#fff; color:#0f766e; box-shadow:0 4px 14px rgba(0,0,0,.18); }}
 .btn.ghost {{ background:rgba(255,255,255,.16); color:#fff; box-shadow:inset 0 0 0 1px rgba(255,255,255,.35); }}
 .stats {{ display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 0; animation:rise .7s ease both .15s; }}
 .stats span {{
