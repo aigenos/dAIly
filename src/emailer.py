@@ -65,10 +65,11 @@ _THEME_STYLES = """
   }
   .aigenos-footer { color: #8e8ea8 !important; }
   .aigenos-footer a { color: #5eead4 !important; }
-  /* Hero stays dark with light text in dark mode. The explicit dark
-     background-color (also set inline) stops Gmail from inverting the hero text
-     to near-black on the dark gradient; these !important rules pin the colors. */
-  .aigenos-hero { background-color: #0a1429 !important; }
+  /* Hero stays dark with light text in dark mode. It uses a SOLID dark
+     background-color (not a gradient) — mail clients recognize a flat dark
+     element and leave its white text alone, whereas a gradient hero got its
+     text smart-inverted to near-black. These !important rules pin the colors. */
+  .aigenos-hero { background-color: #0c2f31 !important; }
   .aigenos-hero-kicker, .aigenos-hero-mark { color: #ffffff !important; }
   .aigenos-ai { color: #6ee7b7 !important; }
   /* Logo swap: navy-on-white tile in light, teal mark on the dark hero in dark. */
@@ -104,7 +105,7 @@ _TEMPLATE = """\
 <div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
 
   <!-- Hero / masthead -->
-  <div class="aigenos-hero" style="background-color:#0a1429;background-image:linear-gradient(135deg,#0a1429 0%,#0c2f31 52%,#0e4038 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">
+  <div class="aigenos-hero" style="background-color:#0c2f31;border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
       <td style="width:54px;vertical-align:middle;">
         {logo}
