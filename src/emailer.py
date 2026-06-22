@@ -65,6 +65,12 @@ _THEME_STYLES = """
   }
   .aigenos-footer { color: #8e8ea8 !important; }
   .aigenos-footer a { color: #5eead4 !important; }
+  /* Hero stays dark with light text in dark mode. The explicit dark
+     background-color (also set inline) stops Gmail from inverting the hero text
+     to near-black on the dark gradient; these !important rules pin the colors. */
+  .aigenos-hero { background-color: #0a1429 !important; }
+  .aigenos-hero-kicker, .aigenos-hero-mark { color: #ffffff !important; }
+  .aigenos-ai { color: #6ee7b7 !important; }
   .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
   .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
   a.aigenos-src-title { color: #ececf5 !important; }
@@ -95,14 +101,14 @@ _TEMPLATE = """\
 <div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
 
   <!-- Hero / masthead -->
-  <div class="aigenos-hero" style="background:linear-gradient(135deg,#0a1429 0%,#0c2f31 52%,#0e4038 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">
+  <div class="aigenos-hero" style="background-color:#0a1429;background-image:linear-gradient(135deg,#0a1429 0%,#0c2f31 52%,#0e4038 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
       <td style="width:54px;vertical-align:middle;">
         {logo}
       </td>
       <td style="vertical-align:middle;padding-left:14px;">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;font-weight:600;color:#ffffff;">by aigenos · daily ai intelligence</div>
-        <div style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span style="color:#6ee7b7;">AI</span>ly</div>
+        <div class="aigenos-hero-kicker" style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;font-weight:600;color:#ffffff;">by aigenos · daily ai intelligence</div>
+        <div class="aigenos-hero-mark" style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span class="aigenos-ai" style="color:#6ee7b7;">AI</span>ly</div>
       </td>
       <td style="vertical-align:middle;text-align:right;white-space:nowrap;">
         <span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">{date_short}</span>

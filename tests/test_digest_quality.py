@@ -252,7 +252,7 @@ class TestHeroBranding(unittest.TestCase):
 
     def test_ai_is_emerald_not_yellow(self):
         html = render_html("<p>x</p>", self.NOW)
-        self.assertIn('<span style="color:#6ee7b7;">AI</span>', html)
+        self.assertIn('class="aigenos-ai" style="color:#6ee7b7;">AI</span>', html)
         self.assertNotIn("#fcd34d", html)  # old yellow gone
 
     def test_emoji_fallback_without_logo_url(self):
