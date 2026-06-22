@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>dAIly — Daily AI Digest</title>
+  <link href="https://aigenos.github.io/dAIly/"/>
+  <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
+  <id>https://aigenos.github.io/dAIly/</id>
+  <updated>2026-06-22T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — June 22, 2026: The launch of Apertus marks a pivot toward &quot;Sovereign AI,&quot; providing an open foundation model architecture specifically designed for deployment within restricted,…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260622.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260622.html</id>
+    <updated>2026-06-22T00:00:00+00:00</updated>
+    <summary>The launch of Apertus marks a pivot toward &quot;Sovereign AI,&quot; providing an open foundation model architecture specifically designed for deployment within restricted,…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 21, 2026: Martin Fowler has published a comprehensive framework for Building reliable agentic AI systems, shifting the focus from prompt engineering to architectural patterns like…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260621.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260621.html</id>
+    <updated>2026-06-21T00:00:00+00:00</updated>
+    <summary>Martin Fowler has published a comprehensive framework for Building reliable agentic AI systems, shifting the focus from prompt engineering to architectural patterns like…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 20, 2026: The Financial Times reports that major enterprises are actively reining in AI usage due to ballooning operational costs and unclear ROI. This shift signals a transition…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260620.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260620.html</id>
+    <updated>2026-06-20T00:00:00+00:00</updated>
+    <summary>The Financial Times reports that major enterprises are actively reining in AI usage due to ballooning operational costs and unclear ROI. This shift signals a transition…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 19, 2026: The release of S-Agent: Spatial Tool-Use Elicits Reasoning for Spatial Intelligence by Dai and Li marks a critical shift in agentic architecture, moving beyond static…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260619.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260619.html</id>
+    <updated>2026-06-19T00:00:00+00:00</updated>
+    <summary>The release of S-Agent: Spatial Tool-Use Elicits Reasoning for Spatial Intelligence by Dai and Li marks a critical shift in agentic architecture, moving beyond static…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 18, 2026: OpenAI and Molecule.one have demonstrated a near-autonomous AI chemist powered by GPT-5.4 that successfully optimized a complex medicinal chemistry reaction. By…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260618.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260618.html</id>
+    <updated>2026-06-18T00:00:00+00:00</updated>
+    <summary>OpenAI and Molecule.one have demonstrated a near-autonomous AI chemist powered by GPT-5.4 that successfully optimized a complex medicinal chemistry reaction. By…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 17, 2026: The release of GLM-5.2, a 753B parameter frontier-level model, marks a shift in the open-weights landscape. By providing a high-performance, MIT-licensed coding agent,…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260617.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260617.html</id>
+    <updated>2026-06-17T00:00:00+00:00</updated>
+    <summary>The release of GLM-5.2, a 753B parameter frontier-level model, marks a shift in the open-weights landscape. By providing a high-performance, MIT-licensed coding agent,…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 16, 2026: NVIDIA Blackwell has officially swept the MLPerf Training v6.0 benchmarks, demonstrating industry-leading performance at scale. This result confirms that the Blackwell…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260616.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260616.html</id>
+    <updated>2026-06-16T00:00:00+00:00</updated>
+    <summary>NVIDIA Blackwell has officially swept the MLPerf Training v6.0 benchmarks, demonstrating industry-leading performance at scale. This result confirms that the Blackwell…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 15, 2026: Anthropic has pulled its Mythos and Fable models following a U.S. government order. This marks a critical escalation in regulatory intervention, signaling that frontier…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260615.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260615.html</id>
+    <updated>2026-06-15T00:00:00+00:00</updated>
+    <summary>Anthropic has pulled its Mythos and Fable models following a U.S. government order. This marks a critical escalation in regulatory intervention, signaling that frontier…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 14, 2026: Xiaomi has released MiMo V2.5, achieving sustained inference speeds of 1,000–3,000 tokens per second (tps) using their proprietary DFlash kernel. By optimizing the…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260614.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260614.html</id>
+    <updated>2026-06-14T00:00:00+00:00</updated>
+    <summary>Xiaomi has released MiMo V2.5, achieving sustained inference speeds of 1,000–3,000 tokens per second (tps) using their proprietary DFlash kernel. By optimizing the…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 13, 2026: NVIDIA has released a first-of-its-kind agentic coding benchmark, establishing a standardized methodology for measuring agentic inference complexity and performance. By…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260613.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260613.html</id>
+    <updated>2026-06-13T00:00:00+00:00</updated>
+    <summary>NVIDIA has released a first-of-its-kind agentic coding benchmark, establishing a standardized methodology for measuring agentic inference complexity and performance. By…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 12, 2026: The release of MiniMax-M3, a 428B parameter Mixture-of-Experts (MoE) model with 23B active parameters, marks a significant shift in open-weight reasoning capabilities.…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260612.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260612.html</id>
+    <updated>2026-06-12T00:00:00+00:00</updated>
+    <summary>The release of MiniMax-M3, a 428B parameter Mixture-of-Experts (MoE) model with 23B active parameters, marks a significant shift in open-weight reasoning capabilities.…</summary>
+  </entry>
+  <entry>
+    <title>dAIly — June 11, 2026: Anthropic has officially walked back its &quot;silent nerfing&quot; policy for the Claude Fable 5 (Mythos-class) model, committing to full transparency regarding future safeguard…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260611.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260611.html</id>
+    <updated>2026-06-11T00:00:00+00:00</updated>
+    <summary>Anthropic has officially walked back its &quot;silent nerfing&quot; policy for the Claude Fable 5 (Mythos-class) model, committing to full transparency regarding future safeguard…</summary>
+  </entry>
+</feed>
