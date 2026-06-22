@@ -89,6 +89,8 @@ jobs:
           # set LOGO_URL to override, or leave SITE_URL unset for the 🤖 fallback.
           LOGO_URL: ${{ vars.LOGO_URL }}
           LOGO_URL_DARK: ${{ vars.LOGO_URL_DARK }}
+          # Baked masthead image used as the hero (invert-proof in mail clients).
+          HERO_IMAGE_URL: ${{ vars.HERO_IMAGE_URL }}
           # ONE-VARIABLE SUBSCRIBE: set this to your Buttondown username and the
           # subscribe URL + signup form + unsubscribe tag are all derived.
           SUBSCRIBE_HANDLE: ${{ vars.SUBSCRIBE_HANDLE }}

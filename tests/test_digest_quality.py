@@ -266,14 +266,28 @@ class TestHeroBranding(unittest.TestCase):
         self.assertNotIn("🤖", html)
 
     def test_hero_uses_dark_logo_no_white_tile(self):
+        # No hero image → CSS hero fallback with the dark (teal) logo only.
         html = render_html(
             "<p>x</p>", self.NOW,
             logo_url="https://x/light.png", logo_url_dark="https://x/dark.png",
         )
-        # Hero is always dark → use the dark (teal) logo only; no navy/white-tile.
         self.assertIn("https://x/dark.png", html)
         self.assertNotIn("https://x/light.png", html)
         self.assertNotIn("aigenos-logo-l", html)  # swap removed
+
+    def test_hero_image_used_when_available(self):
+        html = render_html("<p>x</p>", self.NOW, hero_image_url="https://x/hero.png")
+        # The masthead is a single invert-proof image — no CSS hero text.
+        self.assertIn('<img src="https://x/hero.png"', html)
+        self.assertIn('alt="dAIly — daily AI intelligence by aigenos"', html)
+        # The CSS-hero markup (not the stylesheet rule) is absent.
+        self.assertNotIn('class="aigenos-hero-mark"', html)
+
+    def test_hero_image_derived_from_site_url(self):
+        cfg = _make_cfg(SITE_URL="https://me.github.io/dAIly")
+        self.assertEqual(
+            cfg.hero_image_url, "https://me.github.io/dAIly/assets/hero-masthead.png"
+        )
 
     def test_logo_urls_derived_from_site_url(self):
         cfg = _make_cfg(SITE_URL="https://me.github.io/dAIly")

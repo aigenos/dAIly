@@ -67,6 +67,9 @@ class Config:
     # fallback. Derived from SITE_URL, or set LOGO_URL / LOGO_URL_DARK.
     logo_url: str
     logo_url_dark: str
+    # Baked masthead image used as the hero (invert-proof in all mail clients).
+    # Derived from SITE_URL, or set HERO_IMAGE_URL. Blank = CSS hero fallback.
+    hero_image_url: str
     subscribe_url: str
     subscribe_form_action: str
     # Raw HTML form snippet (e.g. Buttondown/Beehiiv embed) injected wherever a
@@ -158,9 +161,11 @@ class Config:
         # Derived from SITE_URL; override with LOGO_URL / LOGO_URL_DARK.
         logo_url = os.environ.get("LOGO_URL", "").strip()
         logo_url_dark = os.environ.get("LOGO_URL_DARK", "").strip()
+        hero_image_url = os.environ.get("HERO_IMAGE_URL", "").strip()
         if site_url:
             logo_url = logo_url or f"{site_url}/assets/aigenos-logo-light.png"
             logo_url_dark = logo_url_dark or f"{site_url}/assets/aigenos-logo-dark.png"
+            hero_image_url = hero_image_url or f"{site_url}/assets/hero-masthead.png"
 
         handle = os.environ.get("SUBSCRIBE_HANDLE", "").strip().strip("/")
         subscribe_url = os.environ.get("SUBSCRIBE_URL", "").strip()
@@ -198,6 +203,7 @@ class Config:
             site_url=site_url,
             logo_url=logo_url,
             logo_url_dark=logo_url_dark,
+            hero_image_url=hero_image_url,
             subscribe_url=subscribe_url,
             # POST endpoint for the landing-page subscribe form (e.g. Buttondown's
             # embed-subscribe URL). When set, the index renders a one-field form.

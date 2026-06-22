@@ -102,23 +102,7 @@ _TEMPLATE = """\
 <div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
 
   <!-- Hero / masthead -->
-  <div class="aigenos-hero" style="background-color:#0c2f31;border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-      <td style="width:54px;vertical-align:middle;">
-        {logo}
-      </td>
-      <td style="vertical-align:middle;padding-left:14px;">
-        <div class="aigenos-hero-kicker" style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;font-weight:600;color:#ffffff;">by aigenos · daily ai intelligence</div>
-        <div class="aigenos-hero-mark" style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span class="aigenos-ai" style="color:#6ee7b7;">AI</span>ly</div>
-      </td>
-      <td style="vertical-align:middle;text-align:right;white-space:nowrap;">
-        <span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">{date_short}</span>
-      </td>
-    </tr></table>
-    <div class="aigenos-hero-sub" style="font-size:13.5px;opacity:.92;font-weight:500;line-height:1.5;margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.18);">
-      📅 {date} &nbsp;·&nbsp; Cutting-edge AI in ~90 seconds — the news, the must-read research, and what to build next.
-    </div>
-  </div>
+  {hero}
 
   <!-- Body card -->
   <div class="aigenos-card" style="background:#ffffff;border-radius:20px;padding:8px 30px 26px;margin-top:18px;box-shadow:0 1px 2px rgba(20,20,42,0.04),0 8px 24px rgba(20,20,42,0.06);">
@@ -286,6 +270,40 @@ def _logo_html(logo_url: str, logo_url_dark: str = "") -> str:
     )
 
 
+def _css_hero(logo_url: str, logo_url_dark: str, date: str, date_short: str) -> str:
+    """Fallback CSS/HTML hero (used when no HERO_IMAGE_URL is available). Some
+    mail clients recolor this in dark mode; the image hero avoids that."""
+    return (
+        '<div class="aigenos-hero" style="background-color:#0c2f31;border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">'
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+        '<td style="width:54px;vertical-align:middle;">' + _logo_html(logo_url, logo_url_dark) + '</td>'
+        '<td style="vertical-align:middle;padding-left:14px;">'
+        '<div class="aigenos-hero-kicker" style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;font-weight:600;color:#ffffff;">by aigenos · daily ai intelligence</div>'
+        '<div class="aigenos-hero-mark" style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span class="aigenos-ai" style="color:#6ee7b7;">AI</span>ly</div>'
+        '</td>'
+        '<td style="vertical-align:middle;text-align:right;white-space:nowrap;">'
+        f'<span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">{date_short}</span>'
+        '</td></tr></table>'
+        '<div class="aigenos-hero-sub" style="font-size:13.5px;opacity:.92;font-weight:500;line-height:1.5;margin-top:15px;padding-top:13px;border-top:1px solid rgba(255,255,255,0.18);">'
+        f'📅 {date} &nbsp;·&nbsp; Cutting-edge AI in ~90 seconds — the news, the must-read research, and what to build next.'
+        '</div></div>'
+    )
+
+
+def _hero_html(hero_image_url: str, logo_url: str, logo_url_dark: str,
+               date: str, date_short: str) -> str:
+    """Prefer the baked masthead IMAGE (invert-proof in every mail client); fall
+    back to the CSS hero when no image URL is configured."""
+    if hero_image_url:
+        return (
+            f'<img src="{hero_image_url}" width="720" '
+            'alt="dAIly — daily AI intelligence by aigenos" '
+            'style="display:block;width:100%;max-width:100%;height:auto;border:0;'
+            'border-radius:20px;background:#0c2f31;">'
+        )
+    return _css_hero(logo_url, logo_url_dark, date, date_short)
+
+
 def render_html(
     body_fragment: str,
     now: datetime,
@@ -294,6 +312,7 @@ def render_html(
     footer: str = "",
     logo_url: str = "",
     logo_url_dark: str = "",
+    hero_image_url: str = "",
 ) -> str:
     """Render the full email. `cta` is an optional pre-built HTML block (e.g. a
     subscribe call-to-action) injected after the body — it is NOT run through the
@@ -307,15 +326,18 @@ def render_html(
     styled_body = _inline_styles(body_fragment)
     styled_body = _enhance_read_time(styled_body)
     styled_body = _add_source_favicons(styled_body)
+    hero = _hero_html(
+        hero_image_url, logo_url, logo_url_dark,
+        now.strftime("%A, %B %d, %Y"),
+        now.strftime("%b %d").replace(" 0", " "),
+    )
     return _TEMPLATE.format(
         title="dAIly — Daily AI Digest",
-        date=now.strftime("%A, %B %d, %Y"),
-        date_short=now.strftime("%b %d").replace(" 0", " "),
         body=styled_body,
         cta=cta,
         engine=engine_label,
         footer_links=footer,
-        logo=_logo_html(logo_url, logo_url_dark),
+        hero=hero,
         theme=_THEME_STYLES,
     )
 
@@ -330,6 +352,7 @@ _BODY_RX = re.compile(r"<body[^>]*>(.*)</body>", re.IGNORECASE | re.DOTALL)
 def render_embeddable_html(
     body_fragment: str, now: datetime, engine: str = "", cta: str = "",
     footer: str = "", logo_url: str = "", logo_url_dark: str = "",
+    hero_image_url: str = "",
 ) -> str:
     """The full styled email (hero + logo + cards + footer) WITHOUT the outer
     <html>/<head> wrapper, so another sender (e.g. Buttondown) can drop it into
@@ -337,7 +360,8 @@ def render_embeddable_html(
     Keeps the <style> block (dark-mode for clients that honor it) on top of the
     inline-styled markup that renders everywhere."""
     full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer,
-                       logo_url=logo_url, logo_url_dark=logo_url_dark)
+                       logo_url=logo_url, logo_url_dark=logo_url_dark,
+                       hero_image_url=hero_image_url)
     m = _BODY_RX.search(full)
     inner = m.group(1).strip() if m else full
     return f"<style>{_THEME_STYLES}</style>\n{inner}"

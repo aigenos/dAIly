@@ -153,6 +153,7 @@ def build_buttondown_body(cfg: Config, public_fragment: str, now: datetime) -> s
             public_fragment, now, footer=footer_links(cfg, now),
             logo_url=getattr(cfg, "logo_url", ""),
             logo_url_dark=getattr(cfg, "logo_url_dark", ""),
+            hero_image_url=getattr(cfg, "hero_image_url", ""),
         )
 
     issue_url = (

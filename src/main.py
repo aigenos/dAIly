@@ -86,6 +86,7 @@ def run() -> int:
         footer=footer_links(cfg, now),
         logo_url=cfg.logo_url,
         logo_url_dark=cfg.logo_url_dark,
+        hero_image_url=cfg.hero_image_url,
     )
 
     # Always save to disk in DRY_RUN so you can eyeball the result locally.

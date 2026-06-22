@@ -54,13 +54,10 @@ class TestBuildBody(unittest.TestCase):
         cfg = _cfg()  # html is the default now
         self.assertEqual(cfg.buttondown_mode, "html")
         body = build_buttondown_body(cfg, BODY, NOW)
-        # Full styled email: hero masthead with logo + title, Top Stories style,
-        # not plain markdown.
-        self.assertIn("dAIly", body)
-        self.assertIn("by aigenos", body)
-        # _cfg sets SITE_URL, so the hero shows the derived aigenos logo image.
-        self.assertIn("aigenos-logo-dark.png", body)  # hero uses the dark logo
-        self.assertIn("aigenos-hero", body)
+        # Full styled email, not plain markdown. _cfg sets SITE_URL, so the hero
+        # is the baked masthead image (invert-proof).
+        self.assertIn("hero-masthead.png", body)
+        self.assertIn("The Pulse", body)  # styled body content present
         # No outer document wrapper — it embeds in Buttondown's shell.
         self.assertNotIn("<!DOCTYPE", body)
 
