@@ -95,7 +95,7 @@ _TEMPLATE = """\
 <div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
 
   <!-- Hero / masthead -->
-  <div class="aigenos-hero" style="background:linear-gradient(135deg,#065f46 0%,#0f766e 55%,#047857 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(6,95,70,0.28);">
+  <div class="aigenos-hero" style="background:linear-gradient(135deg,#0a1429 0%,#0c2f31 52%,#0e4038 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
       <td style="width:54px;vertical-align:middle;">
         {logo}

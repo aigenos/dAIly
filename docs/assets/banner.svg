@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="240" viewBox="0 0 880 240" role="img" aria-label="dAIly — your personal AI analyst">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#065f46">
-        <animate attributeName="stop-color" values="#065f46;#0f766e;#065f46" dur="8s" repeatCount="indefinite"/>
+      <stop offset="0%" stop-color="#0a1429">
+        <animate attributeName="stop-color" values="#0a1429;#0c2f31;#0a1429" dur="8s" repeatCount="indefinite"/>
       </stop>
-      <stop offset="55%" stop-color="#0f766e">
-        <animate attributeName="stop-color" values="#0f766e;#0d9488;#0f766e" dur="8s" repeatCount="indefinite"/>
+      <stop offset="55%" stop-color="#0c2f31">
+        <animate attributeName="stop-color" values="#0c2f31;#0e4038;#0c2f31" dur="8s" repeatCount="indefinite"/>
       </stop>
-      <stop offset="100%" stop-color="#0d9488">
-        <animate attributeName="stop-color" values="#0d9488;#065f46;#0d9488" dur="8s" repeatCount="indefinite"/>
+      <stop offset="100%" stop-color="#0e4038">
+        <animate attributeName="stop-color" values="#0e4038;#0a1429;#0e4038" dur="8s" repeatCount="indefinite"/>
       </stop>
     </linearGradient>
     <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="0%">

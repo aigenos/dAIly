@@ -133,10 +133,10 @@ body {{
 @keyframes blip {{ 0%,100%{{opacity:1}} 50%{{opacity:.35}} }}
 .hero {{
   position:relative; overflow:hidden;
-  background:linear-gradient(120deg,#064e3b,#0f766e,#0d9488,#0f766e,#064e3b);
+  background:linear-gradient(120deg,#0a1429,#0c2f31,#0e4038,#0c2f31,#0a1429);
   background-size:300% 300%; animation:heroShift 14s ease infinite;
   border-radius:24px; padding:42px 36px 36px; color:#fff;
-  box-shadow:0 12px 40px rgba(6,78,59,.35);
+  box-shadow:0 12px 40px rgba(10,20,41,.5);
 }}
 .hero .kicker {{ font-size:11px; letter-spacing:3px; text-transform:uppercase; opacity:.85; font-weight:700; }}
 .hero h1 {{ margin:12px 0 8px; font-size:46px; font-weight:800; letter-spacing:-.03em; line-height:1; }}
