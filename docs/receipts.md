@@ -13,3 +13,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-06-20** — [Agentic ROI-Auditor](digests/digest_20260620.html)
 - **2026-06-21** — [Ephemeral Agentic Sandbox (EAS)](digests/digest_20260621.html)
 - **2026-06-22** — [Inference-Ops Auto-Tuner (IOAT)](digests/digest_20260622.html)
+- **2026-06-23** — [Autonomous Vulnerability Remediation (AVR) Pipeline](https://aigenos.github.io/dAIly/digests/digest_20260623.html)
