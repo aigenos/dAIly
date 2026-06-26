@@ -16,3 +16,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-06-23** — [Autonomous Vulnerability Remediation (AVR) Pipeline](https://aigenos.github.io/dAIly/digests/digest_20260623.html)
 - **2026-06-24** — [Agentic Compliance-Guard](https://aigenos.github.io/dAIly/digests/digest_20260624.html)
 - **2026-06-25** — [UI-Interaction Workflow Synthesizer](https://aigenos.github.io/dAIly/digests/digest_20260625.html)
+- **2026-06-26** — [Enterprise Legacy-Agent Bridge (ELAB)](https://aigenos.github.io/dAIly/digests/digest_20260626.html)
