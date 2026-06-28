@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-06-27T00:00:00+00:00</updated>
+  <updated>2026-06-28T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — June 28, 2026: The release of Step-3.7-Flash (198B-A11B vision MoE) exposes a critical architectural conflict: MTP-based speculative decoding is currently incompatible with…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260628.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260628.html</id>
+    <updated>2026-06-28T00:00:00+00:00</updated>
+    <summary>The release of Step-3.7-Flash (198B-A11B vision MoE) exposes a critical architectural conflict: MTP-based speculative decoding is currently incompatible with…</summary>
+  </entry>
   <entry>
     <title>dAIly — June 27, 2026: OpenAI has previewed GPT-5.6 Sol, a next-generation model architecture optimized for high-stakes coding, scientific reasoning, and cybersecurity tasks. By integrating a…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260627.html"/>
