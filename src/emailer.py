@@ -65,6 +65,10 @@ _THEME_STYLES = """
   }
   .aigenos-footer { color: #8e8ea8 !important; }
   .aigenos-footer a { color: #5eead4 !important; }
+  .aigenos-desc { color: #8e8ea8 !important; }
+  .aigenos-src-cap { color: #8e8ea8 !important; }
+  .aigenos-signoff-q { color: #ececf5 !important; }
+  .aigenos-signoff-s { color: #8e8ea8 !important; }
   /* Hero stays dark with light text in dark mode. It uses a SOLID dark
      background-color (not a gradient) — mail clients recognize a flat dark
      element and leave its white text alone, whereas a gradient hero got its
@@ -109,6 +113,8 @@ _TEMPLATE = """\
     {body}
     {cta}
   </div>
+
+  {feedback}
 
   <!-- Footer -->
   <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
@@ -252,6 +258,44 @@ def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
     return "<br>" + " &nbsp;·&nbsp; ".join(links)
 
 
+def _email_addr(email_from: str) -> str:
+    """Pull the bare address out of 'Name <addr@x>' (or return as-is)."""
+    m = re.search(r"<([^>]+)>", email_from or "")
+    return m.group(1) if m else (email_from or "").strip()
+
+
+def feedback_block(cfg, now: datetime) -> str:
+    """A one-click '😍 🙂 😕 — how was today's issue?' widget + a warm sign-off.
+    Links to FEEDBACK_URL (with ?r=...) when set, else a mailto to the sender."""
+    base = getattr(cfg, "feedback_url", "")
+    date = now.strftime("%b %d")
+    if base:
+        sep = "&" if "?" in base else "?"
+        def link(r):
+            return f"{base}{sep}r={r}"
+    else:
+        addr = _email_addr(getattr(cfg, "email_from", "")) or "hello@aigenos.dev"
+        def link(r):
+            return f"mailto:{addr}?subject=dAIly%20feedback%20({date}):%20{r}"
+    a = ('text-decoration:none;display:inline-block;margin:0 8px;font-size:30px;'
+         'line-height:1;')
+    chips = "".join(
+        f'<a href="{link(r)}" style="{a}" title="{t}">{e}</a>'
+        for e, r, t in (("😍", "loved", "Loved it"),
+                        ("🙂", "ok", "It was OK"),
+                        ("😕", "meh", "Not great"))
+    )
+    return (
+        '<div class="aigenos-signoff" style="text-align:center;margin:26px 0 4px;padding:4px 8px;">'
+        '<div class="aigenos-signoff-q" style="font-size:14px;font-weight:600;color:#14142a;margin-bottom:12px;">'
+        'How was today’s issue?</div>'
+        f'<div>{chips}</div>'
+        '<div class="aigenos-signoff-s" style="font-size:13px;color:#6b6b85;margin-top:16px;line-height:1.5;">'
+        'Until next time — the <strong>aigenos</strong> team 👋</div>'
+        '</div>'
+    )
+
+
 def _logo_html(logo_url: str, logo_url_dark: str = "") -> str:
     """The hero masthead mark. The hero is dark in every theme, so we always use
     the dark (teal) logo directly on it — on a faint translucent circle for
@@ -313,6 +357,7 @@ def render_html(
     logo_url: str = "",
     logo_url_dark: str = "",
     hero_image_url: str = "",
+    feedback: str = "",
 ) -> str:
     """Render the full email. `cta` is an optional pre-built HTML block (e.g. a
     subscribe call-to-action) injected after the body — it is NOT run through the
@@ -338,6 +383,7 @@ def render_html(
         engine=engine_label,
         footer_links=footer,
         hero=hero,
+        feedback=feedback,
         theme=_THEME_STYLES,
     )
 
@@ -352,7 +398,7 @@ _BODY_RX = re.compile(r"<body[^>]*>(.*)</body>", re.IGNORECASE | re.DOTALL)
 def render_embeddable_html(
     body_fragment: str, now: datetime, engine: str = "", cta: str = "",
     footer: str = "", logo_url: str = "", logo_url_dark: str = "",
-    hero_image_url: str = "",
+    hero_image_url: str = "", feedback: str = "",
 ) -> str:
     """The full styled email (hero + logo + cards + footer) WITHOUT the outer
     <html>/<head> wrapper, so another sender (e.g. Buttondown) can drop it into
@@ -361,7 +407,7 @@ def render_embeddable_html(
     inline-styled markup that renders everywhere."""
     full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer,
                        logo_url=logo_url, logo_url_dark=logo_url_dark,
-                       hero_image_url=hero_image_url)
+                       hero_image_url=hero_image_url, feedback=feedback)
     m = _BODY_RX.search(full)
     inner = m.group(1).strip() if m else full
     return f"<style>{_THEME_STYLES}</style>\n{inner}"

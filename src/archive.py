@@ -20,7 +20,7 @@ import os
 import re
 from datetime import datetime, timezone
 
-from .emailer import footer_links, render_html, subscribe_cta
+from .emailer import feedback_block, footer_links, render_html, subscribe_cta
 
 log = logging.getLogger("aigenos.archive")
 
@@ -519,6 +519,7 @@ def publish(
         logo_url=getattr(cfg, "logo_url", ""),
         logo_url_dark=getattr(cfg, "logo_url_dark", ""),
         hero_image_url=getattr(cfg, "hero_image_url", ""),
+        feedback=feedback_block(cfg, now),
     )
 
     digests_dir = os.path.join(cfg.archive_dir, "digests")

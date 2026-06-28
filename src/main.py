@@ -18,7 +18,13 @@ from .analyzer import (
     select_for_prompt,
 )
 from .config import Config
-from .emailer import footer_links, render_html, send_email, subject_line
+from .emailer import (
+    feedback_block,
+    footer_links,
+    render_html,
+    send_email,
+    subject_line,
+)
 from .fetchers import dedupe, fetch_all_feeds, fetch_arxiv, fetch_hf_papers
 
 # Load .env for local runs. It's a dev convenience only — in CI the environment
@@ -87,6 +93,7 @@ def run() -> int:
         logo_url=cfg.logo_url,
         logo_url_dark=cfg.logo_url_dark,
         hero_image_url=cfg.hero_image_url,
+        feedback=feedback_block(cfg, now),
     )
 
     # Always save to disk in DRY_RUN so you can eyeball the result locally.

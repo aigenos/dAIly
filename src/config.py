@@ -70,6 +70,9 @@ class Config:
     # Baked masthead image used as the hero (invert-proof in all mail clients).
     # Derived from SITE_URL, or set HERO_IMAGE_URL. Blank = CSS hero fallback.
     hero_image_url: str
+    # One-click feedback widget target. A URL (gets ?r=loved|ok|meh appended) or
+    # blank → a mailto to the sender address.
+    feedback_url: str
     subscribe_url: str
     subscribe_form_action: str
     # Raw HTML form snippet (e.g. Buttondown/Beehiiv embed) injected wherever a
@@ -204,6 +207,7 @@ class Config:
             logo_url=logo_url,
             logo_url_dark=logo_url_dark,
             hero_image_url=hero_image_url,
+            feedback_url=os.environ.get("FEEDBACK_URL", "").strip(),
             subscribe_url=subscribe_url,
             # POST endpoint for the landing-page subscribe form (e.g. Buttondown's
             # embed-subscribe URL). When set, the index renders a one-field form.

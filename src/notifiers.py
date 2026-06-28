@@ -148,12 +148,13 @@ def build_buttondown_body(cfg: Config, public_fragment: str, now: datetime) -> s
     - full: the entire public fragment converted to Markdown.
     """
     if cfg.buttondown_mode == "html":
-        from .emailer import footer_links, render_embeddable_html
+        from .emailer import feedback_block, footer_links, render_embeddable_html
         return render_embeddable_html(
             public_fragment, now, footer=footer_links(cfg, now),
             logo_url=getattr(cfg, "logo_url", ""),
             logo_url_dark=getattr(cfg, "logo_url_dark", ""),
             hero_image_url=getattr(cfg, "hero_image_url", ""),
+            feedback=feedback_block(cfg, now),
         )
 
     issue_url = (

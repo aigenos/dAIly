@@ -169,12 +169,15 @@ def render_top_stories(
         # (a thin favicon tile would look broken at full width).
         image_band = ""
         if thumb:
+            # Larger, magazine-style photo with a source caption strip beneath it.
             image_band = (
                 f'<a href="{it.url}"><img src="{thumb}" alt="" width="100%" '
-                'style="width:100%;max-height:200px;object-fit:cover;border-radius:14px 14px 0 0;'
+                'style="width:100%;max-height:260px;object-fit:cover;border-radius:16px 16px 0 0;'
                 'border:0;display:block;"></a>'
+                f'<div class="aigenos-src-cap" style="padding:6px 18px 0;font-size:11px;'
+                f'color:#9a9aa8;font-style:italic;">Photo: {_esc(it.source)}</div>'
             )
-        pad = "16px 18px" if thumb else "16px 18px"
+        pad = "12px 18px 16px" if thumb else "16px 18px"
         blurb_html = (
             f'<div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;'
             f'color:#3a3a55;line-height:1.55;">{_esc(blurb)}</div>' if blurb else ""

@@ -299,6 +299,57 @@ class TestHeroBranding(unittest.TestCase):
         self.assertEqual(cfg.logo_url, "https://cdn/x.png")
 
 
+class TestNewsletterPolish(unittest.TestCase):
+    NOW = datetime(2026, 6, 10, tzinfo=timezone.utc)
+
+    def test_intro_lede_section_in_instructions(self):
+        from src.analyzer import build_instructions
+        instr = build_instructions()
+        self.assertIn("<!--SECTION:intro-->", instr)
+        self.assertIn("In Brief", instr)
+
+    def test_section_descriptors_injected(self):
+        from src.analyzer import add_section_descriptors
+        html = "<!--SECTION:pulse-->\n<h2>⚡ The Pulse (90 sec read)</h2><p>x</p>"
+        out = add_section_descriptors(html)
+        self.assertIn('class="aigenos-desc"', out)
+        self.assertIn("start here", out)
+
+    def test_top_stories_render_after_intro(self):
+        cfg = _make_cfg()
+        body = (
+            "<!--SECTION:intro-->\n<h2>👋 In Brief (30 sec read)</h2><p>hi</p>\n"
+            "<!--SECTION:pulse-->\n<h2>⚡ The Pulse (90 sec read)</h2><p>x</p>"
+        )
+        from src.fetchers import Item
+        items = [Item("OpenAI", "lab", "Big", "https://x/a", self.NOW)]
+        top = "<!--SECTION:topstories-->\n<h2>📌 Top Stories</h2><p>cards</p>"
+        with mock.patch.object(analyzer.providers, "generate", return_value=body), \
+             mock.patch("src.enrich.select_top_stories", return_value=items), \
+             mock.patch("src.enrich.render_top_stories", return_value=top):
+            out = analyzer.build_digest(cfg, items, self.NOW)
+        self.assertLess(out.index("SECTION:intro"), out.index("SECTION:topstories"))
+        self.assertLess(out.index("SECTION:topstories"), out.index("SECTION:pulse"))
+
+    def test_feedback_block_mailto_default(self):
+        from src.emailer import feedback_block
+        fb = feedback_block(_make_cfg(), self.NOW)
+        self.assertIn("😍", fb)
+        self.assertIn("😕", fb)
+        self.assertIn("mailto:onboarding@resend.dev", fb)
+        self.assertIn("aigenos", fb)  # sign-off
+
+    def test_feedback_block_uses_url(self):
+        from src.emailer import feedback_block
+        fb = feedback_block(_make_cfg(FEEDBACK_URL="https://forms.gle/x"), self.NOW)
+        self.assertIn("https://forms.gle/x?r=loved", fb)
+
+    def test_feedback_rendered_in_email(self):
+        from src.emailer import feedback_block, render_html
+        html = render_html("<p>x</p>", self.NOW, feedback=feedback_block(_make_cfg(), self.NOW))
+        self.assertIn("How was today", html)
+
+
 class TestDarkModeCss(unittest.TestCase):
     def test_no_var_in_dark_block(self):
         # Gmail/Outlook strip CSS custom properties: the dark-mode block must

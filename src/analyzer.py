@@ -113,8 +113,17 @@ points to the same URL as the title link — that is a defect. Always use https:
 URLs (arXiv links in particular must be https://arxiv.org/...)."""
 
 _INSTRUCTIONS_FOOTER = """\
-End with a one-line <p><em>…</em></p> sign-off. Output ONLY the HTML fragment. \
-No markdown code fences, no commentary before or after."""
+Output ONLY the HTML fragment. No markdown code fences, no commentary before or \
+after. Do NOT add a sign-off line — the template adds one."""
+
+_SECTION_INTRO = ("intro", 5, """\
+<!--SECTION:intro-->
+<h2>👋 In Brief (30 sec read)</h2>
+A warm, conversational 2–3 sentence lede that sets up today's issue — the vibe a
+sharp friend would give you over coffee. Name the 1–2 biggest themes of the day
+and why today matters, then hand off to the detail below. Just a tight <p> (one
+or two short sentences); no <h3>, no bullets, no links here. Do NOT simply
+restate the Game-Changer — this is the high-level setup, not the headline.""")
 
 _SECTION_PULSE = ("pulse", 10, """\
 <!--SECTION:pulse-->
@@ -236,6 +245,7 @@ contribution and result. Terse — this is a scanning list.""")
 # The Opportunity-of-the-Day teaser is PUBLIC (it ships in the archive as the
 # viral hook); the full Opportunity Map is private (loaded from src/private/).
 _PUBLIC_SECTIONS: list[tuple[str, int, str]] = [
+    _SECTION_INTRO,
     _SECTION_PULSE,
     _SECTION_OPP_TEASER,
     _SECTION_STACK,
@@ -504,15 +514,16 @@ def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
 
     html = postprocess(html)
 
-    # Image-rich Top Stories hero at the very top. Built deterministically from
-    # the featured items (guaranteed real links + article thumbnails), it leads
-    # the issue like a curated newsletter; the prompt already told the model not
-    # to repeat these in The Pulse.
+    # Image-rich Top Stories. Built deterministically from the featured items
+    # (guaranteed real links + article thumbnails). It renders right after the
+    # intro lede (or at the very top if there's no intro), leading the issue like
+    # a curated newsletter; the prompt already told the model not to repeat these.
     if featured:
         from . import enrich
         top = enrich.render_top_stories(featured, now, cfg.enable_images)
         if top:
-            html = top + "\n" + html
+            html = _insert_after_section(html, "intro", top) \
+                if "<!--SECTION:intro-->" in html else top + "\n" + html
     return html
 
 
@@ -651,10 +662,37 @@ def normalize_arxiv_links(html: str) -> str:
     )
 
 
+# A one-line descriptor injected under each section heading (newsletter-style
+# signposting). Keyed by section id; topstories ships its own descriptor.
+_SECTION_DESCRIPTORS = {
+    "pulse": "The day's signal in 90 seconds — start here.",
+    "opp_teaser": "The single best thing to build right now.",
+    "builders_edge": "More validated bets — prior-art-checked, grounded in months of signal.",
+    "stack": "What moved in tools, benchmarks &amp; funding.",
+    "deep": "The one paper to actually read this week.",
+}
+
+
+def add_section_descriptors(html: str) -> str:
+    """Insert a small italic descriptor right after each section's <h2>."""
+    for sid, desc in _SECTION_DESCRIPTORS.items():
+        rx = re.compile(
+            r"(<!--SECTION:" + re.escape(sid) + r"-->\s*<h2[^>]*>.*?</h2>)",
+            flags=re.DOTALL,
+        )
+        chip = (
+            '<p class="aigenos-desc" style="margin:-2px 0 12px;font-size:13px;'
+            f'color:#6b6b85;font-style:italic;line-height:1.4;">{desc}</p>'
+        )
+        html = rx.sub(lambda m: m.group(1) + chip, html, count=1)
+    return html
+
+
 def postprocess(html: str) -> str:
     """Deterministic hygiene passes applied to every generated digest."""
     html = normalize_arxiv_links(html)
     html = strip_redundant_source_links(html)
+    html = add_section_descriptors(html)
     return html
 
 
