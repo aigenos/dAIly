@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-06-28T00:00:00+00:00</updated>
+  <updated>2026-06-29T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — June 29, 2026: OpenAI has launched GPT-5.6, a new family of models (Sol, Terra, and Luna) that sets a new state-of-the-art on Terminal-Bench 2.1. Crucially, the release is restricted…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260629.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260629.html</id>
+    <updated>2026-06-29T00:00:00+00:00</updated>
+    <summary>OpenAI has launched GPT-5.6, a new family of models (Sol, Terra, and Luna) that sets a new state-of-the-art on Terminal-Bench 2.1. Crucially, the release is restricted…</summary>
+  </entry>
   <entry>
     <title>dAIly — June 28, 2026: The release of Step-3.7-Flash (198B-A11B vision MoE) exposes a critical architectural conflict: MTP-based speculative decoding is currently incompatible with…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260628.html"/>

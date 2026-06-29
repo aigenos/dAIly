@@ -19,3 +19,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-06-26** — [Enterprise Legacy-Agent Bridge (ELAB)](https://aigenos.github.io/dAIly/digests/digest_20260626.html)
 - **2026-06-27** — [Visual Token Pruning Engine (VTPE)](https://aigenos.github.io/dAIly/digests/digest_20260627.html)
 - **2026-06-28** — [Vision-Aware Speculative Decoding Engine (VASDE)](https://aigenos.github.io/dAIly/digests/digest_20260628.html)
+- **2026-06-29** — [Offline-First Agentic Reasoning Suite](https://aigenos.github.io/dAIly/digests/digest_20260629.html)
