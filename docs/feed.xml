@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-06-30T00:00:00+00:00</updated>
+  <updated>2026-07-01T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 01, 2026: Anthropic has released Claude Sonnet 5, now available on Amazon Bedrock. As the first model in Anthropic's latest generation, it sets a new baseline for production-grade…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260701.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260701.html</id>
+    <updated>2026-07-01T00:00:00+00:00</updated>
+    <summary>Anthropic has released Claude Sonnet 5, now available on Amazon Bedrock. As the first model in Anthropic's latest generation, it sets a new baseline for production-grade…</summary>
+  </entry>
   <entry>
     <title>dAIly — June 30, 2026: Huawei has open-sourced OpenPangu-2.0-Flash, a 92B total parameter model with 6B active parameters and a 512K context window. By releasing both weights and training ops,…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260630.html"/>
