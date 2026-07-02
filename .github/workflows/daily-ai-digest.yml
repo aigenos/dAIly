@@ -2,9 +2,10 @@ name: Daily AI Digest
 
 on:
   schedule:
-    # 12:00 UTC daily = 8:00 AM US Eastern (EDT, UTC-4). In winter (EST, UTC-5)
-    # this is 7:00 AM ET — change to "0 13 * * *" if you want 8 AM year-round.
-    - cron: "0 12 * * *"
+    # 10:00 UTC daily = 6:00 AM US Eastern in summer (EDT, UTC-4). GitHub cron is
+    # always UTC and does not follow daylight saving, so in winter (EST, UTC-5)
+    # this arrives at 5:00 AM ET. Use "0 11 * * *" if you prefer 6:00 AM in winter.
+    - cron: "0 10 * * *"
   workflow_dispatch: {} # allow manual runs from the Actions tab
 
 # Avoid overlapping runs.
@@ -59,6 +60,9 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_TO: ${{ vars.EMAIL_TO }}
           EMAIL_FROM: ${{ vars.EMAIL_FROM || 'AI Daily Digest <onboarding@resend.dev>' }}
+          # Reader replies + one-click feedback route here (defaults to EMAIL_TO).
+          FEEDBACK_EMAIL: ${{ vars.FEEDBACK_EMAIL }}
+          REPLY_TO: ${{ vars.REPLY_TO }}
           DIGEST_MODEL: ${{ vars.DIGEST_MODEL }}
           # Optional stronger model for the Opportunity sections (two-pass).
           OPPORTUNITY_MODEL: ${{ vars.OPPORTUNITY_MODEL }}
@@ -107,8 +111,13 @@ jobs:
           FEEDBACK_URL: ${{ vars.FEEDBACK_URL }}
           # Audio digest (free gTTS).
           ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || 'false' }}
-          # Subscriber delivery: sends the public issue to your Buttondown
-          # list (captured by the landing-page form). teaser | full.
+          # SUBSCRIBER DELIVERY (recommended): send the SAME styled issue the
+          # owner gets to your Resend Audience via Broadcasts. Set the audience
+          # ID and subscribers receive an identical newsletter + managed
+          # unsubscribe. Reuses RESEND_API_KEY above.
+          RESEND_AUDIENCE_ID: ${{ vars.RESEND_AUDIENCE_ID }}
+          # Legacy alternative: Buttondown (sanitizes HTML, so it can render
+          # slightly differently). Leave unset when using Resend Broadcasts.
           BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
           BUTTONDOWN_MODE: ${{ vars.BUTTONDOWN_MODE || 'html' }}
           # Optional multi-channel delivery.

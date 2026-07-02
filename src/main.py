@@ -10,7 +10,7 @@ import logging
 import sys
 from datetime import datetime, timezone
 
-from . import archive, audio, linkcheck, notifiers, state
+from . import archive, audio, broadcast, linkcheck, notifiers, state
 from .analyzer import (
     build_digest,
     private_section_ids,
@@ -85,11 +85,14 @@ def run() -> int:
     if cfg.enable_link_check:
         body = linkcheck.verify_links(body)
 
+    # Owner copy: the full issue (private sections included). No unsubscribe link
+    # in the footer — that's for subscribers, and the Resend merge tag only
+    # resolves inside a Broadcast, not a direct send.
     html = render_html(
         body,
         now,
         engine=engine if cfg.show_model_attribution else "",
-        footer=footer_links(cfg, now),
+        footer=footer_links(cfg, now, include_unsubscribe=False),
         logo_url=cfg.logo_url,
         logo_url_dark=cfg.logo_url_dark,
         hero_image_url=cfg.hero_image_url,
@@ -121,6 +124,10 @@ def run() -> int:
         log.info("DRY_RUN enabled — skipping email + channel posts. Open %s to review.", out_path)
         return 0
     send_email(cfg, subject_line(now), html)
+    # Subscribers get the same styled issue via Resend Broadcasts (public version,
+    # managed unsubscribe). Fail-open: the owner email above is the guaranteed
+    # deliverable, so a Broadcast error never aborts the run.
+    broadcast.send_subscribers(cfg, body, now, private_section_ids(), private_sentinels())
     notifiers.notify_all(cfg, body, now, private_section_ids(), private_sentinels())
 
     # 5. Persist cross-day dedup state — only after a successful real delivery,

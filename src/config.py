@@ -46,6 +46,12 @@ class Config:
     dry_run: bool
     email_to: str
     email_from: str
+    # Reply-To on every email (owner copy + subscriber broadcast) so a plain
+    # reply reaches the aigenos owner. Defaults to feedback_email.
+    reply_to: str
+    # Where one-click feedback (😍 🙂 😕) and reader replies are routed. Defaults
+    # to EMAIL_TO (the owner's inbox); set FEEDBACK_EMAIL for a dedicated address.
+    feedback_email: str
     model: str
     # Optional stronger model for the Opportunity sections (two-pass synthesis).
     # Blank = single pass with `model`, exactly the pre-existing behavior.
@@ -94,6 +100,10 @@ class Config:
     # reliably); "full" sends the whole public HTML fragment.
     buttondown_api_key: str
     buttondown_mode: str
+    # Resend subscriber delivery: send the SAME styled HTML the owner receives to
+    # every contact in this Resend Audience via the Broadcasts API — so owner and
+    # subscribers get an identical newsletter. Blank = no subscriber send.
+    resend_audience_id: str
     # Audio / TTS version of The Pulse.
     enable_audio: bool
     audio_dir: str
@@ -181,6 +191,19 @@ class Config:
             )
             unsubscribe_url = unsubscribe_url or "{{ unsubscribe_url }}"
 
+        # Resend subscriber delivery. When an audience is configured, Resend's
+        # Broadcasts API injects a managed unsubscribe link via this merge tag —
+        # so a single variable wires up both delivery and one-click unsubscribe.
+        resend_audience_id = os.environ.get("RESEND_AUDIENCE_ID", "").strip()
+        if resend_audience_id and not unsubscribe_url:
+            unsubscribe_url = "{{{RESEND_UNSUBSCRIBE_URL}}}"
+
+        # Feedback + replies route to the owner. FEEDBACK_EMAIL overrides; both
+        # default to EMAIL_TO so the aigenos owner always receives them.
+        email_to_addr = email_to
+        feedback_email = os.environ.get("FEEDBACK_EMAIL", "").strip() or email_to_addr
+        reply_to = os.environ.get("REPLY_TO", "").strip() or feedback_email
+
         return cls(
             provider=provider,
             anthropic_api_key=anthropic_api_key,
@@ -192,6 +215,8 @@ class Config:
             email_from=os.environ.get(
                 "EMAIL_FROM", "AI Daily Digest <onboarding@resend.dev>"
             ).strip(),
+            reply_to=reply_to,
+            feedback_email=feedback_email,
             model=model,
             opportunity_model=opportunity_model,
             opportunity_memory=_get_bool("OPPORTUNITY_MEMORY", True),
@@ -219,6 +244,7 @@ class Config:
             buttondown_mode=(
                 os.environ.get("BUTTONDOWN_MODE", "").strip().lower() or "html"
             ),
+            resend_audience_id=resend_audience_id,
             slack_webhook_url=os.environ.get("SLACK_WEBHOOK_URL", "").strip(),
             discord_webhook_url=os.environ.get("DISCORD_WEBHOOK_URL", "").strip(),
             telegram_bot_token=os.environ.get("TELEGRAM_BOT_TOKEN", "").strip(),

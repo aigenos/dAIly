@@ -274,7 +274,13 @@ def feedback_block(cfg, now: datetime) -> str:
         def link(r):
             return f"{base}{sep}r={r}"
     else:
-        addr = _email_addr(getattr(cfg, "email_from", "")) or "hello@aigenos.dev"
+        # Route feedback to the aigenos owner: FEEDBACK_EMAIL / EMAIL_TO, then the
+        # sender address as a last resort.
+        addr = (
+            getattr(cfg, "feedback_email", "")
+            or _email_addr(getattr(cfg, "email_from", ""))
+            or "hello@aigenos.dev"
+        )
         def link(r):
             return f"mailto:{addr}?subject=dAIly%20feedback%20({date}):%20{r}"
     a = ('text-decoration:none;display:inline-block;margin:0 8px;font-size:30px;'
@@ -450,6 +456,8 @@ def send_email(cfg: Config, subject: str, html: str) -> dict:
             "to": [cfg.email_to],
             "subject": subject,
             "html": html,
+            # Replies land in the owner's inbox, not the (often no-reply) sender.
+            **({"reply_to": cfg.reply_to} if getattr(cfg, "reply_to", "") else {}),
         },
         timeout=30,
     )
