@@ -332,12 +332,18 @@ class TestNewsletterPolish(unittest.TestCase):
         self.assertLess(out.index("SECTION:topstories"), out.index("SECTION:pulse"))
 
     def test_feedback_block_mailto_default(self):
+        # Feedback routes to the owner: FEEDBACK_EMAIL, else EMAIL_TO.
         from src.emailer import feedback_block
         fb = feedback_block(_make_cfg(), self.NOW)
         self.assertIn("😍", fb)
         self.assertIn("😕", fb)
-        self.assertIn("mailto:onboarding@resend.dev", fb)
+        self.assertIn("mailto:to@example.com", fb)
         self.assertIn("aigenos", fb)  # sign-off
+
+    def test_feedback_block_uses_feedback_email(self):
+        from src.emailer import feedback_block
+        fb = feedback_block(_make_cfg(FEEDBACK_EMAIL="hello@aigenos.dev"), self.NOW)
+        self.assertIn("mailto:hello@aigenos.dev", fb)
 
     def test_feedback_block_uses_url(self):
         from src.emailer import feedback_block

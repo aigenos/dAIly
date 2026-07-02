@@ -246,12 +246,12 @@ _REPO_URL = "https://github.com/aigenos/dAIly"
 def _render_subscribe(cfg) -> str:
     """One-click subscribe box for the landing page.
 
-    - If SUBSCRIBE_EMBED_HTML is set (a provider's form snippet — Buttondown,
-      Beehiiv, …), inject it verbatim inside the card. Provider-agnostic.
-    - Else if SUBSCRIBE_FORM_ACTION is set (e.g. a Buttondown embed-subscribe
-      URL), render a one-field POST form — works on a static site, no backend.
+    - If SUBSCRIBE_EMBED_HTML is set (a provider's form snippet), inject it
+      verbatim inside the card. Provider-agnostic.
+    - Else if SUBSCRIBE_FORM_ACTION is set (the Resend subscribe Worker in
+      subscribe/, or a Buttondown embed URL), render a one-field POST form.
     - Else if SUBSCRIBE_URL is set, render a button linking to it.
-    - Else render nothing.
+    - Else render an RSS / watch-on-GitHub fallback (never a dead end).
     """
     embed = getattr(cfg, "subscribe_embed_html", "")
     action = getattr(cfg, "subscribe_form_action", "")

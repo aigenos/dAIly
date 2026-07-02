@@ -133,36 +133,37 @@ truly-private customized version, copy that file to `src/private/opportunity.py`
 
 ### 3. Run it
 - **Manually:** Actions tab → *Daily AI Digest* → **Run workflow**. Check your inbox.
-- **Automatic:** daily at **12:00 UTC**. Change the `cron` in the workflow to taste.
+- **Automatic:** daily at **10:00 UTC** (6:00 AM US Eastern in summer). Change the `cron` in the workflow to taste.
 - **Polish (optional):** `bash scripts/repo_setup.sh` sets your fork's
   description + topics via the `gh` CLI.
 
 ### Enable subscriptions
 
-*One variable + one secret, ~5 min, free.*
+*Recommended: Resend — subscribers get the **identical** newsletter you do.*
 
-Email subscription needs a list host (a static site can't store addresses) —
-[Buttondown](https://buttondown.com) is free ≤ 100 subscribers and does both
-capture **and** delivery, no backend. Setup is two values:
+You already use [Resend](https://resend.com) to send your own copy. Send the
+**same styled HTML** to subscribers via Resend **Broadcasts** and both inboxes
+get a byte-for-byte identical issue — same hero, cards, and dark mode. Free tier
+covers 1,000 contacts with unlimited broadcasts.
 
-1. Create a Buttondown account; note your **username** and grab an **API key**
-   (Settings → API).
-2. In **Settings → Secrets and variables → Actions**, add:
-   - **Variable** `SUBSCRIBE_HANDLE` = your Buttondown username. This one value
-     derives the subscribe URL, the on-page signup form, and the unsubscribe
-     tag — so the landing page form, the README/landing **Subscribe** button,
-     and the newsletter footer all start working.
-   - **Secret** `BUTTONDOWN_API_KEY` = your key. Every run now also **sends** the
-     public issue (private sections stripped, fail-closed) to all subscribers.
+1. In Resend → **Audiences** → *New*, create an audience and copy its ID.
+2. In **Settings → Secrets and variables → Actions**, add **Variable**
+   `RESEND_AUDIENCE_ID` = that ID. Every run now Broadcasts the public issue
+   (private sections stripped, fail-closed) to all subscribers, with Resend's
+   managed one-click **unsubscribe** link injected automatically.
+3. **Capture signups.** Resend has no hosted form, so deploy the tiny Cloudflare
+   Worker in [`subscribe/`](./subscribe/) (free, ~2 min) and set **Variable**
+   `SUBSCRIBE_FORM_ACTION` to its URL — the landing page form now feeds the same
+   audience. Full walkthrough: [`subscribe/README.md`](./subscribe/README.md).
 
-That's it. `BUTTONDOWN_MODE=html` (default) sends subscribers the **full styled
-email** — same hero, logo, and Top Stories as your own copy; `teaser` sends a
-short Markdown summary + link, and `full` sends the whole public issue as
-Markdown. Buttondown adds the compliant unsubscribe link automatically.
+**Feedback + replies** route to the aigenos owner: the 😍 🙂 😕 widget and the
+email `Reply-To` both default to `EMAIL_TO` (set `FEEDBACK_EMAIL` to override).
 
-> Using Beehiiv/Mailchimp/etc. instead? Set `SUBSCRIBE_URL`,
-> `SUBSCRIBE_FORM_ACTION` (your form's POST endpoint), and `UNSUBSCRIBE_URL`
-> explicitly — they override the Buttondown-derived defaults.
+> Prefer a hosted form with no Worker? [Buttondown](https://buttondown.com) is
+> free ≤ 100 subs and captures + sends with no backend — set `SUBSCRIBE_HANDLE`
+> (your username) and secret `BUTTONDOWN_API_KEY`. Note it sanitizes HTML, so the
+> layout can differ slightly from your Resend copy. Other hosts: set
+> `SUBSCRIBE_URL`, `SUBSCRIBE_FORM_ACTION`, and `UNSUBSCRIBE_URL` explicitly.
 
 Prefer no newsletter service at all? `docs/feed.xml` is an Atom feed of the
 archive — readers can follow via RSS with zero setup.
@@ -292,10 +293,13 @@ All knobs are environment variables; see [`.env.example`](.env.example). Notable
   (on by default, 4 stories).
 - `ENABLE_BUILDERS_EDGE=true` — activate the paid Builder's Edge section.
 - `ENABLE_LINK_CHECK=false` — skip the pre-send dead-link check.
+- `RESEND_AUDIENCE_ID` — Broadcast each issue to this Resend audience so
+  subscribers get the identical newsletter (recommended; see subscribe/).
 - `SUBSCRIBE_URL` / `SUBSCRIBE_FORM_ACTION` / `SUBSCRIBE_EMBED_HTML` — subscribe
-  CTA + on-page form.
-- `BUTTONDOWN_API_KEY` / `BUTTONDOWN_MODE` — send each issue to your subscribers.
-- `UNSUBSCRIBE_URL` — footer unsubscribe link (URL or merge tag).
+  CTA + on-page form (point `SUBSCRIBE_FORM_ACTION` at the subscribe Worker).
+- `FEEDBACK_EMAIL` / `REPLY_TO` — where feedback + replies land (default EMAIL_TO).
+- `BUTTONDOWN_API_KEY` / `BUTTONDOWN_MODE` — legacy alternative subscriber send.
+- `UNSUBSCRIBE_URL` — footer unsubscribe link (URL or merge tag; auto-set for Resend).
 - `SHOW_MODEL_ATTRIBUTION=true` — add a "powered by …" footer line (off by default).
 
 ## Customizing sources

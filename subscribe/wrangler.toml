@@ -1,0 +1,15 @@
+# Cloudflare Worker config for the dAIly subscribe endpoint.
+# Deploy with:  wrangler deploy   (from this directory)
+name = "daily-subscribe"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+# The Resend Audience to add subscribers to — the SAME audience you send the
+# daily Broadcast to (RESEND_AUDIENCE_ID in the GitHub workflow).
+RESEND_AUDIENCE_ID = ""
+# Optional: bounce the browser back to your site after a successful signup.
+# REDIRECT_URL = "https://YOURUSER.github.io/dAIly/?subscribed=1"
+
+# RESEND_API_KEY is a SECRET, not a var — never commit it. Set it once with:
+#   wrangler secret put RESEND_API_KEY
