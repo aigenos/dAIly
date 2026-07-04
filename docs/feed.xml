@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-02T00:00:00+00:00</updated>
+  <updated>2026-07-04T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 04, 2026: The paper Distributed Attacks in Persistent-State AI Control by Hills and Caspary exposes a critical vulnerability in autonomous coding agents: because these agents ship…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260704.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260704.html</id>
+    <updated>2026-07-04T00:00:00+00:00</updated>
+    <summary>The paper Distributed Attacks in Persistent-State AI Control by Hills and Caspary exposes a critical vulnerability in autonomous coding agents: because these agents ship…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 02, 2026: NVIDIA’s Mastering Agentic Techniques: AI Agent Reinforcement Learning signals a definitive shift from supervised fine-tuning to RL-driven alignment for autonomous…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260702.html"/>

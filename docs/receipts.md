@@ -23,3 +23,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-06-30** — [Horizon-Scaling Orchestrator](https://aigenos.github.io/dAIly/digests/digest_20260630.html)
 - **2026-07-01** — [Agentic Skill-Registry & Orchestrator](https://aigenos.github.io/dAIly/digests/digest_20260701.html)
 - **2026-07-02** — [Agentic Trace-Debugger](https://aigenos.github.io/dAIly/digests/digest_20260702.html)
+- **2026-07-04** — [Agentic State-Isolation Middleware](https://aigenos.github.io/dAIly/digests/digest_20260704.html)
