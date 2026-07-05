@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>dAIly — Daily AI Digest</title>
+<style>
+:root {
+  color-scheme: light dark;
+  supported-color-schemes: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  /* Literal colors only — Gmail/Outlook strip CSS custom properties but keep
+     the media query, which used to leave dark-mode readers unstyled. */
+  body, .aigenos-bg { background: #0a0a14 !important; }
+  .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
+  .aigenos-text { color: #ececf5 !important; }
+  .aigenos-muted { color: #8e8ea8 !important; }
+  h2.aigenos-h2 { color: #5eead4 !important; border-color: #2a2a3d !important; }
+  h3.aigenos-h3 { color: #ececf5 !important; }
+  p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
+  /* Links: bright teal text + a clearly-visible underline (was near-black on dark). */
+  a.aigenos-a { color: #5eead4 !important; border-bottom-color: rgba(94,234,212,0.55) !important; }
+  strong.aigenos-strong { color: #ffffff !important; }
+  blockquote.aigenos-bq {
+    background: #1a1a26 !important;
+    color: #c8c8d8 !important;
+    border-color: #5eead4 !important;
+  }
+  .aigenos-chip {
+    background: rgba(94, 234, 212, 0.16) !important;
+    color: #5eead4 !important;
+  }
+  .aigenos-footer { color: #8e8ea8 !important; }
+  .aigenos-footer a { color: #5eead4 !important; }
+  .aigenos-desc { color: #8e8ea8 !important; }
+  .aigenos-src-cap { color: #8e8ea8 !important; }
+  .aigenos-signoff-q { color: #ececf5 !important; }
+  .aigenos-signoff-s { color: #8e8ea8 !important; }
+  /* Hero stays dark with light text in dark mode. It uses a SOLID dark
+     background-color (not a gradient) — mail clients recognize a flat dark
+     element and leave its white text alone, whereas a gradient hero got its
+     text smart-inverted to near-black. These !important rules pin the colors. */
+  .aigenos-hero { background-color: #0c2f31 !important; }
+  .aigenos-hero-kicker, .aigenos-hero-mark { color: #ffffff !important; }
+  .aigenos-ai { color: #6ee7b7 !important; }
+  .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
+  .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
+  a.aigenos-src-title { color: #ececf5 !important; }
+  .aigenos-src-meta { color: #8e8ea8 !important; }
+  /* The Top Stories summary was uncovered → dark-on-dark; make it readable. */
+  .aigenos-src-blurb { color: #c8c8d8 !important; }
+}
+@media (max-width: 600px) {
+  .aigenos-shell { padding: 16px 10px !important; }
+  .aigenos-card { padding: 18px !important; }
+  .aigenos-hero { padding: 22px 22px 18px !important; }
+}
+</style>
+</head>
+<body class="aigenos-bg" style="margin:0;padding:0;background:#f3f4f8;color-scheme:light dark;">
+<div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
+
+  <!-- Hero / masthead -->
+  <img src="https://aigenos.github.io/dAIly/assets/hero-masthead.png" width="720" alt="dAIly — daily AI intelligence by aigenos" style="display:block;width:100%;max-width:100%;height:auto;border:0;border-radius:20px;background:#0c2f31;">
+
+  <!-- Body card -->
+  <div class="aigenos-card" style="background:#ffffff;border-radius:20px;padding:8px 30px 26px;margin-top:18px;box-shadow:0 1px 2px rgba(20,20,42,0.04),0 8px 24px rgba(20,20,42,0.06);">
+    <!--SECTION:intro-->
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">The open-weights landscape just shifted with the release of a 1.6T parameter model, forcing a re-evaluation of local hardware requirements and inference strategies. As we push toward larger models, the bottleneck is increasingly shifting from raw compute to memory-efficient orchestration and intelligent resource management.</p>
+<!--SECTION:topstories-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📌 Top Stories — Today's Biggest Moves (skim)</h2>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">The day's highest-signal stories, ranked by builder-relevance — each linked to its primary source.</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><div style="padding:16px 18px;"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1uny822/any_word_on_qwen_37_9b_also_looking_for_9bclass/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Any word on Qwen 3.7 9B? (Also looking for 9B-class alternatives to Qwen 3.5)</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">r/LocalLLaMA (top/day) · Jul 05</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">Given that Alibaba went proprietary/API-only for the Qwen 3.7 Max and Plus launches back in May, do we have any rumors or roadmap for a local 9B open-weights release? In the meantime, I'm trying to figure out my next step for a…</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><div style="padding:16px 18px;"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1unxqw5/paper_multiresolution_flow_matching_trainingfree/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">[Paper] Multi-Resolution Flow Matching: Training-Free Diffusion Acceleration via Staged Sampling</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">r/LocalLLaMA (top/day) · Jul 05</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">Hardware-agnostic strategies for accelerating text-to-image diffusion, such as timestep distillation and feature caching, can reduce inference time without custom kernels or system-level optimization. Among them, multi-resolution…</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><div style="padding:16px 18px;"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1unyvnz/longcat_20_16t_48b_active_weights_are_now_open/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">longcat 2.0 (1.6T, ~48B active) weights are now open under MIT license</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">r/LocalLLaMA (top/day) · Jul 05</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">From: elie on 𝕏: https://x.com/eliebakouch/status/2073690402503487902 ModelScope on 𝕏: https://x.com/ModelScope2022/status/2073710226365165679 Technical blog post (June, 30): https://longcat.chat/blog/longcat-2.0/ &amp;#32; submitted…</div></div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;background:#ffffff;overflow:hidden;"><tr><td style="padding:0;"><div style="padding:16px 18px;"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1unyhom/considering_buying_another_rtx_3090_benefits/" class="aigenos-src-title" style="color:#14142a;text-decoration:none;font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">Considering Buying Another RTX 3090 - Benefits?</a><div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">r/LocalLLaMA (top/day) · Jul 05</div><div class="aigenos-src-blurb" style="margin-top:7px;font-size:14px;color:#3a3a55;line-height:1.55;">Currently using dual RTX 3090s, and am happy with it. But never satisfied lol :) I know I've basically maxed out my single stream TPS.</div></div></td></tr></table>
+
+
+<!--SECTION:pulse-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">⚡ The Pulse — If You Only Read One Thing<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(15,118,110,0.12);color:#0f766e;vertical-align:middle;line-height:1;">90 sec read</span></h2><p class="aigenos-desc" style="margin:-2px 0 12px;font-size:13px;color:#6b6b85;font-style:italic;line-height:1.4;">The day's signal in 90 seconds — start here.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">🎯 Today's Game-Changer</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;">The release of <strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=longcat.chat&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://longcat.chat/blog/longcat-2.0/">Longcat 2.0</a></strong>, a 1.6T parameter model with 48B active parameters, marks a significant milestone in open-weights accessibility under the MIT license. By utilizing a sparse architecture that keeps active parameter counts manageable while leveraging massive scale, this release challenges the dominance of proprietary APIs for high-reasoning tasks and forces a new standard for local deployment requirements.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📍 In a Nutshell</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1unxqw5/paper_multiresolution_flow_matching_trainingfree/">Multi-Resolution Flow Matching</a></strong> introduces training-free diffusion acceleration, enabling faster image generation without custom kernels. <a>source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1uny822/any_word_on_qwen_37_9b_also_looking_for_9bclass/">Community demand for 9B-class models</a></strong> remains high as users seek efficient, local alternatives to proprietary Qwen 3.7 Max/Plus. <a>source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1unyhom/considering_buying_another_rtx_3090_benefits/">VRAM constraints</a></strong> continue to drive hardware acquisition, with dual-3090 setups hitting limits for concurrent high-throughput requests. <a>source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=seldo.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://seldo.com/posts/ai-has-torched-the-market-for-junior-programmers/">Junior developer market contraction</a></strong> is accelerating as AI-assisted coding tools reduce the need for entry-level boilerplate work. <a>source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=wsj.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.wsj.com/tech/ai/ai-data-centers-water-use-901e2902">Data center water consumption</a><sup class="aigenos-deadlink" title="link did not respond at send time" style="color:#b45309;font-size:11px;font-weight:700;">⚠</sup></strong> is under increased scrutiny as reports highlight significant, often under-reported, environmental footprints. <a>source</a></li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=hyperstitionai.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.hyperstitionai.com/unslop-results">2026 Unslop AI-Written Fiction Contest</a></strong> results demonstrate the evolving capability of models to handle nuanced, non-formulaic creative writing. <a>source</a></li>
+</ul>
+
+<!--SECTION:opp_teaser-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🚀 Opportunity of the Day<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(15,118,110,0.12);color:#0f766e;vertical-align:middle;line-height:1;">2 min read</span></h2><p class="aigenos-desc" style="margin:-2px 0 12px;font-size:13px;color:#6b6b85;font-style:italic;line-height:1.4;">The single best thing to build right now.</p>
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Dynamic VRAM-Aware Diffusion Orchestrator</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">The gap:</strong> High-resolution diffusion models are currently "all or nothing" regarding VRAM, forcing users to either downsample or hit OOM errors, as evidenced by the hardware-constrained discussions in the <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1unyhom/considering_buying_another_rtx_3090_benefits/">LocalLLaMA community</a>.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Why now:</strong> The <img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1unxqw5/paper_multiresolution_flow_matching_trainingfree/">Multi-Resolution Flow Matching</a> paper provides a training-free mechanism to adjust sampling resolution dynamically, making it possible to build an orchestration layer that adapts to available VRAM in real-time.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Build as:</strong> An OSS middleware library that sits between the user prompt and the diffusion backend (e.g., Diffusers/ComfyUI).</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Wedge &amp; moat:</strong> The wedge is "Zero-OOM Generation" for local users; the moat is the proprietary heuristic engine that predicts the optimal resolution/step-count trade-off based on the specific GPU architecture and current VRAM pressure.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Already heating up:</strong> <em class="aigenos-em" style="font-style:italic;color:inherit;">(speculative — no direct validation signal yet, though the intersection of hardware-constrained local inference and training-free acceleration is a high-velocity research area)</em>.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Closest existing solution:</strong> <a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://github.com/huggingface/diffusers">Hugging Face Diffusers</a> provides the base, but lacks an automated, VRAM-aware "flow-state" manager that dynamically scales resolution during the inference loop.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">First step this week:</strong> Prototype a wrapper that monitors `torch.cuda.memory_allocated()` and triggers a resolution downscale/upscale event using the Multi-Resolution Flow Matching sampling logic.</li>
+</ul>
+
+<!--SECTION:stack-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">📊 Stack Signals — Pick Your Tools<span class="aigenos-chip" style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;padding:4px 10px;margin-left:10px;border-radius:999px;background:rgba(15,118,110,0.12);color:#0f766e;vertical-align:middle;line-height:1;">3 min read</span></h2><p class="aigenos-desc" style="margin:-2px 0 12px;font-size:13px;color:#6b6b85;font-style:italic;line-height:1.4;">What moved in tools, benchmarks &amp; funding.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Benchmarks &amp; Evals</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;">No notable leaderboard moves on LMSYS or SWE-bench in the last 48 hours; focus remains on the integration of the new 1.6T parameter class models into existing evaluation pipelines.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Repo &amp; Model Velocity</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=longcat.chat&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://longcat.chat/blog/longcat-2.0/">Longcat 2.0</a></strong> — 1.6T parameter model; currently the primary focus for local LLM enthusiasts testing sparse architecture performance.</li>
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://github.com/huggingface/diffusers">Diffusers</a></strong> — Seeing renewed interest as developers integrate the new Multi-Resolution Flow Matching techniques.</li>
+</ul>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">Funding &amp; Launches — with Thesis</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=wsj.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.wsj.com/tech/ai/ai-data-centers-water-use-901e2902">Data Center Infrastructure Monitoring</a><sup class="aigenos-deadlink" title="link did not respond at send time" style="color:#b45309;font-size:11px;font-weight:700;">⚠</sup></strong> — Thesis: The rising regulatory and environmental pressure on AI data centers creates a massive opportunity for real-time, AI-driven resource optimization and reporting SaaS.</li>
+</ul>
+
+<!--SECTION:deep-->
+<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;line-height:1.3;">🔬 Deep Reads — For When You Have Time (skip if rushed)</h2><p class="aigenos-desc" style="margin:-2px 0 12px;font-size:13px;color:#6b6b85;font-style:italic;line-height:1.4;">The one paper to actually read this week.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📖 The One Deep Read</h3>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://www.reddit.com/r/LocalLLaMA/comments/1unxqw5/paper_multiresolution_flow_matching_trainingfree/">Multi-Resolution Flow Matching: Training-Free Diffusion Acceleration via Staged Sampling</a></strong>. This paper is essential for anyone building image generation pipelines; it provides a mathematical framework to accelerate diffusion without the need for expensive fine-tuning or distillation. Read it to understand how to decouple generation quality from compute cost.</p>
+<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;line-height:1.65;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;">Read it for:</strong> The implementation details of staged sampling that allow for dynamic resolution adjustment during inference.</p>
+
+<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;font-weight:650;letter-spacing:-0.005em;line-height:1.35;">📑 Supporting Research</h3>
+<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">
+<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;line-height:1.6;"><strong class="aigenos-strong" style="color:#14142a;font-weight:650;"><img src="https://www.google.com/s2/favicons?domain=longcat.chat&sz=64" width="14" height="14" alt="" style="vertical-align:middle;margin:0 5px 2px 0;border-radius:3px;border:0;display:inline-block;"><a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;border-bottom:1px solid rgba(15,118,110,0.30);" href="https://longcat.chat/blog/longcat-2.0/">Longcat 2.0 Technical Report</a></strong> — Details the sparse activation strategy (48B active) that allows a 1.6T model to run on high-end consumer/prosumer hardware.</li>
+</ul>
+    <div style="margin:28px 0 8px;padding:22px 24px;border-radius:16px;background:linear-gradient(135deg,#065f46,#0d9488);color:#ffffff;text-align:center;"><div style="font-size:18px;font-weight:800;letter-spacing:-0.01em;">Want every validated bet?</div><div style="font-size:14px;opacity:.92;margin:8px 0 14px;line-height:1.5;">Today’s Opportunity of the Day is just the teaser. <strong>The Builder’s Edge</strong> gives subscribers 3–5 fully-validated bets a day — prior-art checked, with the moat and a two-week plan for each.</div><a href="https://buttondown.com/dailybyaigenos" style="display:inline-block;background:#ffffff;color:#0f766e;font-weight:700;text-decoration:none;padding:11px 26px;border-radius:999px;font-size:15px;">Subscribe →</a></div>
+  </div>
+
+  <div class="aigenos-signoff" style="text-align:center;margin:26px 0 4px;padding:4px 8px;"><div class="aigenos-signoff-q" style="font-size:14px;font-weight:600;color:#14142a;margin-bottom:12px;">How was today’s issue?</div><div><a href="mailto:mukeshatnyc1@gmail.com?subject=dAIly%20feedback%20(Jul 05):%20loved" style="text-decoration:none;display:inline-block;margin:0 8px;font-size:30px;line-height:1;" title="Loved it">😍</a><a href="mailto:mukeshatnyc1@gmail.com?subject=dAIly%20feedback%20(Jul 05):%20ok" style="text-decoration:none;display:inline-block;margin:0 8px;font-size:30px;line-height:1;" title="It was OK">🙂</a><a href="mailto:mukeshatnyc1@gmail.com?subject=dAIly%20feedback%20(Jul 05):%20meh" style="text-decoration:none;display:inline-block;margin:0 8px;font-size:30px;line-height:1;" title="Not great">😕</a></div><div class="aigenos-signoff-s" style="font-size:13px;color:#6b6b85;margin-top:16px;line-height:1.5;">Until next time — the <strong>aigenos</strong> team 👋</div></div>
+
+  <!-- Footer -->
+  <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
+    <strong style="color:#0f766e;font-weight:700;">dAIly</strong> by aigenos<br><a style="color:#0f766e;text-decoration:none;font-weight:600;" href="https://aigenos.github.io/dAIly/digests/digest_20260705.html">Read online</a> &nbsp;·&nbsp; <a style="color:#0f766e;text-decoration:none;font-weight:600;" href="https://buttondown.com/dailybyaigenos">Subscribe</a>
+  </div>
+
+</div>
+</body>
+</html>
