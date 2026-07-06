@@ -110,6 +110,34 @@ class TestPromptRules(unittest.TestCase):
     def test_link_hygiene_rule_in_instructions(self):
         self.assertIn("LINK HYGIENE", build_instructions())
 
+    def test_importance_order_and_consolidation_rules(self):
+        # Items must be ordered by AI-footprint impact with depth to match, and
+        # multi-newsletter coverage of one story must merge into one entry.
+        self.assertIn("IMPORTANCE ORDER", analyzer.SYSTEM_PROMPT)
+        self.assertIn("CONSOLIDATE COVERAGE", analyzer.SYSTEM_PROMPT)
+
+    def test_viral_x_threads_in_scope(self):
+        self.assertIn("x.com", analyzer.SYSTEM_PROMPT)
+
+
+class TestSourceCoverage(unittest.TestCase):
+    def test_top_newsletters_present(self):
+        from src import sources
+        names = [f.name for f in sources.RSS_FEEDS]
+        for name in ("The Rundown AI", "SemiAnalysis", "Simon Willison"):
+            self.assertIn(name, names)
+
+    def test_missing_feed_newsletters_covered_by_web_search(self):
+        from src import sources
+        targets = " ".join(sources.WEB_SEARCH_TARGETS)
+        for needle in ("theneurondaily", "bensbites", "superhuman", "alphasignal", "x.com"):
+            self.assertIn(needle, targets.lower())
+
+    def test_newsletter_authority_ranks_above_base(self):
+        from src.enrich import _AUTHORITY, _CATEGORY_BASE
+        self.assertGreater(_AUTHORITY["The Rundown AI"], _CATEGORY_BASE["newsletter"])
+        self.assertGreater(_AUTHORITY["The Neuron"], _CATEGORY_BASE["newsletter"])
+
 
 class TestTwoPassOpportunity(unittest.TestCase):
     FIRST = (

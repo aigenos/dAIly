@@ -54,8 +54,11 @@ RSS_FEEDS: list[Feed] = [
     Feed("Gradient Flow", "https://gradientflow.com/feed/", "newsletter"),
     Feed("The Rundown AI", "https://rss.beehiiv.com/feeds/2R3C6Bt5wj.xml", "newsletter"),
     Feed("The Gradient", "https://thegradient.pub/rss/", "newsletter"),
-    # NOTE: The Batch (DeepLearning.AI) and The Neuron 404 on their published
-    # RSS URLs — covered via WEB_SEARCH_TARGETS instead.
+    Feed("SemiAnalysis", "https://www.semianalysis.com/feed", "newsletter"),
+    Feed("The Sequence", "https://thesequence.substack.com/feed", "newsletter"),
+    Feed("Simon Willison", "https://simonwillison.net/atom/everything/", "newsletter"),
+    # NOTE: The Batch (DeepLearning.AI), The Neuron, Ben's Bites, Superhuman AI,
+    # and AlphaSignal hide or 404 their RSS — covered via WEB_SEARCH_TARGETS.
 
     # ── AI infra / tooling vendors (verified reachable) ──────────────────────
     Feed("LangChain", "https://blog.langchain.dev/rss/", "infra"),
@@ -69,6 +72,7 @@ RSS_FEEDS: list[Feed] = [
     Feed("r/LocalLLaMA (top/day)", "https://www.reddit.com/r/LocalLLaMA/top/.rss?t=day", "community"),
     Feed("r/MachineLearning (top/day)", "https://www.reddit.com/r/MachineLearning/top/.rss?t=day", "community"),
     Feed("r/OpenAI (top/day)", "https://www.reddit.com/r/OpenAI/top/.rss?t=day", "community"),
+    Feed("r/singularity (top/day)", "https://www.reddit.com/r/singularity/top/.rss?t=day", "community"),
     Feed("HN AI/LLM/agent (50+ pts)", "https://hnrss.org/newest?q=AI+OR+LLM+OR+agent&points=50", "community"),
 ]
 
@@ -86,9 +90,23 @@ WEB_SEARCH_TARGETS: list[str] = [
     # buried below the feed window.
     "OpenAI announcements and research (openai.com/news, openai.com/research)",
     "Google DeepMind and Google AI announcements (deepmind.google, blog.google/technology/ai)",
-    # Newsletters without reliable RSS — pull latest issues directly.
+    # Newsletters without reliable RSS — pull latest issues directly. These run
+    # deep, detailed stories on the top AI players; mine them for anything the
+    # feed list missed and link the PRIMARY source each story covers.
     "The Batch by DeepLearning.AI — latest issue (deeplearning.ai/the-batch)",
     "The Neuron daily newsletter — latest issue (theneurondaily.com)",
+    "The Rundown AI — latest issue, backfill anything the feed missed (therundown.ai)",
+    "Ben's Bites — latest issue highlights (bensbites.com)",
+    "Superhuman AI newsletter — latest issue (superhuman.ai)",
+    "AlphaSignal — latest issue, top models/repos/papers (alphasignal.ai)",
+    # Viral X (Twitter) AI threads — often where new insights break FIRST.
+    "Viral AI threads on X (x.com / Twitter) from the last 24–72 hours — "
+    "new-insight threads from researchers and builders (e.g. Andrej Karpathy, "
+    "Sam Altman, Yann LeCun, Jim Fan, François Chollet, official OpenAI / "
+    "Anthropic / Google DeepMind / Meta AI / xAI / Mistral accounts), breakout "
+    "demo or benchmark threads, and post-mortems going viral. Only include "
+    "threads carrying genuinely NEW information or insight (not reposted news); "
+    "link the ORIGINAL x.com post and quantify virality (views, reposts, likes)",
     # Infra / vector DB / serving stacks with flaky or absent RSS.
     "LlamaIndex blog and releases (llamaindex.ai/blog, github.com/run-llama)",
     "Pinecone blog and product updates (pinecone.io/blog)",

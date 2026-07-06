@@ -46,9 +46,26 @@ newsletters, infra/tooling vendors, community feeds (Reddit, HN), and recent \
 arXiv papers. Some sources may be missing or stale — use web search to verify, \
 fill gaps, and pull anything important from the last few days that the candidate \
 list missed (especially trending GitHub repos, Hugging Face models, eval \
-leaderboard moves, AI funding rounds, and YC / Show HN / Product Hunt launches). \
-Cross-check claims; do not invent releases. Every factual claim must correspond \
-to a real, linkable primary source.
+leaderboard moves, AI funding rounds, YC / Show HN / Product Hunt launches, the \
+latest issues of the top AI newsletters, and viral X/Twitter threads from \
+researchers and labs that carry genuinely NEW insight — link the original x.com \
+post and note its virality). Cross-check claims; do not invent releases. Every \
+factual claim must correspond to a real, linkable primary source.
+
+CONSOLIDATE COVERAGE. Multiple newsletters often cover the same story. Merge \
+all coverage of one story into ONE entry: cite the PRIMARY source (the lab's \
+own post, the paper, the repo), and only add a secondary analysis link when it \
+genuinely adds depth (e.g. a SemiAnalysis teardown). Never emit two bullets \
+that are the same story wearing different sources.
+
+IMPORTANCE ORDER — DEPTH FOLLOWS IMPACT. Within EVERY section, order items \
+strictly by AI-footprint impact: how much the item changes what an AI builder \
+can do, know, or access — frontier-capability jumps, then new tools/models \
+builders can adopt today, then research that will matter in months, then \
+ecosystem/business news. Spend detail in the same order: the top 1–3 items in a \
+section get the full treatment (what shipped, a number or benchmark, why it \
+matters, what to do about it); tail items get one tight line. Never give a \
+minor item a paragraph while a major one gets a clause.
 
 CITATIONS — NON-NEGOTIABLE. Every single factual claim, story, paper, release, \
 benchmark number, funding round, or opportunity proof-point MUST be followed by a \
@@ -150,7 +167,9 @@ do not manufacture drama.
 A <ul> of 8–12 ultra-tight one-line bullets covering everything else important
 today: model releases, infra changes, major AI policy / regulation / government
 actions, funding, eval leaderboard moves, big papers, ecosystem shifts, notable
-launches. Pattern per bullet:
+launches, and viral X threads that carry real new insight (link the original
+post). Order the bullets by impact — biggest capability change first. Pattern
+per bullet:
 <strong>X shipped Y</strong> — one-clause why-it-matters. <a>source</a>
 Skim-readable in under a minute. Cluster related bullets next to each other.
 Zero filler. If it doesn't change a builder's decisions or signal a gap, cut it.""")
@@ -329,7 +348,7 @@ def build_instructions() -> str:
 # the full briefing fits ~10K input tokens with all feeds healthy.
 _PER_SOURCE_CAP = {
     "lab": 3,
-    "newsletter": 2,
+    "newsletter": 3,  # top newsletters run several high-detail stories per issue
     "infra": 2,
     "community": 4,
     "research": 5,

@@ -26,6 +26,13 @@ _AUTHORITY = {
     "Mistral": 85, "Hugging Face": 85, "Google AI (The Keyword)": 78,
     "Microsoft Research": 75, "NVIDIA Developer": 75, "Microsoft AI Blog": 70,
     "Cohere": 70, "Together AI": 66, "AWS ML Blog": 62, "LangChain": 60,
+    # Top AI newsletters: high-detail coverage of the major players. Below the
+    # frontier labs (their stories are secondary coverage) but well above the
+    # generic newsletter base so their key articles reliably make the cut.
+    "SemiAnalysis": 84, "Import AI": 82, "The Rundown AI": 80,
+    "Latent Space": 80, "Interconnects (Lambert)": 80, "The Neuron": 78,
+    "Simon Willison": 78, "Ahead of AI (Raschka)": 76, "Ben's Bites": 74,
+    "AlphaSignal": 74, "The Sequence": 72, "Superhuman AI": 72, "TLDR AI": 70,
 }
 _CATEGORY_BASE = {
     "lab": 68, "research": 60, "newsletter": 55, "infra": 52, "community": 46,

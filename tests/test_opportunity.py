@@ -3,6 +3,7 @@ and that the paid 'Builder's Edge' template is a valid private section."""
 
 from __future__ import annotations
 
+import contextlib
 import importlib.util
 import os
 import tempfile
@@ -156,10 +157,36 @@ class TestBuildersEdgeModule(unittest.TestCase):
 
 
 class TestBuildersEdgeActivation(unittest.TestCase):
-    """ENABLE_BUILDERS_EDGE loads the bundled paid section (no private module)."""
+    """ENABLE_BUILDERS_EDGE loads the bundled paid section (no private module).
+
+    A real src/private/opportunity.py (gitignored secret sauce) rightfully wins
+    over builders_edge, so these tests block that import to simulate the public
+    clone this activation path is for.
+    """
+
+    @staticmethod
+    @contextlib.contextmanager
+    def _no_private_module():
+        # `from .private import opportunity` resolves via the package attribute
+        # when the module was already imported, so hide BOTH the attribute and
+        # the sys.modules entry (a None entry forces ImportError on re-import).
+        import sys
+        from src import private as priv
+        saved_attr = priv.__dict__.pop("opportunity", None)
+        saved_mod = sys.modules.pop("src.private.opportunity", None)
+        sys.modules["src.private.opportunity"] = None  # type: ignore[assignment]
+        try:
+            yield
+        finally:
+            sys.modules.pop("src.private.opportunity", None)
+            if saved_mod is not None:
+                sys.modules["src.private.opportunity"] = saved_mod
+            if saved_attr is not None:
+                priv.opportunity = saved_attr
 
     def test_loads_when_enabled(self):
-        with mock.patch.dict(os.environ, {"ENABLE_BUILDERS_EDGE": "true"}, clear=False):
+        with self._no_private_module(), \
+             mock.patch.dict(os.environ, {"ENABLE_BUILDERS_EDGE": "true"}, clear=False):
             ids = analyzer.private_section_ids()
             sentinels = analyzer.private_sentinels()
             instructions = build_instructions()
@@ -171,7 +198,7 @@ class TestBuildersEdgeActivation(unittest.TestCase):
     def test_absent_when_disabled(self):
         env = dict(os.environ)
         env.pop("ENABLE_BUILDERS_EDGE", None)
-        with mock.patch.dict(os.environ, env, clear=True):
+        with self._no_private_module(), mock.patch.dict(os.environ, env, clear=True):
             self.assertNotIn("builders_edge", analyzer.private_section_ids())
 
 
