@@ -31,17 +31,17 @@ GOOD = {
 
 class TestFromDomain(unittest.TestCase):
     def test_display_name_form(self):
-        self.assertEqual(_from_domain("dAIly <digest@aigenos.dev>"), "aigenos.dev")
+        self.assertEqual(_from_domain("dAIly <daily@aigenos.dev>"), "aigenos.dev")
 
     def test_bare_address(self):
-        self.assertEqual(_from_domain("digest@aigenos.dev"), "aigenos.dev")
+        self.assertEqual(_from_domain("daily@aigenos.dev"), "aigenos.dev")
 
     def test_empty(self):
         self.assertEqual(_from_domain(""), "")
 
 
 class TestRunChecks(unittest.TestCase):
-    def _run(self, responses, email_from="dAIly <digest@aigenos.dev>", audience="aud_1"):
+    def _run(self, responses, email_from="dAIly <daily@aigenos.dev>", audience="aud_1"):
         with mock.patch.object(resend_doctor, "_get", _fake_get(responses)):
             return run_checks("re_key", email_from, audience)
 
@@ -63,7 +63,7 @@ class TestRunChecks(unittest.TestCase):
 
     def test_onboarding_sender_autoresolves_with_verified_domain(self):
         rows = self._run(GOOD, email_from="AI Digest <onboarding@resend.dev>")
-        self.assertTrue(any(ok and "auto-send as digest@aigenos.dev" in msg
+        self.assertTrue(any(ok and "auto-send as daily@aigenos.dev" in msg
                             for ok, msg in rows))
 
     def test_onboarding_sender_fails_without_verified_domain(self):
@@ -93,7 +93,7 @@ class TestRunChecks(unittest.TestCase):
         resp = dict(GOOD)
         resp["/audiences/aud_1/contacts"] = (200, {"data": []})
         with mock.patch.object(resend_doctor, "_get", _fake_get(resp)):
-            rows = run_checks("re_key", "dAIly <digest@aigenos.dev>", "aud_1",
+            rows = run_checks("re_key", "dAIly <daily@aigenos.dev>", "aud_1",
                               buttondown_key="bd-key")
         self.assertTrue(all(ok for ok, _ in rows), rows)
         self.assertTrue(any("auto-sync" in msg or "auto-migrate" in msg

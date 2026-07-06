@@ -105,7 +105,7 @@ def _resolve_sender(cfg: Config) -> str:
         if d.get("status") == "verified" and d.get("name")
     ]
     if verified:
-        derived = f"dAIly <digest@{verified[0]}>"
+        derived = f"dAIly <daily@{verified[0]}>"
         log.info("auto-using sender %s (EMAIL_FROM not set to a custom domain)", derived)
         return derived
     log.warning(

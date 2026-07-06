@@ -89,7 +89,7 @@ def run_checks(
         rows.append((True, f"EMAIL_FROM looks good ({email_from})."))
     elif verified:
         rows.append((True, f"EMAIL_FROM not set to a custom domain — broadcasts "
-                           f"auto-send as digest@{verified[0]['name']}."))
+                           f"auto-send as daily@{verified[0]['name']}."))
     else:
         rows.append((False, "No custom sender possible yet — verify a domain first "
                             "(see above)."))

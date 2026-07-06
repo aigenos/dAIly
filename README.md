@@ -147,7 +147,7 @@ as a direct send, theirs as a Broadcast. Free tier covers 1,000 contacts.
 records it shows; your existing mailboxes are untouched — the records live on a
 `send.` subdomain). That's it. On the next run the pipeline configures itself:
 
-- **Sender** — auto-sends as `digest@<your-verified-domain>` (or set
+- **Sender** — auto-sends as `daily@<your-verified-domain>` (or set
   `EMAIL_FROM` to choose the address).
 - **Audience** — auto-uses your first Resend audience, or creates
   *"dAIly subscribers"* if none exists (`RESEND_AUDIENCE_ID` overrides).

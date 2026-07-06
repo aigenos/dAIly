@@ -28,7 +28,7 @@ def _cfg(**env):
         "DRY_RUN": "true",
         "SITE_URL": "https://me.github.io/dAIly",
         "EMAIL_TO": "to@example.com",
-        "EMAIL_FROM": "dAIly <digest@aigenos.io>",
+        "EMAIL_FROM": "dAIly <daily@aigenos.io>",
         "RESEND_API_KEY": "re-key",
         "RESEND_AUDIENCE_ID": "aud_1",
     }
@@ -139,7 +139,7 @@ class TestSendSubscribers(unittest.TestCase):
         self.assertEqual(post.call_args_list[1].kwargs["json"]["audience_id"], "aud_new")
 
     def test_sender_derived_from_verified_domain(self):
-        # EMAIL_FROM left on the onboarding default -> digest@<verified domain>.
+        # EMAIL_FROM left on the onboarding default -> daily@<verified domain>.
         cfg = _cfg(EMAIL_FROM=None)
         domains = mock.Mock(status_code=200)
         domains.json.return_value = {"data": [{"name": "aigenos.io", "status": "verified"}]}
@@ -150,7 +150,7 @@ class TestSendSubscribers(unittest.TestCase):
                                   sentinels=["Full Opportunity Map"])
         self.assertTrue(ok)
         self.assertEqual(post.call_args_list[0].kwargs["json"]["from"],
-                         "dAIly <digest@aigenos.io>")
+                         "dAIly <daily@aigenos.io>")
 
     def test_skipped_when_no_verified_domain(self):
         cfg = _cfg(EMAIL_FROM=None)
