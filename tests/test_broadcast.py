@@ -117,5 +117,23 @@ class TestSendSubscribers(unittest.TestCase):
         self.assertEqual(post.call_count, 1)  # never reached the send step
 
 
+class TestSingleSubscriberChannel(unittest.TestCase):
+    def test_buttondown_skipped_when_resend_audience_set(self):
+        # Both configured -> only Resend delivers to subscribers; Buttondown must
+        # NOT send a second, differently-rendered copy.
+        from src import notifiers
+        cfg = _cfg(BUTTONDOWN_API_KEY="bd-key")
+        with mock.patch.object(notifiers, "send_buttondown") as bd:
+            notifiers.notify_all(cfg, BODY, NOW, [], [])
+        bd.assert_not_called()
+
+    def test_buttondown_still_used_without_audience(self):
+        from src import notifiers
+        cfg = _cfg(RESEND_AUDIENCE_ID="", BUTTONDOWN_API_KEY="bd-key")
+        with mock.patch.object(notifiers, "send_buttondown") as bd:
+            notifiers.notify_all(cfg, BODY, NOW, [], [])
+        bd.assert_called_once()
+
+
 if __name__ == "__main__":
     unittest.main()

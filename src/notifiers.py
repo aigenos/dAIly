@@ -261,7 +261,19 @@ def notify_all(
     sentinels: list[str] | None = None,
 ) -> None:
     """Post the teaser to every configured channel. No-op for unconfigured ones."""
-    send_buttondown(cfg, body_fragment, now, private_ids, sentinels)
+    # Resend Broadcasts (src/broadcast.py) is the subscriber channel of record
+    # when configured: it sends the copy IDENTICAL to the owner's. Skip the
+    # Buttondown send then, so subscribers never receive a second copy wrapped
+    # in Buttondown's own template with our styling sanitized away.
+    if getattr(cfg, "resend_audience_id", ""):
+        if cfg.buttondown_api_key:
+            log.info(
+                "skipping Buttondown send — RESEND_AUDIENCE_ID is set, so Resend "
+                "Broadcasts delivers to subscribers (remove BUTTONDOWN_API_KEY "
+                "to silence this)"
+            )
+    else:
+        send_buttondown(cfg, body_fragment, now, private_ids, sentinels)
     teaser = build_teaser(cfg, body_fragment, now)
 
     if cfg.slack_webhook_url:
