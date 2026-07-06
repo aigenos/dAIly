@@ -1,0 +1,32 @@
+name: Resend Doctor
+
+# Manual, read-only health check for subscriber delivery: validates the API key,
+# the verified sending domain, EMAIL_FROM, the audience id, and contact count —
+# and prints exactly what to fix. Run it from the Actions tab after each setup
+# step. It never sends email.
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  doctor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install requests
+        run: pip install requests
+
+      - name: Check Resend setup
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ vars.EMAIL_FROM }}
+          RESEND_AUDIENCE_ID: ${{ vars.RESEND_AUDIENCE_ID }}
+        run: python -m scripts.resend_doctor
