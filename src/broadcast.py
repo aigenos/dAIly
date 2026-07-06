@@ -92,10 +92,12 @@ def _resolve_audience(cfg: Config) -> str:
     return ""
 
 
-def _resolve_sender(cfg: Config) -> str:
-    """The From address for the broadcast. EMAIL_FROM wins unless it's still on
+def resolve_sender(cfg: Config) -> str:
+    """The branded From address. EMAIL_FROM wins unless it's still on
     resend.dev (the shared onboarding sender, which cannot broadcast) — then
-    derive digest@<first-verified-domain>. '' means no usable sender yet."""
+    derive daily@<first-verified-domain>. '' means no usable sender yet.
+    Used for the subscriber broadcast AND to upgrade the owner copy's sender
+    once a domain is verified (see main.run)."""
     sender = cfg.email_from
     if sender and "resend.dev" not in sender.lower():
         return sender
@@ -210,7 +212,7 @@ def send_subscribers(
         )
         return False
 
-    sender = _resolve_sender(cfg)
+    sender = resolve_sender(cfg)
     if not sender:
         return False  # no verified domain yet — the one manual prerequisite
     audience_id = _resolve_audience(cfg)

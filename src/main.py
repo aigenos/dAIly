@@ -6,6 +6,7 @@ In CI:        invoked by .github/workflows/daily-ai-digest.yml
 
 from __future__ import annotations
 
+import dataclasses
 import logging
 import sys
 from datetime import datetime, timezone
@@ -48,6 +49,18 @@ def run() -> int:
     cfg = Config.from_env()
     now = datetime.now(timezone.utc)
     log.info("starting daily digest run (model=%s, lookback=%dd)", cfg.model, cfg.lookback_days)
+
+    # Brand the sender everywhere: once a domain is verified in Resend, the
+    # owner copy upgrades from onboarding@resend.dev to daily@<domain> — the
+    # same address the subscriber broadcast uses. Fail-open: any API hiccup
+    # keeps the configured sender, so the owner email always goes out.
+    if cfg.resend_api_key and not cfg.dry_run:
+        try:
+            sender = broadcast.resolve_sender(cfg)
+            if sender and sender != cfg.email_from:
+                cfg = dataclasses.replace(cfg, email_from=sender)
+        except Exception as exc:  # noqa: BLE001 — cosmetic upgrade, never fatal
+            log.debug("sender resolution skipped: %s", exc)
 
     # 1. Fetch
     feed_items = fetch_all_feeds(cfg.lookback_days, now)

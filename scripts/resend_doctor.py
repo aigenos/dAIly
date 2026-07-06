@@ -58,8 +58,11 @@ def run_checks(
                             "network issue; re-run."))
         return rows
     if code in (401, 403):
-        rows.append((False, "RESEND_API_KEY is invalid or lacks permission → create a "
-                            "fresh key with Full access at resend.com → API Keys."))
+        rows.append((False, "RESEND_API_KEY is invalid or has 'Sending access' "
+                            "permission only (enough to email you, not enough for "
+                            "broadcasts/audiences) → create a key with FULL ACCESS "
+                            "at resend.com → API Keys, then update the "
+                            "RESEND_API_KEY secret in GitHub."))
         return rows
     rows.append((True, "RESEND_API_KEY works."))
 
