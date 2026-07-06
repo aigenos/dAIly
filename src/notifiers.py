@@ -259,18 +259,20 @@ def notify_all(
     now: datetime,
     private_ids: list[str] | None = None,
     sentinels: list[str] | None = None,
+    subscribers_delivered: bool = False,
 ) -> None:
-    """Post the teaser to every configured channel. No-op for unconfigured ones."""
-    # Resend Broadcasts (src/broadcast.py) is the subscriber channel of record
-    # when configured: it sends the copy IDENTICAL to the owner's. Skip the
-    # Buttondown send then, so subscribers never receive a second copy wrapped
-    # in Buttondown's own template with our styling sanitized away.
-    if getattr(cfg, "resend_audience_id", ""):
+    """Post the teaser to every configured channel. No-op for unconfigured ones.
+
+    `subscribers_delivered` means the Resend Broadcast (src/broadcast.py) already
+    sent subscribers the copy IDENTICAL to the owner's — skip Buttondown so they
+    never get a second copy wrapped in Buttondown's own template. When the
+    broadcast did NOT go out (e.g. domain not verified yet), Buttondown still
+    sends, so subscribers never miss an issue mid-migration."""
+    if subscribers_delivered:
         if cfg.buttondown_api_key:
             log.info(
-                "skipping Buttondown send — RESEND_AUDIENCE_ID is set, so Resend "
-                "Broadcasts delivers to subscribers (remove BUTTONDOWN_API_KEY "
-                "to silence this)"
+                "skipping Buttondown send — Resend Broadcast already delivered "
+                "to subscribers (remove BUTTONDOWN_API_KEY to silence this)"
             )
     else:
         send_buttondown(cfg, body_fragment, now, private_ids, sentinels)

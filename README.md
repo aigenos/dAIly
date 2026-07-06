@@ -137,33 +137,33 @@ truly-private customized version, copy that file to `src/private/opportunity.py`
 - **Polish (optional):** `bash scripts/repo_setup.sh` sets your fork's
   description + topics via the `gh` CLI.
 
-### Enable subscriptions
+### Enable subscriptions — one step
 
-*Recommended: Resend — subscribers get the **identical** newsletter you do.*
+Subscribers get the **identical** newsletter you do (same hero, cards, dark
+mode), because both copies go out through [Resend](https://resend.com) — yours
+as a direct send, theirs as a Broadcast. Free tier covers 1,000 contacts.
 
-You already use [Resend](https://resend.com) to send your own copy. Send the
-**same styled HTML** to subscribers via Resend **Broadcasts** and both inboxes
-get a byte-for-byte identical issue — same hero, cards, and dark mode. Free tier
-covers 1,000 contacts with unlimited broadcasts.
+**The one step:** verify your domain at Resend → **Domains** (add the 3 DNS
+records it shows; your existing mailboxes are untouched — the records live on a
+`send.` subdomain). That's it. On the next run the pipeline configures itself:
 
-1. In Resend → **Audiences** → *New*, create an audience and copy its ID.
-2. In **Settings → Secrets and variables → Actions**, add **Variable**
-   `RESEND_AUDIENCE_ID` = that ID. Every run now Broadcasts the public issue
-   (private sections stripped, fail-closed) to all subscribers, with Resend's
-   managed one-click **unsubscribe** link injected automatically.
-3. **Capture signups.** Resend has no hosted form, so deploy the tiny Cloudflare
-   Worker in [`subscribe/`](./subscribe/) (free, ~2 min) and set **Variable**
-   `SUBSCRIBE_FORM_ACTION` to its URL — the landing page form now feeds the same
-   audience. Full walkthrough: [`subscribe/README.md`](./subscribe/README.md).
+- **Sender** — auto-sends as `digest@<your-verified-domain>` (or set
+  `EMAIL_FROM` to choose the address).
+- **Audience** — auto-uses your first Resend audience, or creates
+  *"dAIly subscribers"* if none exists (`RESEND_AUDIENCE_ID` overrides).
+- **Existing Buttondown list** — auto-migrates: subscribers sync into the
+  Resend audience every run, and the Buttondown send stands down as soon as
+  the Broadcast succeeds (and still delivers as fallback if it doesn't).
+- **Unsubscribe** — Resend's managed one-click link is injected automatically.
+- **Signup form** — keep Buttondown's free form (`SUBSCRIBE_HANDLE`) as the
+  capture box; new signups flow into Resend via the sync. Or go fully
+  Resend-native with the tiny Worker in [`subscribe/`](./subscribe/).
+
+Run the **Resend Doctor** workflow (Actions tab) any time — it read-only checks
+the whole chain and prints exactly what's missing.
 
 **Feedback + replies** route to the aigenos owner: the 😍 🙂 😕 widget and the
 email `Reply-To` both default to `EMAIL_TO` (set `FEEDBACK_EMAIL` to override).
-
-> Prefer a hosted form with no Worker? [Buttondown](https://buttondown.com) is
-> free ≤ 100 subs and captures + sends with no backend — set `SUBSCRIBE_HANDLE`
-> (your username) and secret `BUTTONDOWN_API_KEY`. Note it sanitizes HTML, so the
-> layout can differ slightly from your Resend copy. Other hosts: set
-> `SUBSCRIBE_URL`, `SUBSCRIBE_FORM_ACTION`, and `UNSUBSCRIBE_URL` explicitly.
 
 Prefer no newsletter service at all? `docs/feed.xml` is an Atom feed of the
 archive — readers can follow via RSS with zero setup.

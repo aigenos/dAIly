@@ -29,4 +29,5 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_FROM: ${{ vars.EMAIL_FROM }}
           RESEND_AUDIENCE_ID: ${{ vars.RESEND_AUDIENCE_ID }}
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
         run: python -m scripts.resend_doctor

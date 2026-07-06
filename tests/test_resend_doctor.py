@@ -61,24 +61,43 @@ class TestRunChecks(unittest.TestCase):
         rows = self._run(resp)
         self.assertTrue(any(not ok and "NOT verified" in msg for ok, msg in rows))
 
-    def test_onboarding_sender_flagged(self):
+    def test_onboarding_sender_autoresolves_with_verified_domain(self):
         rows = self._run(GOOD, email_from="AI Digest <onboarding@resend.dev>")
-        self.assertTrue(any(not ok and "onboarding@resend.dev" in msg for ok, msg in rows))
+        self.assertTrue(any(ok and "auto-send as digest@aigenos.dev" in msg
+                            for ok, msg in rows))
 
-    def test_missing_audience_lists_available(self):
+    def test_onboarding_sender_fails_without_verified_domain(self):
+        resp = dict(GOOD)
+        resp["/domains"] = (200, {"data": []})
+        rows = self._run(resp, email_from="AI Digest <onboarding@resend.dev>")
+        self.assertTrue(any(not ok and "verify a domain" in msg.lower()
+                            for ok, msg in rows))
+
+    def test_missing_audience_autoresolves(self):
         rows = self._run(GOOD, audience="")
-        bad = [msg for ok, msg in rows if not ok]
-        self.assertTrue(any("General=aud_1" in m for m in bad))
+        self.assertTrue(any(ok and "auto-use 'General'" in msg for ok, msg in rows))
+        # contact count still reported via the auto-resolved audience
+        self.assertTrue(any(ok and "contact(s)" in msg for ok, msg in rows))
 
     def test_wrong_audience_id_flagged(self):
         rows = self._run(GOOD, audience="aud_nope")
         self.assertTrue(any(not ok and "not found" in msg for ok, msg in rows))
 
-    def test_empty_audience_flagged(self):
+    def test_empty_audience_flagged_without_buttondown(self):
         resp = dict(GOOD)
         resp["/audiences/aud_1/contacts"] = (200, {"data": []})
         rows = self._run(resp)
         self.assertTrue(any(not ok and "0 contacts" in msg for ok, msg in rows))
+
+    def test_empty_audience_ok_with_buttondown_sync(self):
+        resp = dict(GOOD)
+        resp["/audiences/aud_1/contacts"] = (200, {"data": []})
+        with mock.patch.object(resend_doctor, "_get", _fake_get(resp)):
+            rows = run_checks("re_key", "dAIly <digest@aigenos.dev>", "aud_1",
+                              buttondown_key="bd-key")
+        self.assertTrue(all(ok for ok, _ in rows), rows)
+        self.assertTrue(any("auto-sync" in msg or "auto-migrate" in msg
+                            for _, msg in rows))
 
     def test_bad_key_reported(self):
         resp = {"/domains": (401, {})}

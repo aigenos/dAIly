@@ -126,9 +126,16 @@ def run() -> int:
     send_email(cfg, subject_line(now), html)
     # Subscribers get the same styled issue via Resend Broadcasts (public version,
     # managed unsubscribe). Fail-open: the owner email above is the guaranteed
-    # deliverable, so a Broadcast error never aborts the run.
-    broadcast.send_subscribers(cfg, body, now, private_section_ids(), private_sentinels())
-    notifiers.notify_all(cfg, body, now, private_section_ids(), private_sentinels())
+    # deliverable, so a Broadcast error never aborts the run. When Resend
+    # delivered, notify_all skips the Buttondown send (no second copy); when it
+    # didn't (e.g. domain not verified yet), Buttondown remains the fallback.
+    delivered = broadcast.send_subscribers(
+        cfg, body, now, private_section_ids(), private_sentinels()
+    )
+    notifiers.notify_all(
+        cfg, body, now, private_section_ids(), private_sentinels(),
+        subscribers_delivered=delivered,
+    )
 
     # 5. Persist cross-day dedup state — only after a successful real delivery,
     # and only for the items the model actually saw (the prompt selection).

@@ -41,7 +41,9 @@ def _from_domain(email_from: str) -> str:
     return addr.rsplit("@", 1)[-1].lower() if "@" in addr else ""
 
 
-def run_checks(api_key: str, email_from: str, audience_id: str) -> list[tuple[bool, str]]:
+def run_checks(
+    api_key: str, email_from: str, audience_id: str, buttondown_key: str = ""
+) -> list[tuple[bool, str]]:
     """Returns (passed, message) rows, in dependency order."""
     rows: list[tuple[bool, str]] = []
 
@@ -76,47 +78,63 @@ def run_checks(api_key: str, email_from: str, audience_id: str) -> list[tuple[bo
                             "Domains (broadcasts to subscribers cannot use "
                             "onboarding@resend.dev)."))
 
-    # 3. EMAIL_FROM matches a verified domain
+    # 3. Sender. EMAIL_FROM is optional: when unset (or still on resend.dev) the
+    # run auto-sends as digest@<first-verified-domain>.
     fd = _from_domain(email_from)
-    if not email_from:
-        rows.append((False, "EMAIL_FROM is not set → add the repo Variable, e.g. "
-                            '"dAIly <digest@yourdomain.com>".'))
-    elif fd == "resend.dev":
-        rows.append((False, "EMAIL_FROM still uses onboarding@resend.dev — fine for "
-                            "your own inbox, but broadcasts will fail → point it at "
-                            "your verified domain."))
-    elif verified and fd not in {d["name"].lower() for d in verified}:
+    verified_names = {d["name"].lower() for d in verified}
+    if email_from and fd not in ("", "resend.dev") and fd not in verified_names and verified:
         rows.append((False, f"EMAIL_FROM domain '{fd}' does not match a verified "
                             "domain → use an address on a verified domain."))
-    else:
+    elif email_from and fd in verified_names:
         rows.append((True, f"EMAIL_FROM looks good ({email_from})."))
+    elif verified:
+        rows.append((True, f"EMAIL_FROM not set to a custom domain — broadcasts "
+                           f"auto-send as digest@{verified[0]['name']}."))
+    else:
+        rows.append((False, "No custom sender possible yet — verify a domain first "
+                            "(see above)."))
 
-    # 4. Audience
+    # 4. Audience. Optional: the run auto-uses the first audience, or creates
+    # 'dAIly subscribers' if none exists.
     code, audiences = _get("/audiences", api_key)
     listing = audiences.get("data", []) if code < 300 else []
+    check_id = audience_id
     if not audience_id:
-        hint = (" Available: " + ", ".join(f"{a['name']}={a['id']}" for a in listing)
-                if listing else " Create one at resend.com → Audiences.")
-        rows.append((False, f"RESEND_AUDIENCE_ID is not set → add the repo Variable.{hint}"))
+        if listing:
+            check_id = listing[0]["id"]
+            rows.append((True, f"RESEND_AUDIENCE_ID not set — will auto-use "
+                               f"'{listing[0]['name']}' ({check_id})."))
+        else:
+            rows.append((True, "No audience yet — 'dAIly subscribers' will be "
+                               "auto-created on the first send."))
     elif listing and audience_id not in {a["id"] for a in listing}:
+        check_id = ""
         rows.append((False, f"RESEND_AUDIENCE_ID '{audience_id}' not found in this "
                             "account → copy the id from: "
                             + ", ".join(f"{a['name']}={a['id']}" for a in listing)))
     else:
         rows.append((True, f"Audience configured ({audience_id})."))
-        # 5. Contacts in the audience
-        code, contacts = _get(f"/audiences/{audience_id}/contacts", api_key)
+
+    # 5. Contacts in the audience (Buttondown lists auto-sync in at send time).
+    if check_id:
+        code, contacts = _get(f"/audiences/{check_id}/contacts", api_key)
         if code < 300:
-            n = len(contacts.get("data", []))
-            subscribed = sum(
-                1 for c in contacts.get("data", []) if not c.get("unsubscribed")
-            )
-            if n == 0:
-                rows.append((False, "Audience has 0 contacts → import your Buttondown "
-                                    "CSV (Audience → Import contacts) or add yourself "
-                                    "to test."))
+            data = contacts.get("data", [])
+            subscribed = sum(1 for c in data if not c.get("unsubscribed"))
+            if data:
+                rows.append((True, f"Audience has {len(data)} contact(s), "
+                                   f"{subscribed} subscribed."))
+            elif buttondown_key:
+                rows.append((True, "Audience is empty now — your Buttondown "
+                                   "subscribers auto-sync in on the first send."))
             else:
-                rows.append((True, f"Audience has {n} contact(s), {subscribed} subscribed."))
+                rows.append((False, "Audience has 0 contacts → add yourself at "
+                                    "resend.com → Audience (or keep the Buttondown "
+                                    "key set and its list auto-syncs in)."))
+    if buttondown_key:
+        rows.append((True, "Buttondown detected — its subscribers auto-migrate "
+                           "into Resend each run; Buttondown sending stops once "
+                           "the broadcast succeeds."))
     return rows
 
 
@@ -125,6 +143,7 @@ def main() -> int:
         os.environ.get("RESEND_API_KEY", "").strip(),
         os.environ.get("EMAIL_FROM", "").strip(),
         os.environ.get("RESEND_AUDIENCE_ID", "").strip(),
+        os.environ.get("BUTTONDOWN_API_KEY", "").strip(),
     )
     lines = ["# Resend subscriber-delivery checklist", ""]
     ok = True

@@ -28,10 +28,13 @@ def _cfg(**env):
         "DRY_RUN": "true",
         "SITE_URL": "https://me.github.io/dAIly",
         "EMAIL_TO": "to@example.com",
+        "EMAIL_FROM": "dAIly <digest@aigenos.io>",
         "RESEND_API_KEY": "re-key",
         "RESEND_AUDIENCE_ID": "aud_1",
     }
     base.update(env)
+    # Drop keys explicitly set to None so tests can simulate unset env vars.
+    base = {k: v for k, v in base.items() if v is not None}
     with mock.patch.dict(os.environ, base, clear=True):
         return Config.from_env()
 
@@ -102,10 +105,68 @@ class TestSendSubscribers(unittest.TestCase):
         self.assertFalse(ok)
         post.assert_not_called()
 
-    def test_noop_without_audience_id(self):
+    def test_audience_autoresolved_when_id_unset(self):
+        # No RESEND_AUDIENCE_ID -> the account's first audience is used.
+        cfg = _cfg(RESEND_AUDIENCE_ID=None)
+        listing = mock.Mock(status_code=200)
+        listing.json.return_value = {"data": [{"id": "aud_auto", "name": "General"}]}
+        post = _two_step_post()
+        with mock.patch.object(broadcast.requests, "get", return_value=listing), \
+             mock.patch.object(broadcast.requests, "post", post):
+            ok = send_subscribers(cfg, BODY, NOW, private_ids=["opportunity_map"],
+                                  sentinels=["Full Opportunity Map"])
+        self.assertTrue(ok)
+        create = post.call_args_list[0]
+        self.assertEqual(create.kwargs["json"]["audience_id"], "aud_auto")
+        # Unsubscribe merge tag still present despite UNSUBSCRIBE_URL being unset.
+        self.assertIn("{{{RESEND_UNSUBSCRIBE_URL}}}", create.kwargs["json"]["html"])
+
+    def test_audience_autocreated_when_none_exist(self):
+        cfg = _cfg(RESEND_AUDIENCE_ID=None)
+        empty = mock.Mock(status_code=200)
+        empty.json.return_value = {"data": []}
+        created_aud = mock.Mock(status_code=201)
+        created_aud.json.return_value = {"id": "aud_new"}
+        bc = mock.Mock(status_code=201); bc.json.return_value = {"id": "bc_1"}
+        sent = mock.Mock(status_code=200)
+        post = mock.Mock(side_effect=[created_aud, bc, sent])
+        with mock.patch.object(broadcast.requests, "get", return_value=empty), \
+             mock.patch.object(broadcast.requests, "post", post):
+            ok = send_subscribers(cfg, BODY, NOW, private_ids=["opportunity_map"],
+                                  sentinels=["Full Opportunity Map"])
+        self.assertTrue(ok)
+        self.assertEqual(post.call_args_list[0].kwargs["json"], {"name": "dAIly subscribers"})
+        self.assertEqual(post.call_args_list[1].kwargs["json"]["audience_id"], "aud_new")
+
+    def test_sender_derived_from_verified_domain(self):
+        # EMAIL_FROM left on the onboarding default -> digest@<verified domain>.
+        cfg = _cfg(EMAIL_FROM=None)
+        domains = mock.Mock(status_code=200)
+        domains.json.return_value = {"data": [{"name": "aigenos.io", "status": "verified"}]}
+        post = _two_step_post()
+        with mock.patch.object(broadcast.requests, "get", return_value=domains), \
+             mock.patch.object(broadcast.requests, "post", post):
+            ok = send_subscribers(cfg, BODY, NOW, private_ids=["opportunity_map"],
+                                  sentinels=["Full Opportunity Map"])
+        self.assertTrue(ok)
+        self.assertEqual(post.call_args_list[0].kwargs["json"]["from"],
+                         "dAIly <digest@aigenos.io>")
+
+    def test_skipped_when_no_verified_domain(self):
+        cfg = _cfg(EMAIL_FROM=None)
+        domains = mock.Mock(status_code=200)
+        domains.json.return_value = {"data": [{"name": "aigenos.io", "status": "pending"}]}
+        post = mock.Mock()
+        with mock.patch.object(broadcast.requests, "get", return_value=domains), \
+             mock.patch.object(broadcast.requests, "post", post):
+            ok = send_subscribers(cfg, BODY, NOW)
+        self.assertFalse(ok)
+        post.assert_not_called()
+
+    def test_noop_without_api_key(self):
         post = mock.Mock()
         with mock.patch.object(broadcast.requests, "post", post):
-            ok = send_subscribers(_cfg(RESEND_AUDIENCE_ID=""), BODY, NOW)
+            ok = send_subscribers(_cfg(RESEND_API_KEY="", DRY_RUN="true"), BODY, NOW)
         self.assertFalse(ok)
         post.assert_not_called()
 
@@ -118,21 +179,56 @@ class TestSendSubscribers(unittest.TestCase):
 
 
 class TestSingleSubscriberChannel(unittest.TestCase):
-    def test_buttondown_skipped_when_resend_audience_set(self):
-        # Both configured -> only Resend delivers to subscribers; Buttondown must
-        # NOT send a second, differently-rendered copy.
+    def test_buttondown_skipped_when_broadcast_delivered(self):
+        # Resend delivered the identical copy -> Buttondown must NOT send a
+        # second, differently-rendered one.
         from src import notifiers
         cfg = _cfg(BUTTONDOWN_API_KEY="bd-key")
         with mock.patch.object(notifiers, "send_buttondown") as bd:
-            notifiers.notify_all(cfg, BODY, NOW, [], [])
+            notifiers.notify_all(cfg, BODY, NOW, [], [], subscribers_delivered=True)
         bd.assert_not_called()
 
-    def test_buttondown_still_used_without_audience(self):
+    def test_buttondown_fallback_when_broadcast_failed(self):
+        # Broadcast didn't go out (e.g. domain not verified yet) -> Buttondown
+        # still delivers, so subscribers never miss an issue mid-migration.
         from src import notifiers
-        cfg = _cfg(RESEND_AUDIENCE_ID="", BUTTONDOWN_API_KEY="bd-key")
+        cfg = _cfg(BUTTONDOWN_API_KEY="bd-key")
         with mock.patch.object(notifiers, "send_buttondown") as bd:
-            notifiers.notify_all(cfg, BODY, NOW, [], [])
+            notifiers.notify_all(cfg, BODY, NOW, [], [], subscribers_delivered=False)
         bd.assert_called_once()
+
+
+class TestButtondownSync(unittest.TestCase):
+    def test_missing_subscribers_are_added(self):
+        cfg = _cfg(BUTTONDOWN_API_KEY="bd-key")
+        contacts = mock.Mock(status_code=200)
+        contacts.json.return_value = {"data": [{"email": "already@x.com"}]}
+        bd_list = mock.Mock(status_code=200)
+        bd_list.json.return_value = {"results": [
+            {"email_address": "already@x.com", "subscriber_type": "regular"},
+            {"email_address": "new@x.com", "subscriber_type": "regular"},
+            {"email_address": "gone@x.com", "subscriber_type": "unsubscribed"},
+            {"email_address": "not-an-email", "subscriber_type": "regular"},
+        ], "next": None}
+        post = mock.Mock(return_value=mock.Mock(status_code=201))
+        with mock.patch.object(broadcast.requests, "get",
+                               side_effect=[contacts, bd_list]), \
+             mock.patch.object(broadcast.requests, "post", post):
+            added = broadcast.sync_buttondown_contacts(cfg, "aud_1")
+        self.assertEqual(added, 1)  # only the genuinely new active subscriber
+        self.assertEqual(post.call_args.kwargs["json"]["email"], "new@x.com")
+
+    def test_noop_without_buttondown_key(self):
+        with mock.patch.object(broadcast.requests, "get") as get:
+            self.assertEqual(broadcast.sync_buttondown_contacts(_cfg(), "aud_1"), 0)
+        get.assert_not_called()
+
+    def test_sync_failure_is_fail_open(self):
+        cfg = _cfg(BUTTONDOWN_API_KEY="bd-key")
+        import requests as _rq
+        with mock.patch.object(broadcast.requests, "get",
+                               side_effect=_rq.ConnectionError("boom")):
+            self.assertEqual(broadcast.sync_buttondown_contacts(cfg, "aud_1"), 0)
 
 
 if __name__ == "__main__":
