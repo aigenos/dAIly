@@ -58,17 +58,17 @@ def build_svg() -> str:
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" \
 viewBox="0 0 {W} {H}" font-family="{FONT}">
   <defs>
-    <!-- Emerald held through ~20%, then eased into dark navy. -->
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0.55">
-      <stop offset="0%" stop-color="#0c8a68"/>
-      <stop offset="20%" stop-color="#0a6f57"/>
-      <stop offset="50%" stop-color="#0a3a42"/>
-      <stop offset="78%" stop-color="#0a1f2e"/>
-      <stop offset="100%" stop-color="#07101d"/>
+    <!-- Predominantly dark navy/black. Only a faint emerald tint at the far
+         left, dissolving into near-black navy across the rest. -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0.5">
+      <stop offset="0%" stop-color="#0d211f"/>
+      <stop offset="18%" stop-color="#0a141c"/>
+      <stop offset="55%" stop-color="#080e16"/>
+      <stop offset="100%" stop-color="#05070d"/>
     </linearGradient>
     <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#6ee7b7" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#6ee7b7" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
     </radialGradient>
   </defs>
 

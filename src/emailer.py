@@ -75,7 +75,7 @@ _THEME_STYLES = """
      text smart-inverted to near-black. These !important rules pin the colors. */
   /* Dark mode keeps a SOLID dark navy (no gradient) so Gmail/iOS smart-invert
      leaves the white wordmark alone; the baked image hero is the primary path. */
-  .aigenos-hero { background-color: #0a1f2e !important; background-image: none !important; }
+  .aigenos-hero { background-color: #080e16 !important; background-image: none !important; }
   .aigenos-hero-kicker, .aigenos-hero-mark { color: #ffffff !important; }
   .aigenos-ai { color: #6ee7b7 !important; font-style: italic !important; }
   .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
@@ -326,7 +326,7 @@ def _css_hero(logo_url: str, logo_url_dark: str, date: str, date_short: str) -> 
     """Fallback CSS/HTML hero (used when no HERO_IMAGE_URL is available). Some
     mail clients recolor this in dark mode; the image hero avoids that."""
     return (
-        '<div class="aigenos-hero" style="background-color:#0a1f2e;background:linear-gradient(105deg,#0c8a68 0%,#0a6f57 20%,#0a3a42 55%,#0a1f2e 82%,#07101d 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">'
+        '<div class="aigenos-hero" style="background-color:#080e16;background:linear-gradient(105deg,#0d211f 0%,#0a141c 18%,#080e16 55%,#05070d 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">'
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
         '<td style="width:54px;vertical-align:middle;">' + _logo_html(logo_url, logo_url_dark) + '</td>'
         '<td style="vertical-align:middle;padding-left:14px;">'
@@ -351,7 +351,7 @@ def _hero_html(hero_image_url: str, logo_url: str, logo_url_dark: str,
             f'<img src="{hero_image_url}" width="720" '
             'alt="dAIly — daily AI intelligence by aigenos" '
             'style="display:block;width:100%;max-width:100%;height:auto;border:0;'
-            'border-radius:20px;background:#0a1f2e;">'
+            'border-radius:20px;background:#080e16;">'
         )
     return _css_hero(logo_url, logo_url_dark, date, date_short)
 
