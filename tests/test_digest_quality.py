@@ -278,9 +278,11 @@ class TestFooter(unittest.TestCase):
 class TestHeroBranding(unittest.TestCase):
     NOW = datetime(2026, 6, 10, tzinfo=timezone.utc)
 
-    def test_ai_is_emerald_not_yellow(self):
+    def test_ai_is_emerald_italic_not_yellow(self):
         html = render_html("<p>x</p>", self.NOW)
-        self.assertIn('class="aigenos-ai" style="color:#6ee7b7;">AI</span>', html)
+        self.assertIn(
+            'class="aigenos-ai" style="color:#6ee7b7;font-style:italic;">AI</span>', html
+        )
         self.assertNotIn("#fcd34d", html)  # old yellow gone
 
     def test_emoji_fallback_without_logo_url(self):

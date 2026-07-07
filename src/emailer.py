@@ -73,9 +73,11 @@ _THEME_STYLES = """
      background-color (not a gradient) — mail clients recognize a flat dark
      element and leave its white text alone, whereas a gradient hero got its
      text smart-inverted to near-black. These !important rules pin the colors. */
-  .aigenos-hero { background-color: #0c2f31 !important; }
+  /* Dark mode keeps a SOLID dark navy (no gradient) so Gmail/iOS smart-invert
+     leaves the white wordmark alone; the baked image hero is the primary path. */
+  .aigenos-hero { background-color: #0a1f2e !important; background-image: none !important; }
   .aigenos-hero-kicker, .aigenos-hero-mark { color: #ffffff !important; }
-  .aigenos-ai { color: #6ee7b7 !important; }
+  .aigenos-ai { color: #6ee7b7 !important; font-style: italic !important; }
   .aigenos-hero-sub { color: rgba(255,255,255,0.88) !important; }
   .aigenos-src-row { background: #1a1a26 !important; border-color: #2a2a3d !important; }
   a.aigenos-src-title { color: #ececf5 !important; }
@@ -324,12 +326,12 @@ def _css_hero(logo_url: str, logo_url_dark: str, date: str, date_short: str) -> 
     """Fallback CSS/HTML hero (used when no HERO_IMAGE_URL is available). Some
     mail clients recolor this in dark mode; the image hero avoids that."""
     return (
-        '<div class="aigenos-hero" style="background-color:#0c2f31;border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">'
+        '<div class="aigenos-hero" style="background-color:#0a1f2e;background:linear-gradient(105deg,#0c8a68 0%,#0a6f57 20%,#0a3a42 55%,#0a1f2e 82%,#07101d 100%);border-radius:20px;padding:26px 28px;color:#ffffff;box-shadow:0 8px 32px rgba(10,20,41,0.45);">'
         '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
         '<td style="width:54px;vertical-align:middle;">' + _logo_html(logo_url, logo_url_dark) + '</td>'
         '<td style="vertical-align:middle;padding-left:14px;">'
         '<div class="aigenos-hero-kicker" style="font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.85;font-weight:600;color:#ffffff;">by aigenos · daily ai intelligence</div>'
-        '<div class="aigenos-hero-mark" style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span class="aigenos-ai" style="color:#6ee7b7;">AI</span>ly</div>'
+        '<div class="aigenos-hero-mark" style="font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-top:3px;color:#ffffff;">d<span class="aigenos-ai" style="color:#6ee7b7;font-style:italic;">AI</span>ly</div>'
         '</td>'
         '<td style="vertical-align:middle;text-align:right;white-space:nowrap;">'
         f'<span style="display:inline-block;background:rgba(255,255,255,0.18);padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px;">{date_short}</span>'
@@ -349,7 +351,7 @@ def _hero_html(hero_image_url: str, logo_url: str, logo_url_dark: str,
             f'<img src="{hero_image_url}" width="720" '
             'alt="dAIly — daily AI intelligence by aigenos" '
             'style="display:block;width:100%;max-width:100%;height:auto;border:0;'
-            'border-radius:20px;background:#0c2f31;">'
+            'border-radius:20px;background:#0a1f2e;">'
         )
     return _css_hero(logo_url, logo_url_dark, date, date_short)
 
