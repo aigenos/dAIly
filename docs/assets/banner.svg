@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="240" viewBox="0 0 880 240" role="img" aria-label="dAIly — your personal AI analyst">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0a1429">
-        <animate attributeName="stop-color" values="#0a1429;#0c2f31;#0a1429" dur="8s" repeatCount="indefinite"/>
+      <stop offset="0%" stop-color="#0d211f">
+        <animate attributeName="stop-color" values="#0d211f;#0f2a24;#0d211f" dur="8s" repeatCount="indefinite"/>
       </stop>
-      <stop offset="55%" stop-color="#0c2f31">
-        <animate attributeName="stop-color" values="#0c2f31;#0e4038;#0c2f31" dur="8s" repeatCount="indefinite"/>
+      <stop offset="55%" stop-color="#0a141c">
+        <animate attributeName="stop-color" values="#0a141c;#0b1a1e;#0a141c" dur="8s" repeatCount="indefinite"/>
       </stop>
-      <stop offset="100%" stop-color="#0e4038">
-        <animate attributeName="stop-color" values="#0e4038;#0a1429;#0e4038" dur="8s" repeatCount="indefinite"/>
+      <stop offset="100%" stop-color="#05070d">
+        <animate attributeName="stop-color" values="#05070d;#071410;#05070d" dur="8s" repeatCount="indefinite"/>
       </stop>
     </linearGradient>
     <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -29,7 +29,7 @@
 
   <!-- wordmark -->
   <text x="156" y="86" font-family="-apple-system,'Segoe UI',Roboto,Arial,sans-serif" font-size="13" letter-spacing="4" font-weight="600" fill="#ffffff" fill-opacity=".82">BY AIGENOS · DAILY AI INTELLIGENCE</text>
-  <text x="152" y="142" font-family="-apple-system,'Segoe UI',Roboto,Arial,sans-serif" font-size="58" font-weight="800" fill="#ffffff" letter-spacing="-1">d<tspan fill="#6ee7b7">AI</tspan>ly</text>
+  <text x="152" y="142" font-family="-apple-system,'Segoe UI',Roboto,Arial,sans-serif" font-size="58" font-weight="800" fill="#ffffff" letter-spacing="-1">d<tspan fill="#6ee7b7" font-style="italic">AI</tspan>ly</text>
   <text x="156" y="178" font-family="-apple-system,'Segoe UI',Roboto,Arial,sans-serif" font-size="19" font-weight="500" fill="#ffffff" fill-opacity=".94">Your personal AI analyst — reads everything in AI daily, tells you what to build.</text>
 
   <!-- live pulse dot -->
