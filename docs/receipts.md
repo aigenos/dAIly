@@ -27,3 +27,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-07-05** — [Dynamic VRAM-Aware Diffusion Orchestrator](https://aigenos.github.io/dAIly/digests/digest_20260705.html)
 - **2026-07-06** — [Agentic Memory-Graph Orchestrator](https://aigenos.github.io/dAIly/digests/digest_20260706.html)
 - **2026-07-07** — [Agentic Verification Middleware](https://aigenos.github.io/dAIly/digests/digest_20260707.html)
+- **2026-07-08** — [Agentic Early-Abort Middleware](https://aigenos.github.io/dAIly/digests/digest_20260708.html)
