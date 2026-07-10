@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-08T00:00:00+00:00</updated>
+  <updated>2026-07-10T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 10, 2026: OpenAI has released GPT-5.6, a new flagship model family available in three sizes—Luna, Terra, and Sol—now integrated as the preferred engine for Microsoft 365 Copilot.…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260710.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260710.html</id>
+    <updated>2026-07-10T00:00:00+00:00</updated>
+    <summary>OpenAI has released GPT-5.6, a new flagship model family available in three sizes—Luna, Terra, and Sol—now integrated as the preferred engine for Microsoft 365 Copilot.…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 08, 2026: Google has expanded its Managed Agents feature set in the Gemini API, introducing native support for background tasks and remote Model Context Protocol (MCP)…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260708.html"/>
