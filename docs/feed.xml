@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-10T00:00:00+00:00</updated>
+  <updated>2026-07-11T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 11, 2026: The release of Qwen3.6 35B-A3B marks a significant shift in local inference capability, demonstrating that A3B (Active 3 Billion) architectures can achieve…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260711.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260711.html</id>
+    <updated>2026-07-11T00:00:00+00:00</updated>
+    <summary>The release of Qwen3.6 35B-A3B marks a significant shift in local inference capability, demonstrating that A3B (Active 3 Billion) architectures can achieve…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 10, 2026: OpenAI has released GPT-5.6, a new flagship model family available in three sizes—Luna, Terra, and Sol—now integrated as the preferred engine for Microsoft 365 Copilot.…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260710.html"/>
