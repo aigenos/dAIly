@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-12T00:00:00+00:00</updated>
+  <updated>2026-07-13T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 13, 2026: Apple has initiated legal action against OpenAI, challenging the integration depth and data-usage terms of the latest ChatGPT-Codex implementation within the Apple…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260713.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260713.html</id>
+    <updated>2026-07-13T00:00:00+00:00</updated>
+    <summary>Apple has initiated legal action against OpenAI, challenging the integration depth and data-usage terms of the latest ChatGPT-Codex implementation within the Apple…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 12, 2026: The release of Voodoo Quant marks a significant shift in mixed-precision optimization, outperforming Unsloth Dynamic 2.0 KLD by 95% on Qwen3.5 0.8B and 2B models. By…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260712.html"/>
