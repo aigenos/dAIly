@@ -304,6 +304,41 @@ def feedback_block(cfg, now: datetime) -> str:
     )
 
 
+def list_report_block(stats: dict, now: datetime) -> str:
+    """A private 'list health' card for the OWNER's copy only (injected via the
+    cta slot, so it never reaches subscribers or the archive). Shows active
+    subscribers, new joins in the last 24h, cumulative unsubscribes, and total
+    contacts — the daily subscriber report."""
+    if not stats:
+        return ""
+
+    def tile(value, label, accent="#0f766e"):
+        return (
+            '<td style="text-align:center;padding:6px 4px;">'
+            f'<div style="font-size:26px;font-weight:800;color:{accent};line-height:1;">{value}</div>'
+            f'<div style="font-size:11px;color:#6b6b85;margin-top:5px;text-transform:uppercase;'
+            f'letter-spacing:.4px;font-weight:600;">{label}</div></td>'
+        )
+
+    new_24h = stats.get("new_24h", 0)
+    new_label = f"+{new_24h}" if new_24h else "0"
+    new_accent = "#16a34a" if new_24h else "#6b6b85"
+    return (
+        '<div style="margin:26px 0 4px;padding:18px 20px;border:1px solid #e4e2f3;'
+        'border-radius:16px;background:#faf9ff;">'
+        '<div style="font-size:13px;font-weight:700;color:#14142a;margin-bottom:2px;">'
+        '📊 Your dAIly list</div>'
+        '<div style="font-size:11px;color:#8a8a9a;margin-bottom:12px;">'
+        'Private — only in your copy, never sent to subscribers.</div>'
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>'
+        + tile(stats.get("active", 0), "Subscribers", "#0f766e")
+        + tile(new_label, "New (24h)", new_accent)
+        + tile(stats.get("unsubscribed", 0), "Unsubscribed", "#6b6b85")
+        + tile(stats.get("total", 0), "Total contacts", "#6b6b85")
+        + '</tr></table></div>'
+    )
+
+
 def _logo_html(logo_url: str, logo_url_dark: str = "") -> str:
     """The hero masthead mark. The hero is dark in every theme, so we always use
     the dark (teal) logo directly on it — on a faint translucent circle for

@@ -90,6 +90,8 @@ class TestSendSubscribers(unittest.TestCase):
         self.assertNotIn("SECRET-MAP-CONTENT", payload["html"])
         # Managed unsubscribe merge tag present for subscribers.
         self.assertIn("{{{RESEND_UNSUBSCRIBE_URL}}}", payload["html"])
+        # The owner-only list-health report must NEVER reach subscribers.
+        self.assertNotIn("Your dAIly list", payload["html"])
         # Auth header uses the Resend key.
         self.assertEqual(create.kwargs["headers"]["Authorization"], "Bearer re-key")
 
@@ -176,6 +178,50 @@ class TestSendSubscribers(unittest.TestCase):
             ok = send_subscribers(_cfg(), BODY, NOW)
         self.assertFalse(ok)  # logged + skipped, never raises
         self.assertEqual(post.call_count, 1)  # never reached the send step
+
+
+class TestAudienceStats(unittest.TestCase):
+    def _fake_get(self, contacts):
+        def get(cfg, path):
+            if path.endswith("/contacts"):
+                return {"data": contacts}
+            return None
+        return get
+
+    def test_counts_active_unsub_and_new_24h(self):
+        contacts = [
+            {"email": "a@x", "unsubscribed": False, "created_at": "2026-06-12T00:00:00Z"},
+            {"email": "b@x", "unsubscribed": True, "created_at": "2026-05-01T00:00:00Z"},
+            {"email": "c@x", "unsubscribed": False, "created_at": "2026-06-11T18:00:00Z"},
+        ]
+        with mock.patch.object(broadcast, "_get", self._fake_get(contacts)):
+            stats = broadcast.audience_stats(_cfg(), NOW)
+        self.assertEqual(stats, {
+            "audience_id": "aud_1", "total": 3, "active": 2,
+            "unsubscribed": 1, "new_24h": 2,
+        })
+
+    def test_none_without_api_key(self):
+        self.assertIsNone(broadcast.audience_stats(_cfg(RESEND_API_KEY="", DRY_RUN="true"), NOW))
+
+    def test_none_when_contacts_fetch_fails(self):
+        with mock.patch.object(broadcast, "_get", lambda cfg, path: None):
+            self.assertIsNone(broadcast.audience_stats(_cfg(), NOW))
+
+    def test_report_block_renders_numbers_and_privacy_note(self):
+        from src.emailer import list_report_block
+        html = list_report_block(
+            {"active": 42, "new_24h": 3, "unsubscribed": 5, "total": 47}, NOW
+        )
+        self.assertIn("42", html)
+        self.assertIn("+3", html)
+        self.assertIn("Subscribers", html)
+        self.assertIn("Unsubscribed", html)
+        self.assertIn("only in your copy", html.lower())
+
+    def test_report_block_empty_for_no_stats(self):
+        from src.emailer import list_report_block
+        self.assertEqual(list_report_block({}, NOW), "")
 
 
 class TestSingleSubscriberChannel(unittest.TestCase):

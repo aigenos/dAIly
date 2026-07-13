@@ -22,6 +22,7 @@ from .config import Config
 from .emailer import (
     feedback_block,
     footer_links,
+    list_report_block,
     render_html,
     send_email,
     subject_line,
@@ -98,6 +99,23 @@ def run() -> int:
     if cfg.enable_link_check:
         body = linkcheck.verify_links(body)
 
+    # Daily subscriber report — a private list-health card (subscribers, new in
+    # 24h, unsubscribes, total). Owner copy ONLY, injected via the cta slot so it
+    # never reaches subscribers or the archive. Fail-open: any API hiccup just
+    # omits the card. Skipped in DRY_RUN (no network).
+    owner_report = ""
+    if not cfg.dry_run and cfg.resend_api_key:
+        try:
+            stats = broadcast.audience_stats(cfg, now)
+            if stats:
+                owner_report = list_report_block(stats, now)
+                log.info(
+                    "list health: %d subscribers (+%d in 24h), %d unsubscribed",
+                    stats["active"], stats["new_24h"], stats["unsubscribed"],
+                )
+        except Exception as exc:  # noqa: BLE001 — report is a nicety, never fatal
+            log.debug("audience stats skipped: %s", exc)
+
     # Owner copy: the full issue (private sections included). No unsubscribe link
     # in the footer — that's for subscribers, and the Resend merge tag only
     # resolves inside a Broadcast, not a direct send.
@@ -105,6 +123,7 @@ def run() -> int:
         body,
         now,
         engine=engine if cfg.show_model_attribution else "",
+        cta=owner_report,
         footer=footer_links(cfg, now, include_unsubscribe=False),
         logo_url=cfg.logo_url,
         logo_url_dark=cfg.logo_url_dark,

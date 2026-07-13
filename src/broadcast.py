@@ -89,6 +89,57 @@ def _resolve_audience(cfg: Config) -> str:
         log.warning("could not create audience (%s): %s", r.status_code, r.text[:200])
     except (requests.RequestException, ValueError) as exc:
         log.warning("audience create error: %s", exc)
+        return ""
+    return ""
+
+
+def _existing_audience_id(cfg: Config) -> str:
+    """The configured audience, or the account's first — WITHOUT creating one.
+    Used for read-only stats so a stats call never mutates the account."""
+    if cfg.resend_audience_id:
+        return cfg.resend_audience_id
+    listing = _get(cfg, "/audiences")
+    data = (listing or {}).get("data") or []
+    return (data[0].get("id") or "") if data else ""
+
+
+def _parse_dt(s: str):
+    from datetime import datetime
+    try:
+        return datetime.fromisoformat((s or "").replace("Z", "+00:00"))
+    except (ValueError, AttributeError):
+        return None
+
+
+def audience_stats(cfg: Config, now) -> dict | None:
+    """Read-only list health for the owner's daily report: total contacts,
+    active subscribers, cumulative unsubscribes, and how many joined in the last
+    24h. Returns None on any failure (never raises, never mutates)."""
+    if not cfg.resend_api_key:
+        return None
+    aid = _existing_audience_id(cfg)
+    if not aid:
+        return None
+    payload = _get(cfg, f"/audiences/{aid}/contacts")
+    if payload is None:
+        return None
+    data = payload.get("data") or []
+    from datetime import timedelta
+    cutoff = now - timedelta(hours=24)
+    total = len(data)
+    unsubscribed = sum(1 for c in data if c.get("unsubscribed"))
+    new_24h = 0
+    for c in data:
+        dt = _parse_dt(c.get("created_at", ""))
+        if dt and dt >= cutoff:
+            new_24h += 1
+    return {
+        "audience_id": aid,
+        "total": total,
+        "active": total - unsubscribed,
+        "unsubscribed": unsubscribed,
+        "new_24h": new_24h,
+    }
     return ""
 
 
