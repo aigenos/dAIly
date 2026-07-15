@@ -33,3 +33,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-07-12** — [Agentic Session-Replay & State-Graph Debugger](https://aigenos.github.io/dAIly/digests/digest_20260712.html)
 - **2026-07-13** — [Reasoning-Trace Distillation Engine (RTDE)](https://aigenos.github.io/dAIly/digests/digest_20260713.html)
 - **2026-07-14** — [Agentic Tool-Calling Auditor (ATCA)](https://aigenos.github.io/dAIly/digests/digest_20260714.html)
+- **2026-07-15** — [Complexity-Aware Agentic Orchestrator](https://aigenos.github.io/dAIly/digests/digest_20260715.html)

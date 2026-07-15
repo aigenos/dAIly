@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-14T00:00:00+00:00</updated>
+  <updated>2026-07-15T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 15, 2026: The transition from &quot;building with agents&quot; to &quot;building systems around agents&quot; has reached a critical inflection point, as evidenced by OpenAI’s new framework for…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260715.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260715.html</id>
+    <updated>2026-07-15T00:00:00+00:00</updated>
+    <summary>The transition from &quot;building with agents&quot; to &quot;building systems around agents&quot; has reached a critical inflection point, as evidenced by OpenAI’s new framework for…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 14, 2026: OpenAI has released GPT-5.6 Sol, Terra, and Luna on Amazon Bedrock, marking the first time OpenAI's most advanced reasoning models are natively available within the AWS…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260714.html"/>
