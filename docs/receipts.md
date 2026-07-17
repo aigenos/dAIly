@@ -35,3 +35,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-07-14** — [Agentic Tool-Calling Auditor (ATCA)](https://aigenos.github.io/dAIly/digests/digest_20260714.html)
 - **2026-07-15** — [Complexity-Aware Agentic Orchestrator](https://aigenos.github.io/dAIly/digests/digest_20260715.html)
 - **2026-07-16** — [Agentic State-Graph Auditor](https://aigenos.github.io/dAIly/digests/digest_20260716.html)
+- **2026-07-17** — [Agentic Video-Action Policy Distillation](https://aigenos.github.io/dAIly/digests/digest_20260717.html)
