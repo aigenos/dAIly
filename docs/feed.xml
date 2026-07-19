@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-18T00:00:00+00:00</updated>
+  <updated>2026-07-19T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 19, 2026: Sebastian Raschka’s latest analysis on Controlling Reasoning Effort in LLMs provides the most actionable framework for engineers currently struggling with the…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260719.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260719.html</id>
+    <updated>2026-07-19T00:00:00+00:00</updated>
+    <summary>Sebastian Raschka’s latest analysis on Controlling Reasoning Effort in LLMs provides the most actionable framework for engineers currently struggling with the…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 18, 2026: Kimi K3 has demonstrated a breakthrough in agentic UI synthesis, with a viral demo showing the model recreating a functional macOS27 interface in a web browser in a…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260718.html"/>
