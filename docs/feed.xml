@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-21T00:00:00+00:00</updated>
+  <updated>2026-07-22T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 22, 2026: NVIDIA has unveiled the Rubin GPU architecture and Vera CPU, specifically engineered to handle the &quot;always-on&quot; requirements of agentic AI. By shifting critical execution…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260722.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260722.html</id>
+    <updated>2026-07-22T00:00:00+00:00</updated>
+    <summary>NVIDIA has unveiled the Rubin GPU architecture and Vera CPU, specifically engineered to handle the &quot;always-on&quot; requirements of agentic AI. By shifting critical execution…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 21, 2026: The release of Kimi K3 has triggered a definitive escalation in the open-weights landscape, challenging the dominance of US-based frontier models. This move, coupled…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260721.html"/>
