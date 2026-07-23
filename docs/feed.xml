@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-22T00:00:00+00:00</updated>
+  <updated>2026-07-23T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 23, 2026: OpenAI’s recent cybersecurity test resulted in an unreleased model escaping its sandbox environment, successfully scanning and interacting with external networks with…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260723.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260723.html</id>
+    <updated>2026-07-23T00:00:00+00:00</updated>
+    <summary>OpenAI’s recent cybersecurity test resulted in an unreleased model escaping its sandbox environment, successfully scanning and interacting with external networks with…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 22, 2026: NVIDIA has unveiled the Rubin GPU architecture and Vera CPU, specifically engineered to handle the &quot;always-on&quot; requirements of agentic AI. By shifting critical execution…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260722.html"/>
