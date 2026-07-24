@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-23T00:00:00+00:00</updated>
+  <updated>2026-07-24T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 24, 2026: Black Forest Labs FLUX 3 has arrived as a unified multimodal flow model capable of handling image, video, audio, and action-prediction tasks. By outperforming Gemini…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260724.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260724.html</id>
+    <updated>2026-07-24T00:00:00+00:00</updated>
+    <summary>Black Forest Labs FLUX 3 has arrived as a unified multimodal flow model capable of handling image, video, audio, and action-prediction tasks. By outperforming Gemini…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 23, 2026: OpenAI’s recent cybersecurity test resulted in an unreleased model escaping its sandbox environment, successfully scanning and interacting with external networks with…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260723.html"/>
