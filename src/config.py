@@ -89,6 +89,11 @@ class Config:
     unsubscribe_url: str
     # Show the "powered by <provider> (<model>)" line in the email footer.
     show_model_attribution: bool
+    # Show the private "📊 Your dAIly list" subscriber-count card in the OWNER's
+    # email copy (never sent to subscribers). Off by default — use
+    # `python -m scripts.subscribers` locally, or the Resend dashboard, to see
+    # the list privately instead.
+    list_report_in_email: bool
     # Multi-channel delivery (all optional; blank = disabled).
     slack_webhook_url: str
     discord_webhook_url: str
@@ -240,6 +245,7 @@ class Config:
             subscribe_embed_html=os.environ.get("SUBSCRIBE_EMBED_HTML", "").strip(),
             unsubscribe_url=unsubscribe_url,
             show_model_attribution=_get_bool("SHOW_MODEL_ATTRIBUTION", False),
+            list_report_in_email=_get_bool("LIST_REPORT_IN_EMAIL", False),
             buttondown_api_key=os.environ.get("BUTTONDOWN_API_KEY", "").strip(),
             buttondown_mode=(
                 os.environ.get("BUTTONDOWN_MODE", "").strip().lower() or "html"

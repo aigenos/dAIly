@@ -104,7 +104,7 @@ def run() -> int:
     # never reaches subscribers or the archive. Fail-open: any API hiccup just
     # omits the card. Skipped in DRY_RUN (no network).
     owner_report = ""
-    if not cfg.dry_run and cfg.resend_api_key:
+    if cfg.list_report_in_email and not cfg.dry_run and cfg.resend_api_key:
         try:
             stats = broadcast.audience_stats(cfg, now)
             if stats:

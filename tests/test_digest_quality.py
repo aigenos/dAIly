@@ -274,6 +274,11 @@ class TestFooter(unittest.TestCase):
         self.assertFalse(_make_cfg().show_model_attribution)
         self.assertTrue(_make_cfg(SHOW_MODEL_ATTRIBUTION="true").show_model_attribution)
 
+    def test_list_report_off_by_default(self):
+        # The subscriber-count card must NOT appear in the email unless opted in.
+        self.assertFalse(_make_cfg().list_report_in_email)
+        self.assertTrue(_make_cfg(LIST_REPORT_IN_EMAIL="true").list_report_in_email)
+
 
 class TestHeroBranding(unittest.TestCase):
     NOW = datetime(2026, 6, 10, tzinfo=timezone.utc)
