@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-24T00:00:00+00:00</updated>
+  <updated>2026-07-25T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 25, 2026: Anthropic has released Claude Opus 5, a model that achieves Fable-level performance at significantly lower cost points. Beyond the benchmark gains, the system card…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260725.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260725.html</id>
+    <updated>2026-07-25T00:00:00+00:00</updated>
+    <summary>Anthropic has released Claude Opus 5, a model that achieves Fable-level performance at significantly lower cost points. Beyond the benchmark gains, the system card…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 24, 2026: Black Forest Labs FLUX 3 has arrived as a unified multimodal flow model capable of handling image, video, audio, and action-prediction tasks. By outperforming Gemini…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260724.html"/>
