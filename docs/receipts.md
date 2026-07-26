@@ -44,3 +44,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-07-23** — [Agentic Sandbox-Escape Detection & Containment (ASEDC)](https://aigenos.github.io/dAIly/digests/digest_20260723.html)
 - **2026-07-24** — [Physical-World Action-Policy Distiller](https://aigenos.github.io/dAIly/digests/digest_20260724.html)
 - **2026-07-25** — [Inference-Time Reasoning Orchestrator (IRO)](https://aigenos.github.io/dAIly/digests/digest_20260725.html)
+- **2026-07-26** — [Local-Agentic State-Sync (LASS)](https://aigenos.github.io/dAIly/digests/digest_20260726.html)

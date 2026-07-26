@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-25T00:00:00+00:00</updated>
+  <updated>2026-07-26T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 26, 2026: OpenAI has released GPT-5.6 (Sol, Terra, and Luna) on Amazon Bedrock. This deployment marks a critical shift for enterprise builders, providing direct access to OpenAI’s…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260726.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260726.html</id>
+    <updated>2026-07-26T00:00:00+00:00</updated>
+    <summary>OpenAI has released GPT-5.6 (Sol, Terra, and Luna) on Amazon Bedrock. This deployment marks a critical shift for enterprise builders, providing direct access to OpenAI’s…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 25, 2026: Anthropic has released Claude Opus 5, a model that achieves Fable-level performance at significantly lower cost points. Beyond the benchmark gains, the system card…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260725.html"/>
