@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-26T00:00:00+00:00</updated>
+  <updated>2026-07-27T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — July 27, 2026: NVIDIA CEO Jensen Huang has announced the formation of the Open Secure AI Alliance, a direct response to the recent Hugging Face security incident where closed-source…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260727.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260727.html</id>
+    <updated>2026-07-27T00:00:00+00:00</updated>
+    <summary>NVIDIA CEO Jensen Huang has announced the formation of the Open Secure AI Alliance, a direct response to the recent Hugging Face security incident where closed-source…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 26, 2026: OpenAI has released GPT-5.6 (Sol, Terra, and Luna) on Amazon Bedrock. This deployment marks a critical shift for enterprise builders, providing direct access to OpenAI’s…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260726.html"/>
