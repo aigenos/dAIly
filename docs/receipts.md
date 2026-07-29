@@ -47,3 +47,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-07-26** — [Local-Agentic State-Sync (LASS)](https://aigenos.github.io/dAIly/digests/digest_20260726.html)
 - **2026-07-27** — [RTL-Agentic Synthesis Pipeline](https://aigenos.github.io/dAIly/digests/digest_20260727.html)
 - **2026-07-28** — [Task-Specific Knowledge Distiller (TSKD)](https://aigenos.github.io/dAIly/digests/digest_20260728.html)
+- **2026-07-29** — [Agentic Security & Compliance Auditor (ASCA)](https://aigenos.github.io/dAIly/digests/digest_20260729.html)
