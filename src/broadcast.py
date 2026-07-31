@@ -235,6 +235,7 @@ def send_subscribers(
     now: datetime,
     private_ids: list[str] | None = None,
     sentinels: list[str] | None = None,
+    prelude: str = "",
 ) -> bool:
     """Send today's issue to every Resend audience contact. Needs only
     RESEND_API_KEY + a verified domain — audience, sender, and Buttondown
@@ -285,6 +286,7 @@ def send_subscribers(
         logo_url_dark=getattr(cfg, "logo_url_dark", ""),
         hero_image_url=getattr(cfg, "hero_image_url", ""),
         feedback=feedback_block(cfg, now),
+        prelude=prelude,
     )
     return _create_and_send(cfg, audience_id, sender, subject_line(now), html)
 

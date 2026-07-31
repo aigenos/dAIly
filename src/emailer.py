@@ -112,6 +112,7 @@ _TEMPLATE = """\
 
   <!-- Body card -->
   <div class="aigenos-card" style="background:#ffffff;border-radius:20px;padding:8px 30px 26px;margin-top:18px;box-shadow:0 1px 2px rgba(20,20,42,0.04),0 8px 24px rgba(20,20,42,0.06);">
+    {prelude}
     {body}
     {cta}
   </div>
@@ -304,6 +305,42 @@ def feedback_block(cfg, now: datetime) -> str:
     )
 
 
+def listen_button(url: str, minutes: int = 0) -> str:
+    """The ▶️ Listen pill shown at the top of the email. Mail clients can't
+    embed playable audio, so this links to the hosted MP3 (one tap → the
+    phone's player opens, podcast-style). '' when there's no URL."""
+    if not url:
+        return ""
+    mins = f" · {minutes} min" if minutes else ""
+    return (
+        '<div style="text-align:center;margin:18px 0 2px;">'
+        f'<a href="{url}" class="aigenos-listen" '
+        'style="display:inline-block;background:#0f766e;color:#ffffff;font-weight:700;'
+        'font-size:14px;text-decoration:none;padding:10px 22px;border-radius:999px;">'
+        f'▶️&nbsp; Listen to today\'s issue{mins}</a>'
+        '<div class="aigenos-muted" style="font-size:11px;color:#8a8a9a;margin-top:6px;">'
+        'No time to read? Play it like a podcast.</div>'
+        '</div>'
+    )
+
+
+def audio_player(url: str, minutes: int = 0) -> str:
+    """A real inline <audio> player for the ARCHIVE page (browsers, not email).
+    Falls back to a download link for anything that can't play mp3 inline."""
+    if not url:
+        return ""
+    mins = f" · ~{minutes} min listen" if minutes else ""
+    return (
+        '<div class="aigenos-audio" style="margin:18px 0 6px;padding:14px 16px;'
+        'border:1px solid #e4e2f3;border-radius:14px;background:#faf9ff;">'
+        '<div style="font-size:13px;font-weight:700;color:#14142a;margin-bottom:8px;">'
+        f'🎧 Listen to this issue{mins}</div>'
+        f'<audio controls preload="none" style="width:100%;" src="{url}">'
+        f'<a href="{url}">Download the audio</a></audio>'
+        '</div>'
+    )
+
+
 def list_report_block(stats: dict, now: datetime) -> str:
     """A private 'list health' card for the OWNER's copy only (injected via the
     cta slot, so it never reaches subscribers or the archive). Shows active
@@ -401,13 +438,16 @@ def render_html(
     logo_url_dark: str = "",
     hero_image_url: str = "",
     feedback: str = "",
+    prelude: str = "",
 ) -> str:
     """Render the full email. `cta` is an optional pre-built HTML block (e.g. a
     subscribe call-to-action) injected after the body — it is NOT run through the
     tag-styler, so it keeps its own styling intact. `footer` is an optional
     pre-built link row (see ``footer_links``). `logo_url` (+ optional
     `logo_url_dark`) swap the hero emoji for the light/dark logo. Pass
-    `engine=""` to omit the model-attribution line."""
+    `engine=""` to omit the model-attribution line. `prelude` is a pre-built
+    HTML block (e.g. the ▶️ Listen button) rendered at the very top of the body
+    card, untouched by the tag-styler."""
     engine_label = (
         f'<br><span style="opacity:.78;">powered by {engine}.</span>' if engine else ""
     )
@@ -427,6 +467,7 @@ def render_html(
         footer_links=footer,
         hero=hero,
         feedback=feedback,
+        prelude=prelude,
         theme=_THEME_STYLES,
     )
 
@@ -441,7 +482,7 @@ _BODY_RX = re.compile(r"<body[^>]*>(.*)</body>", re.IGNORECASE | re.DOTALL)
 def render_embeddable_html(
     body_fragment: str, now: datetime, engine: str = "", cta: str = "",
     footer: str = "", logo_url: str = "", logo_url_dark: str = "",
-    hero_image_url: str = "", feedback: str = "",
+    hero_image_url: str = "", feedback: str = "", prelude: str = "",
 ) -> str:
     """The full styled email (hero + logo + cards + footer) WITHOUT the outer
     <html>/<head> wrapper, so another sender (e.g. Buttondown) can drop it into
@@ -450,7 +491,8 @@ def render_embeddable_html(
     inline-styled markup that renders everywhere."""
     full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer,
                        logo_url=logo_url, logo_url_dark=logo_url_dark,
-                       hero_image_url=hero_image_url, feedback=feedback)
+                       hero_image_url=hero_image_url, feedback=feedback,
+                       prelude=prelude)
     m = _BODY_RX.search(full)
     inner = m.group(1).strip() if m else full
     return f"<style>{_THEME_STYLES}</style>\n{inner}"

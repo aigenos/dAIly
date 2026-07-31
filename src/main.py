@@ -23,6 +23,7 @@ from .emailer import (
     feedback_block,
     footer_links,
     list_report_block,
+    listen_button,
     render_html,
     send_email,
     subject_line,
@@ -99,6 +100,16 @@ def run() -> int:
     if cfg.enable_link_check:
         body = linkcheck.verify_links(body)
 
+    # 2c. Audio episode (podcast mode) — generated BEFORE rendering so the
+    # ▶️ Listen button can be injected into every copy. The MP3 lands in the
+    # archive (docs/audio/) so GitHub Pages hosts it. Fail-open: no audio just
+    # means no button, exactly as before.
+    listen = ""
+    if cfg.enable_audio:
+        episode = audio.generate(cfg, body, now)
+        if episode and episode.get("url"):
+            listen = listen_button(episode["url"], episode.get("minutes", 0))
+
     # Daily subscriber report — a private list-health card (subscribers, new in
     # 24h, unsubscribes, total). Owner copy ONLY, injected via the cta slot so it
     # never reaches subscribers or the archive. Fail-open: any API hiccup just
@@ -129,6 +140,7 @@ def run() -> int:
         logo_url_dark=cfg.logo_url_dark,
         hero_image_url=cfg.hero_image_url,
         feedback=feedback_block(cfg, now),
+        prelude=listen,
     )
 
     # Always save to disk in DRY_RUN so you can eyeball the result locally.
@@ -148,8 +160,6 @@ def run() -> int:
             archive.publish(cfg, body, now, engine, private_section_ids(), private_sentinels())
         except Exception as exc:  # noqa: BLE001 — never let archiving kill the run
             log.warning("archive publish failed: %s", exc)
-    if cfg.enable_audio:
-        audio.generate(cfg, body, now)
 
     # 4. Deliver externally (skipped in DRY_RUN).
     if cfg.dry_run:
@@ -162,7 +172,7 @@ def run() -> int:
     # delivered, notify_all skips the Buttondown send (no second copy); when it
     # didn't (e.g. domain not verified yet), Buttondown remains the fallback.
     delivered = broadcast.send_subscribers(
-        cfg, body, now, private_section_ids(), private_sentinels()
+        cfg, body, now, private_section_ids(), private_sentinels(), prelude=listen
     )
     notifiers.notify_all(
         cfg, body, now, private_section_ids(), private_sentinels(),

@@ -333,6 +333,17 @@ def _render_index(cfg, issues: list[tuple[str, datetime, str]]) -> str:
     buttons.append(f'<a class="btn ghost" href="{sub_target}">✉️ Subscribe</a>')
     buttons.append(f'<a class="btn ghost" href="{_REPO_URL}">⭐ Star on GitHub</a>')
     buttons.append('<a class="btn ghost" href="feed.xml">📡 RSS</a>')
+    # Podcast chip only once audio episodes exist. Checks the mp3s themselves
+    # (not podcast.xml) because the index renders before the feed is written.
+    try:
+        has_audio = any(
+            f.startswith("digest_") and f.endswith(".mp3")
+            for f in os.listdir(os.path.join(cfg.archive_dir, "audio"))
+        )
+    except OSError:
+        has_audio = False
+    if has_audio:
+        buttons.append('<a class="btn ghost" href="podcast.xml">🎧 Podcast</a>')
 
     # Proof-of-life stats under the hero.
     try:
@@ -435,6 +446,63 @@ def _render_feed(cfg, issues: list[tuple[str, datetime, str]]) -> str:
     )
 
 
+def _render_podcast_feed(cfg) -> str:
+    """RSS feed with audio enclosures — the daily briefing as a podcast.
+    One item per episode in <archive_dir>/audio/; '' when there are none.
+    Add {site_url}/podcast.xml to any podcast app to subscribe."""
+    audio_dir = os.path.join(cfg.archive_dir, "audio")
+    try:
+        mp3s = sorted(
+            (f for f in os.listdir(audio_dir)
+             if f.startswith("digest_") and f.endswith(".mp3")),
+            reverse=True,
+        )
+    except OSError:
+        return ""
+    if not mp3s:
+        return ""
+
+    site = cfg.site_url
+    items: list[str] = []
+    for name in mp3s:
+        try:
+            d = datetime.strptime(name[len("digest_"):-len(".mp3")], "%Y%m%d")
+        except ValueError:
+            continue
+        d = d.replace(tzinfo=timezone.utc)
+        url = f"{site}/audio/{name}"
+        try:
+            size = os.path.getsize(os.path.join(audio_dir, name))
+        except OSError:
+            size = 0
+        items.append(
+            "  <item>\n"
+            f"    <title>dAIly — {d.strftime('%B %d, %Y')}</title>\n"
+            f"    <description>The day's AI briefing, spoken: The Pulse and the "
+            "Opportunity of the Day.</description>\n"
+            f'    <enclosure url="{_esc(url)}" length="{size}" type="audio/mpeg"/>\n'
+            f"    <guid>{_esc(url)}</guid>\n"
+            f"    <pubDate>{d.strftime('%a, %d %b %Y 10:00:00 +0000')}</pubDate>\n"
+            "  </item>"
+        )
+    if not items:
+        return ""
+    return (
+        '<?xml version="1.0" encoding="utf-8"?>\n'
+        '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">\n'
+        "<channel>\n"
+        f"  <title>{_esc(cfg.site_title)} — audio</title>\n"
+        f"  <link>{_esc(site)}/</link>\n"
+        "  <language>en</language>\n"
+        "  <description>Your daily AI intelligence briefing, read aloud — the "
+        "news, the research, and what to build next, in a few minutes a day.</description>\n"
+        f'  <itunes:image href="{_esc(site)}/assets/aigenos-logo-light.png"/>\n'
+        "  <itunes:explicit>false</itunes:explicit>\n"
+        + "\n".join(items)
+        + "\n</channel>\n</rss>\n"
+    )
+
+
 _OPP_TITLE_RX = re.compile(
     r"<!--SECTION:opp_teaser-->.*?<h3[^>]*>(.*?)</h3>", flags=re.DOTALL
 )
@@ -510,6 +578,17 @@ def publish(
     cta = subscribe_cta(
         getattr(cfg, "subscribe_url", ""), getattr(cfg, "subscribe_embed_html", "")
     )
+    # Audio episode: the archive page is a real browser, so embed a playable
+    # <audio> element when today's MP3 exists (generated earlier into
+    # <archive_dir>/audio/ by src/audio.py). Fail-open — no file, no player.
+    from . import audio as audio_mod
+    from .emailer import audio_player
+    player = ""
+    episode_file = os.path.join(cfg.archive_dir, "audio", audio_mod.episode_filename(now))
+    if os.path.exists(episode_file):
+        # Issue pages live in <archive_dir>/digests/, episodes in <archive_dir>/audio/.
+        player = audio_player(f"../audio/{audio_mod.episode_filename(now)}")
+
     public_html = render_html(
         public_fragment,
         now,
@@ -520,6 +599,7 @@ def publish(
         logo_url_dark=getattr(cfg, "logo_url_dark", ""),
         hero_image_url=getattr(cfg, "hero_image_url", ""),
         feedback=feedback_block(cfg, now),
+        prelude=player,
     )
 
     digests_dir = os.path.join(cfg.archive_dir, "digests")
@@ -543,6 +623,12 @@ def publish(
     if cfg.site_url:
         with open(os.path.join(cfg.archive_dir, "feed.xml"), "w", encoding="utf-8") as fh:
             fh.write(_render_feed(cfg, issues))
+        # Podcast feed: every audio episode as an RSS enclosure, so the daily
+        # briefing is subscribable in podcast apps. Only when episodes exist.
+        podcast = _render_podcast_feed(cfg)
+        if podcast:
+            with open(os.path.join(cfg.archive_dir, "podcast.xml"), "w", encoding="utf-8") as fh:
+                fh.write(podcast)
     else:
         log.info("feed.xml skipped — set SITE_URL to publish an Atom feed")
 

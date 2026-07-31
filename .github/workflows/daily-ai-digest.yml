@@ -109,8 +109,9 @@ jobs:
           SHOW_MODEL_ATTRIBUTION: ${{ vars.SHOW_MODEL_ATTRIBUTION || 'false' }}
           # One-click feedback widget target (URL or blank → mailto sender).
           FEEDBACK_URL: ${{ vars.FEEDBACK_URL }}
-          # Audio digest (free gTTS).
-          ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || 'false' }}
+          # Audio episode (free gTTS): MP3 in docs/audio/, ▶️ Listen button in
+          # the email, player on the archive page, podcast.xml feed. Fail-open.
+          ENABLE_AUDIO: ${{ vars.ENABLE_AUDIO || 'true' }}
           # SUBSCRIBER DELIVERY (recommended): send the SAME styled issue the
           # owner gets to your Resend Audience via Broadcasts. Set the audience
           # ID and subscribers receive an identical newsletter + managed
