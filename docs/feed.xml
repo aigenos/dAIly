@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-07-31T00:00:00+00:00</updated>
+  <updated>2026-08-01T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 01, 2026: The release of DeepSeek-V4-Flash-0731, a 304B parameter model, marks a critical inflection point where local-runnable models now match the intelligence scores of…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260801.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260801.html</id>
+    <updated>2026-08-01T00:00:00+00:00</updated>
+    <summary>The release of DeepSeek-V4-Flash-0731, a 304B parameter model, marks a critical inflection point where local-runnable models now match the intelligence scores of…</summary>
+  </entry>
   <entry>
     <title>dAIly — July 31, 2026: OpenAI has released GPT-5.6, which introduces significant price cuts (20%–80%) and improved efficiency through what reports describe as recursive self-optimization. This…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260731.html"/>
