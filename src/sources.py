@@ -65,6 +65,10 @@ RSS_FEEDS: list[Feed] = [
     Feed("Together AI", "https://www.together.ai/blog/rss.xml", "infra"),
     Feed("NVIDIA Developer", "https://developer.nvidia.com/blog/feed/", "infra"),
     Feed("AWS ML Blog", "https://aws.amazon.com/blogs/machine-learning/feed/", "infra"),
+    # Where enterprise agent standards/reference architectures get announced
+    # (e.g. Google's Open Knowledge Format shipped on the Cloud blog, not the
+    # consumer AI blog).
+    Feed("Google Cloud AI", "https://cloudblog.withgoogle.com/products/ai-machine-learning/rss/", "infra"),
     # NOTE: LlamaIndex, Pinecone, Weaviate, Modal don't expose stable RSS —
     # covered via WEB_SEARCH_TARGETS.
 
@@ -99,6 +103,20 @@ WEB_SEARCH_TARGETS: list[str] = [
     "Ben's Bites — latest issue highlights (bensbites.com)",
     "Superhuman AI newsletter — latest issue (superhuman.ai)",
     "AlphaSignal — latest issue, top models/repos/papers (alphasignal.ai)",
+    "AI Breakfast — latest issue (aibreakfast.beehiiv.com)",
+    # Agentic-AI architect signal: standards, specs, protocols, and enterprise
+    # agent-platform releases — MUST-COVER, even when they have little news buzz.
+    "NEW AI standards, specs, formats, and protocols announced in the last week "
+    "— agent interoperability (MCP / Model Context Protocol spec updates, "
+    "A2A / Agent2Agent, AGNTCY, agents.json, llms.txt adoption), data/knowledge "
+    "formats (e.g. Google's Open Knowledge Format on the Google Cloud blog), "
+    "eval/safety/governance standards (NIST AI RMF updates, ISO/IEC 42001), and "
+    "vendor reference architectures for enterprise agents",
+    "Enterprise agent-platform releases and updates in the last week: OpenAI "
+    "Agents SDK / AgentKit, Google ADK and Vertex AI Agent Builder / Agent "
+    "Engine, Microsoft AutoGen / Semantic Kernel / Copilot Studio, AWS Bedrock "
+    "Agents / AgentCore, Salesforce Agentforce, ServiceNow AI Agents — anything "
+    "that changes how enterprise agentic platforms are built or governed",
     # Viral X (Twitter) AI threads — often where new insights break FIRST.
     "Viral AI threads on X (x.com / Twitter) from the last 24–72 hours — "
     "new-insight threads from researchers and builders (e.g. Andrej Karpathy, "

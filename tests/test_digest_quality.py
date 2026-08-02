@@ -119,6 +119,14 @@ class TestPromptRules(unittest.TestCase):
     def test_viral_x_threads_in_scope(self):
         self.assertIn("x.com", analyzer.SYSTEM_PROMPT)
 
+    def test_architect_signal_outranks_buzz(self):
+        # Standards/specs/protocols + enterprise agent platforms are top-priority
+        # signal, hunted deliberately — the Open Knowledge Format class of story.
+        self.assertIn("ARCHITECT SIGNAL OUTRANKS NEWS BUZZ", analyzer.SYSTEM_PROMPT)
+        instructions = build_instructions()
+        self.assertIn("Standards, Specs &amp; Enterprise Agent Stack", instructions)
+        self.assertIn("Architect's take:", instructions)
+
 
 class TestSourceCoverage(unittest.TestCase):
     def test_top_newsletters_present(self):
@@ -137,6 +145,26 @@ class TestSourceCoverage(unittest.TestCase):
         from src.enrich import _AUTHORITY, _CATEGORY_BASE
         self.assertGreater(_AUTHORITY["The Rundown AI"], _CATEGORY_BASE["newsletter"])
         self.assertGreater(_AUTHORITY["The Neuron"], _CATEGORY_BASE["newsletter"])
+
+    def test_standards_web_targets_present(self):
+        from src import sources
+        targets = " ".join(sources.WEB_SEARCH_TARGETS).lower()
+        for needle in ("aibreakfast", "model context protocol", "open knowledge format",
+                       "reference architecture"):
+            self.assertIn(needle, targets)
+
+    def test_standards_item_outranks_plain_news(self):
+        # A quiet standards/spec item must beat an equally-fresh generic story.
+        from datetime import datetime, timezone
+        from src.enrich import priority_score
+        from src.fetchers import Item
+        now = datetime(2026, 7, 8, tzinfo=timezone.utc)
+        spec = Item("Google Cloud AI", "infra",
+                    "Open Knowledge Format: a new standard for data sharing",
+                    "https://x/okf", now)
+        news = Item("Google Cloud AI", "infra",
+                    "Customers enjoying our summer event", "https://x/news", now)
+        self.assertGreater(priority_score(spec, now), priority_score(news, now))
 
 
 class TestTwoPassOpportunity(unittest.TestCase):

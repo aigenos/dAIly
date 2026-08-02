@@ -53,6 +53,17 @@ _CAPABILITY_RE = re.compile(
     r"RAG|retrieval|throughput|latency|tokens?/s)\b",
     re.IGNORECASE,
 )
+# Extra boost for the agentic-architect signal that news-buzz ranking misses:
+# new standards / specs / protocols / formats and enterprise agent-platform
+# building blocks (the Open Knowledge Format class of story).
+_STANDARDS_RE = re.compile(
+    r"\b(standard\w*|spec(?:ification)?s?|protocol\w*|interoperab\w*|schema\w*|"
+    r"open [a-z]+ format|knowledge format|MCP\b|model context protocol|"
+    r"agent2agent|A2A\b|agents\.json|llms\.txt|reference architecture\w*|"
+    r"orchestrat\w*|agent framework\w*|governance|ISO/IEC|NIST|"
+    r"enterprise[- ](?:grade|agents?|AI|platform\w*))\b",
+    re.IGNORECASE,
+)
 
 
 def priority_score(item: Item, now: datetime) -> float:
@@ -70,6 +81,11 @@ def priority_score(item: Item, now: datetime) -> float:
     text = f"{item.title} {item.summary[:200]}"
     if _CAPABILITY_RE.search(text):
         score += 18.0
+    # Standards / specs / protocols / enterprise-agent building blocks rarely
+    # generate buzz but are exactly what an agentic architect must not miss —
+    # boost them past ordinary news.
+    if _STANDARDS_RE.search(text):
+        score += 26.0
     if _BIZ_RE.search(text):
         score -= 32.0
 
