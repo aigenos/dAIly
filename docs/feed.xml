@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-01T00:00:00+00:00</updated>
+  <updated>2026-08-02T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 02, 2026: Together AI has released Kimi K3, the first open-weight model in the 3T-parameter class. By providing a complete developer guide for this scale, Together AI effectively…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260802.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260802.html</id>
+    <updated>2026-08-02T00:00:00+00:00</updated>
+    <summary>Together AI has released Kimi K3, the first open-weight model in the 3T-parameter class. By providing a complete developer guide for this scale, Together AI effectively…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 01, 2026: The release of DeepSeek-V4-Flash-0731, a 304B parameter model, marks a critical inflection point where local-runnable models now match the intelligence scores of…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260801.html"/>

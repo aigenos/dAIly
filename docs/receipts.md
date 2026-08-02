@@ -51,3 +51,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-07-30** — [VLA-Action Latency Optimizer](https://aigenos.github.io/dAIly/digests/digest_20260730.html)
 - **2026-07-31** — [Agentic Environment-Simulator (AES)](https://aigenos.github.io/dAIly/digests/digest_20260731.html)
 - **2026-08-01** — [Oncall-Agentic Observability Bridge](https://aigenos.github.io/dAIly/digests/digest_20260801.html)
+- **2026-08-02** — [MoE-Cache Integrity Auditor (MCIA)](https://aigenos.github.io/dAIly/digests/digest_20260802.html)
