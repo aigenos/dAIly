@@ -59,7 +59,8 @@ _CAPABILITY_RE = re.compile(
 _STANDARDS_RE = re.compile(
     r"\b(standard\w*|spec(?:ification)?s?|protocol\w*|interoperab\w*|schema\w*|"
     r"open [a-z]+ format|knowledge format|MCP\b|model context protocol|"
-    r"agent2agent|A2A\b|agents\.json|llms\.txt|reference architecture\w*|"
+    r"agent2agent|A2A\b|agents\.json|llms\.txt|agent skills?|apps sdk|"
+    r"agents sdk|computer[- ]use|sandbox\w*|reference architecture\w*|"
     r"orchestrat\w*|agent framework\w*|governance|ISO/IEC|NIST|"
     r"enterprise[- ](?:grade|agents?|AI|platform\w*))\b",
     re.IGNORECASE,

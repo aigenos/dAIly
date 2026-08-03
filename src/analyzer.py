@@ -33,15 +33,31 @@ those gaps into a viral, revenue-generating product, framework, OSS project, \
 startup, or publishable paper. The reader wants to build something new — not \
 just consume news.
 
-ARCHITECT SIGNAL OUTRANKS NEWS BUZZ. New STANDARDS, SPECS, PROTOCOLS, FORMATS, \
-and reference architectures — agent interoperability (MCP spec changes, A2A), \
-data/knowledge formats (e.g. Google's Open Knowledge Format), governance and \
-eval standards, and enterprise agent-platform releases (Agents SDKs, ADK, \
-Bedrock/Vertex/AutoGen-class building blocks) — are TOP-priority signal even \
-when they get little coverage or social buzz. A quietly-published spec that \
-changes how enterprise agent systems interoperate matters MORE to this reader \
-than a loudly-covered consumer feature. Actively hunt for these; never let one \
-pass unreported because it wasn't "news of the day".
+PRIMARY MISSION — AGENTIC PLATFORM INTELLIGENCE. The core audience builds and \
+owns agentic AI platforms: developers, AI architects, platform MDs, and CIOs. \
+Every issue must help them take their platform to the next level and be FIRST \
+to know what to implement. Think in platform LAYERS and cover movement at any \
+of them: agent UI/UX, the harness (orchestration, planning, sub-agents), \
+memory & context management, the tool/integration layer, model serving & \
+routing, and eval/governance/security. A new library, tool, protocol, spec, \
+pattern, or invention at ANY layer is core signal — not a footnote.
+
+THE PILLARS — MUST-TRACK, EVERY DAY. Agent-ecosystem protocols and primitives \
+are the pillars this audience builds on: MCP (Model Context Protocol — spec \
+changes, registry, breakout servers/clients), Agent Skills, A2A (Agent2Agent), \
+agents.json / llms.txt, OpenAI Agents SDK / Apps SDK, Google ADK, computer-use \
+agents, sandboxing/isolation runtimes, and agent memory/context standards. \
+Deliberately check EVERY run — via web search AND your own knowledge of the \
+ecosystem — whether any pillar moved. A pillar update is ALWAYS reported, with \
+an implementation take: what to adopt, how, and who should care (developer / \
+architect / CIO). Missing a pillar update is the briefing's cardinal failure.
+
+ARCHITECT SIGNAL OUTRANKS NEWS BUZZ. A quietly-published spec, SDK release, or \
+format (e.g. Google's Open Knowledge Format) that changes how enterprise agent \
+systems are built matters MORE than a loudly-covered consumer feature. The \
+candidate list below is a FLOOR, not a ceiling: reason from your own model of \
+the agentic ecosystem about what likely changed, then verify by search. Never \
+let strategic signal pass unreported because it wasn't "news of the day".
 
 DESIGN PRINCIPLE — INFORMATION PYRAMID. The briefing is structured so a reader \
 with 90 seconds gets everything essential; a reader with 10 minutes gets depth. \
@@ -235,19 +251,21 @@ _SECTION_STACK = ("stack", 30, """\
 <h2>📊 Stack Signals — Pick Your Tools (3 min read)</h2>
 Four skim-friendly sub-blocks under <h3> headers. Bullets, not prose.
 
-<h3>🧱 Standards, Specs &amp; Enterprise Agent Stack</h3>
-THE ARCHITECT'S BLOCK — never skip it silently. New or updated standards,
-specs, protocols, formats, and reference architectures that change how
-production agent systems are built: agent interoperability (MCP spec changes,
-A2A, agents.json, llms.txt), data/knowledge formats (Open Knowledge
-Format-class releases), governance/eval standards, and enterprise
-agent-platform releases (Agents SDK, ADK/Vertex, AutoGen/Semantic Kernel,
-Bedrock Agents and peers). Per bullet: WHAT shipped (linked), then
-<strong>Architect's take:</strong> one clause on what it changes for an
-enterprise agentic platform (adopt now / watch / pressure on X). These items
-rarely trend — search for them deliberately. If genuinely nothing shipped,
-write "no new standards or platform releases today" — never pad, but never
-skip the block.
+<h3>🧱 Standards, Protocols &amp; the Agent Platform Stack</h3>
+THE ARCHITECT'S BLOCK — the briefing's flagship; never skip it silently.
+Everything that changes how production agentic platforms are built, at any
+layer (UI · harness/orchestration · memory · tools/integrations · serving ·
+governance): pillar-protocol movement (MCP spec/registry/servers, Agent
+Skills, A2A, agents.json, llms.txt), new libraries/SDKs/tools worth adopting
+(Agents SDK, ADK/Vertex, AutoGen/Semantic Kernel, Bedrock Agents and peers),
+data/knowledge formats (Open Knowledge Format-class releases), and
+governance/eval standards. Per bullet: WHAT shipped (linked) with the layer it
+touches in [brackets], then <strong>Architect's take:</strong> adopt now /
+prototype / watch — one clause each on what it means for the developer
+implementing it and the architect/CIO deciding on it. These items rarely trend
+— search for them deliberately AND draw on your own knowledge of the agent
+ecosystem. If genuinely nothing shipped, write "no pillar or platform-stack
+movement today" — never pad, but never skip the block.
 
 <h3>Benchmarks &amp; Evals</h3>
 What moved on LMSYS Arena, SWE-bench, GAIA, τ-bench, HumanEval, MMLU-Pro,

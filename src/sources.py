@@ -106,12 +106,16 @@ WEB_SEARCH_TARGETS: list[str] = [
     "AI Breakfast — latest issue (aibreakfast.beehiiv.com)",
     # Agentic-AI architect signal: standards, specs, protocols, and enterprise
     # agent-platform releases — MUST-COVER, even when they have little news buzz.
+    "PILLAR PROTOCOLS this week — MCP (Model Context Protocol) spec, registry, "
+    "and breakout MCP servers/clients; Anthropic Agent Skills; A2A / "
+    "Agent2Agent; agents.json and llms.txt adoption; OpenAI Apps SDK; "
+    "computer-use agents; sandboxing/isolation runtimes for agents. Any update "
+    "to these is must-report signal",
     "NEW AI standards, specs, formats, and protocols announced in the last week "
-    "— agent interoperability (MCP / Model Context Protocol spec updates, "
-    "A2A / Agent2Agent, AGNTCY, agents.json, llms.txt adoption), data/knowledge "
-    "formats (e.g. Google's Open Knowledge Format on the Google Cloud blog), "
-    "eval/safety/governance standards (NIST AI RMF updates, ISO/IEC 42001), and "
-    "vendor reference architectures for enterprise agents",
+    "— agent interoperability, data/knowledge formats (e.g. Google's Open "
+    "Knowledge Format on the Google Cloud blog), agent memory/context "
+    "standards, eval/safety/governance standards (NIST AI RMF updates, ISO/IEC "
+    "42001), and vendor reference architectures for enterprise agents",
     "Enterprise agent-platform releases and updates in the last week: OpenAI "
     "Agents SDK / AgentKit, Google ADK and Vertex AI Agent Builder / Agent "
     "Engine, Microsoft AutoGen / Semantic Kernel / Copilot Studio, AWS Bedrock "

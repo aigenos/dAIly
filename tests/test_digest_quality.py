@@ -124,8 +124,18 @@ class TestPromptRules(unittest.TestCase):
         # signal, hunted deliberately — the Open Knowledge Format class of story.
         self.assertIn("ARCHITECT SIGNAL OUTRANKS NEWS BUZZ", analyzer.SYSTEM_PROMPT)
         instructions = build_instructions()
-        self.assertIn("Standards, Specs &amp; Enterprise Agent Stack", instructions)
+        self.assertIn("Standards, Protocols &amp; the Agent Platform Stack", instructions)
         self.assertIn("Architect's take:", instructions)
+
+    def test_pillars_mandate_in_prompt(self):
+        # MCP / Agent Skills / A2A are must-track pillars checked every run,
+        # for an audience spanning developers → architects → platform MDs/CIOs.
+        p = analyzer.SYSTEM_PROMPT
+        self.assertIn("THE PILLARS", p)
+        for pillar in ("Model Context Protocol", "Agent Skills", "A2A"):
+            self.assertIn(pillar, p)
+        self.assertIn("CIO", p)
+        self.assertIn("FLOOR, not a ceiling", p)
 
 
 class TestSourceCoverage(unittest.TestCase):
