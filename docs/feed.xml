@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-03T00:00:00+00:00</updated>
+  <updated>2026-08-04T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 04, 2026: Microsoft Research has released Orchard, an open-source framework designed to standardize the training and evaluation of AI agents across diverse task types. By enabling…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260804.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260804.html</id>
+    <updated>2026-08-04T00:00:00+00:00</updated>
+    <summary>Microsoft Research has released Orchard, an open-source framework designed to standardize the training and evaluation of AI agents across diverse task types. By enabling…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 03, 2026: OpenAI’s Astra has demonstrated a breakthrough in long-standing mathematical problem-solving, marking a significant leap in reasoning capability for agentic systems.…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260803.html"/>
