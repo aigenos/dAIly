@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-04T00:00:00+00:00</updated>
+  <updated>2026-08-05T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 05, 2026: The release of LLM 0.32 by Simon Willison marks a critical inflection point for local agent orchestration. By introducing native support for visible reasoning traces and…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260805.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260805.html</id>
+    <updated>2026-08-05T00:00:00+00:00</updated>
+    <summary>The release of LLM 0.32 by Simon Willison marks a critical inflection point for local agent orchestration. By introducing native support for visible reasoning traces and…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 04, 2026: Microsoft Research has released Orchard, an open-source framework designed to standardize the training and evaluation of AI agents across diverse task types. By enabling…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260804.html"/>
