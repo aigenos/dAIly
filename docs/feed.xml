@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-05T00:00:00+00:00</updated>
+  <updated>2026-08-06T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 06, 2026: The release of Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning introduces a persistent, self-correcting architecture designed to pivot when objective…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260806.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260806.html</id>
+    <updated>2026-08-06T00:00:00+00:00</updated>
+    <summary>The release of Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning introduces a persistent, self-correcting architecture designed to pivot when objective…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 05, 2026: The release of LLM 0.32 by Simon Willison marks a critical inflection point for local agent orchestration. By introducing native support for visible reasoning traces and…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260805.html"/>
