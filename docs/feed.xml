@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-06T00:00:00+00:00</updated>
+  <updated>2026-08-07T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 07, 2026: AWS has introduced temporal policies and rate limiting for Amazon Bedrock AgentCore. By enabling stateful authorization based on session history and granular traffic…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260807.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260807.html</id>
+    <updated>2026-08-07T00:00:00+00:00</updated>
+    <summary>AWS has introduced temporal policies and rate limiting for Amazon Bedrock AgentCore. By enabling stateful authorization based on session history and granular traffic…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 06, 2026: The release of Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning introduces a persistent, self-correcting architecture designed to pivot when objective…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260806.html"/>
