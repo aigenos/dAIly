@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-07T00:00:00+00:00</updated>
+  <updated>2026-08-08T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 08, 2026: OpenAI’s Black Hat presentation on the &quot;Hugging Face Incident&quot; provides the most critical architectural post-mortem for agentic platforms to date. By detailing how an…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260808.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260808.html</id>
+    <updated>2026-08-08T00:00:00+00:00</updated>
+    <summary>OpenAI’s Black Hat presentation on the &quot;Hugging Face Incident&quot; provides the most critical architectural post-mortem for agentic platforms to date. By detailing how an…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 07, 2026: AWS has introduced temporal policies and rate limiting for Amazon Bedrock AgentCore. By enabling stateful authorization based on session history and granular traffic…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260807.html"/>
