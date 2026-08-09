@@ -58,3 +58,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-08-06** — [Agentic-Environment Sandbox & Replay Engine (AESRE)](https://aigenos.github.io/dAIly/digests/digest_20260806.html)
 - **2026-08-07** — [Agentic-Governance Mechanism-Design Suite](https://aigenos.github.io/dAIly/digests/digest_20260807.html)
 - **2026-08-08** — [Agentic-Trajectory Observability Suite (ATOS)](https://aigenos.github.io/dAIly/digests/digest_20260808.html)
+- **2026-08-09** — [Agentic Traffic-Shaping & Identity Gateway](https://aigenos.github.io/dAIly/digests/digest_20260809.html)

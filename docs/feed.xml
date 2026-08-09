@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-08T00:00:00+00:00</updated>
+  <updated>2026-08-09T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 09, 2026: Anthropic has officially made Auto Mode the default setting for Claude Code across Pro, Max, and Team plans. By shifting the default interaction model from manual…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260809.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260809.html</id>
+    <updated>2026-08-09T00:00:00+00:00</updated>
+    <summary>Anthropic has officially made Auto Mode the default setting for Claude Code across Pro, Max, and Team plans. By shifting the default interaction model from manual…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 08, 2026: OpenAI’s Black Hat presentation on the &quot;Hugging Face Incident&quot; provides the most critical architectural post-mortem for agentic platforms to date. By detailing how an…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260808.html"/>
