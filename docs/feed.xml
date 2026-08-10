@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-09T00:00:00+00:00</updated>
+  <updated>2026-08-10T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 10, 2026: Meta has released Muse Glimmer, a 30B open-weight model specifically architected for always-on, local agentic workflows. By optimizing for low-latency, multimodal…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260810.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260810.html</id>
+    <updated>2026-08-10T00:00:00+00:00</updated>
+    <summary>Meta has released Muse Glimmer, a 30B open-weight model specifically architected for always-on, local agentic workflows. By optimizing for low-latency, multimodal…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 09, 2026: Anthropic has officially made Auto Mode the default setting for Claude Code across Pro, Max, and Team plans. By shifting the default interaction model from manual…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260809.html"/>
