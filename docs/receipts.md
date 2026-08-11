@@ -60,3 +60,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-08-08** — [Agentic-Trajectory Observability Suite (ATOS)](https://aigenos.github.io/dAIly/digests/digest_20260808.html)
 - **2026-08-09** — [Agentic Traffic-Shaping & Identity Gateway](https://aigenos.github.io/dAIly/digests/digest_20260809.html)
 - **2026-08-10** — [Agentic-State Snapshotting & Rollback Middleware](https://aigenos.github.io/dAIly/digests/digest_20260810.html)
+- **2026-08-11** — [Agentic-Environment Sandbox & Replay Engine (AESRE)](https://aigenos.github.io/dAIly/digests/digest_20260811.html)
