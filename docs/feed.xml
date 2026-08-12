@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-11T00:00:00+00:00</updated>
+  <updated>2026-08-12T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 12, 2026: The discovery that proprietary LLM APIs from Anthropic, OpenAI, and Google return encrypted or raw chain-of-thought (CoT) blocks that can be replayed or distilled across…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260812.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260812.html</id>
+    <updated>2026-08-12T00:00:00+00:00</updated>
+    <summary>The discovery that proprietary LLM APIs from Anthropic, OpenAI, and Google return encrypted or raw chain-of-thought (CoT) blocks that can be replayed or distilled across…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 11, 2026: Meta has released Muse Glimmer, a 30B dense model under a permissive Apache 2.0 license. By combining a 120K+ native context window with high-performance optimization…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260811.html"/>
