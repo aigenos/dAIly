@@ -62,3 +62,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-08-10** — [Agentic-State Snapshotting & Rollback Middleware](https://aigenos.github.io/dAIly/digests/digest_20260810.html)
 - **2026-08-11** — [Agentic-Environment Sandbox & Replay Engine (AESRE)](https://aigenos.github.io/dAIly/digests/digest_20260811.html)
 - **2026-08-12** — [Reasoning-Trace Obfuscation & Sanitization Proxy (RT-OSP)](https://aigenos.github.io/dAIly/digests/digest_20260812.html)
+- **2026-08-13** — [Reasoning-Trace Distillation Engine (RTDE)](https://aigenos.github.io/dAIly/digests/digest_20260813.html)
