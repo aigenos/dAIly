@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-14T00:00:00+00:00</updated>
+  <updated>2026-08-15T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 15, 2026: The release of MARC v1 (Multi-Agent Reasoning and Coordination) marks a critical pivot in agentic architecture by replacing monolithic LLM prompting with deterministic…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260815.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260815.html</id>
+    <updated>2026-08-15T00:00:00+00:00</updated>
+    <summary>The release of MARC v1 (Multi-Agent Reasoning and Coordination) marks a critical pivot in agentic architecture by replacing monolithic LLM prompting with deterministic…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 14, 2026: OpenAI has launched Ultrafast mode for GPT-5.6 Sol, a new API tier powered by Cerebras that achieves up to 750 output tokens per second—a 14× speed increase over…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260814.html"/>
