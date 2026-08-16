@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-15T00:00:00+00:00</updated>
+  <updated>2026-08-16T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 16, 2026: Anthropic has released Patterns and problems in emerging multi-agent systems, a foundational analysis of the failure modes inherent in multi-agent architectures. For…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260816.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260816.html</id>
+    <updated>2026-08-16T00:00:00+00:00</updated>
+    <summary>Anthropic has released Patterns and problems in emerging multi-agent systems, a foundational analysis of the failure modes inherent in multi-agent architectures. For…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 15, 2026: The release of MARC v1 (Multi-Agent Reasoning and Coordination) marks a critical pivot in agentic architecture by replacing monolithic LLM prompting with deterministic…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260815.html"/>
