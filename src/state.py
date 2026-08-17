@@ -79,20 +79,35 @@ def filter_new(items: list[Item], seen: dict[str, float]) -> list[Item]:
 
 
 def shown_in_digest(items: list[Item], body_html: str) -> list[Item]:
-    """The subset of items whose link actually appears in the rendered digest.
+    """The subset of items that actually appear in the rendered digest.
 
     Marking ALL prompt candidates as covered burned ~80 items/day — including
     the majority the model never used — so the candidate pool shrank every run
     and coverage collapsed. Only what was genuinely shown may be excluded from
-    future issues. Matches the raw URL and its https:// form (the digest
-    normalizes http:// arXiv links to https)."""
+    future issues.
+
+    Matching is two-tier:
+    - URL, anchored to an href attribute (a bare substring test could match a
+      prefix of a DIFFERENT url and wrongly ban an unshown story). The https://
+      form is also checked — the digest normalizes http:// arXiv links.
+    - Title fallback (≥4 words, case-insensitive) — the model sometimes links a
+      story's canonical source instead of the candidate URL; without this the
+      story would repeat in tomorrow's issue.
+    """
+    body_low = body_html.lower()
     out: list[Item] = []
     for it in items:
         url = (it.url or "").strip()
-        if not url:
-            continue
         alt = "https://" + url[len("http://"):] if url.startswith("http://") else url
-        if url in body_html or alt in body_html:
+        hit = any(
+            f'href="{u}"' in body_html or f"href='{u}'" in body_html
+            for u in {url, alt} if u
+        )
+        if not hit:
+            title = (it.title or "").strip().lower()
+            if len(title.split()) >= 4 and title in body_low:
+                hit = True
+        if hit:
             out.append(it)
     return out
 

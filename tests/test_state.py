@@ -95,6 +95,28 @@ class TestStateRoundtrip(unittest.TestCase):
         body = '<a href="https://arxiv.org/abs/2606.01234">Paper</a>'
         self.assertEqual(state.shown_in_digest([it], body), [it])
 
+    def test_shown_in_digest_no_prefix_false_positive(self):
+        # url being a PREFIX of a different link must not mark the item —
+        # that would wrongly ban a never-shown story.
+        it = _item(title="Other", url="https://x.com/a")
+        body = '<a href="https://x.com/ab">Different story</a>'
+        self.assertEqual(state.shown_in_digest([it], body), [])
+
+    def test_shown_in_digest_title_fallback_catches_relinked_story(self):
+        # The model often links the canonical source instead of the candidate
+        # URL; the title match still marks the story so it can't repeat.
+        it = _item(title="MegaModel 9 ships with double context",
+                   url="https://reddit.com/r/x/1")
+        body = ('<p><strong><a href="https://lab.com/blog/megamodel">'
+                'MegaModel 9 ships with double context</a></strong> — big.</p>')
+        self.assertEqual(state.shown_in_digest([it], body), [it])
+
+    def test_shown_in_digest_short_title_needs_url_match(self):
+        # Short generic titles (<4 words) must NOT title-match — too collision-prone.
+        it = _item(title="AI news", url="https://x.com/only-here")
+        body = "<p>AI news everywhere today.</p>"
+        self.assertEqual(state.shown_in_digest([it], body), [])
+
 
 if __name__ == "__main__":
     unittest.main()
