@@ -180,9 +180,12 @@ def run() -> int:
     )
 
     # 5. Persist cross-day dedup state — only after a successful real delivery,
-    # and only for the items the model actually saw (the prompt selection).
+    # and ONLY for items whose link actually appeared in today's digest. Marking
+    # every prompt candidate burned the whole pool daily and shrank coverage.
     if cfg.cross_day_dedup:
-        state.mark_seen(select_for_prompt(items), seen, now)
+        shown = state.shown_in_digest(select_for_prompt(items, now), body)
+        state.mark_seen(shown, seen, now)
+        log.info("cross-day dedup: marked %d item(s) actually shown today", len(shown))
         state.save(
             state.state_path(cfg.archive_dir), seen, now, cfg.lookback_days * 2
         )

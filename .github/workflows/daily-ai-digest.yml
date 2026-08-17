@@ -75,7 +75,7 @@ jobs:
           ENABLE_BUILDERS_EDGE: ${{ vars.ENABLE_BUILDERS_EDGE || 'false' }}
           # Image-rich Top Stories hero (top 3–4 with article thumbnails).
           ENABLE_TOP_STORIES: ${{ vars.ENABLE_TOP_STORIES || 'true' }}
-          TOP_STORIES_COUNT: ${{ vars.TOP_STORIES_COUNT || '4' }}
+          TOP_STORIES_COUNT: ${{ vars.TOP_STORIES_COUNT || '5' }}
           # Field preset: ai (default) | security | biotech | fintech | yours.
           SOURCE_PRESET: ${{ vars.SOURCE_PRESET }}
           LOOKBACK_DAYS: ${{ vars.LOOKBACK_DAYS || '7' }}

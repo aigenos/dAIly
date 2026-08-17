@@ -81,6 +81,20 @@ class TestStateRoundtrip(unittest.TestCase):
         items = [_item()]
         self.assertIs(state.filter_new(items, {}), items)
 
+    def test_shown_in_digest_matches_only_used_items(self):
+        # Only items whose link appears in the rendered body may be marked seen —
+        # unused prompt candidates must survive for future issues.
+        used = _item(title="Used", url="https://x.com/used")
+        unused = _item(title="Unused", url="https://x.com/unused")
+        body = '<p><a href="https://x.com/used">Used</a> shipped.</p>'
+        self.assertEqual(state.shown_in_digest([used, unused], body), [used])
+
+    def test_shown_in_digest_matches_https_normalized_arxiv(self):
+        # Fetcher yields http:// arXiv links; the digest normalizes to https.
+        it = _item(title="Paper", url="http://arxiv.org/abs/2606.01234")
+        body = '<a href="https://arxiv.org/abs/2606.01234">Paper</a>'
+        self.assertEqual(state.shown_in_digest([it], body), [it])
+
 
 if __name__ == "__main__":
     unittest.main()

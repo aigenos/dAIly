@@ -78,6 +78,25 @@ def filter_new(items: list[Item], seen: dict[str, float]) -> list[Item]:
     return out
 
 
+def shown_in_digest(items: list[Item], body_html: str) -> list[Item]:
+    """The subset of items whose link actually appears in the rendered digest.
+
+    Marking ALL prompt candidates as covered burned ~80 items/day — including
+    the majority the model never used — so the candidate pool shrank every run
+    and coverage collapsed. Only what was genuinely shown may be excluded from
+    future issues. Matches the raw URL and its https:// form (the digest
+    normalizes http:// arXiv links to https)."""
+    out: list[Item] = []
+    for it in items:
+        url = (it.url or "").strip()
+        if not url:
+            continue
+        alt = "https://" + url[len("http://"):] if url.startswith("http://") else url
+        if url in body_html or alt in body_html:
+            out.append(it)
+    return out
+
+
 def mark_seen(items: list[Item], seen: dict[str, float], now: datetime) -> None:
     """Record items as covered (call only after a successful, non-dry run)."""
     ts = now.timestamp()

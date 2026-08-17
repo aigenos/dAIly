@@ -163,6 +163,25 @@ class TestSourceCoverage(unittest.TestCase):
                        "reference architecture"):
             self.assertIn(needle, targets)
 
+    def test_prompt_selection_ranks_by_priority_not_recency(self):
+        # A 2-day-old high-authority capability item must make the prompt ahead
+        # of brand-new low-signal community chatter.
+        from datetime import datetime, timedelta, timezone
+        from src.fetchers import Item
+        now = datetime(2026, 7, 8, tzinfo=timezone.utc)
+        lab = Item("OpenAI", "lab", "New model release with benchmark jump",
+                   "https://x/lab", now - timedelta(days=2))
+        noise = Item("r/OpenAI (top/day)", "community", "Funny screenshot thread",
+                     "https://x/noise", now)
+        sel = analyzer._select_for_prompt([noise, lab], now)
+        self.assertEqual(sel[0].source, "OpenAI")
+
+    def test_prompt_capacity_bounds(self):
+        # Coverage regression guard: room for at least 100 items, and top
+        # newsletters may contribute several stories each.
+        self.assertGreaterEqual(analyzer._TOTAL_ITEM_CAP, 100)
+        self.assertGreaterEqual(analyzer._PER_SOURCE_CAP["newsletter"], 4)
+
     def test_standards_item_outranks_plain_news(self):
         # A quiet standards/spec item must beat an equally-fresh generic story.
         from datetime import datetime, timezone

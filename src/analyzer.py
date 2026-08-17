@@ -193,7 +193,7 @@ game-changing, say so honestly and elevate the most consequential item instead �
 do not manufacture drama.
 
 <h3>📍 In a Nutshell</h3>
-A <ul> of 8–12 ultra-tight one-line bullets covering everything else important
+A <ul> of 10–14 ultra-tight one-line bullets covering everything else important
 today: model releases, new standards/specs/protocols and enterprise
 agent-platform releases (always Nutshell-worthy), infra changes, major AI
 policy / regulation / government actions, funding, eval leaderboard moves, big
@@ -390,38 +390,36 @@ def build_instructions() -> str:
     )
 
 
-# Per-source caps keep one chatty feed from dominating the prompt. Tuned so
-# the full briefing fits ~10K input tokens with all feeds healthy.
+# Per-source caps keep one chatty feed from dominating the prompt. Roomy enough
+# that the briefing can cover everything the top AI newsletters do.
 _PER_SOURCE_CAP = {
-    "lab": 3,
-    "newsletter": 3,  # top newsletters run several high-detail stories per issue
-    "infra": 2,
+    "lab": 4,
+    "newsletter": 4,  # top newsletters run several high-detail stories per issue
+    "infra": 3,       # standards often ship on infra blogs (e.g. Google Cloud)
     "community": 4,
     "research": 5,
 }
 # Global ceiling on items handed to the model — keeps the prompt bounded even
-# if every feed comes back full.
-_TOTAL_ITEM_CAP = 80
+# if every feed comes back full (~120 items ≈ 7K prompt tokens).
+_TOTAL_ITEM_CAP = 120
 
 
-def _select_for_prompt(items: list[Item]) -> list[Item]:
+def _select_for_prompt(items: list[Item], now: datetime | None = None) -> list[Item]:
     """Rank + cap items so the prompt is signal-dense, not exhaustive.
 
-    Strategy: rank (HF papers by community upvotes, everything else by recency),
-    keep the top N per source, then truncate to a global cap. The fetch layer
-    stays exhaustive; selection happens here.
+    Strategy: rank by builder-relevance (enrich.priority_score — source
+    authority + recency + HF upvotes + capability/standards boosts, corporate
+    PR down-weighted), keep the top N per source, then truncate to a global
+    cap. Pure recency used to decide the cut, which let chatty low-signal
+    feeds crowd out key stories; priority ranking keeps the must-cover items
+    in the prompt. The fetch layer stays exhaustive; selection happens here.
     """
-    from .fetchers import _hf_upvotes
+    from datetime import timezone
 
-    def rank_key(it: Item) -> float:
-        # HF Daily Papers carry an upvote signal — let "must-read" beat "newest".
-        # Each upvote is worth ~half a day of recency so a highly-upvoted paper
-        # from yesterday outranks a zero-vote one from today.
-        ts = it.published.timestamp() if it.published else 0.0
-        upvote_boost = _hf_upvotes(it) * 43200 if it.source == "HF Daily Papers" else 0
-        return -(ts + upvote_boost)
+    from .enrich import priority_score
 
-    ordered = sorted(items, key=rank_key)
+    now = now or datetime.now(timezone.utc)
+    ordered = sorted(items, key=lambda it: priority_score(it, now), reverse=True)
     per_source: dict[str, int] = {}
     selected: list[Item] = []
     for it in ordered:
@@ -436,10 +434,10 @@ def _select_for_prompt(items: list[Item]) -> list[Item]:
     return selected
 
 
-def select_for_prompt(items: list[Item]) -> list[Item]:
-    """Public wrapper — main.py uses it to mark exactly the items the model saw
-    as 'covered' in the cross-day dedup state."""
-    return _select_for_prompt(items)
+def select_for_prompt(items: list[Item], now: datetime | None = None) -> list[Item]:
+    """Public wrapper — main.py uses it (with state.shown_in_digest) to mark
+    only the items that actually APPEARED in the digest as covered."""
+    return _select_for_prompt(items, now)
 
 
 def _format_items(items: list[Item]) -> str:
@@ -530,7 +528,7 @@ def _opportunity_memory_block(cfg: Config, now: datetime) -> str:
 
 def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
     """Build the prompt, run the configured provider, return the HTML fragment."""
-    selected = _select_for_prompt(items)
+    selected = _select_for_prompt(items, now)
     log.info(
         "selected %d/%d items for prompt (per-source + global cap)",
         len(selected), len(items),

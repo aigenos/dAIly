@@ -262,7 +262,7 @@ class Config:
             # told which items are featured so The Pulse doesn't repeat them.
             enable_top_stories=_get_bool("ENABLE_TOP_STORIES", True),
             enable_images=_get_bool("ENABLE_IMAGES", True),
-            top_stories_count=_get_int("TOP_STORIES_COUNT", 4),
+            top_stories_count=_get_int("TOP_STORIES_COUNT", 5),
             cross_day_dedup=_get_bool("CROSS_DAY_DEDUP", True),
             enable_link_check=_get_bool("ENABLE_LINK_CHECK", True),
             enable_builders_edge=_get_bool("ENABLE_BUILDERS_EDGE", False),
