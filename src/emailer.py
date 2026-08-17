@@ -45,10 +45,15 @@ _THEME_STYLES = """
   /* Literal colors only — Gmail/Outlook strip CSS custom properties but keep
      the media query, which used to leave dark-mode readers unstyled. */
   body, .aigenos-bg { background: #0a0a14 !important; }
-  .aigenos-card { background: #14141f !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
+  .aigenos-card { background: #14141f !important; border-color: #23263a !important; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35) !important; }
   .aigenos-text { color: #ececf5 !important; }
   .aigenos-muted { color: #8e8ea8 !important; }
-  h2.aigenos-h2 { color: #5eead4 !important; border-color: #2a2a3d !important; }
+  .aigenos-pre td { color: #8e8ea8 !important; }
+  .aigenos-pre a { color: #5eead4 !important; }
+  .aigenos-idx-label { color: #8e8ea8 !important; }
+  .aigenos-idx-chip { background: #14141f !important; border-color: #2a2d44 !important; color: #c8c8d8 !important; }
+  .aigenos-fbcard { background: #14141f !important; border-color: #23263a !important; }
+  h2.aigenos-h2 { color: #f0f1fa !important; border-color: #262a3e !important; }
   h3.aigenos-h3 { color: #ececf5 !important; }
   p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
   /* Links: bright teal text + a clearly-visible underline (was near-black on dark). */
@@ -104,14 +109,18 @@ _TEMPLATE = """\
 <title>{title}</title>
 <style>{theme}</style>
 </head>
-<body class="aigenos-bg" style="margin:0;padding:0;background:#f3f4f8;color-scheme:light dark;">
-<div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:28px 18px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
+<body class="aigenos-bg" style="margin:0;padding:0;background:#f5f6fa;color-scheme:light dark;">
+<div class="aigenos-shell" style="max-width:720px;margin:0 auto;padding:22px 18px 30px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI Variable','Segoe UI',Roboto,'SF Pro Display','Helvetica Neue',Arial,sans-serif;font-feature-settings:'cv11','ss03';-webkit-font-smoothing:antialiased;">
+
+  {preheader}
 
   <!-- Hero / masthead -->
   {hero}
 
+  {index}
+
   <!-- Body card -->
-  <div class="aigenos-card" style="background:#ffffff;border-radius:20px;padding:8px 30px 26px;margin-top:18px;box-shadow:0 1px 2px rgba(20,20,42,0.04),0 8px 24px rgba(20,20,42,0.06);">
+  <div class="aigenos-card" style="background:#ffffff;border:1px solid #e9ebf4;border-radius:22px;padding:10px 34px 30px;margin-top:16px;box-shadow:0 1px 2px rgba(20,20,42,0.03),0 10px 30px rgba(20,20,42,0.05);">
     {prelude}
     {body}
     {cta}
@@ -120,8 +129,11 @@ _TEMPLATE = """\
   {feedback}
 
   <!-- Footer -->
-  <div class="aigenos-footer" style="text-align:center;color:#6b6b85;font-size:12px;padding:22px 8px 8px;line-height:1.6;">
-    <strong style="color:#0f766e;font-weight:700;">dAIly</strong> by aigenos{footer_links}{engine}
+  <div class="aigenos-footer" style="text-align:center;color:#6b7186;font-size:12px;padding:26px 8px 6px;line-height:1.9;">
+    <strong style="color:#0f766e;font-weight:800;letter-spacing:-0.01em;">dAIly</strong>
+    <span style="opacity:.75;">— daily AI intelligence by aigenos</span>{footer_links}{engine}
+    <br><span style="font-size:11px;opacity:.65;">© {year} aigenos · built in public ·
+    <a href="https://github.com/aigenos/dAIly" style="color:#6b7186;text-decoration:underline;">open source</a></span>
   </div>
 
 </div>
@@ -132,37 +144,41 @@ _TEMPLATE = """\
 # Inline styles are the light-mode baseline. Class names are the hook for the
 # dark-mode @media block above to retarget colors via CSS.
 _TAG_STYLES = {
+    # Section headlines are near-BLACK, not brand-teal — colored headings read
+    # "blog", neutral headings read "product". Teal is reserved for links,
+    # chips, and CTAs. Each h2 sits on generous air with a hairline rule.
     "<h2>": (
-        '<h2 class="aigenos-h2" style="font-size:21px;margin:32px 0 10px;padding-bottom:10px;'
-        'border-bottom:1px solid #e8e6f5;color:#0f766e;font-weight:700;letter-spacing:-0.01em;'
-        'line-height:1.3;">'
+        '<h2 class="aigenos-h2" style="font-size:22px;margin:38px 0 10px;padding-bottom:12px;'
+        'border-bottom:1px solid #edeef5;color:#101223;font-weight:800;letter-spacing:-0.015em;'
+        'line-height:1.25;">'
     ),
     "<h3>": (
-        '<h3 class="aigenos-h3" style="font-size:16px;margin:22px 0 6px;color:#14142a;'
-        'font-weight:650;letter-spacing:-0.005em;line-height:1.35;">'
+        '<h3 class="aigenos-h3" style="font-size:16.5px;margin:24px 0 7px;color:#101223;'
+        'font-weight:700;letter-spacing:-0.008em;line-height:1.35;">'
     ),
     "<p>": (
-        '<p class="aigenos-p" style="margin:10px 0;font-size:15px;color:#3a3a55;'
-        'line-height:1.65;">'
+        '<p class="aigenos-p" style="margin:11px 0;font-size:15px;color:#3f4254;'
+        'line-height:1.7;">'
     ),
     "<ul>": (
-        '<ul class="aigenos-ul" style="margin:10px 0 12px 0;padding-left:22px;">'
+        '<ul class="aigenos-ul" style="margin:10px 0 14px 0;padding-left:22px;">'
     ),
     "<li>": (
-        '<li class="aigenos-li" style="margin:7px 0;font-size:15px;color:#3a3a55;'
-        'line-height:1.6;">'
+        '<li class="aigenos-li" style="margin:8px 0;font-size:15px;color:#3f4254;'
+        'line-height:1.65;">'
     ),
     "<a ": (
         '<a class="aigenos-a" style="color:#0f766e;text-decoration:none;font-weight:600;'
-        'border-bottom:1px solid rgba(15,118,110,0.30);" '
+        'border-bottom:1px solid rgba(15,118,110,0.28);" '
     ),
+    # Neutral panel with a teal spine — calmer than the old mint-green wash.
     "<blockquote>": (
-        '<blockquote class="aigenos-bq" style="margin:14px 0;padding:12px 18px;'
-        'border-left:3px solid #0f766e;background:#ecfdf5;color:#3a3a55;border-radius:0 10px 10px 0;'
-        'font-size:15px;line-height:1.6;">'
+        '<blockquote class="aigenos-bq" style="margin:16px 0;padding:13px 18px;'
+        'border-left:3px solid #0f766e;background:#f7f8fc;color:#3f4254;border-radius:0 12px 12px 0;'
+        'font-size:15px;line-height:1.65;">'
     ),
     "<strong>": (
-        '<strong class="aigenos-strong" style="color:#14142a;font-weight:650;">'
+        '<strong class="aigenos-strong" style="color:#101223;font-weight:700;">'
     ),
     "<em>": (
         '<em class="aigenos-em" style="font-style:italic;color:inherit;">'
@@ -234,6 +250,54 @@ def _add_source_favicons(html: str) -> str:
     return re.sub(r'<a\b[^>]*\bhref="([^"]+)"[^>]*>', repl, html)
 
 
+_H2_TEXT_RX = re.compile(r"<h2[^>]*>(.*?)</h2>", re.DOTALL | re.IGNORECASE)
+
+
+def _preheader(now: datetime, read_online_url: str = "") -> str:
+    """The slim product bar above the hero: issue date left, Read-online right.
+    Small touches like this are what make it read as a product, not a blast."""
+    date = now.strftime("%A, %B %d, %Y").replace(" 0", " ")
+    right = (
+        f'<a href="{read_online_url}" style="color:#0f766e;text-decoration:none;'
+        'font-weight:700;">Read online →</a>' if read_online_url else "&nbsp;"
+    )
+    return (
+        '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" '
+        'class="aigenos-pre" style="margin:0 2px 10px;"><tr>'
+        f'<td style="font-size:12px;color:#8a90a5;font-weight:600;">{date}</td>'
+        f'<td style="font-size:12px;text-align:right;">{right}</td>'
+        '</tr></table>'
+    )
+
+
+def _issue_index(body_fragment: str) -> str:
+    """The "IN TODAY'S ISSUE" chip row, auto-built from the section headlines —
+    the at-a-glance menu every commercial newsletter opens with. Returns '' when
+    fewer than 3 sections are present (not worth a menu)."""
+    names: list[str] = []
+    for raw in _H2_TEXT_RX.findall(body_fragment):
+        t = re.sub(r"<[^>]+>", "", raw)
+        t = re.sub(r"\([^)]*\bread\b[^)]*\)", "", t, flags=re.IGNORECASE)
+        t = t.split("—")[0]
+        t = re.sub(r"\s+", " ", t).strip(" —–-·:")
+        if t:
+            names.append(t)
+    if len(names) < 3:
+        return ""
+    chips = "".join(
+        '<span class="aigenos-idx-chip" style="display:inline-block;background:#ffffff;'
+        'border:1px solid #e9ebf4;color:#3f4254;border-radius:999px;padding:6px 13px;'
+        f'margin:3px;font-size:12px;font-weight:600;">{n}</span>'
+        for n in names
+    )
+    return (
+        '<div class="aigenos-idx" style="text-align:center;margin:16px 2px 0;">'
+        '<div class="aigenos-idx-label" style="font-size:10.5px;letter-spacing:2px;'
+        'color:#8a90a5;font-weight:700;margin-bottom:8px;">IN TODAY&#8217;S ISSUE</div>'
+        f'{chips}</div>'
+    )
+
+
 def footer_links(cfg, now: datetime, include_unsubscribe: bool = True) -> str:
     """The footer link row: read-online (archive) · subscribe · unsubscribe.
     Each link renders only when its env var is configured. The unsubscribe slot
@@ -295,11 +359,12 @@ def feedback_block(cfg, now: datetime) -> str:
                         ("😕", "meh", "Not great"))
     )
     return (
-        '<div class="aigenos-signoff" style="text-align:center;margin:26px 0 4px;padding:4px 8px;">'
-        '<div class="aigenos-signoff-q" style="font-size:14px;font-weight:600;color:#14142a;margin-bottom:12px;">'
+        '<div class="aigenos-fbcard" style="text-align:center;margin:18px 0 4px;'
+        'padding:22px 20px;background:#ffffff;border:1px solid #e9ebf4;border-radius:18px;">'
+        '<div class="aigenos-signoff-q" style="font-size:14px;font-weight:700;color:#101223;margin-bottom:12px;">'
         'How was today’s issue?</div>'
         f'<div>{chips}</div>'
-        '<div class="aigenos-signoff-s" style="font-size:13px;color:#6b6b85;margin-top:16px;line-height:1.5;">'
+        '<div class="aigenos-signoff-s" style="font-size:13px;color:#6b7186;margin-top:15px;line-height:1.5;">'
         'Until next time — the <strong>aigenos</strong> team 👋</div>'
         '</div>'
     )
@@ -439,6 +504,7 @@ def render_html(
     hero_image_url: str = "",
     feedback: str = "",
     prelude: str = "",
+    read_online_url: str = "",
 ) -> str:
     """Render the full email. `cta` is an optional pre-built HTML block (e.g. a
     subscribe call-to-action) injected after the body — it is NOT run through the
@@ -468,6 +534,9 @@ def render_html(
         hero=hero,
         feedback=feedback,
         prelude=prelude,
+        preheader=_preheader(now, read_online_url),
+        index=_issue_index(body_fragment),
+        year=now.strftime("%Y"),
         theme=_THEME_STYLES,
     )
 
@@ -483,6 +552,7 @@ def render_embeddable_html(
     body_fragment: str, now: datetime, engine: str = "", cta: str = "",
     footer: str = "", logo_url: str = "", logo_url_dark: str = "",
     hero_image_url: str = "", feedback: str = "", prelude: str = "",
+    read_online_url: str = "",
 ) -> str:
     """The full styled email (hero + logo + cards + footer) WITHOUT the outer
     <html>/<head> wrapper, so another sender (e.g. Buttondown) can drop it into
@@ -492,7 +562,7 @@ def render_embeddable_html(
     full = render_html(body_fragment, now, engine=engine, cta=cta, footer=footer,
                        logo_url=logo_url, logo_url_dark=logo_url_dark,
                        hero_image_url=hero_image_url, feedback=feedback,
-                       prelude=prelude)
+                       prelude=prelude, read_online_url=read_online_url)
     m = _BODY_RX.search(full)
     inner = m.group(1).strip() if m else full
     return f"<style>{_THEME_STYLES}</style>\n{inner}"

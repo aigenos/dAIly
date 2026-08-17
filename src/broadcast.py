@@ -287,6 +287,10 @@ def send_subscribers(
         hero_image_url=getattr(cfg, "hero_image_url", ""),
         feedback=feedback_block(cfg, now),
         prelude=prelude,
+        read_online_url=(
+            f"{cfg.site_url}/digests/digest_{now.strftime('%Y%m%d')}.html"
+            if getattr(cfg, "site_url", "") else ""
+        ),
     )
     return _create_and_send(cfg, audience_id, sender, subject_line(now), html)
 

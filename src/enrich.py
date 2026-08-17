@@ -208,13 +208,14 @@ def render_top_stories(
         )
         cards.append(
             '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" '
-            'class="aigenos-src-row" style="margin:12px 0;border:1px solid #ece9fb;border-radius:16px;'
+            'class="aigenos-src-row" style="margin:14px 0;border:1px solid #e9ebf4;border-radius:18px;'
             'background:#ffffff;overflow:hidden;"><tr><td style="padding:0;">'
             f'{image_band}'
             f'<div style="padding:{pad};">'
-            f'<a href="{it.url}" class="aigenos-src-title" style="color:#14142a;text-decoration:none;'
-            f'font-weight:700;font-size:17px;line-height:1.3;letter-spacing:-0.01em;">{_esc(it.title)}</a>'
-            f'<div class="aigenos-src-meta" style="margin-top:5px;font-size:12px;color:#8a8a9a;">'
+            f'<a href="{it.url}" class="aigenos-src-title" style="color:#101223;text-decoration:none;'
+            f'font-weight:750;font-size:17px;line-height:1.32;letter-spacing:-0.012em;">{_esc(it.title)}</a>'
+            f'<div class="aigenos-src-meta" style="margin-top:6px;font-size:12px;color:#8a90a5;'
+            'text-transform:uppercase;letter-spacing:.4px;font-weight:600;">'
             f'<img src="{_favicon(dom)}" width="13" height="13" alt="" style="vertical-align:middle;margin-right:5px;border-radius:3px;border:0;">'
             f'{_esc(it.source)}{" · " + date if date else ""}</div>'
             f'{blurb_html}'

@@ -448,6 +448,44 @@ class TestNewsletterPolish(unittest.TestCase):
         self.assertIn("How was today", html)
 
 
+class TestCommercialTheme(unittest.TestCase):
+    NOW = datetime(2026, 8, 17, tzinfo=timezone.utc)
+    BODY = (
+        "<h2>👋 In Brief (30 sec read)</h2><p>hi</p>"
+        "<h2>⚡ The Pulse — If You Only Read One Thing (90 sec read)</h2><p>x</p>"
+        "<h2>🚀 Opportunity of the Day (2 min read)</h2><p>y</p>"
+    )
+
+    def test_preheader_shows_date_and_read_online(self):
+        html = render_html(self.BODY, self.NOW,
+                           read_online_url="https://x/digests/d.html")
+        self.assertIn("Monday, August 17, 2026", html)
+        self.assertIn('href="https://x/digests/d.html"', html)
+        self.assertIn("Read online", html)
+
+    def test_issue_index_chips_from_sections(self):
+        from src.emailer import _issue_index
+        idx = _issue_index(self.BODY)
+        self.assertIn("IN TODAY&#8217;S ISSUE", idx)
+        self.assertIn("⚡ The Pulse</span>", idx)      # em-dash tail trimmed
+        self.assertNotIn("If You Only Read One Thing", idx)
+        self.assertNotIn("read", idx.split("ISSUE</div>")[1].lower())  # read-time stripped
+        self.assertIn(idx[:60], render_html(self.BODY, self.NOW))     # rendered into email
+
+    def test_index_skipped_for_few_sections(self):
+        html = render_html("<h2>Only (1 min read)</h2><p>x</p>", self.NOW)
+        self.assertNotIn("IN TODAY&#8217;S ISSUE", html)
+
+    def test_headlines_neutral_not_teal(self):
+        html = render_html(self.BODY, self.NOW)
+        self.assertIn('class="aigenos-h2" style="font-size:22px', html)
+        self.assertIn("color:#101223", html)
+
+    def test_footer_has_copyright_year(self):
+        html = render_html(self.BODY, self.NOW)
+        self.assertIn("© 2026 aigenos", html)
+
+
 class TestDarkModeCss(unittest.TestCase):
     def test_no_var_in_dark_block(self):
         # Gmail/Outlook strip CSS custom properties: the dark-mode block must

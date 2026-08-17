@@ -141,6 +141,10 @@ def run() -> int:
         hero_image_url=cfg.hero_image_url,
         feedback=feedback_block(cfg, now),
         prelude=listen,
+        read_online_url=(
+            f"{cfg.site_url}/digests/digest_{now.strftime('%Y%m%d')}.html"
+            if cfg.site_url else ""
+        ),
     )
 
     # Always save to disk in DRY_RUN so you can eyeball the result locally.
