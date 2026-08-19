@@ -68,3 +68,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-08-16** — [Curriculum-Based Agentic Fine-Tuning (CRAFT)](https://aigenos.github.io/dAIly/digests/digest_20260816.html)
 - **2026-08-17** — [Agentic Quant-Metadata Registry](https://aigenos.github.io/dAIly/digests/digest_20260817.html)
 - **2026-08-18** — [Agentic Memory Reconciliation Middleware](https://aigenos.github.io/dAIly/digests/digest_20260818.html)
+- **2026-08-19** — [Agentic Payment-Orchestration Middleware](https://aigenos.github.io/dAIly/digests/digest_20260819.html)

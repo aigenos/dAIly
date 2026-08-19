@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-18T00:00:00+00:00</updated>
+  <updated>2026-08-19T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 19, 2026: Amazon Bedrock AgentCore payments is now generally available, providing a standardized, protocol-agnostic layer for agents to execute financial transactions with…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260819.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260819.html</id>
+    <updated>2026-08-19T00:00:00+00:00</updated>
+    <summary>Amazon Bedrock AgentCore payments is now generally available, providing a standardized, protocol-agnostic layer for agents to execute financial transactions with…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 18, 2026: Stripe has acquired OpenRouter for $7B, marking the most significant consolidation in the AI infrastructure layer to date. By integrating the leading model-routing and…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260818.html"/>
