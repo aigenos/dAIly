@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-20T00:00:00+00:00</updated>
+  <updated>2026-08-21T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 21, 2026: NVIDIA has released an official NVIDIA-hosted CUDA MCP (Model Context Protocol) server, providing agents with native, real-time access to CUDA documentation, performance…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260821.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260821.html</id>
+    <updated>2026-08-21T00:00:00+00:00</updated>
+    <summary>NVIDIA has released an official NVIDIA-hosted CUDA MCP (Model Context Protocol) server, providing agents with native, real-time access to CUDA documentation, performance…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 20, 2026: The release of SemaPLC introduces a project-grounded, verification-gated agent harness specifically for industrial PLC code generation. By moving beyond simple code…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260820.html"/>
