@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-21T00:00:00+00:00</updated>
+  <updated>2026-08-22T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 22, 2026: NVIDIA’s AVO architecture has reached 100% on the ARC-AGI-3 benchmark, marking a critical milestone for long-horizon autonomous agents. By decoupling the agent harness…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260822.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260822.html</id>
+    <updated>2026-08-22T00:00:00+00:00</updated>
+    <summary>NVIDIA’s AVO architecture has reached 100% on the ARC-AGI-3 benchmark, marking a critical milestone for long-horizon autonomous agents. By decoupling the agent harness…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 21, 2026: NVIDIA has released an official NVIDIA-hosted CUDA MCP (Model Context Protocol) server, providing agents with native, real-time access to CUDA documentation, performance…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260821.html"/>
