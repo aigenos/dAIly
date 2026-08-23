@@ -72,3 +72,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-08-20** — [Agentic Logic-Verification Proxy (ALVP)](https://aigenos.github.io/dAIly/digests/digest_20260820.html)
 - **2026-08-21** — [Agentic State-Reconciliation Middleware](https://aigenos.github.io/dAIly/digests/digest_20260821.html)
 - **2026-08-22** — [Agentic Tool-Access Governance Proxy (ATGP)](https://aigenos.github.io/dAIly/digests/digest_20260822.html)
+- **2026-08-23** — [Agentic-Governance Policy-as-Code (AG-PaC)](https://aigenos.github.io/dAIly/digests/digest_20260823.html)
