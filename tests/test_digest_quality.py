@@ -485,6 +485,20 @@ class TestCommercialTheme(unittest.TestCase):
         html = render_html(self.BODY, self.NOW)
         self.assertIn("© 2026 aigenos", html)
 
+    def test_share_row_with_site_url(self):
+        # The growth loop: forward ask + prefilled share-on-X + issue link.
+        from src.emailer import feedback_block
+        fb = feedback_block(_make_cfg(SITE_URL="https://me.github.io/dAIly"), self.NOW)
+        self.assertIn("Forward it on", fb)
+        self.assertIn("https://x.com/intent/post?text=", fb)
+        self.assertIn("digest_20260817.html", fb)
+
+    def test_share_row_absent_without_site_url(self):
+        from src.emailer import feedback_block
+        fb = feedback_block(_make_cfg(), self.NOW)
+        self.assertNotIn("x.com/intent", fb)
+        self.assertIn("How was today", fb)  # feedback itself still renders
+
 
 class TestDarkModeCss(unittest.TestCase):
     def test_no_var_in_dark_block(self):

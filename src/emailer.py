@@ -22,7 +22,7 @@ from __future__ import annotations
 import logging
 import re
 from datetime import datetime
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 import requests
 
@@ -53,6 +53,9 @@ _THEME_STYLES = """
   .aigenos-idx-label { color: #8e8ea8 !important; }
   .aigenos-idx-chip { background: #14141f !important; border-color: #2a2d44 !important; color: #c8c8d8 !important; }
   .aigenos-fbcard { background: #14141f !important; border-color: #23263a !important; }
+  .aigenos-share { border-color: #262a3e !important; }
+  .aigenos-share-q { color: #8e8ea8 !important; }
+  .aigenos-share-x, .aigenos-share-l { background: rgba(94, 234, 212, 0.14) !important; color: #5eead4 !important; }
   h2.aigenos-h2 { color: #f0f1fa !important; border-color: #262a3e !important; }
   h3.aigenos-h3 { color: #ececf5 !important; }
   p.aigenos-p, li.aigenos-li { color: #c8c8d8 !important; }
@@ -364,8 +367,39 @@ def feedback_block(cfg, now: datetime) -> str:
         '<div class="aigenos-signoff-q" style="font-size:14px;font-weight:700;color:#101223;margin-bottom:12px;">'
         'How was today’s issue?</div>'
         f'<div>{chips}</div>'
+        f'{_share_row(cfg, now)}'
         '<div class="aigenos-signoff-s" style="font-size:13px;color:#6b7186;margin-top:15px;line-height:1.5;">'
         'Until next time — the <strong>aigenos</strong> team 👋</div>'
+        '</div>'
+    )
+
+
+def _share_row(cfg, now: datetime) -> str:
+    """The growth loop: an explicit ask to forward + a one-tap share-on-X link
+    prefilled with today's issue URL. Newsletters grow by forwarding, and
+    readers forward far more when asked. '' without a SITE_URL (nothing to
+    link)."""
+    site_url = getattr(cfg, "site_url", "")
+    if not site_url:
+        return ""
+    issue = f"{site_url}/digests/digest_{now.strftime('%Y%m%d')}.html"
+    text = quote(
+        "dAIly — a daily AI briefing that ends with what to BUILD, not just "
+        f"what happened. Today's issue: {issue}"
+    )
+    x_link = f"https://x.com/intent/post?text={text}"
+    pill = (
+        'style="display:inline-block;background:rgba(15,118,110,0.10);color:#0f766e;'
+        'font-weight:700;font-size:12.5px;text-decoration:none;padding:7px 15px;'
+        'border-radius:999px;margin:0 4px;"'
+    )
+    return (
+        '<div class="aigenos-share" style="margin-top:16px;padding-top:14px;'
+        'border-top:1px solid #edeef5;">'
+        '<div class="aigenos-share-q" style="font-size:12.5px;color:#6b7186;margin-bottom:9px;">'
+        'Know one builder who’d love this? <strong>Forward it on</strong> — or share:</div>'
+        f'<a href="{x_link}" class="aigenos-share-x" {pill}>𝕏 Share today’s issue</a>'
+        f'<a href="{issue}" class="aigenos-share-l" {pill}>🔗 Copy the link</a>'
         '</div>'
     )
 

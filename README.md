@@ -35,23 +35,24 @@ evidence-backed **Opportunity of the Day**: the gap, why it's newly tractable
 in the next 7 days — every claim backed by **at least two independent signals**
 (a paper + a launch, a benchmark move + star velocity), each one linked.
 
-Here's the shape of one (sample — swap in a favorite from your
-[live archive](https://aigenos.github.io/dAIly) once issues accumulate):
+Here's a real one, verbatim from the
+[August 17 issue](https://aigenos.github.io/dAIly/digests/digest_20260817.html):
 
-> ### 🚀 Opportunity of the Day — *TraceLint*
-> - **The gap:** agent frameworks ship eval harnesses, but nobody lints
->   *production traces* — silent tool-call failures only surface in user
->   complaints. ([the paper that exposes it](https://arxiv.org/))
-> - **Why now:** this week's long-horizon agent benchmark shows error
->   compounding dominates failures, and the new traces API makes the data
->   accessible for the first time.
-> - **Build as:** OSS library + hosted dashboard — devs adopt linters bottom-up.
-> - **Wedge & moat:** first user is any team already exporting traces; the rule
->   pack compounds with every contributed failure pattern.
-> - **Already heating up:** the benchmark thread hit **#1 on HN (480 pts)**;
->   a related repo gained **2.1k stars in 72h**.
-> - **First step this week:** lint 100 public traces, publish the failure
->   taxonomy as a gist, post to r/LocalLLaMA.
+> ### 🚀 Opportunity of the Day — *Agentic Quant-Metadata Registry*
+> - **The gap:** no standardized metadata for quantized models (see the
+>   [r/LocalLLaMA petition](https://www.reddit.com/r/LocalLLaMA/comments/1vqnbhe/petition_to_add_a_rule_for_people_to_add_their/))
+>   — agent orchestrators can't dynamically pick the optimal model build for
+>   given hardware constraints.
+> - **Why now:** with releases like Qwen 3.8 27B, performance variance across
+>   quantization levels (Q8_0 vs. EXL2) became a primary production bottleneck.
+> - **Build as:** a lightweight OSS registry + schema (`quant.json`) attached to
+>   model artifacts: standardized performance profiles, VRAM needs, latency.
+> - **Wedge & moat:** integrate with llama.cpp and vLLM to auto-inject metadata;
+>   the moat is the performance-profile database becoming the selection standard.
+> - **Closest existing solution:** [HF Model Cards](https://huggingface.co/docs/hub/en/model-cards)
+>   — unstructured, no machine-readable per-quant metrics. The opening is real.
+> - **First step this week:** define the `quant.json` schema and ship a CLI that
+>   generates profiles for local GGUF/EXL2 files.
 
 And it keeps score: every Opportunity is logged to
 [`docs/receipts.md`](docs/receipts.md) with date + issue link — so when one of
