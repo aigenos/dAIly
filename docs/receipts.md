@@ -74,3 +74,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-08-22** — [Agentic Tool-Access Governance Proxy (ATGP)](https://aigenos.github.io/dAIly/digests/digest_20260822.html)
 - **2026-08-23** — [Agentic-Governance Policy-as-Code (AG-PaC)](https://aigenos.github.io/dAIly/digests/digest_20260823.html)
 - **2026-08-24** — [Agentic Context-Budget Optimizer (ACBO)](https://aigenos.github.io/dAIly/digests/digest_20260824.html)
+- **2026-08-25** — [Universal Agentic-Registry Middleware (UARM)](https://aigenos.github.io/dAIly/digests/digest_20260825.html)

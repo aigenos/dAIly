@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-24T00:00:00+00:00</updated>
+  <updated>2026-08-25T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 25, 2026: AWS has released the Agentic Resource Discovery (ARD) specification, a foundational open standard for cataloging and discovering agents, tools, and skills across…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260825.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260825.html</id>
+    <updated>2026-08-25T00:00:00+00:00</updated>
+    <summary>AWS has released the Agentic Resource Discovery (ARD) specification, a foundational open standard for cataloging and discovering agents, tools, and skills across…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 24, 2026: Xiaomi AI Cube has been announced, featuring a 3-chip architecture (Xuanjie O3, O100, and D100) delivering 1.2TB/s memory bandwidth. This hardware leap directly…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260824.html"/>
