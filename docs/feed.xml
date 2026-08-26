@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-25T00:00:00+00:00</updated>
+  <updated>2026-08-26T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 26, 2026: OpenAI has unveiled Jalapeño, a custom inference chip designed specifically for high-throughput, low-latency model serving. By moving beyond commodity GPU reliance for…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260826.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260826.html</id>
+    <updated>2026-08-26T00:00:00+00:00</updated>
+    <summary>OpenAI has unveiled Jalapeño, a custom inference chip designed specifically for high-throughput, low-latency model serving. By moving beyond commodity GPU reliance for…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 25, 2026: AWS has released the Agentic Resource Discovery (ARD) specification, a foundational open standard for cataloging and discovering agents, tools, and skills across…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260825.html"/>
