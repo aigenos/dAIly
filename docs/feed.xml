@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-26T00:00:00+00:00</updated>
+  <updated>2026-08-27T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 27, 2026: Lovable's pivot to MCP-powered capabilities marks a structural shift in how SaaS platforms expose functionality to agents. By adopting the Model Context Protocol (MCP)…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260827.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260827.html</id>
+    <updated>2026-08-27T00:00:00+00:00</updated>
+    <summary>Lovable's pivot to MCP-powered capabilities marks a structural shift in how SaaS platforms expose functionality to agents. By adopting the Model Context Protocol (MCP)…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 26, 2026: OpenAI has unveiled Jalapeño, a custom inference chip designed specifically for high-throughput, low-latency model serving. By moving beyond commodity GPU reliance for…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260826.html"/>
