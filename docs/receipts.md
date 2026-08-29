@@ -78,3 +78,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-08-26** — [Agentic-Parallelism Orchestrator (APO)](https://aigenos.github.io/dAIly/digests/digest_20260826.html)
 - **2026-08-27** — [Agentic-Harness JIT-Optimizer](https://aigenos.github.io/dAIly/digests/digest_20260827.html)
 - **2026-08-28** — [Agentic-Truth-Verification Layer (ATVL)](https://aigenos.github.io/dAIly/digests/digest_20260828.html)
+- **2026-08-29** — [Model-Agnostic IDE Orchestration Layer (MAIOL)](https://aigenos.github.io/dAIly/digests/digest_20260829.html)
