@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-29T00:00:00+00:00</updated>
+  <updated>2026-08-30T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 30, 2026: Tencent has released Hy4 Preview, a 770B parameter MoE model (49B active) featuring a 1M token context window. By providing a massive context-to-parameter ratio, this…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260830.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260830.html</id>
+    <updated>2026-08-30T00:00:00+00:00</updated>
+    <summary>Tencent has released Hy4 Preview, a 770B parameter MoE model (49B active) featuring a 1M token context window. By providing a massive context-to-parameter ratio, this…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 29, 2026: OpenAI has officially announced the wind-down of its contract providing models to Cursor following the IDE's acquisition by SpaceX. This move effectively terminates the…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260829.html"/>
