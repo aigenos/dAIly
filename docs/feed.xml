@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-08-30T00:00:00+00:00</updated>
+  <updated>2026-08-31T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — August 31, 2026: The release of pipecat-ai/phonellm-alpha-1 represents a critical shift in real-time agentic infrastructure. By achieving performance parity with frontier models on…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260831.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260831.html</id>
+    <updated>2026-08-31T00:00:00+00:00</updated>
+    <summary>The release of pipecat-ai/phonellm-alpha-1 represents a critical shift in real-time agentic infrastructure. By achieving performance parity with frontier models on…</summary>
+  </entry>
   <entry>
     <title>dAIly — August 30, 2026: Tencent has released Hy4 Preview, a 770B parameter MoE model (49B active) featuring a 1M token context window. By providing a massive context-to-parameter ratio, this…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260830.html"/>
