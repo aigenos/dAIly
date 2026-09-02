@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-01T00:00:00+00:00</updated>
+  <updated>2026-09-02T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — September 02, 2026: Anthropic has released Claude Fable 5.1, a new SOTA model suite optimized for complex coding, scientific research, and long-running problem-solving tasks. By combining a…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260902.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260902.html</id>
+    <updated>2026-09-02T00:00:00+00:00</updated>
+    <summary>Anthropic has released Claude Fable 5.1, a new SOTA model suite optimized for complex coding, scientific research, and long-running problem-solving tasks. By combining a…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 01, 2026: AWS has officially launched the AWS Agent Registry, providing a centralized, governed catalog for agents, tools, and skills across enterprise environments. By pairing…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260901.html"/>

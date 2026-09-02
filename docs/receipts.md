@@ -82,3 +82,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-08-30** — [Agentic-Context-Graph-Compiler (ACGC)](https://aigenos.github.io/dAIly/digests/digest_20260830.html)
 - **2026-08-31** — [Voice-Agent Latency-Budget Orchestrator (VALBO)](https://aigenos.github.io/dAIly/digests/digest_20260831.html)
 - **2026-09-01** — [Agentic-State-Version-Control (ASVC)](https://aigenos.github.io/dAIly/digests/digest_20260901.html)
+- **2026-09-02** — [Agentic-PR-Review-Factory (APRF)](https://aigenos.github.io/dAIly/digests/digest_20260902.html)
