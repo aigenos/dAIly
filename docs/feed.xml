@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-04T00:00:00+00:00</updated>
+  <updated>2026-09-05T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — September 05, 2026: OpenAI has begun the rollout of GPT-6 Astra, a model architecture specifically optimized for high-reasoning, multi-step agentic workflows. By enforcing reasoning-heavy…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260905.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260905.html</id>
+    <updated>2026-09-05T00:00:00+00:00</updated>
+    <summary>OpenAI has begun the rollout of GPT-6 Astra, a model architecture specifically optimized for high-reasoning, multi-step agentic workflows. By enforcing reasoning-heavy…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 04, 2026: OpenAI has released GPT-6 Astra, a frontier model class that sets a new SOTA for computer use and autonomous coding tasks. Early reports indicate it achieves a 50%…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260904.html"/>
