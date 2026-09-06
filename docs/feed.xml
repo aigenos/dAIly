@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-05T00:00:00+00:00</updated>
+  <updated>2026-09-06T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — September 06, 2026: The release of OKF Agent Memory introduces a git-native, persistent memory standard for coding agents, effectively treating agent state as code. By leveraging git for…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260906.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260906.html</id>
+    <updated>2026-09-06T00:00:00+00:00</updated>
+    <summary>The release of OKF Agent Memory introduces a git-native, persistent memory standard for coding agents, effectively treating agent state as code. By leveraging git for…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 05, 2026: OpenAI has begun the rollout of GPT-6 Astra, a model architecture specifically optimized for high-reasoning, multi-step agentic workflows. By enforcing reasoning-heavy…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260905.html"/>
