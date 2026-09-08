@@ -88,3 +88,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-09-05** — [Agentic-Memory Lifecycle Auditor (AMLA)](https://aigenos.github.io/dAIly/digests/digest_20260905.html)
 - **2026-09-06** — [Agentic-Memory-Consistency-Layer](https://aigenos.github.io/dAIly/digests/digest_20260906.html)
 - **2026-09-07** — [Agentic-Protocol-Gateway (APG)](https://aigenos.github.io/dAIly/digests/digest_20260907.html)
+- **2026-09-08** — [AEO-Observability & Attribution Middleware](https://aigenos.github.io/dAIly/digests/digest_20260908.html)
