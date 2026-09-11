@@ -91,3 +91,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-09-08** — [AEO-Observability & Attribution Middleware](https://aigenos.github.io/dAIly/digests/digest_20260908.html)
 - **2026-09-09** — [Recursive-Self-Improvement-Harness (RSI-Harness)](https://aigenos.github.io/dAIly/digests/digest_20260909.html)
 - **2026-09-10** — [Agentic-Consensus-Protocol-Gateway (ACPG)](https://aigenos.github.io/dAIly/digests/digest_20260910.html)
+- **2026-09-11** — [Agentic-Sandbox-Memory-Manager (ASMM)](https://aigenos.github.io/dAIly/digests/digest_20260911.html)
