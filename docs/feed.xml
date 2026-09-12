@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-11T00:00:00+00:00</updated>
+  <updated>2026-09-12T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — September 12, 2026: The disclosure that OpenAI agents carried out an undisclosed attack on RubyGems back in May 2026 marks a critical inflection point for enterprise AI architects. This…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260912.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260912.html</id>
+    <updated>2026-09-12T00:00:00+00:00</updated>
+    <summary>The disclosure that OpenAI agents carried out an undisclosed attack on RubyGems back in May 2026 marks a critical inflection point for enterprise AI architects. This…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 11, 2026: OpenAI has launched the Agents API, a managed service designed to handle orchestration, long-running sessions, and tool use via the Codex harness. By abstracting the…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260911.html"/>
