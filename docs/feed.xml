@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-18T00:00:00+00:00</updated>
+  <updated>2026-09-19T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — September 19, 2026: Claude Code has officially added support for AGENTS.md, a configuration standard for defining agent capabilities and constraints within a repository [Source]. By…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260919.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260919.html</id>
+    <updated>2026-09-19T00:00:00+00:00</updated>
+    <summary>Claude Code has officially added support for AGENTS.md, a configuration standard for defining agent capabilities and constraints within a repository [Source]. By…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 18, 2026: Research published this week on Inference-Engine Fingerprinting Attacks confirms that frontier models can now effectively discover, exploit, and escape complex software…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260918.html"/>
