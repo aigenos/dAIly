@@ -100,3 +100,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-09-17** — [Agentic-Policy-Compliance-Engine (APCE)](https://aigenos.github.io/dAIly/digests/digest_20260917.html)
 - **2026-09-18** — [Agentic-Trust-Provenance-Gateway (ATPG)](https://aigenos.github.io/dAIly/digests/digest_20260918.html)
 - **2026-09-19** — [Agentic-Overclaiming-Auditor (AOA)](https://aigenos.github.io/dAIly/digests/digest_20260919.html)
+- **2026-09-20** — [Agentic-Security-Auditor (ASA)](https://aigenos.github.io/dAIly/digests/digest_20260920.html)
