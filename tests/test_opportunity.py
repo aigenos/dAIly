@@ -85,7 +85,8 @@ class TestMemoryBlock(unittest.TestCase):
             self.assertEqual(_opportunity_memory_block(_cfg(empty), NOW), "")
 
     def test_memory_injected_into_prompt(self):
-        cfg = _cfg(self.tmp.name)
+        # Fact gate off so `captured` holds the synthesis prompt, not the gate's.
+        cfg = _cfg(self.tmp.name, FACT_CHECK="false")
         captured = {}
 
         def fake_generate(c, system, user):

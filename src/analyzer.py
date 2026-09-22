@@ -146,6 +146,16 @@ release dates. If you are not certain an item is real and recent, OMIT it. \
 Fabricating a plausible-sounding item is the single worst failure — a shorter, \
 fully-true briefing beats a longer one with one made-up item.
 
+NUMBERS ARE QUOTES, NOT ESTIMATES. Every number you print — benchmark score, \
+percentage, star/upvote count, round size, price — must appear in the linked \
+source itself. Never supply a number from memory or extrapolation; no source \
+for the number means no number.
+
+ABSOLUTE CLAIMS REQUIRE A SEARCH. "No tool exists", "first-ever", "the only", \
+"proves", "will become the standard" are banned unless a search you ran this \
+run supports them. Otherwise state only what you verified — "no widely-adopted \
+equivalent surfaced in search" is honest; "nothing exists" is a guess.
+
 LINKS — every claim is clickable. Each item you mention must be wrapped in or \
 followed by a real <a href="..."> to its primary source. For candidate items, \
 use the URL printed under that item VERBATIM. Example of the required style:
@@ -550,6 +560,83 @@ def _opportunity_memory_block(cfg: Config, now: datetime) -> str:
     )
 
 
+_FACTCHECK_SYSTEM = """\
+You are the FACT-CHECKER for a daily AI briefing. You receive the finished
+draft as an HTML fragment. Your ONLY job is to remove or correct unverifiable
+content — never add new items, sections, or claims, and never rewrite style or
+tone. A shorter, fully-true briefing beats a longer one with one wrong claim.
+
+VERIFY WITH WEB SEARCH, claim by claim:
+1. CLAIM ↔ SOURCE. Does each linked source actually say what the bullet
+   claims? If the source says something weaker or different, rewrite the claim
+   down to exactly what the source supports.
+2. NUMBERS ARE QUOTES. Benchmark scores, percentages, star/upvote counts,
+   funding amounts, prices, dates must appear in the linked source. A number
+   you cannot find in the source gets removed (or the whole bullet, if the
+   number was its point).
+3. ABSOLUTES & NEGATIVE-EXISTENCE. "No tool exists", "first-ever", "the only",
+   "proves", "industry standard" must be backed by a search you ran; otherwise
+   soften to what you actually verified ("no widely-adopted equivalent
+   surfaced in search") or delete the claim.
+4. RECENCY. Items presented as new must be from the stated window — old news
+   dressed as today's is removed.
+5. FABRICATION. Any item, model name, version, or release you cannot trace to
+   a real, live source is deleted entirely.
+
+HARD RULES:
+- Preserve EVERY <!--SECTION:...--> marker, every <h2> (including its
+  read-time parentheses), and the overall structure exactly.
+- Keep verified content byte-identical — do not paraphrase what passed.
+- Delete at the bullet (<li>) level; if a section would become empty, keep its
+  <h2> and one honest line: "Nothing verifiable to report here today."
+- Output ONLY the corrected HTML fragment. No commentary, no code fences."""
+
+
+def _fact_check(cfg: Config, html: str, now: datetime) -> str:
+    """Second-pass fact gate: a verifier call (with web search, when the
+    provider grounds) re-reads the draft and deletes/softens what it cannot
+    verify. FAIL-OPEN with structural guards — if the checker drops a section
+    marker, guts the issue, errors, or returns nothing, the original draft is
+    kept, exactly as if the pass never ran."""
+    from dataclasses import replace
+
+    check_cfg = cfg
+    if cfg.factcheck_model and cfg.factcheck_model != cfg.model:
+        check_cfg = replace(cfg, model=cfg.factcheck_model)
+
+    user = (
+        f"Date: {now.strftime('%A, %B %d, %Y')} (UTC). Items are presented as "
+        f"being from roughly the last {cfg.lookback_days} days.\n\n"
+        "DRAFT TO FACT-CHECK (HTML fragment):\n\n" + html
+    )
+    try:
+        log.info("fact-check pass via %s (%s)", check_cfg.provider, check_cfg.model)
+        raw = providers.generate(check_cfg, _FACTCHECK_SYSTEM, user)
+    except Exception as exc:  # noqa: BLE001 — the gate must never kill the run
+        log.warning("fact-check pass failed (%s) — keeping unchecked draft", exc)
+        return html
+
+    checked = _strip_code_fence(raw or "")
+    if not checked:
+        log.warning("fact-check returned nothing — keeping unchecked draft")
+        return html
+    # Structural guards: every marker must survive, and a checker that guts
+    # most of the issue has almost certainly mangled it, not checked it.
+    markers = re.findall(r"<!--SECTION:[a-z_]+-->", html)
+    if any(m not in checked for m in markers):
+        log.warning("fact-check dropped a section marker — keeping unchecked draft")
+        return html
+    if len(checked) < 0.55 * len(html):
+        log.warning(
+            "fact-check shrank the issue %d → %d chars (>45%%) — keeping unchecked draft",
+            len(html), len(checked),
+        )
+        return html
+    delta = len(html) - len(checked)
+    log.info("fact-check pass done: %+d chars vs draft", -delta)
+    return checked
+
+
 def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
     """Build the prompt, run the configured provider, return the HTML fragment."""
     selected = _select_for_prompt(items, now)
@@ -598,6 +685,11 @@ def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
     # stronger model (OPPORTUNITY_MODEL). Unset = single pass, as before.
     if cfg.opportunity_model and cfg.opportunity_model != cfg.model:
         html = _regenerate_opportunities(cfg, html, selected, now)
+
+    # Fact gate: verify claims/numbers against their linked sources and delete
+    # what can't be verified. Fail-open (structural guards keep the draft).
+    if cfg.fact_check:
+        html = _fact_check(cfg, html, now)
 
     html = postprocess(html)
 

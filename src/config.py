@@ -123,6 +123,13 @@ class Config:
     # HEAD-check every link in the digest before sending/publishing and flag
     # dead ones. Fail-open: network trouble never aborts the run.
     enable_link_check: bool
+    # Second-pass fact gate: a verifier call re-reads the draft with web search,
+    # checks every claim/number against its linked source, and deletes or
+    # softens what it cannot verify. Fail-open with structural guards (all
+    # section markers must survive) — a bad check keeps the original draft.
+    fact_check: bool
+    # Optional model override for the fact-check pass (blank = DIGEST_MODEL).
+    factcheck_model: str
     # Load the bundled paid "Builder's Edge" section (src/private/builders_edge.py)
     # when no truly-private src/private/opportunity.py exists. Goes to your email +
     # subscribers; always stripped from the public archive.
@@ -265,5 +272,7 @@ class Config:
             top_stories_count=_get_int("TOP_STORIES_COUNT", 5),
             cross_day_dedup=_get_bool("CROSS_DAY_DEDUP", True),
             enable_link_check=_get_bool("ENABLE_LINK_CHECK", True),
+            fact_check=_get_bool("FACT_CHECK", True),
+            factcheck_model=os.environ.get("FACTCHECK_MODEL", "").strip(),
             enable_builders_edge=_get_bool("ENABLE_BUILDERS_EDGE", False),
         )

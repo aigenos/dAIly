@@ -85,6 +85,10 @@ jobs:
           CROSS_DAY_DEDUP: ${{ vars.CROSS_DAY_DEDUP || 'true' }}
           # HEAD-check links before sending; dead ones are flagged, never fatal.
           ENABLE_LINK_CHECK: ${{ vars.ENABLE_LINK_CHECK || 'true' }}
+          # Second-pass fact gate: verify claims/numbers against their linked
+          # sources via web search; unverifiable content is deleted. Fail-open.
+          FACT_CHECK: ${{ vars.FACT_CHECK || 'true' }}
+          FACTCHECK_MODEL: ${{ vars.FACTCHECK_MODEL }}
           # Public archive (GitHub Pages). Private sections are stripped on publish.
           PUBLISH_ARCHIVE: ${{ vars.PUBLISH_ARCHIVE || 'true' }}
           SITE_TITLE: ${{ vars.SITE_TITLE || 'dAIly — Daily AI Digest' }}

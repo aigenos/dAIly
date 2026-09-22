@@ -230,7 +230,9 @@ class TestTwoPassOpportunity(unittest.TestCase):
     )
 
     def _cfg(self, opportunity_model=""):
-        return _make_cfg(OPPORTUNITY_MODEL=opportunity_model)
+        # Fact gate off: these tests count/capture generate() calls for the
+        # two-pass mechanics; the gate has its own suite (test_factcheck.py).
+        return _make_cfg(OPPORTUNITY_MODEL=opportunity_model, FACT_CHECK="false")
 
     def test_unset_opportunity_model_single_pass(self):
         cfg = self._cfg()
@@ -607,7 +609,7 @@ class TestTopStoriesPlacement(unittest.TestCase):
         self.assertNotIn("topstories", out)
 
     def test_featured_titles_injected_into_prompt(self):
-        cfg = _make_cfg()
+        cfg = _make_cfg(FACT_CHECK="false")  # capture the synthesis call, not the gate's
         items = self._items()
         captured = {}
 
