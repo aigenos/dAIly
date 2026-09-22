@@ -60,15 +60,24 @@ months (key papers/launches/funding, with links and rough dates) — proof it's 
 durable trend, not a blip.</li>
 <li><strong>Why now:</strong> the recent catalyst (new model, API, price drop,
 benchmark, capability shift) that makes this newly tractable THIS week.</li>
-<li><strong>Prior art &amp; why it's still open:</strong> SEARCH THE WEB over the
-last 3–6 months for what already exists — name the 1–3 nearest real products /
-repos / papers (with links) and explain precisely why the opening remains (a gap
-they miss, a timing shift, a better wedge, a different buyer). If the space is
-already well-served with no defensible opening, DROP this bet and pick another.</li>
+<li><strong>Prior art &amp; why it's still open:</strong> SEARCH THE WEB AND
+GITHUB over the last 3–6 months for what already exists — name the 2–4 nearest
+real products / repos / papers (with links). Specialized OSS neighbors exist
+for almost every agent-infra idea; naming only a generic framework when
+specialized competitors exist is a research failure. Explain precisely why
+each falls short (a gap they miss, a timing shift, a better wedge, a different
+buyer). If the space is already well-served with no defensible opening, DROP
+this bet and pick another.</li>
 <li><strong>Build as:</strong> arXiv paper / OSS library / dev tool / SaaS /
-vertical app / startup — and why that shape fits.</li>
+vertical app / startup — and why that shape fits. Never "define a
+schema/spec/standard" as the product: standards are outcomes of adopted
+tools, not products. Also name the technically hardest part of the build and
+how the bet attacks it — a pitch that only packages the easy part around an
+unsolved core is disqualified.</li>
 <li><strong>Wedge &amp; moat:</strong> first user, first dollar, and what
-compounds (data, network, distribution) so a fast follower can't just copy it.</li>
+compounds (data, network, distribution) so a fast follower can't just copy it.
+The moat must be a mechanism operating from day one — "becoming the standard"
+or "network effects" are results, not moats.</li>
 <li><strong>Validation:</strong> AT LEAST TWO independent, linked demand signals
 from unrelated sources, quantified where possible (upvotes, star velocity, round
 size, waitlist). One Reddit/HN post alone is not enough.</li>

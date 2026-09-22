@@ -107,6 +107,27 @@ class TestPromptRules(unittest.TestCase):
         self.assertIn("TWO INDEPENDENT signals", instructions)
         self.assertIn("QUANTIFY community interest", instructions)
 
+    def test_opportunity_review_lessons_enforced(self):
+        # Encodes the failures a reviewer found in the 2026-09-21 issue:
+        # outcome-as-moat, schema-as-product, shallow prior art, and the
+        # "(speculative)" escape hatch that dodged the evidence bar.
+        instructions = build_instructions()
+        # Moats must be day-one mechanisms, not outcomes.
+        self.assertIn("RESULTS, not", instructions)
+        self.assertIn("MECHANISM", instructions)
+        # Standards are outcomes of adopted tools, never the product.
+        self.assertIn("standard is an OUTCOME of an adopted tool", instructions)
+        # The hard 95% must be named and attacked.
+        self.assertIn("The hard part:", instructions)
+        # No speculative escape: two signals or disqualified.
+        self.assertIn("DISQUALIFIED", instructions)
+        self.assertNotIn("speculative — no validation signal yet", instructions)
+        # Prior art must enumerate specialized neighbors, not one generic name.
+        self.assertIn("Closest existing solutions", instructions)
+        self.assertIn("research failure", instructions)
+        # And the model must attack its own pick before emitting.
+        self.assertIn("SELF-REVIEW BEFORE EMITTING", instructions)
+
     def test_link_hygiene_rule_in_instructions(self):
         self.assertIn("LINK HYGIENE", build_instructions())
 

@@ -219,16 +219,34 @@ newly tractable (a new model, API, benchmark, price drop, or capability shift) �
 and sanity-check it against the last few MONTHS, not just days, so a recurring
 topic isn't mistaken for a fresh opening.</li>
 <li><strong>Build as:</strong> pick one — arXiv paper / OSS library / dev tool /
-SaaS product / vertical app / startup — and say why that shape fits.</li>
+SaaS product / vertical app / startup — and say why that shape fits. NEVER
+propose "define a schema / spec / protocol / standard" as the product: a
+standard is an OUTCOME of an adopted tool, not a thing you build first.
+Propose the TOOL that solves the problem; if people adopt it, a de facto
+format follows.</li>
+<li><strong>The hard part:</strong> name the technically hardest 95% of this
+build (e.g. entity resolution, cache invalidation, provenance, eval quality —
+never the schema or packaging) and one clause on how the proposal attacks it.
+If the pitch only covers easy packaging around an unsolved hard core, pick a
+different opportunity.</li>
 <li><strong>Wedge &amp; moat:</strong> the first user, the first dollar, and what
-compounds over time.</li>
+compounds over time. The moat must be a MECHANISM that starts working from day
+one — data accumulated per use, integration depth others must re-earn, an
+owned distribution channel, switching costs you create. "Becoming the industry
+standard", "network effects", or "first-mover advantage" are RESULTS, not
+moats — naming one as the moat is a defect.</li>
 <li><strong>Already heating up:</strong> 2–3 concrete, linked proof points of real
 early demand (HN thread, repo with star velocity, recent funding, Show HN). If
-none, mark <em>(speculative — no validation signal yet)</em> honestly.</li>
-<li><strong>Closest existing solution:</strong> search for what already exists —
-name the nearest real product / repo / paper (with a link) and one clause on why
-there's still an opening (timing, a gap it misses, or a better wedge). If the
-space is already crowded with no clear opening, pick a different opportunity.</li>
+you cannot produce at least two, this opportunity is DISQUALIFIED — do not
+label it speculative and ship it; pick a different one.</li>
+<li><strong>Closest existing solutions:</strong> search the web AND GitHub for
+the 2–4 NEAREST active projects/products — specialized OSS neighbors exist for
+almost every agent-infra idea (the Mem0 / Zep-Graphiti / Letta / GraphRAG
+class), and naming only a generic framework like LlamaIndex or LangChain when
+specialized competitors exist is a research failure. Name each with a link and
+one clause on precisely why it doesn't close the gap. If you cannot
+confidently enumerate the neighbors, the opportunity is unverified — pick
+another.</li>
 <li><strong>First step this week:</strong> one concrete action to validate or
 prototype it in the next 7 days.</li>
 </ul>
@@ -240,9 +258,15 @@ opportunity. QUANTIFY community interest wherever possible ("1.2k upvotes on
 r/LocalLLaMA", "#1 on HF Daily Papers today", "4.3k stars in 48h") — vague
 claims like "high community interest" are a defect.
 PRIOR ART — do not propose something that already exists in mature form. Use web
-search to verify; the "Closest existing solution" line must name the nearest real
-alternative and justify why the opening is still open, or you must pick another
-idea. Do not re-propose an opportunity listed under ALREADY PROPOSED above.
+search to verify; the "Closest existing solutions" list must enumerate the real
+nearest neighbors and justify why the opening is still open, or you must pick
+another idea. Do not re-propose an opportunity listed under ALREADY PROPOSED above.
+SELF-REVIEW BEFORE EMITTING — attack your own pick as a skeptical senior
+reviewer would: Is the moat a day-one mechanism or a wished-for outcome? Does
+the proposal attack the hard 95% or just package the easy 5%? Would a deeper
+search surface a specialized project that already does this? If it fails any of
+these, pick a different opportunity — a smaller, honest pick beats an
+impressive-sounding one that a reviewer can dismantle in four sentences.
 Make this the strongest, most shareable pick of the day — the single best thing
 to build right now.""")
 
