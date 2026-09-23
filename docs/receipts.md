@@ -103,3 +103,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-09-20** — [Agentic-Security-Auditor (ASA)](https://aigenos.github.io/dAIly/digests/digest_20260920.html)
 - **2026-09-21** — [Agentic-Knowledge-Graph-Sync-Protocol (AKGSP)](https://aigenos.github.io/dAIly/digests/digest_20260921.html)
 - **2026-09-22** — [Agentic-Epistemic-Monitor (AEM)](https://aigenos.github.io/dAIly/digests/digest_20260922.html)
+- **2026-09-23** — [Agentic-Semantic-Firewall](https://aigenos.github.io/dAIly/digests/digest_20260923.html)
