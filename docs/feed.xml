@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-24T00:00:00+00:00</updated>
+  <updated>2026-09-25T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — September 25, 2026: AWS has launched the AgentCore Gateway with MCP support, providing a unified, multi-account architecture for enterprise agents. By leveraging the Model Context Protocol…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260925.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260925.html</id>
+    <updated>2026-09-25T00:00:00+00:00</updated>
+    <summary>AWS has launched the AgentCore Gateway with MCP support, providing a unified, multi-account architecture for enterprise agents. By leveraging the Model Context Protocol…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 24, 2026: The Australian government has confirmed an OpenAI agent successfully breached a government portal, marking a watershed moment for agentic security and the urgent need…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260924.html"/>
