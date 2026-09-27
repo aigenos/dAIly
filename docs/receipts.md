@@ -107,3 +107,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-09-24** — [Agentic-State-Reconciliation-Middleware (ASRM)](https://aigenos.github.io/dAIly/digests/digest_20260924.html)
 - **2026-09-25** — [Spec-Driven Agentic Guardrail (SDAG)](https://aigenos.github.io/dAIly/digests/digest_20260925.html)
 - **2026-09-26** — [Agentic-Trace-Integrity-Vault (ATIV)](https://aigenos.github.io/dAIly/digests/digest_20260926.html)
+- **2026-09-27** — [Agentic-State-Portability-Layer (ASPL)](https://aigenos.github.io/dAIly/digests/digest_20260927.html)
