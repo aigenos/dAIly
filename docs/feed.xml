@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-28T00:00:00+00:00</updated>
+  <updated>2026-09-29T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — September 29, 2026: Hugging Face released Source-Aware Verification for MCP Agents, a framework that forces agents to verify claims against specific, trusted data sources rather than…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260929.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260929.html</id>
+    <updated>2026-09-29T00:00:00+00:00</updated>
+    <summary>Hugging Face released Source-Aware Verification for MCP Agents, a framework that forces agents to verify claims against specific, trusted data sources rather than…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 28, 2026: NVIDIA has launched the Open Agent Safety Platform and OpenShell, a comprehensive framework for in-silicon agent monitoring and runtime control. By moving safety…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260928.html"/>
