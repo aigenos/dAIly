@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-29T00:00:00+00:00</updated>
+  <updated>2026-09-30T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — September 30, 2026: OpenAI’s GPT-6.1 Sol and the launch of dots mark a structural shift in agentic architecture: the transition from ephemeral, request-response cycles to persistent,…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20260930.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20260930.html</id>
+    <updated>2026-09-30T00:00:00+00:00</updated>
+    <summary>OpenAI’s GPT-6.1 Sol and the launch of dots mark a structural shift in agentic architecture: the transition from ephemeral, request-response cycles to persistent,…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 29, 2026: Hugging Face released Source-Aware Verification for MCP Agents, a framework that forces agents to verify claims against specific, trusted data sources rather than…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260929.html"/>
