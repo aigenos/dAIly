@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-09-30T00:00:00+00:00</updated>
+  <updated>2026-10-01T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 01, 2026: Google DeepMind has unveiled Gemini 4 Argon, a new frontier model architecture designed for high-throughput, long-context reasoning with a 1M-token output capacity. This…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261001.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261001.html</id>
+    <updated>2026-10-01T00:00:00+00:00</updated>
+    <summary>Google DeepMind has unveiled Gemini 4 Argon, a new frontier model architecture designed for high-throughput, long-context reasoning with a 1M-token output capacity. This…</summary>
+  </entry>
   <entry>
     <title>dAIly — September 30, 2026: OpenAI’s GPT-6.1 Sol and the launch of dots mark a structural shift in agentic architecture: the transition from ephemeral, request-response cycles to persistent,…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20260930.html"/>
