@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-01T00:00:00+00:00</updated>
+  <updated>2026-10-02T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 02, 2026: Pi 1.0 has been released with native support for the Model Context Protocol (MCP), marking a critical step toward standardizing agentic interoperability. By stabilizing…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261002.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261002.html</id>
+    <updated>2026-10-02T00:00:00+00:00</updated>
+    <summary>Pi 1.0 has been released with native support for the Model Context Protocol (MCP), marking a critical step toward standardizing agentic interoperability. By stabilizing…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 01, 2026: Google DeepMind has unveiled Gemini 4 Argon, a new frontier model architecture designed for high-throughput, long-context reasoning with a 1M-token output capacity. This…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261001.html"/>
