@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-02T00:00:00+00:00</updated>
+  <updated>2026-10-03T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 03, 2026: OpenAI has released a comprehensive guide for the GPT-6 family, signaling a strategic pivot toward &quot;reasoning effort&quot; as a first-class parameter in production agentic…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261003.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261003.html</id>
+    <updated>2026-10-03T00:00:00+00:00</updated>
+    <summary>OpenAI has released a comprehensive guide for the GPT-6 family, signaling a strategic pivot toward &quot;reasoning effort&quot; as a first-class parameter in production agentic…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 02, 2026: Pi 1.0 has been released with native support for the Model Context Protocol (MCP), marking a critical step toward standardizing agentic interoperability. By stabilizing…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261002.html"/>
