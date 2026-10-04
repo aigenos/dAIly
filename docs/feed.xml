@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-03T00:00:00+00:00</updated>
+  <updated>2026-10-04T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 04, 2026: Microsoft released ThinkingBox, a framework addressing the critical &quot;state-mismatch&quot; problem where an agent reports a task as complete while the underlying database…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261004.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261004.html</id>
+    <updated>2026-10-04T00:00:00+00:00</updated>
+    <summary>Microsoft released ThinkingBox, a framework addressing the critical &quot;state-mismatch&quot; problem where an agent reports a task as complete while the underlying database…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 03, 2026: OpenAI has released a comprehensive guide for the GPT-6 family, signaling a strategic pivot toward &quot;reasoning effort&quot; as a first-class parameter in production agentic…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261003.html"/>
