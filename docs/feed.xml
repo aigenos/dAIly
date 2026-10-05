@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-04T00:00:00+00:00</updated>
+  <updated>2026-10-05T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 05, 2026: Amazon has released automated cross-account resource promotion for Amazon Quick. By providing an idempotent, auditable Model Context Protocol (MCP) server on Amazon…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261005.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261005.html</id>
+    <updated>2026-10-05T00:00:00+00:00</updated>
+    <summary>Amazon has released automated cross-account resource promotion for Amazon Quick. By providing an idempotent, auditable Model Context Protocol (MCP) server on Amazon…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 04, 2026: Microsoft released ThinkingBox, a framework addressing the critical &quot;state-mismatch&quot; problem where an agent reports a task as complete while the underlying database…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261004.html"/>
