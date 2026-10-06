@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-05T00:00:00+00:00</updated>
+  <updated>2026-10-06T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 06, 2026: The publication of Can Agent Harnesses and Inference Engines Hear Each Other? The HEAR Protocol for Agentic LLM Serving introduces a critical missing link in the agentic…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261006.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261006.html</id>
+    <updated>2026-10-06T00:00:00+00:00</updated>
+    <summary>The publication of Can Agent Harnesses and Inference Engines Hear Each Other? The HEAR Protocol for Agentic LLM Serving introduces a critical missing link in the agentic…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 05, 2026: Amazon has released automated cross-account resource promotion for Amazon Quick. By providing an idempotent, auditable Model Context Protocol (MCP) server on Amazon…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261005.html"/>
