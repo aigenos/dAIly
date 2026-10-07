@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-06T00:00:00+00:00</updated>
+  <updated>2026-10-07T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 07, 2026: Microsoft Research released Agent Lightning v1.0, a 3,500-line framework designed to bridge the gap between existing agent harnesses and reinforcement learning training.…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261007.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261007.html</id>
+    <updated>2026-10-07T00:00:00+00:00</updated>
+    <summary>Microsoft Research released Agent Lightning v1.0, a 3,500-line framework designed to bridge the gap between existing agent harnesses and reinforcement learning training.…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 06, 2026: The publication of Can Agent Harnesses and Inference Engines Hear Each Other? The HEAR Protocol for Agentic LLM Serving introduces a critical missing link in the agentic…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261006.html"/>
