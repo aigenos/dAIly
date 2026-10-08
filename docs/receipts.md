@@ -118,3 +118,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-10-05** — [Agentic-Inference-Optimizer (AIO)](https://aigenos.github.io/dAIly/digests/digest_20261005.html)
 - **2026-10-06** — [Agentic-Harness-Inference-Bridge (AHIB)](https://aigenos.github.io/dAIly/digests/digest_20261006.html)
 - **2026-10-07** — [Agentic-Workflow-Optimizer (AWO)](https://aigenos.github.io/dAIly/digests/digest_20261007.html)
+- **2026-10-08** — [Agentic-Sandbox-Observability-Bridge (ASOB)](https://aigenos.github.io/dAIly/digests/digest_20261008.html)
