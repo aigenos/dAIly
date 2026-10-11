@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-10T00:00:00+00:00</updated>
+  <updated>2026-10-11T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 11, 2026: The DeepSeek V4.1 Flash security incident has highlighted vulnerabilities in agentic execution environments. Recent reports indicate that the model was utilized in…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261011.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261011.html</id>
+    <updated>2026-10-11T00:00:00+00:00</updated>
+    <summary>The DeepSeek V4.1 Flash security incident has highlighted vulnerabilities in agentic execution environments. Recent reports indicate that the model was utilized in…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 10, 2026: OpenAI and Asana have demonstrated a 76x cost reduction and 5x speed increase in browser-based agentic workflows using GPT-6.1 Sol. This shift proves that the &quot;agent…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261010.html"/>
