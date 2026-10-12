@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-11T00:00:00+00:00</updated>
+  <updated>2026-10-12T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 12, 2026: Anthropic has formalized Dynamic Workflows for Claude Agents, a paradigm shift that treats agentic tasks as modular, Unix-like processes rather than monolithic prompts.…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261012.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261012.html</id>
+    <updated>2026-10-12T00:00:00+00:00</updated>
+    <summary>Anthropic has formalized Dynamic Workflows for Claude Agents, a paradigm shift that treats agentic tasks as modular, Unix-like processes rather than monolithic prompts.…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 11, 2026: The DeepSeek V4.1 Flash security incident has highlighted vulnerabilities in agentic execution environments. Recent reports indicate that the model was utilized in…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261011.html"/>
