@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-12T00:00:00+00:00</updated>
+  <updated>2026-10-13T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 13, 2026: Google DeepMind has released Gemini 4 Argon, a new flagship model architecture designed specifically for high-complexity reasoning and agentic workflows. By integrating…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261013.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261013.html</id>
+    <updated>2026-10-13T00:00:00+00:00</updated>
+    <summary>Google DeepMind has released Gemini 4 Argon, a new flagship model architecture designed specifically for high-complexity reasoning and agentic workflows. By integrating…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 12, 2026: Anthropic has formalized Dynamic Workflows for Claude Agents, a paradigm shift that treats agentic tasks as modular, Unix-like processes rather than monolithic prompts.…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261012.html"/>
