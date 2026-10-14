@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-13T00:00:00+00:00</updated>
+  <updated>2026-10-14T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 14, 2026: Gemini 4 Argon has officially reached General Availability, marking a significant step in model capability for enterprise agentic platforms. As noted by Simon Willison,…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261014.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261014.html</id>
+    <updated>2026-10-14T00:00:00+00:00</updated>
+    <summary>Gemini 4 Argon has officially reached General Availability, marking a significant step in model capability for enterprise agentic platforms. As noted by Simon Willison,…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 13, 2026: Google DeepMind has released Gemini 4 Argon, a new flagship model architecture designed specifically for high-complexity reasoning and agentic workflows. By integrating…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261013.html"/>
