@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-14T00:00:00+00:00</updated>
+  <updated>2026-10-15T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 15, 2026: The release of Task-State Governance introduces a virtual machine architecture for GUI agents, enabling verifiable and recoverable execution by decoupling agent planning…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261015.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261015.html</id>
+    <updated>2026-10-15T00:00:00+00:00</updated>
+    <summary>The release of Task-State Governance introduces a virtual machine architecture for GUI agents, enabling verifiable and recoverable execution by decoupling agent planning…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 14, 2026: Gemini 4 Argon has officially reached General Availability, marking a significant step in model capability for enterprise agentic platforms. As noted by Simon Willison,…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261014.html"/>
