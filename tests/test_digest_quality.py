@@ -172,6 +172,17 @@ class TestSourceCoverage(unittest.TestCase):
         for needle in ("theneurondaily", "bensbites", "superhuman", "alphasignal", "x.com"):
             self.assertIn(needle, targets.lower())
 
+    def test_hn_frontpage_and_yc_launches_fetched(self):
+        from src import sources
+        names = [f.name for f in sources.RSS_FEEDS]
+        self.assertIn("HN front page (100+ pts)", names)
+        self.assertIn("Y Combinator Launches", names)
+
+    def test_x_target_demands_explicit_queries(self):
+        from src import sources
+        targets = " ".join(sources.WEB_SEARCH_TARGETS)
+        self.assertIn("site:x.com", targets)
+
     def test_newsletter_authority_ranks_above_base(self):
         from src.enrich import _AUTHORITY, _CATEGORY_BASE
         self.assertGreater(_AUTHORITY["The Rundown AI"], _CATEGORY_BASE["newsletter"])
@@ -521,6 +532,70 @@ class TestCommercialTheme(unittest.TestCase):
         fb = feedback_block(_make_cfg(), self.NOW)
         self.assertNotIn("x.com/intent", fb)
         self.assertIn("How was today", fb)  # feedback itself still renders
+
+
+class TestCoverageMemory(unittest.TestCase):
+    """The ALREADY COVERED block that stops Game-Changer reruns."""
+
+    NOW = datetime(2026, 10, 15, tzinfo=timezone.utc)
+    ISSUE = (
+        "<html><body>"
+        '<h3>🎯 Today\'s Game-Changer</h3><p><a href="https://g/argon">Google '
+        "DeepMind has released <strong>Gemini 4 Argon</strong></a>, a new "
+        "flagship model.</p>"
+        '<a href="https://x/mcp" class="aigenos-src-title" style="x">MCP spec '
+        "revision lands typed resources</a>"
+        "<!--SECTION:pulse--><h2>Pulse</h2><ul>"
+        "<li><strong>vLLM 0.13 ships</strong> — faster.</li></ul>"
+        "<!--SECTION:stack--><h2>Stack</h2>"
+        "</body></html>"
+    )
+
+    def _cfg(self, tmp, **env):
+        base = {"PROVIDER": "ollama", "DRY_RUN": "true", "ARCHIVE_DIR": tmp,
+                "EMAIL_TO": "o@x.com"}
+        base.update(env)
+        with mock.patch.dict(os.environ, base, clear=True):
+            from src.config import Config as C
+            return C.from_env()
+
+    def _write_issue(self, tmp, yyyymmdd):
+        import pathlib
+        d = pathlib.Path(tmp, "digests")
+        d.mkdir(exist_ok=True)
+        (d / f"digest_{yyyymmdd}.html").write_text(self.ISSUE, encoding="utf-8")
+
+    def test_block_lists_recent_stories_with_dates(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            self._write_issue(tmp, "20261013")
+            self._write_issue(tmp, "20261014")
+            block = analyzer._recent_coverage_block(self._cfg(tmp), self.NOW)
+        self.assertIn("ALREADY COVERED", block)
+        self.assertIn("[2026-10-14] Google DeepMind has released Gemini 4 Argon", block)
+        self.assertIn("MCP spec revision lands typed resources", block)
+        self.assertIn("vLLM 0.13 ships", block)
+        self.assertIn("DELTA", block)  # follow-ups must lead with what changed
+
+    def test_todays_issue_excluded_and_disabled_off(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            self._write_issue(tmp, "20261015")  # today — must not self-suppress
+            self.assertEqual(
+                analyzer._recent_coverage_block(self._cfg(tmp), self.NOW), "")
+            self._write_issue(tmp, "20261014")
+            self.assertEqual(
+                analyzer._recent_coverage_block(
+                    self._cfg(tmp, COVERAGE_MEMORY="false"), self.NOW), "")
+
+    def test_missing_archive_fails_open(self):
+        cfg = self._cfg("/nonexistent/path")
+        self.assertEqual(analyzer._recent_coverage_block(cfg, self.NOW), "")
+
+    def test_no_reruns_rule_in_instructions(self):
+        instr = build_instructions()
+        self.assertIn("NO RERUNS", instr)
+        self.assertIn("at most ONCE", instr)
 
 
 class TestDarkModeCss(unittest.TestCase):

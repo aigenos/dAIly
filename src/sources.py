@@ -78,6 +78,11 @@ RSS_FEEDS: list[Feed] = [
     Feed("r/OpenAI (top/day)", "https://www.reddit.com/r/OpenAI/top/.rss?t=day", "community"),
     Feed("r/singularity (top/day)", "https://www.reddit.com/r/singularity/top/.rss?t=day", "community"),
     Feed("HN AI/LLM/agent (50+ pts)", "https://hnrss.org/newest?q=AI+OR+LLM+OR+agent&points=50", "community"),
+    # The HN front page catches big AI stories the keyword query misses (odd
+    # titling, Show HNs); the synthesis prompt filters out non-AI items.
+    Feed("HN front page (100+ pts)", "https://hnrss.org/frontpage?points=100", "community"),
+    # YC launches, fetched deterministically instead of hoping search finds them.
+    Feed("Y Combinator Launches", "https://www.ycombinator.com/launches/rss", "community"),
 ]
 
 # Sources the model should actively search/verify the web for. Plain-language so
@@ -126,9 +131,12 @@ WEB_SEARCH_TARGETS: list[str] = [
     "new-insight threads from researchers and builders (e.g. Andrej Karpathy, "
     "Sam Altman, Yann LeCun, Jim Fan, François Chollet, official OpenAI / "
     "Anthropic / Google DeepMind / Meta AI / xAI / Mistral accounts), breakout "
-    "demo or benchmark threads, and post-mortems going viral. Only include "
-    "threads carrying genuinely NEW information or insight (not reposted news); "
-    "link the ORIGINAL x.com post and quantify virality (views, reposts, likes)",
+    "demo or benchmark threads, and post-mortems going viral. Run EXPLICIT "
+    "queries — 'site:x.com <today's model/tool names>', '<lab name> thread "
+    "x.com', 'viral AI demo x.com this week' — don't wait for X posts to "
+    "surface on their own. Only include threads carrying genuinely NEW "
+    "information or insight (not reposted news); link the ORIGINAL x.com post "
+    "and quantify virality (views, reposts, likes)",
     # Infra / vector DB / serving stacks with flaky or absent RSS.
     "LlamaIndex blog and releases (llamaindex.ai/blog, github.com/run-llama)",
     "Pinecone blog and product updates (pinecone.io/blog)",

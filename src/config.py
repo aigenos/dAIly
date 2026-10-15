@@ -120,6 +120,11 @@ class Config:
     # Cross-day dedup: drop items already covered in a previous digest, tracked
     # in <archive_dir>/.state/seen_items.json. Fail-open if the file is broken.
     cross_day_dedup: bool
+    # Issue memory: feed what the last few ARCHIVED issues reported into the
+    # prompt as an ALREADY COVERED list. Closes the web-search hole in dedup
+    # (the model re-finds yesterday's headline via search and re-reports it —
+    # e.g. one launch headlining the Game-Changer several days running).
+    coverage_memory: bool
     # HEAD-check every link in the digest before sending/publishing and flag
     # dead ones. Fail-open: network trouble never aborts the run.
     enable_link_check: bool
@@ -271,6 +276,7 @@ class Config:
             enable_images=_get_bool("ENABLE_IMAGES", True),
             top_stories_count=_get_int("TOP_STORIES_COUNT", 5),
             cross_day_dedup=_get_bool("CROSS_DAY_DEDUP", True),
+            coverage_memory=_get_bool("COVERAGE_MEMORY", True),
             enable_link_check=_get_bool("ENABLE_LINK_CHECK", True),
             fact_check=_get_bool("FACT_CHECK", True),
             factcheck_model=os.environ.get("FACTCHECK_MODEL", "").strip(),

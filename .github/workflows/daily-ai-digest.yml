@@ -83,6 +83,9 @@ jobs:
           DRY_RUN: ${{ vars.DRY_RUN || 'false' }}
           # Drop items already covered by a previous digest (docs/.state/).
           CROSS_DAY_DEDUP: ${{ vars.CROSS_DAY_DEDUP || 'true' }}
+          # Feed the last issues' stories into the prompt as ALREADY COVERED,
+          # so a story (esp. the Game-Changer) never re-runs without a delta.
+          COVERAGE_MEMORY: ${{ vars.COVERAGE_MEMORY || 'true' }}
           # HEAD-check links before sending; dead ones are flagged, never fatal.
           ENABLE_LINK_CHECK: ${{ vars.ENABLE_LINK_CHECK || 'true' }}
           # Second-pass fact gate: verify claims/numbers against their linked

@@ -12,6 +12,7 @@ styled template.
 from __future__ import annotations
 
 import logging
+import os
 import re
 from datetime import datetime
 
@@ -198,7 +199,12 @@ it as Game-Changer-worthy. Only DEPRIORITIZE minor corporate / financial PR
 (routine funding rounds, IPOs, SEC filings, hires, partnerships) — do not lead
 with that unless it directly changes capabilities. A 2–3 sentence <p>: what
 happened (with the primary <a> link, named model / repo / number), then one tight
-clause on why it matters more than anything else today. If nothing is truly
+clause on why it matters more than anything else today. NO RERUNS: a story
+headlines as Game-Changer at most ONCE — never pick anything from the ALREADY
+COVERED list above. A follow-up qualifies only when a concrete new development
+landed in the last 24h, and then the DELTA is the headline ("X adds Y") — "X
+is now GA" or "X continues to roll out" are restatements, not news, unless GA
+itself unlocks something specific (then say exactly what). If nothing is truly
 game-changing, say so honestly and elevate the most consequential item instead —
 do not manufacture drama.
 
@@ -542,6 +548,87 @@ def recent_opportunity_titles(archive_dir: str, days: int, now: datetime) -> lis
     return titles
 
 
+_GC_RX = re.compile(r"Game-Changer</h3>\s*<p[^>]*>(.*?)</p>", re.DOTALL)
+_SRC_TITLE_RX = re.compile(r'class="aigenos-src-title"[^>]*>(.*?)</a>', re.DOTALL)
+_PULSE_STRONG_RX = re.compile(
+    r"<!--SECTION:pulse-->(.*?)(?=<!--SECTION:|\Z)", re.DOTALL
+)
+_STRONG_RX = re.compile(r"<strong[^>]*>(.*?)</strong>", re.DOTALL)
+
+
+def _issue_coverage(path: str) -> list[str]:
+    """The stories one archived issue covered: the Game-Changer line, the Top
+    Stories titles, and the Nutshell bold leads. Fail-open: [] on any error."""
+    try:
+        with open(path, encoding="utf-8") as fh:
+            html = fh.read()
+    except OSError:
+        return []
+
+    def clean(s: str, limit: int = 110) -> str:
+        s = re.sub(r"<[^>]+>", "", s)
+        s = re.sub(r"\s+", " ", s).strip()
+        return s[:limit]
+
+    out: list[str] = []
+    m = _GC_RX.search(html)
+    if m:
+        out.append(clean(m.group(1)))
+    out += [clean(t, 90) for t in _SRC_TITLE_RX.findall(html)[:6]]
+    pulse = _PULSE_STRONG_RX.search(html)
+    if pulse:
+        for s in _STRONG_RX.findall(pulse.group(1))[:10]:
+            t = clean(s, 90)
+            if t and len(t.split()) >= 2:
+                out.append(t)
+    # Dedupe, keep order, cap per issue.
+    seen: set[str] = set()
+    uniq = [t for t in out if t and not (t.lower() in seen or seen.add(t.lower()))]
+    return uniq[:12]
+
+
+def _recent_coverage_block(cfg: Config, now: datetime, issues: int = 5) -> str:
+    """A prompt block listing what the last few ISSUES already reported, so the
+    briefing never re-runs a story — the Game-Changer especially. This closes
+    the web-search hole in cross-day dedup: dedup only tracks fetched candidate
+    items, but the model re-finds yesterday's headline via search and reports
+    it again (e.g. one launch headlining several days running). Empty when
+    disabled or no archive exists. Fail-open."""
+    if not getattr(cfg, "coverage_memory", False):
+        return ""
+    digests_dir = os.path.join(cfg.archive_dir, "digests")
+    try:
+        names = sorted(
+            n for n in os.listdir(digests_dir)
+            if re.fullmatch(r"digest_\d{8}\.html", n)
+            and n != f"digest_{now.strftime('%Y%m%d')}.html"
+        )[-issues:]
+    except OSError:
+        return ""
+    if not names:
+        return ""
+    lines: list[str] = []
+    for name in names:
+        date = f"{name[7:11]}-{name[11:13]}-{name[13:15]}"
+        for t in _issue_coverage(os.path.join(digests_dir, name)):
+            lines.append(f"- [{date}] {t}")
+    if not lines:
+        return ""
+    log.info("coverage memory: %d covered line(s) from last %d issue(s)",
+             len(lines), len(names))
+    return (
+        f"ALREADY COVERED — WHAT THE LAST {len(names)} ISSUES REPORTED. Readers "
+        "received all of this; re-reporting it is the fastest way to lose them. "
+        "Do NOT report any of these again. A story below may reappear ONLY if a "
+        "concrete NEW development happened in the last 24h — and then you report "
+        "the DELTA with the new fact in the headline ('X adds Y'), never a "
+        "restatement ('X is now GA' / 'X continues to impress' are reruns). The "
+        "Game-Changer must NEVER be a story from this list unless that new "
+        "development is itself the day's biggest news:\n"
+        + "\n".join(lines[:60]) + "\n\n"
+    )
+
+
 def _opportunity_memory_block(cfg: Config, now: datetime) -> str:
     """A prompt block listing recently-proposed opportunities, so the model
     doesn't repeat itself. Empty when memory is off or there's no history."""
@@ -661,6 +748,7 @@ def build_digest(cfg: Config, items: list[Item], now: datetime) -> str:
         f"SOURCES TO VERIFY / BACKFILL VIA WEB SEARCH (pull anything important "
         f"these published recently that's missing above):\n{targets}\n\n"
         f"{_featured_block(featured)}"
+        f"{_recent_coverage_block(cfg, now)}"
         f"{_opportunity_memory_block(cfg, now)}"
         f"{build_instructions()}"
     )
