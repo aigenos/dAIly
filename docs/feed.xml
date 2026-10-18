@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-17T00:00:00+00:00</updated>
+  <updated>2026-10-18T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 18, 2026: Nothing verifiable to report here today.</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261018.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261018.html</id>
+    <updated>2026-10-18T00:00:00+00:00</updated>
+    <summary>Nothing verifiable to report here today.</summary>
+  </entry>
   <entry>
     <title>dAIly — October 17, 2026: AWS has launched Amazon Bedrock AgentCore, a comprehensive evaluation and governance framework designed to catch silent quality regressions in autonomous agents. By…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261017.html"/>

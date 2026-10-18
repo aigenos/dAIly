@@ -128,3 +128,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-10-15** — [Agentic-State-Snapshotter (ASS)](https://aigenos.github.io/dAIly/digests/digest_20261015.html)
 - **2026-10-16** — [Agentic-Code-Review-Orchestrator (ACRO)](https://aigenos.github.io/dAIly/digests/digest_20261016.html)
 - **2026-10-17** — [Agentic-State-Reconciliation-Middleware (ASRM)](https://aigenos.github.io/dAIly/digests/digest_20261017.html)
+- **2026-10-18** — [Agentic-Code-Verification-Gateway](https://aigenos.github.io/dAIly/digests/digest_20261018.html)
