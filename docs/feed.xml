@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-18T00:00:00+00:00</updated>
+  <updated>2026-10-19T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 19, 2026: Hybrid Reasoning Agents (Zou et al.) introduces a framework where agents perform complex reasoning in latent space while executing actions via text. By decoupling the…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261019.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261019.html</id>
+    <updated>2026-10-19T00:00:00+00:00</updated>
+    <summary>Hybrid Reasoning Agents (Zou et al.) introduces a framework where agents perform complex reasoning in latent space while executing actions via text. By decoupling the…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 18, 2026: Nothing verifiable to report here today.</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261018.html"/>
