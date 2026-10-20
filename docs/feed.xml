@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-19T00:00:00+00:00</updated>
+  <updated>2026-10-20T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 20, 2026: DeepSeek has open-sourced DeepInfer, a high-performance inference engine designed to optimize the execution of their model architectures. By providing a native,…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261020.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261020.html</id>
+    <updated>2026-10-20T00:00:00+00:00</updated>
+    <summary>DeepSeek has open-sourced DeepInfer, a high-performance inference engine designed to optimize the execution of their model architectures. By providing a native,…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 19, 2026: Hybrid Reasoning Agents (Zou et al.) introduces a framework where agents perform complex reasoning in latent space while executing actions via text. By decoupling the…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261019.html"/>
