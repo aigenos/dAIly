@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-20T00:00:00+00:00</updated>
+  <updated>2026-10-21T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 21, 2026: OpenAI models are now available on Google Cloud via the Model Garden. This integration allows enterprise architects to unify their agentic workflows across Google’s…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261021.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261021.html</id>
+    <updated>2026-10-21T00:00:00+00:00</updated>
+    <summary>OpenAI models are now available on Google Cloud via the Model Garden. This integration allows enterprise architects to unify their agentic workflows across Google’s…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 20, 2026: DeepSeek has open-sourced DeepInfer, a high-performance inference engine designed to optimize the execution of their model architectures. By providing a native,…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261020.html"/>
