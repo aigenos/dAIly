@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-21T00:00:00+00:00</updated>
+  <updated>2026-10-22T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 22, 2026: OpenAI’s Patch the Planet program has coordinated the remediation of critical PHP2Shell vulnerabilities (CVE-2026-109618 and CVE-2026-109619) affecting PHP-based web…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261022.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261022.html</id>
+    <updated>2026-10-22T00:00:00+00:00</updated>
+    <summary>OpenAI’s Patch the Planet program has coordinated the remediation of critical PHP2Shell vulnerabilities (CVE-2026-109618 and CVE-2026-109619) affecting PHP-based web…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 21, 2026: OpenAI models are now available on Google Cloud via the Model Garden. This integration allows enterprise architects to unify their agentic workflows across Google’s…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261021.html"/>
