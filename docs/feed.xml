@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-22T00:00:00+00:00</updated>
+  <updated>2026-10-23T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 23, 2026: Anthropic has donated its Agent Skills standard to the Agentic AI Foundation (AAIF), signaling a transition toward vendor-neutral, community-driven interoperability for…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261023.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261023.html</id>
+    <updated>2026-10-23T00:00:00+00:00</updated>
+    <summary>Anthropic has donated its Agent Skills standard to the Agentic AI Foundation (AAIF), signaling a transition toward vendor-neutral, community-driven interoperability for…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 22, 2026: OpenAI’s Patch the Planet program has coordinated the remediation of critical PHP2Shell vulnerabilities (CVE-2026-109618 and CVE-2026-109619) affecting PHP-based web…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261022.html"/>

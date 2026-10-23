@@ -133,3 +133,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-10-20** — [Agentic-Context-Compression-Engine (ACCE)](https://aigenos.github.io/dAIly/digests/digest_20261020.html)
 - **2026-10-21** — [Agentic-Human-Harness-Bridge (AHHB)](https://aigenos.github.io/dAIly/digests/digest_20261021.html)
 - **2026-10-22** — [Agentic-Provenance-Auditor](https://aigenos.github.io/dAIly/digests/digest_20261022.html)
+- **2026-10-23** — [Agentic-Runtime-Security-Auditor (ARSA)](https://aigenos.github.io/dAIly/digests/digest_20261023.html)
