@@ -135,3 +135,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-10-22** — [Agentic-Provenance-Auditor](https://aigenos.github.io/dAIly/digests/digest_20261022.html)
 - **2026-10-23** — [Agentic-Runtime-Security-Auditor (ARSA)](https://aigenos.github.io/dAIly/digests/digest_20261023.html)
 - **2026-10-24** — [Agentic-Tool-Schema-Validator (ATSV)](https://aigenos.github.io/dAIly/digests/digest_20261024.html)
+- **2026-10-25** — [Agentic-NVMe-State-Cache (ANSC)](https://aigenos.github.io/dAIly/digests/digest_20261025.html)
