@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-25T00:00:00+00:00</updated>
+  <updated>2026-10-26T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 26, 2026: Google Cloud has released IAM Helper Agent Skills and MCP Tools, a critical framework for securing autonomous agents that provision cloud resources. By integrating…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261026.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261026.html</id>
+    <updated>2026-10-26T00:00:00+00:00</updated>
+    <summary>Google Cloud has released IAM Helper Agent Skills and MCP Tools, a critical framework for securing autonomous agents that provision cloud resources. By integrating…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 25, 2026: Moonshot AI has announced Kimi K3.1 Pro, a new frontier-class model currently available via API, with full model weights scheduled for public release on November 4,…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261025.html"/>
