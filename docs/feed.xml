@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-26T00:00:00+00:00</updated>
+  <updated>2026-10-27T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 27, 2026: OpenAI has released GPT-6.1 Terra, a new model specifically optimized for high-speed computer use and visual reasoning. By prioritizing low-latency interaction with…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261027.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261027.html</id>
+    <updated>2026-10-27T00:00:00+00:00</updated>
+    <summary>OpenAI has released GPT-6.1 Terra, a new model specifically optimized for high-speed computer use and visual reasoning. By prioritizing low-latency interaction with…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 26, 2026: Google Cloud has released IAM Helper Agent Skills and MCP Tools, a critical framework for securing autonomous agents that provision cloud resources. By integrating…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261026.html"/>

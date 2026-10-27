@@ -137,3 +137,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-10-24** — [Agentic-Tool-Schema-Validator (ATSV)](https://aigenos.github.io/dAIly/digests/digest_20261024.html)
 - **2026-10-25** — [Agentic-NVMe-State-Cache (ANSC)](https://aigenos.github.io/dAIly/digests/digest_20261025.html)
 - **2026-10-26** — [Agentic-IAM-Policy-Generator](https://aigenos.github.io/dAIly/digests/digest_20261026.html)
+- **2026-10-27** — [Agentic-UI-State-Replay-Debugger (AUSRD)](https://aigenos.github.io/dAIly/digests/digest_20261027.html)
