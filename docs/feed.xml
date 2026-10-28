@@ -4,7 +4,14 @@
   <link href="https://aigenos.github.io/dAIly/"/>
   <link rel="self" href="https://aigenos.github.io/dAIly/feed.xml"/>
   <id>https://aigenos.github.io/dAIly/</id>
-  <updated>2026-10-27T00:00:00+00:00</updated>
+  <updated>2026-10-28T00:00:00+00:00</updated>
+  <entry>
+    <title>dAIly — October 28, 2026: The most significant architectural shift is the emergence of Qwenputer, a 32-bit RISC-V CPU implemented directly within the weights of a Qwen model. By embedding a…</title>
+    <link href="https://aigenos.github.io/dAIly/digests/digest_20261028.html"/>
+    <id>https://aigenos.github.io/dAIly/digests/digest_20261028.html</id>
+    <updated>2026-10-28T00:00:00+00:00</updated>
+    <summary>The most significant architectural shift is the emergence of Qwenputer, a 32-bit RISC-V CPU implemented directly within the weights of a Qwen model. By embedding a…</summary>
+  </entry>
   <entry>
     <title>dAIly — October 27, 2026: OpenAI has released GPT-6.1 Terra, a new model specifically optimized for high-speed computer use and visual reasoning. By prioritizing low-latency interaction with…</title>
     <link href="https://aigenos.github.io/dAIly/digests/digest_20261027.html"/>
