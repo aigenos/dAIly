@@ -141,3 +141,4 @@ What this agent said to build, and when. When one of these ships as a product or
 - **2026-10-28** — [Agentic-Internal-Execution-Runtime (AIER)](https://aigenos.github.io/dAIly/digests/digest_20261028.html)
 - **2026-10-29** — [Agentic-Tool-Call-Firewall](https://aigenos.github.io/dAIly/digests/digest_20261029.html)
 - **2026-10-30** — [Agentic-Firmware-Simulation-Gateway](https://aigenos.github.io/dAIly/digests/digest_20261030.html)
+- **2026-10-31** — [Agentic-Visual-Verification-Harness (AVVH)](https://aigenos.github.io/dAIly/digests/digest_20261031.html)
